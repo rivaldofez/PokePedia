@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 1
-        layout.itemSize = CGSize(width: ((view.frame.size.width) / 3) - 5, height: (view.frame.size.width) / 3)
+        layout.itemSize = CGSize(width: ((view.frame.size.width) / 3) - 5, height: (view.frame.size.width) / 2)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(PokemonCollectionViewCell.self, forCellWithReuseIdentifier: PokemonCollectionViewCell.identifier)

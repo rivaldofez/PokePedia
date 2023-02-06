@@ -22,6 +22,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "999"
+        label.textAlignment = .left
         return label
     }()
     
@@ -29,6 +30,8 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Mega Venusaur"
+        label.numberOfLines = 2
+        label.textAlignment = .left
         
         return label
     }()
@@ -36,7 +39,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .blue
+        contentView.backgroundColor = .lightGray
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 8
         contentView.layer.borderWidth = 2
@@ -54,12 +57,25 @@ class PokemonCollectionViewCell: UICollectionViewCell {
             pokemonImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             pokemonImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             pokemonImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            pokemonImageView.heightAnchor.constraint(equalToConstant: 80)
+            pokemonImageView.heightAnchor.constraint(equalToConstant: contentView.frame.size.height/2)
         ]
         
-
+        let pokemonNumberLabelConstraints = [
+            pokemonNumberLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            pokemonNumberLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            pokemonNumberLabel.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 16)
+        ]
+        
+        let pokemonNameLabelConstraints = [
+            pokemonNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            pokemonNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                      constant: -8),
+            pokemonNameLabel.topAnchor.constraint(equalTo: pokemonNumberLabel.bottomAnchor, constant: 4)
+        ]
         
         NSLayoutConstraint.activate(pokemonImageViewConstraints)
+        NSLayoutConstraint.activate(pokemonNumberLabelConstraints)
+        NSLayoutConstraint.activate(pokemonNameLabelConstraints)
     }
     
     required init?(coder: NSCoder) {
