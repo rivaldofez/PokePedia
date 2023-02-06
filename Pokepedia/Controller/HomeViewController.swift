@@ -9,12 +9,15 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    private var pokedexCollectionView: UICollectionView = {
+    private lazy var pokemonCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 1
+        layout.itemSize = CGSize(width: ((view.frame.size.width) / 3) - 5, height: (view.frame.size.width) / 3)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(PokemonCollectionViewCell.self, forCellWithReuseIdentifier: PokemonCollectionViewCell.identifier)
         return collectionView
     }()
 
@@ -22,29 +25,27 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-        view.addSubview(pokedexCollectionView)
+        view.addSubview(pokemonCollectionView)
         
-        pokedexCollectionView.delegate = self
-        pokedexCollectionView.dataSource = self
+        pokemonCollectionView.delegate = self
+        pokemonCollectionView.dataSource = self
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        pokedexCollectionView.frame = view.bounds
+        pokemonCollectionView.frame = view.bounds
     }
 }
 
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 100
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        
-        cell.backgroundColor = .red
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.identifier, for: indexPath)
+
         return cell
     }
     
