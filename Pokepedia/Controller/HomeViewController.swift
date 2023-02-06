@@ -12,18 +12,24 @@ class HomeViewController: UIViewController {
     private lazy var pokemonCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 10
+        layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 1
-        layout.itemSize = CGSize(width: ((view.frame.size.width) / 3) - 5, height: (view.frame.size.width) / 2)
+        layout.itemSize = CGSize(width: ((view.frame.size.width) / 3) - 10, height: (view.frame.size.width) / 2)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(PokemonCollectionViewCell.self, forCellWithReuseIdentifier: PokemonCollectionViewCell.identifier)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         return collectionView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationController?.navigationItem.largeTitleDisplayMode = .always
+        title = "Pokémon"
+        navigationController?.navigationBar.tintColor = .label
+        
         view.backgroundColor = .systemBackground
         view.addSubview(pokemonCollectionView)
         

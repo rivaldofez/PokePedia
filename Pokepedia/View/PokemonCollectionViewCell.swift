@@ -25,7 +25,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "pokeball")
-        imageView.alpha = 0.5
+        imageView.alpha = 0.3
         return imageView
     }()
     
@@ -33,7 +33,9 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "999"
+        label.font = .systemFont(ofSize: 14, weight: .semibold)
         label.textAlignment = .left
+        label.textColor = .secondaryLabel
         return label
     }()
     
@@ -43,6 +45,8 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         label.text = "Mega Venusaur"
         label.numberOfLines = 2
         label.textAlignment = .left
+        label.font = .systemFont(ofSize: 18, weight: .regular)
+        label.textColor = .label
         
         return label
     }()
