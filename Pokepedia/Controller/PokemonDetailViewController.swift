@@ -24,6 +24,13 @@ class PokemonDetailViewController: UIViewController {
         return label
     }()
     
+    private let pokemonNameLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Charizard"
+        return label
+    }()
+    
     private let pokemonWeightLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -65,6 +72,27 @@ class PokemonDetailViewController: UIViewController {
         return stackView
     }()
     
+    private var test: [UIButton] = ["Tweets", "Media", "Likes"].map { buttonTitle in
+        let button = UIButton(type: .system)
+        button.setTitle(buttonTitle, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 10, weight: .bold)
+        button.tintColor = .label
+        button.backgroundColor = .systemBlue
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }
+    
+    private lazy var pokemonTypeStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: test)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .e
+        stackView.alignment = .fill
+        return stackView
+    }()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -72,8 +100,9 @@ class PokemonDetailViewController: UIViewController {
         view.addSubview(mainStackView)
         configureConstraints()
         
-        mainStackView.addSubview(pokemonImageView)
-        
+        mainStackView.addArrangedSubview(pokemonImageView)
+        mainStackView.addArrangedSubview(pokemonNameLabel)
+        mainStackView.addArrangedSubview(pokemonTypeStackView)
         
 
     }
