@@ -59,6 +59,13 @@ class PokemonDetailViewController: UIViewController {
         return label
     }()
     
+    private let brief: UILabel = {
+        let label = UILabel()
+        label.text = "About"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let pokemonBriefLabel: UILabel = {
         let label = UILabel()
         label.text = "This is brief explanation about pokemon, so you need to adjust size of this text label"
@@ -92,6 +99,8 @@ class PokemonDetailViewController: UIViewController {
         return stackView
     }()
     
+
+    
     
     
     override func viewDidLoad() {
@@ -104,6 +113,8 @@ class PokemonDetailViewController: UIViewController {
         mainStackView.addArrangedSubview(pokemonImageView)
         mainStackView.addArrangedSubview(pokemonNameLabel)
         mainStackView.addArrangedSubview(pokemonTypeStackView)
+        mainStackView.addArrangedSubview(brief)
+        mainStackView.addArrangedSubview(pokemonBriefLabel)
         
 
     }
