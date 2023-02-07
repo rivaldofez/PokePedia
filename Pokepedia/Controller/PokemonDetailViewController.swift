@@ -99,6 +99,33 @@ class PokemonDetailViewController: UIViewController {
         return stackView
     }()
     
+    private lazy var pokemonSizeStackView: UIStackView = {
+        let heightLabel = UILabel()
+        heightLabel.text = "Height"
+        
+        let weightLabel = UILabel()
+        weightLabel.text = "Weight"
+        
+        let weightStackView = UIStackView()
+        weightStackView.axis = .vertical
+        weightStackView.addArrangedSubview(weightLabel)
+        weightStackView.addArrangedSubview(pokemonWeightLabel)
+        
+        let heightStackView = UIStackView()
+        heightStackView.axis = .vertical
+        heightStackView.addArrangedSubview(heightLabel)
+        heightStackView.addArrangedSubview(pokemonHeightLabel)
+        
+        
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.addArrangedSubview(weightStackView)
+        stackView.addArrangedSubview(heightStackView)
+        stackView.spacing = 10
+        return stackView
+    }()
+    
+    
 
     
     
@@ -115,6 +142,7 @@ class PokemonDetailViewController: UIViewController {
         mainStackView.addArrangedSubview(pokemonTypeStackView)
         mainStackView.addArrangedSubview(brief)
         mainStackView.addArrangedSubview(pokemonBriefLabel)
+        mainStackView.addArrangedSubview(pokemonSizeStackView)
         
 
     }
