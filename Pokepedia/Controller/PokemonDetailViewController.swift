@@ -58,10 +58,35 @@ class PokemonDetailViewController: UIViewController {
         return label
     }()
     
+    private var mainStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .systemBackground
+        view.addSubview(mainStackView)
+        configureConstraints()
+        
+        mainStackView.addSubview(pokemonImageView)
+        
+        
+
+    }
+
+    private func configureConstraints(){
+        let mainStackViewConstraints = [
+            mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            mainStackView.topAnchor.constraint(equalTo: view.topAnchor),
+//            mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(mainStackViewConstraints)
     }
 
 }
