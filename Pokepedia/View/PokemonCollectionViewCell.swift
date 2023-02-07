@@ -20,6 +20,16 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private let pokemonTypeImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "grass")
+        imageView.alpha = 1
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
     private let pokeballImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -64,6 +74,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(pokemonImageView)
         contentView.addSubview(pokemonNumberLabel)
         contentView.addSubview(pokemonNameLabel)
+        contentView.addSubview(pokemonTypeImageView)
         
         configureConstraints()
     }
@@ -97,10 +108,19 @@ class PokemonCollectionViewCell: UICollectionViewCell {
             pokemonNameLabel.topAnchor.constraint(equalTo: pokemonNumberLabel.bottomAnchor, constant: 4)
         ]
         
+        let pokemonTypeImageViewConstraints = [
+            pokemonTypeImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            pokemonTypeImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            pokemonTypeImageView.widthAnchor.constraint(equalToConstant: 30),
+            pokemonTypeImageView.heightAnchor.constraint(equalToConstant: 30)
+            
+        ]
+        
         NSLayoutConstraint.activate(pokemonImageViewConstraints)
         NSLayoutConstraint.activate(pokemonNumberLabelConstraints)
         NSLayoutConstraint.activate(pokemonNameLabelConstraints)
         NSLayoutConstraint.activate(pokeballImageViewConstraints)
+        NSLayoutConstraint.activate(pokemonTypeImageViewConstraints)
     }
     
     required init?(coder: NSCoder) {
