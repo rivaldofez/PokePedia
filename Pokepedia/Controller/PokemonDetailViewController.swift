@@ -69,6 +69,8 @@ class PokemonDetailViewController: UIViewController {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.distribution = .fill
         return stackView
     }()
     
@@ -78,16 +80,15 @@ class PokemonDetailViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 10, weight: .bold)
         button.tintColor = .label
         button.backgroundColor = .systemBlue
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
     
     private lazy var pokemonTypeStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: test)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+
         stackView.axis = .horizontal
-        stackView.distribution = .e
-        stackView.alignment = .fill
+//        stackView.distribution = .equalCentering
+//        stackView.alignment = .center
         return stackView
     }()
     
