@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Charts
 
 class PokemonDetailViewController: UIViewController {
 
@@ -126,6 +127,12 @@ class PokemonDetailViewController: UIViewController {
     }()
     
     
+    private lazy var baseStatRadarChart: RadarChartView = {
+        let chartView = RadarChartView()
+        chartView.translatesAutoresizingMaskIntoConstraints = false
+        return chartView
+    }()
+    
 
     
     
@@ -143,6 +150,7 @@ class PokemonDetailViewController: UIViewController {
         mainStackView.addArrangedSubview(brief)
         mainStackView.addArrangedSubview(pokemonBriefLabel)
         mainStackView.addArrangedSubview(pokemonSizeStackView)
+        mainStackView.addArrangedSubview(baseStatRadarChart)
         
 
     }
@@ -155,7 +163,12 @@ class PokemonDetailViewController: UIViewController {
 //            mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
+        let baseStatRadarChartConstraints = [
+            baseStatRadarChart.heightAnchor.constraint(equalToConstant: 250)
+        ]
+        
         NSLayoutConstraint.activate(mainStackViewConstraints)
+        NSLayoutConstraint.activate(baseStatRadarChartConstraints)
     }
 
 }
