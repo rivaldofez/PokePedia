@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		3695AD5C1429C261CC22F22D /* Pods_Pokepedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A6FE8DF851B9CD61D243D72 /* Pods_Pokepedia.framework */; };
 		7E188239299147AC00C6CB64 /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E188238299147AC00C6CB64 /* PokemonCollectionViewCell.swift */; };
+		7E1BC7A329940DA000A14767 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1BC7A229940DA000A14767 /* RxCocoa.framework */; };
+		7E1BC7A429940DA000A14767 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1BC7A229940DA000A14767 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7E1BC7A729940DAA00A14767 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1BC7A629940DAA00A14767 /* RxSwift.framework */; };
+		7E1BC7A829940DAA00A14767 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1BC7A629940DAA00A14767 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7E1BC7AA29940DB000A14767 /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1BC7A929940DB000A14767 /* RxRelay.framework */; };
+		7E1BC7AB29940DB100A14767 /* RxRelay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1BC7A929940DB000A14767 /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7E3B126329927C4E00311EB2 /* PokemonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B126229927C4E00311EB2 /* PokemonDetailViewController.swift */; };
 		7E6F940A299010BA004B2537 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F9409299010BA004B2537 /* AppDelegate.swift */; };
 		7E6F940C299010BA004B2537 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F940B299010BA004B2537 /* SceneDelegate.swift */; };
@@ -17,11 +23,30 @@
 		7E6F941F2990110E004B2537 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F941E2990110E004B2537 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7E1BC7A529940DA000A14767 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7E1BC7A829940DAA00A14767 /* RxSwift.framework in Embed Frameworks */,
+				7E1BC7A429940DA000A14767 /* RxCocoa.framework in Embed Frameworks */,
+				7E1BC7AB29940DB100A14767 /* RxRelay.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3AB2A6FF7F35EC44BBFCBFED /* Pods-Pokepedia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokepedia.debug.xcconfig"; path = "Target Support Files/Pods-Pokepedia/Pods-Pokepedia.debug.xcconfig"; sourceTree = "<group>"; };
 		5D164E6A1A3313EAF0DE72E9 /* Pods-Pokepedia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokepedia.release.xcconfig"; path = "Target Support Files/Pods-Pokepedia/Pods-Pokepedia.release.xcconfig"; sourceTree = "<group>"; };
 		6A6FE8DF851B9CD61D243D72 /* Pods_Pokepedia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pokepedia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E188238299147AC00C6CB64 /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };
+		7E1BC7A229940DA000A14767 /* RxCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E1BC7A629940DAA00A14767 /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E1BC7A929940DB000A14767 /* RxRelay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxRelay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E3B126229927C4E00311EB2 /* PokemonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailViewController.swift; sourceTree = "<group>"; };
 		7E6F9406299010BA004B2537 /* Pokepedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokepedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E6F9409299010BA004B2537 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -37,7 +62,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E1BC7AA29940DB000A14767 /* RxRelay.framework in Frameworks */,
+				7E1BC7A329940DA000A14767 /* RxCocoa.framework in Frameworks */,
 				3695AD5C1429C261CC22F22D /* Pods_Pokepedia.framework in Frameworks */,
+				7E1BC7A729940DAA00A14767 /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,13 +127,15 @@
 				3AB2A6FF7F35EC44BBFCBFED /* Pods-Pokepedia.debug.xcconfig */,
 				5D164E6A1A3313EAF0DE72E9 /* Pods-Pokepedia.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		F4E8CFAB4551274886D58785 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E1BC7A929940DB000A14767 /* RxRelay.framework */,
+				7E1BC7A629940DAA00A14767 /* RxSwift.framework */,
+				7E1BC7A229940DA000A14767 /* RxCocoa.framework */,
 				6A6FE8DF851B9CD61D243D72 /* Pods_Pokepedia.framework */,
 			);
 			name = Frameworks;
@@ -123,6 +153,7 @@
 				7E6F9403299010BA004B2537 /* Frameworks */,
 				7E6F9404299010BA004B2537 /* Resources */,
 				CBFB6FEF338599D126C69313 /* [CP] Embed Pods Frameworks */,
+				7E1BC7A529940DA000A14767 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

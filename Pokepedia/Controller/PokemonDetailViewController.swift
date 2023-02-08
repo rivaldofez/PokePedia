@@ -189,7 +189,6 @@ class PokemonDetailViewController: UIViewController {
         baseStatRadarChart.webColor = .lightGray
         baseStatRadarChart.innerWebColor = .lightGray
 
-
         // 3
         let xAxis = baseStatRadarChart.xAxis
         xAxis.labelFont = .systemFont(ofSize: 9, weight: .bold)
@@ -204,11 +203,11 @@ class PokemonDetailViewController: UIViewController {
         yAxis.drawLabelsEnabled = false
         yAxis.drawTopYLabelEntryEnabled = false
         yAxis.axisMinimum = 0
-        yAxis.axisMaximum = 255
+        yAxis.axisMaximum = 200
         yAxis.valueFormatter = YAxisFormatter()
 
         // 5
-        baseStatRadarChart.rotationEnabled = false
+        baseStatRadarChart.rotationEnabled = true
         baseStatRadarChart.legend.enabled = false
         
 

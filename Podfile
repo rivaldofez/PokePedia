@@ -7,4 +7,6 @@ target 'Pokepedia' do
 
   # Pods for Pokepedia
   pod 'Charts'
+  pod 'RxSwift', '6.5.0'
+  pod 'RxCocoa', '6.5.0'
 end
