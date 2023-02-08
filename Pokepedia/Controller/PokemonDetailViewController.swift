@@ -133,6 +133,18 @@ class PokemonDetailViewController: UIViewController {
         return chartView
     }()
     
+    let redDataSet = RadarChartDataSet(
+        entries: [
+            RadarChartDataEntry(value: 255), //HP
+            RadarChartDataEntry(value: 255), //Attack
+            RadarChartDataEntry(value: 255), //Defense
+            RadarChartDataEntry(value: 255), //Speed
+            RadarChartDataEntry(value: 255), //Sp.Defense
+            RadarChartDataEntry(value: 255) //Sp.Attack
+        ]
+    )
+
+    
 
     
     
