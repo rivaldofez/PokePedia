@@ -164,6 +164,53 @@ class PokemonDetailViewController: UIViewController {
         mainStackView.addArrangedSubview(pokemonSizeStackView)
         mainStackView.addArrangedSubview(baseStatRadarChart)
         
+        // 2
+        let data = RadarChartData(dataSets: [redDataSet])
+
+        // 3
+        baseStatRadarChart.data = data
+        // 1
+        redDataSet.lineWidth = 2
+
+        // 2
+        let redColor = UIColor(red: 247/255, green: 67/255, blue: 115/255, alpha: 1)
+        let redFillColor = UIColor(red: 247/255, green: 67/255, blue: 115/255, alpha: 0.6)
+        redDataSet.colors = [redColor]
+        redDataSet.fillColor = redFillColor
+        redDataSet.drawFilledEnabled = true
+
+        // 3
+        redDataSet.valueFormatter = DataSetValueFormatter()
+
+
+        // 2
+        baseStatRadarChart.webLineWidth = 1.5
+        baseStatRadarChart.innerWebLineWidth = 1
+        baseStatRadarChart.webColor = .lightGray
+        baseStatRadarChart.innerWebColor = .lightGray
+
+
+        // 3
+        let xAxis = baseStatRadarChart.xAxis
+        xAxis.labelFont = .systemFont(ofSize: 9, weight: .bold)
+        xAxis.labelTextColor = .black
+        xAxis.valueFormatter = self
+        xAxis.labelCount = 5
+
+        // 4
+        let yAxis = baseStatRadarChart.yAxis
+//        yAxis.labelFont = .systemFont(ofSize: 9, weight: .light)
+        yAxis.labelCount = 0
+        yAxis.drawLabelsEnabled = false
+        yAxis.drawTopYLabelEntryEnabled = false
+        yAxis.axisMinimum = 0
+        yAxis.axisMaximum = 255
+        yAxis.valueFormatter = YAxisFormatter()
+
+        // 5
+        baseStatRadarChart.rotationEnabled = false
+        baseStatRadarChart.legend.enabled = false
+        
 
     }
 
@@ -176,7 +223,8 @@ class PokemonDetailViewController: UIViewController {
         ]
         
         let baseStatRadarChartConstraints = [
-            baseStatRadarChart.heightAnchor.constraint(equalToConstant: 250)
+            baseStatRadarChart.heightAnchor.constraint(equalToConstant: 250),
+            baseStatRadarChart.widthAnchor.constraint(equalToConstant: view.frame.size.width)
         ]
         
         NSLayoutConstraint.activate(mainStackViewConstraints)
@@ -184,3 +232,43 @@ class PokemonDetailViewController: UIViewController {
     }
 
 }
+
+extension PokemonDetailViewController: AxisValueFormatter{
+    func stringForValue(_ value: Double, axis: Charts.AxisBase?) -> String {
+        let titles = ["HP", "Attack", "Defense", "Speed", "Sp.Def", "Sp.Atk"]
+        return "\(titles[Int(value) % titles.count])\n\(self.redDataSet[0].y)"
+    }
+
+
+}
+
+class DataSetValueFormatter: ValueFormatter {
+
+    func stringForValue(_ value: Double,
+                        entry: ChartDataEntry,
+                        dataSetIndex: Int,
+                        viewPortHandler: ViewPortHandler?) -> String {
+        ""
+    }
+}
+
+// 2
+class XAxisFormatter: AxisValueFormatter {
+
+    let titles = ["HP", "Attack", "Defense", "Speed", "Sp.Def", "Sp.Atk"]
+
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        print(value)
+        return titles[Int(value) % titles.count]
+    }
+}
+
+// 3
+class YAxisFormatter: AxisValueFormatter {
+
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        print(value)
+        return "\(Int(value)) $"
+    }
+}
+
