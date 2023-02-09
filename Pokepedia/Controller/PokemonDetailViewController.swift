@@ -151,11 +151,6 @@ class PokemonDetailViewController: UIViewController {
         ]
     )
 
-    
-
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -223,28 +218,29 @@ class PokemonDetailViewController: UIViewController {
 
     private func configureConstraints(){
         let mainScrollViewConstraints = [
-            mainScrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            mainScrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            mainScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            mainScrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            mainScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mainScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            mainScrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            mainScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
         
         ]
         
         let mainStackViewConstraints = [
             mainStackView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: mainScrollView.safeAreaLayoutGuide.trailingAnchor),
-            mainStackView.topAnchor.constraint(equalTo: mainScrollView.safeAreaLayoutGuide.topAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: mainScrollView.trailingAnchor),
+            mainStackView.topAnchor.constraint(equalTo: mainScrollView.topAnchor),
 //            mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
         let baseStatRadarChartConstraints = [
-            baseStatRadarChart.heightAnchor.constraint(equalToConstant: 350),
+            baseStatRadarChart.heightAnchor.constraint(equalToConstant: 150),
             baseStatRadarChart.widthAnchor.constraint(equalToConstant: view.frame.size.width)
         ]
-        
+        NSLayoutConstraint.activate(mainScrollViewConstraints)
         NSLayoutConstraint.activate(mainStackViewConstraints)
         NSLayoutConstraint.activate(baseStatRadarChartConstraints)
-        NSLayoutConstraint.activate(mainScrollViewConstraints)
+        
     }
 
 }
