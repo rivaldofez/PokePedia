@@ -69,7 +69,7 @@ class PokemonDetailViewController: UIViewController {
     
     private let pokemonBriefLabel: UILabel = {
         let label = UILabel()
-        label.text = "This is brief explanation about pokemon, so you need to adjust size of this text label"
+        label.text = "Charizard, known in Japan as Lizardon, is a Pokémon in Nintendo and Game Freak's Pokémon franchise. Created by Atsuko Nishida, Charizard first appeared in the video games Pokémon Red and Blue and subsequent sequels."
         return label
     }()
     
@@ -221,20 +221,20 @@ class PokemonDetailViewController: UIViewController {
             mainScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mainScrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            mainScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            mainScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 
         
         ]
         
         let mainStackViewConstraints = [
-            mainStackView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: mainScrollView.trailingAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mainStackView.topAnchor.constraint(equalTo: mainScrollView.topAnchor),
-//            mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            mainStackView.bottomAnchor.constraint(equalTo: mainScrollView.bottomAnchor)
         ]
         
         let baseStatRadarChartConstraints = [
-            baseStatRadarChart.heightAnchor.constraint(equalToConstant: 150),
+            baseStatRadarChart.heightAnchor.constraint(equalToConstant: 350),
             baseStatRadarChart.widthAnchor.constraint(equalToConstant: view.frame.size.width)
         ]
         NSLayoutConstraint.activate(mainScrollViewConstraints)
