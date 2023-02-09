@@ -82,10 +82,16 @@ class PokemonDetailViewController: UIViewController {
         return stackView
     }()
     
-    private var test: [UIButton] = ["Tweets", "Media", "Likes"].map { buttonTitle in
+    private var test: [UIButton] = ["Fire", "Flying", "Dragon"].map { buttonTitle in
         let button = UIButton(type: .system)
         button.setTitle(buttonTitle, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 10, weight: .bold)
+        button.titleLabel?.font = .systemFont(ofSize: 13, weight: .bold)
+        button.layer.cornerRadius = 10
+        
+        var configButton = UIButton.Configuration.plain()
+        configButton.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        button.configuration = configButton
+        button.clipsToBounds = true
         button.tintColor = .label
         button.backgroundColor = .systemBlue
         return button
@@ -95,6 +101,7 @@ class PokemonDetailViewController: UIViewController {
         let stackView = UIStackView(arrangedSubviews: test)
 
         stackView.axis = .horizontal
+        stackView.spacing = 16
 //        stackView.distribution = .equalCentering
 //        stackView.alignment = .center
         return stackView
@@ -155,6 +162,12 @@ class PokemonDetailViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationController?.navigationItem.largeTitleDisplayMode = .always
+        title = "Charizard"
+        navigationController?.navigationBar.tintColor = .label
+        
+        
         view.addSubview(mainScrollView)
         mainScrollView.addSubview(mainStackView)
         configureConstraints()
@@ -222,8 +235,6 @@ class PokemonDetailViewController: UIViewController {
             mainScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mainScrollView.topAnchor.constraint(equalTo: view.topAnchor),
             mainScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-
-        
         ]
         
         let mainStackViewConstraints = [
@@ -237,9 +248,17 @@ class PokemonDetailViewController: UIViewController {
             baseStatRadarChart.heightAnchor.constraint(equalToConstant: 350),
             baseStatRadarChart.widthAnchor.constraint(equalToConstant: view.frame.size.width)
         ]
+        
+        let pokemonImageViewConstraints = [
+            pokemonImageView.widthAnchor.constraint(equalToConstant: 150),
+            pokemonImageView.heightAnchor.constraint(equalToConstant: 150)
+        ]
+        
+        
         NSLayoutConstraint.activate(mainScrollViewConstraints)
         NSLayoutConstraint.activate(mainStackViewConstraints)
         NSLayoutConstraint.activate(baseStatRadarChartConstraints)
+        NSLayoutConstraint.activate(pokemonImageViewConstraints)
         
     }
 
