@@ -127,6 +127,13 @@ class PokemonDetailViewController: UIViewController {
     }()
     
     
+    private var mainScrollView: UIScrollView = {
+       let scrollview = UIScrollView()
+        scrollview.translatesAutoresizingMaskIntoConstraints = false
+        return scrollview
+    }()
+    
+    
     private lazy var baseStatRadarChart: RadarChartView = {
         let chartView = RadarChartView()
         chartView.translatesAutoresizingMaskIntoConstraints = false
@@ -153,7 +160,8 @@ class PokemonDetailViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-        view.addSubview(mainStackView)
+        view.addSubview(mainScrollView)
+        mainScrollView.addSubview(mainStackView)
         configureConstraints()
         
         mainStackView.addArrangedSubview(pokemonImageView)
@@ -214,20 +222,29 @@ class PokemonDetailViewController: UIViewController {
     }
 
     private func configureConstraints(){
+        let mainScrollViewConstraints = [
+            mainScrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            mainScrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            mainScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mainScrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        
+        ]
+        
         let mainStackViewConstraints = [
-            mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: mainScrollView.safeAreaLayoutGuide.trailingAnchor),
+            mainStackView.topAnchor.constraint(equalTo: mainScrollView.safeAreaLayoutGuide.topAnchor),
 //            mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
         let baseStatRadarChartConstraints = [
-            baseStatRadarChart.heightAnchor.constraint(equalToConstant: 250),
+            baseStatRadarChart.heightAnchor.constraint(equalToConstant: 350),
             baseStatRadarChart.widthAnchor.constraint(equalToConstant: view.frame.size.width)
         ]
         
         NSLayoutConstraint.activate(mainStackViewConstraints)
         NSLayoutConstraint.activate(baseStatRadarChartConstraints)
+        NSLayoutConstraint.activate(mainScrollViewConstraints)
     }
 
 }
