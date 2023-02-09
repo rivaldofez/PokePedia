@@ -215,9 +215,9 @@ class PokemonDetailViewController: UIViewController {
 
     private func configureConstraints(){
         let mainStackViewConstraints = [
-            mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainStackView.topAnchor.constraint(equalTo: view.topAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
 //            mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
