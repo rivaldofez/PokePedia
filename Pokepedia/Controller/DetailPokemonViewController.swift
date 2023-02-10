@@ -110,6 +110,13 @@ class DetailPokemonViewController: UIViewController {
         }
     }
     
+    private var sectionViewContainer: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .gray
+        return view
+    }()
+    
     private let pokemonImageView: UIImageView = {
        let imageview = UIImageView()
         imageview.translatesAutoresizingMaskIntoConstraints = false
@@ -141,6 +148,8 @@ class DetailPokemonViewController: UIViewController {
         view.addSubview(pokemonImageView)
         view.addSubview(sectionStackView)
         view.addSubview(indicator)
+        view.addSubview(sectionViewContainer)
+        addSubViewController(viewController: aboutSubViewController, contentView: sectionViewContainer)
         
         configureConstraints()
         configureStackButton()
@@ -165,11 +174,23 @@ class DetailPokemonViewController: UIViewController {
         switch label {
         case SectionTabs.about.rawValue:
             selectedTab = 0
+            removeSubViewController(viewController: baseStatSubViewController)
+            removeSubViewController(viewController: movesSubViewController)
+            addSubViewController(viewController: aboutSubViewController, contentView: sectionViewContainer)
         case SectionTabs.stat.rawValue:
             selectedTab = 1
+            removeSubViewController(viewController: aboutSubViewController)
+            removeSubViewController(viewController: movesSubViewController)
+            addSubViewController(viewController: baseStatSubViewController, contentView: sectionViewContainer)
         case SectionTabs.moves.rawValue:
             selectedTab = 2
+            removeSubViewController(viewController: baseStatSubViewController)
+            removeSubViewController(viewController: aboutSubViewController)
+            addSubViewController(viewController: movesSubViewController, contentView: sectionViewContainer)
         default:
+            removeSubViewController(viewController: baseStatSubViewController)
+            removeSubViewController(viewController: movesSubViewController)
+            addSubViewController(viewController: aboutSubViewController, contentView: sectionViewContainer)
             selectedTab = 0
         }
     }
@@ -209,10 +230,18 @@ class DetailPokemonViewController: UIViewController {
             indicator.heightAnchor.constraint(equalToConstant: 4)
         ]
         
+        let sectionViewContainerConstraints = [
+            sectionViewContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            sectionViewContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            sectionViewContainer.topAnchor.constraint(equalTo: indicator.bottomAnchor, constant: 10),
+            sectionViewContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ]
+        
         NSLayoutConstraint.activate(pokemonImageViewConstraints)
         NSLayoutConstraint.activate(pokemonTypeStackViewConstraints)
         NSLayoutConstraint.activate(sectionStackViewConstraints)
         NSLayoutConstraint.activate(indicatorConstraints)
+        NSLayoutConstraint.activate(sectionViewContainerConstraints)
     }
     
     private func removeSubViewController(viewController: UIViewController){
