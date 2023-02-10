@@ -210,8 +210,6 @@ class DetailPokemonViewController: UIViewController {
         NSLayoutConstraint.activate(sectionStackViewConstraints)
         NSLayoutConstraint.activate(indicatorConstraints)
     }
-
-
 }
 
 extension UIView {

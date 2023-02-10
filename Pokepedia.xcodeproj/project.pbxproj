@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7E02472E2996103400EECAA9 /* DetailPokemonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E02472D2996103400EECAA9 /* DetailPokemonViewController.swift */; };
+		7E0247562996A71300EECAA9 /* AboutSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0247552996A71300EECAA9 /* AboutSubViewController.swift */; };
+		7E0247582996A73400EECAA9 /* BaseStatSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0247572996A73400EECAA9 /* BaseStatSubViewController.swift */; };
+		7E02475A2996A75500EECAA9 /* MovesSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0247592996A75500EECAA9 /* MovesSubViewController.swift */; };
 		7E188239299147AC00C6CB64 /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E188238299147AC00C6CB64 /* PokemonCollectionViewCell.swift */; };
 		7E3B126329927C4E00311EB2 /* PokemonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B126229927C4E00311EB2 /* PokemonDetailViewController.swift */; };
 		7E6F940A299010BA004B2537 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F9409299010BA004B2537 /* AppDelegate.swift */; };
@@ -34,6 +37,9 @@
 /* Begin PBXFileReference section */
 		7E02472C2995E11A00EECAA9 /* Pokepedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokepedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E02472D2996103400EECAA9 /* DetailPokemonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPokemonViewController.swift; sourceTree = "<group>"; };
+		7E0247552996A71300EECAA9 /* AboutSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSubViewController.swift; sourceTree = "<group>"; };
+		7E0247572996A73400EECAA9 /* BaseStatSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatSubViewController.swift; sourceTree = "<group>"; };
+		7E0247592996A75500EECAA9 /* MovesSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesSubViewController.swift; sourceTree = "<group>"; };
 		7E188238299147AC00C6CB64 /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };
 		7E3B126229927C4E00311EB2 /* PokemonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailViewController.swift; sourceTree = "<group>"; };
 		7E6F9409299010BA004B2537 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +111,9 @@
 				7E6F941E2990110E004B2537 /* HomeViewController.swift */,
 				7E3B126229927C4E00311EB2 /* PokemonDetailViewController.swift */,
 				7E02472D2996103400EECAA9 /* DetailPokemonViewController.swift */,
+				7E0247552996A71300EECAA9 /* AboutSubViewController.swift */,
+				7E0247572996A73400EECAA9 /* BaseStatSubViewController.swift */,
+				7E0247592996A75500EECAA9 /* MovesSubViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -235,10 +244,13 @@
 			files = (
 				7E6F940A299010BA004B2537 /* AppDelegate.swift in Sources */,
 				7E02472E2996103400EECAA9 /* DetailPokemonViewController.swift in Sources */,
+				7E0247582996A73400EECAA9 /* BaseStatSubViewController.swift in Sources */,
 				7E6F940C299010BA004B2537 /* SceneDelegate.swift in Sources */,
 				7E3B126329927C4E00311EB2 /* PokemonDetailViewController.swift in Sources */,
 				7E188239299147AC00C6CB64 /* PokemonCollectionViewCell.swift in Sources */,
+				7E02475A2996A75500EECAA9 /* MovesSubViewController.swift in Sources */,
 				7E6F941F2990110E004B2537 /* HomeViewController.swift in Sources */,
+				7E0247562996A71300EECAA9 /* AboutSubViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
