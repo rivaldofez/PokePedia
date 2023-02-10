@@ -26,7 +26,7 @@ class AboutSubViewController: UIViewController {
         weightIcon.clipsToBounds = true
         
         let label = UILabel()
-        label.text = "10 Kg"
+        label.text = "10 Kg (15,72 lbs)"
         
        let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -41,7 +41,7 @@ class AboutSubViewController: UIViewController {
         weightStackView.addArrangedSubview(stackView)
         weightStackView.alignment = .center
         weightStackView.addArrangedSubview(weightLabel)
-        weightStackView.backgroundColor = .gray
+       
         
         return weightStackView
     }()
@@ -55,7 +55,7 @@ class AboutSubViewController: UIViewController {
         heightIcon.clipsToBounds = true
         
         let label = UILabel()
-        label.text = "10 m"
+        label.text = "10 m (2'14\")"
         
        let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -70,7 +70,6 @@ class AboutSubViewController: UIViewController {
         heightStackView.addArrangedSubview(stackView)
         heightStackView.alignment = .center
         heightStackView.addArrangedSubview(heightLabel)
-        heightStackView.backgroundColor = .gray
         
         return heightStackView
     }()
@@ -87,12 +86,20 @@ class AboutSubViewController: UIViewController {
         stackView.addArrangedSubview(weightLabelStackView)
         stackView.addArrangedSubview(uiview)
         stackView.addArrangedSubview(heightLabelStackView)
-        stackView.spacing = 40
+        stackView.spacing = 20
         stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.backgroundColor = .lightGray
+        stackView.layer.cornerRadius = 8
+        stackView.clipsToBounds = true
+        
+        stackView.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        
         return stackView
     }()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -111,6 +118,8 @@ class AboutSubViewController: UIViewController {
         
         let sizeStackViewConstraints = [
             sizeStackView.topAnchor.constraint(equalTo: aboutLabel.bottomAnchor,constant: 10),
+            sizeStackView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 16),
+            sizeStackView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: 16),
             sizeStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
         
