@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E02472E2996103400EECAA9 /* DetailPokemonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E02472D2996103400EECAA9 /* DetailPokemonViewController.swift */; };
 		7E188239299147AC00C6CB64 /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E188238299147AC00C6CB64 /* PokemonCollectionViewCell.swift */; };
 		7E3B126329927C4E00311EB2 /* PokemonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B126229927C4E00311EB2 /* PokemonDetailViewController.swift */; };
 		7E6F940A299010BA004B2537 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F9409299010BA004B2537 /* AppDelegate.swift */; };
@@ -31,9 +32,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7E02472C2995E11A00EECAA9 /* Pokepedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokepedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E02472D2996103400EECAA9 /* DetailPokemonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPokemonViewController.swift; sourceTree = "<group>"; };
 		7E188238299147AC00C6CB64 /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };
 		7E3B126229927C4E00311EB2 /* PokemonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailViewController.swift; sourceTree = "<group>"; };
-		7E6F9406299010BA004B2537 /* Pokepedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Pokepedia.app; path = "/Users/rivaldofez/Projects/AppleProjects/Pokepedia/build/Debug-iphoneos/Pokepedia.app"; sourceTree = "<absolute>"; };
 		7E6F9409299010BA004B2537 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E6F940B299010BA004B2537 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7E6F9412299010BB004B2537 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				7E6F9408299010BA004B2537 /* Pokepedia */,
 				B89846504221E2F2E33375BD /* Pods */,
 				24ABAB75B678297290E11372 /* Frameworks */,
+				7E02472C2995E11A00EECAA9 /* Pokepedia.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +104,7 @@
 			children = (
 				7E6F941E2990110E004B2537 /* HomeViewController.swift */,
 				7E3B126229927C4E00311EB2 /* PokemonDetailViewController.swift */,
+				7E02472D2996103400EECAA9 /* DetailPokemonViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -111,7 +115,6 @@
 				B3E52203D846446712022143 /* Pods-Pokepedia.debug.xcconfig */,
 				82C8DFC0597D4263B97712C1 /* Pods-Pokepedia.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -135,7 +138,7 @@
 			);
 			name = Pokepedia;
 			productName = Pokepedia;
-			productReference = 7E6F9406299010BA004B2537 /* Pokepedia.app */;
+			productReference = 7E02472C2995E11A00EECAA9 /* Pokepedia.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -231,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E6F940A299010BA004B2537 /* AppDelegate.swift in Sources */,
+				7E02472E2996103400EECAA9 /* DetailPokemonViewController.swift in Sources */,
 				7E6F940C299010BA004B2537 /* SceneDelegate.swift in Sources */,
 				7E3B126329927C4E00311EB2 /* PokemonDetailViewController.swift in Sources */,
 				7E188239299147AC00C6CB64 /* PokemonCollectionViewCell.swift in Sources */,

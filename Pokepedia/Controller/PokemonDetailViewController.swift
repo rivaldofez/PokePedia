@@ -70,6 +70,7 @@ class PokemonDetailViewController: UIViewController {
     private let pokemonBriefLabel: UILabel = {
         let label = UILabel()
         label.text = "Charizard, known in Japan as Lizardon, is a Pokémon in Nintendo and Game Freak's Pokémon franchise. Created by Atsuko Nishida, Charizard first appeared in the video games Pokémon Red and Blue and subsequent sequels."
+        label.numberOfLines = 0
         return label
     }()
     
@@ -78,7 +79,7 @@ class PokemonDetailViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .center
-        stackView.distribution = .fill
+//        stackView.distribution = .fill
         return stackView
     }()
     
@@ -118,15 +119,18 @@ class PokemonDetailViewController: UIViewController {
         weightStackView.axis = .vertical
         weightStackView.addArrangedSubview(weightLabel)
         weightStackView.addArrangedSubview(pokemonWeightLabel)
+        weightStackView.backgroundColor = .gray
         
         let heightStackView = UIStackView()
         heightStackView.axis = .vertical
         heightStackView.addArrangedSubview(heightLabel)
         heightStackView.addArrangedSubview(pokemonHeightLabel)
+        heightStackView.backgroundColor = .gray
         
         
         let stackView = UIStackView()
         stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
         stackView.addArrangedSubview(weightStackView)
         stackView.addArrangedSubview(heightStackView)
         stackView.spacing = 10
@@ -170,15 +174,16 @@ class PokemonDetailViewController: UIViewController {
         
         view.addSubview(mainScrollView)
         mainScrollView.addSubview(mainStackView)
-        configureConstraints()
         
         mainStackView.addArrangedSubview(pokemonImageView)
-        mainStackView.addArrangedSubview(pokemonNameLabel)
+//        mainStackView.addArrangedSubview(pokemonNameLabel)
         mainStackView.addArrangedSubview(pokemonTypeStackView)
         mainStackView.addArrangedSubview(brief)
         mainStackView.addArrangedSubview(pokemonBriefLabel)
         mainStackView.addArrangedSubview(pokemonSizeStackView)
         mainStackView.addArrangedSubview(baseStatRadarChart)
+        
+        configureConstraints()
         
         // 2
         let data = RadarChartData(dataSets: [redDataSet])
@@ -225,8 +230,6 @@ class PokemonDetailViewController: UIViewController {
         // 5
         baseStatRadarChart.rotationEnabled = true
         baseStatRadarChart.legend.enabled = false
-        
-
     }
 
     private func configureConstraints(){
@@ -239,11 +242,14 @@ class PokemonDetailViewController: UIViewController {
         
         let mainStackViewConstraints = [
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            mainStackView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor),
             mainStackView.topAnchor.constraint(equalTo: mainScrollView.topAnchor),
             mainStackView.bottomAnchor.constraint(equalTo: mainScrollView.bottomAnchor)
         ]
-        
+        mainStackView.setCustomSpacing(30, after: pokemonImageView)
+        mainStackView.setCustomSpacing(30, after: pokemonTypeStackView)
+        mainStackView.setCustomSpacing(30, after: pokemonBriefLabel)
+
         let baseStatRadarChartConstraints = [
             baseStatRadarChart.heightAnchor.constraint(equalToConstant: 350),
             baseStatRadarChart.widthAnchor.constraint(equalToConstant: view.frame.size.width)
@@ -253,7 +259,6 @@ class PokemonDetailViewController: UIViewController {
             pokemonImageView.widthAnchor.constraint(equalToConstant: 150),
             pokemonImageView.heightAnchor.constraint(equalToConstant: 150)
         ]
-        
         
         NSLayoutConstraint.activate(mainScrollViewConstraints)
         NSLayoutConstraint.activate(mainStackViewConstraints)
