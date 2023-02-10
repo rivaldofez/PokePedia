@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		7E02472C2995E11A00EECAA9 /* Pokepedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokepedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E02472D2996103400EECAA9 /* DetailPokemonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPokemonViewController.swift; sourceTree = "<group>"; };
-		7E0247552996A71300EECAA9 /* AboutSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSubViewController.swift; sourceTree = "<group>"; };
+		7E0247552996A71300EECAA9 /* AboutSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AboutSubViewController.swift; path = /Users/rivaldofez/Projects/AppleProjects/Pokepedia/Pokepedia/Controller/AboutSubViewController.swift; sourceTree = "<absolute>"; };
 		7E0247572996A73400EECAA9 /* BaseStatSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatSubViewController.swift; sourceTree = "<group>"; };
 		7E0247592996A75500EECAA9 /* MovesSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesSubViewController.swift; sourceTree = "<group>"; };
 		7E188238299147AC00C6CB64 /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };

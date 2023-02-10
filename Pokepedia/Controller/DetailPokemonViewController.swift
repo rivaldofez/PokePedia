@@ -113,7 +113,6 @@ class DetailPokemonViewController: UIViewController {
     private var sectionViewContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .gray
         return view
     }()
     
