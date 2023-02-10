@@ -126,6 +126,10 @@ class DetailPokemonViewController: UIViewController {
         return view
     }()
     
+    private lazy var aboutSubViewController = AboutSubViewController()
+    private lazy var baseStatSubViewController = BaseStatSubViewController()
+    private lazy var movesSubViewController = MovesSubViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -210,20 +214,24 @@ class DetailPokemonViewController: UIViewController {
         NSLayoutConstraint.activate(sectionStackViewConstraints)
         NSLayoutConstraint.activate(indicatorConstraints)
     }
-}
-
-extension UIView {
-
-    static func spacer(size: CGFloat = 10, for layout: NSLayoutConstraint.Axis = .horizontal) -> UIView {
-        let spacer = UIView()
-        
-        if layout == .horizontal {
-            spacer.widthAnchor.constraint(equalToConstant: size).isActive = true
-        } else {
-            spacer.heightAnchor.constraint(equalToConstant: size).isActive = true
-        }
-        
-        return spacer
+    
+    private func removeSubViewController(viewController: UIViewController){
+        viewController.willMove(toParent: nil)
+        viewController.view.removeFromSuperview()
+        viewController.removeFromParent()
     }
-
+    
+    func addSubViewController(viewController: UIViewController, contentView: UIView){
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(viewController.view)
+        
+        let matchConstraints = [
+            viewController.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            viewController.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            viewController.view.topAnchor.constraint(equalTo: contentView.topAnchor),
+            viewController.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(matchConstraints)
+        viewController.didMove(toParent: self)
+    }
 }
