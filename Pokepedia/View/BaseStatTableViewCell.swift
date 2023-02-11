@@ -13,13 +13,15 @@ class BaseStatTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "HP"
+        label.font = .poppinsBold(size: 14)
+        label.text = "Sp.Atk"
         return label
     }()
     
     private let statLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .comfortaaBold(size: 14)
         label.text = "255"
         return label
     }()
@@ -40,31 +42,29 @@ class BaseStatTableViewCell: UITableViewCell {
         
         configureConstraints()
         
-                progressView.setProgress(1, animated: false)
+        progressView.setProgress(0.4, animated: false)
         progressView.trackTintColor = .lightGray
         progressView.tintColor = .blue
     }
     
     private func configureConstraints(){
         let titleLabelConstraints = [
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
 //            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ]
         
         let statLabelConstraints = [
-            statLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 8),
+            statLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 16),
             statLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             statLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ]
         
         let progressViewConstraints = [
-            progressView.leadingAnchor.constraint(equalTo: statLabel.trailingAnchor, constant: 8),
-//            progressView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-//            progressView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            progressView.leadingAnchor.constraint(equalTo: statLabel.trailingAnchor, constant: 16),
             progressView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            progressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            progressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             progressView.heightAnchor.constraint(equalToConstant: 5)
         ]
         

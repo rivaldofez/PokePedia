@@ -8,12 +8,6 @@
 import UIKit
 
 class BaseStatSubViewController: UIViewController {
-
-    private let progressBar: UIProgressView = {
-       let progressview = UIProgressView()
-        progressview.translatesAutoresizingMaskIntoConstraints = false
-        return progressview
-    }()
     
     private let progressTableView: UITableView = {
        let tableview = UITableView()
@@ -26,26 +20,11 @@ class BaseStatSubViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        view.addSubview(progressBar)
         view.addSubview(progressTableView)
         configureConstraints()
         
         progressTableView.dataSource = self
         progressTableView.delegate = self
-        
-        
-//        let progressBarConstraints = [
-//            progressBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-//            progressBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            progressBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            progressBar.heightAnchor.constraint(equalToConstant: 10)
-//        ]
-//
-//        NSLayoutConstraint.activate(progressBarConstraints)
-//
-//        progressBar.setProgress(0.5, animated: true)
-//        progressBar.trackTintColor = .lightGray
-//        progressBar.tintColor = .blue
         
     }
     

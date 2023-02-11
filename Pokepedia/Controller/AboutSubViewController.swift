@@ -91,8 +91,9 @@ class AboutSubViewController: UIViewController {
         stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.backgroundColor = .lightGray
-        stackView.layer.cornerRadius = 8
+        stackView.layer.cornerRadius = 16
         stackView.clipsToBounds = true
+        stackView.distribution = .equalSpacing
         
         stackView.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         stackView.isLayoutMarginsRelativeArrangement = true
@@ -118,9 +119,9 @@ class AboutSubViewController: UIViewController {
         ]
         
         let sizeStackViewConstraints = [
-            sizeStackView.topAnchor.constraint(equalTo: aboutLabel.bottomAnchor,constant: 10),
-            sizeStackView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 16),
-            sizeStackView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16),
+            sizeStackView.topAnchor.constraint(equalTo: aboutLabel.bottomAnchor,constant: 32),
+            sizeStackView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor),
+            sizeStackView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor),
             sizeStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
         
