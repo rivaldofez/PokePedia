@@ -31,7 +31,7 @@ class DetailPokemonViewController: UIViewController {
     private var sectionTabButtons: [UIButton] = SectionTabs.allCases.map { sectionCase in
         let button = UIButton(type: .system)
         button.setTitle(sectionCase.rawValue, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
+        button.titleLabel?.font = .poppinsBold(size: 14)
         button.tintColor = .label
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -52,20 +52,21 @@ class DetailPokemonViewController: UIViewController {
         let stackView = UIStackView()
         
         let label = UILabel()
+        label.font = .poppinsMedium(size: 12)
         label.text = title
         
         let imageview = UIImageView()
         imageview.image = UIImage(named: "grass")
         imageview.contentMode = .scaleAspectFit
-        imageview.widthAnchor.constraint(equalToConstant: 24).isActive = true
-        imageview.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        imageview.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        imageview.heightAnchor.constraint(equalToConstant: 20).isActive = true
         imageview.clipsToBounds = true
     
         stackView.spacing = 5
         stackView.addArrangedSubview(imageview)
         stackView.addArrangedSubview(label)
         
-        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.axis = .horizontal
         stackView.alignment = .center
@@ -139,9 +140,17 @@ class DetailPokemonViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        
         navigationController?.navigationBar.prefersLargeTitles = true
+        
         title = "Charizard"
         navigationController?.navigationBar.tintColor = .label
+        
+        let attrs = [
+            NSAttributedString.Key.font: UIFont.poppinsBold(size: 34)!
+        ]
+
+        navigationController?.navigationBar.largeTitleTextAttributes = attrs
 
         view.addSubview(pokemonTypeStackView)
         view.addSubview(pokemonImageView)
@@ -196,13 +205,13 @@ class DetailPokemonViewController: UIViewController {
     
     private func configureConstraints(){
         let pokemonImageViewConstraints = [
-            pokemonImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            pokemonImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             pokemonImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             pokemonImageView.heightAnchor.constraint(equalToConstant: min(view.frame.width/2, view.frame.height/2))
         ]
 
         let pokemonTypeStackViewConstraints = [
-            pokemonTypeStackView.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 10),
+            pokemonTypeStackView.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 16),
             pokemonTypeStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
 
         ]
@@ -216,9 +225,9 @@ class DetailPokemonViewController: UIViewController {
         }
         
         let sectionStackViewConstraints = [
-            sectionStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            sectionStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-            sectionStackView.topAnchor.constraint(equalTo: pokemonTypeStackView.bottomAnchor, constant: 5),
+            sectionStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            sectionStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            sectionStackView.topAnchor.constraint(equalTo: pokemonTypeStackView.bottomAnchor, constant: 16),
             sectionStackView.heightAnchor.constraint(equalToConstant: 35)
         ]
         
@@ -230,9 +239,9 @@ class DetailPokemonViewController: UIViewController {
         ]
         
         let sectionViewContainerConstraints = [
-            sectionViewContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            sectionViewContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            sectionViewContainer.topAnchor.constraint(equalTo: indicator.bottomAnchor, constant: 10),
+            sectionViewContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            sectionViewContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            sectionViewContainer.topAnchor.constraint(equalTo: indicator.bottomAnchor, constant: 20),
             sectionViewContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         

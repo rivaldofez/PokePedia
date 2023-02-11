@@ -120,7 +120,7 @@ class AboutSubViewController: UIViewController {
         let sizeStackViewConstraints = [
             sizeStackView.topAnchor.constraint(equalTo: aboutLabel.bottomAnchor,constant: 10),
             sizeStackView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 16),
-            sizeStackView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: 16),
+            sizeStackView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16),
             sizeStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
         
