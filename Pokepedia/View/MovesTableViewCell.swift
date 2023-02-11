@@ -14,6 +14,7 @@ class MovesTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
        let label = UILabel()
         label.text = "Razor Leaf"
+        label.font = .comfortaaRegular(size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -28,8 +29,8 @@ class MovesTableViewCell: UITableViewCell {
     
     private func configureConstraints(){
         let titleLabelConstraints = [
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ]
