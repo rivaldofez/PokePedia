@@ -36,7 +36,16 @@ class HomeViewController: UIViewController {
         pokemonCollectionView.delegate = self
         pokemonCollectionView.dataSource = self
         
-        APIManager().fetchListPokemon()
+        APIManager.shared.fetchListPokemon { result in
+            switch result {
+            case.success(let pokemonPageResponse):
+                for pokemonItem in pokemonPageResponse.pokemonItem{
+                    print(pokemonItem.name)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
