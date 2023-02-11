@@ -35,6 +35,8 @@ class HomeViewController: UIViewController {
         
         pokemonCollectionView.delegate = self
         pokemonCollectionView.dataSource = self
+        
+        APIManager().fetchListPokemon()
     }
     
     override func viewDidLayoutSubviews() {

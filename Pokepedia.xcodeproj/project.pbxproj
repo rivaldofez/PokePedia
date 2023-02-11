@@ -38,6 +38,7 @@
 		7E47C3B02997791500CFFB54 /* Comfortaa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E47C3AB2997790D00CFFB54 /* Comfortaa-Regular.ttf */; };
 		7E47C3B12997791500CFFB54 /* Comfortaa-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E47C3A82997790D00CFFB54 /* Comfortaa-SemiBold.ttf */; };
 		7E47C3B4299779C700CFFB54 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C3B3299779C700CFFB54 /* UIFont+Extensions.swift */; };
+		7E47C3B7299788AF00CFFB54 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C3B6299788AF00CFFB54 /* APIManager.swift */; };
 		7E6F940A299010BA004B2537 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F9409299010BA004B2537 /* AppDelegate.swift */; };
 		7E6F940C299010BA004B2537 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F940B299010BA004B2537 /* SceneDelegate.swift */; };
 		7E6F9413299010BB004B2537 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E6F9412299010BB004B2537 /* Assets.xcassets */; };
@@ -92,6 +93,7 @@
 		7E47C3AB2997790D00CFFB54 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comfortaa-Regular.ttf"; sourceTree = "<group>"; };
 		7E47C3AC2997790D00CFFB54 /* Comfortaa-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comfortaa-Medium.ttf"; sourceTree = "<group>"; };
 		7E47C3B3299779C700CFFB54 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		7E47C3B6299788AF00CFFB54 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7E6F9409299010BA004B2537 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E6F940B299010BA004B2537 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7E6F9412299010BB004B2537 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -187,6 +189,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		7E47C3B52997888F00CFFB54 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				7E47C3B6299788AF00CFFB54 /* APIManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		7E6F93FD299010BA004B2537 = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +210,7 @@
 		7E6F9408299010BA004B2537 /* Pokepedia */ = {
 			isa = PBXGroup;
 			children = (
+				7E47C3B52997888F00CFFB54 /* Manager */,
 				7E47C3B2299779AA00CFFB54 /* Extension */,
 				7E47C37A2997710300CFFB54 /* Font */,
 				7E1882372991478400C6CB64 /* View */,
@@ -372,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E47C3B7299788AF00CFFB54 /* APIManager.swift in Sources */,
 				7E6F940A299010BA004B2537 /* AppDelegate.swift in Sources */,
 				7E02472E2996103400EECAA9 /* DetailPokemonViewController.swift in Sources */,
 				7E0247582996A73400EECAA9 /* BaseStatSubViewController.swift in Sources */,
