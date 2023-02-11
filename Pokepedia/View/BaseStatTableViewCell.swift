@@ -39,6 +39,10 @@ class BaseStatTableViewCell: UITableViewCell {
         contentView.addSubview(progressView)
         
         configureConstraints()
+        
+                progressView.setProgress(1, animated: false)
+        progressView.trackTintColor = .lightGray
+        progressView.tintColor = .blue
     }
     
     private func configureConstraints(){
@@ -46,19 +50,22 @@ class BaseStatTableViewCell: UITableViewCell {
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
 //            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8)
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ]
         
         let statLabelConstraints = [
             statLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 8),
-            statLabel.topAnchor.constraint(equalTo: contentView..topAnchor, constant: 8),
-            statLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8)
+            statLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            statLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ]
         
         let progressViewConstraints = [
             progressView.leadingAnchor.constraint(equalTo: statLabel.trailingAnchor, constant: 8),
-            progressView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            progressView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8)
+//            progressView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+//            progressView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            progressView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            progressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            progressView.heightAnchor.constraint(equalToConstant: 5)
         ]
         
         NSLayoutConstraint.activate(titleLabelConstraints)

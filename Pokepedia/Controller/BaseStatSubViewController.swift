@@ -18,7 +18,7 @@ class BaseStatSubViewController: UIViewController {
     private let progressTableView: UITableView = {
        let tableview = UITableView()
         tableview.translatesAutoresizingMaskIntoConstraints = false
-        tableview.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableview.register(BaseStatTableViewCell.self, forCellReuseIdentifier: BaseStatTableViewCell.identifier)
         return tableview
     }()
     
@@ -68,7 +68,7 @@ extension BaseStatSubViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: BaseStatTableViewCell.identifier, for: indexPath)
         
         return cell
     }
