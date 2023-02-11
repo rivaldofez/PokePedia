@@ -12,7 +12,6 @@
 		7E0247582996A73400EECAA9 /* BaseStatSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0247572996A73400EECAA9 /* BaseStatSubViewController.swift */; };
 		7E02475A2996A75500EECAA9 /* MovesSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0247592996A75500EECAA9 /* MovesSubViewController.swift */; };
 		7E188239299147AC00C6CB64 /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E188238299147AC00C6CB64 /* PokemonCollectionViewCell.swift */; };
-		7E3B126329927C4E00311EB2 /* PokemonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B126229927C4E00311EB2 /* PokemonDetailViewController.swift */; };
 		7E47C377299754AE00CFFB54 /* BaseStatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C376299754AE00CFFB54 /* BaseStatTableViewCell.swift */; };
 		7E47C379299768B700CFFB54 /* MovesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C378299768B700CFFB54 /* MovesTableViewCell.swift */; };
 		7E47C3952997786900CFFB54 /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E47C3932997784100CFFB54 /* Poppins-Black.ttf */; };
@@ -67,7 +66,6 @@
 		7E0247572996A73400EECAA9 /* BaseStatSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatSubViewController.swift; sourceTree = "<group>"; };
 		7E0247592996A75500EECAA9 /* MovesSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesSubViewController.swift; sourceTree = "<group>"; };
 		7E188238299147AC00C6CB64 /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };
-		7E3B126229927C4E00311EB2 /* PokemonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailViewController.swift; sourceTree = "<group>"; };
 		7E47C376299754AE00CFFB54 /* BaseStatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatTableViewCell.swift; sourceTree = "<group>"; };
 		7E47C378299768B700CFFB54 /* MovesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesTableViewCell.swift; sourceTree = "<group>"; };
 		7E47C3832997784000CFFB54 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -219,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				7E6F941E2990110E004B2537 /* HomeViewController.swift */,
-				7E3B126229927C4E00311EB2 /* PokemonDetailViewController.swift */,
 				7E02472D2996103400EECAA9 /* DetailPokemonViewController.swift */,
 				7E0247552996A71300EECAA9 /* AboutSubViewController.swift */,
 				7E0247572996A73400EECAA9 /* BaseStatSubViewController.swift */,
@@ -379,7 +376,6 @@
 				7E02472E2996103400EECAA9 /* DetailPokemonViewController.swift in Sources */,
 				7E0247582996A73400EECAA9 /* BaseStatSubViewController.swift in Sources */,
 				7E6F940C299010BA004B2537 /* SceneDelegate.swift in Sources */,
-				7E3B126329927C4E00311EB2 /* PokemonDetailViewController.swift in Sources */,
 				7E47C379299768B700CFFB54 /* MovesTableViewCell.swift in Sources */,
 				7E188239299147AC00C6CB64 /* PokemonCollectionViewCell.swift in Sources */,
 				7E47C377299754AE00CFFB54 /* BaseStatTableViewCell.swift in Sources */,

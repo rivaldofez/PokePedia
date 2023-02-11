@@ -43,7 +43,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "999"
-        label.font = .systemFont(ofSize: 14, weight: .semibold)
+        label.font = .poppinsRegular(size: 14)
         label.textAlignment = .left
         label.textColor = .secondaryLabel
         return label
@@ -55,7 +55,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         label.text = "Mega Venusaur"
         label.numberOfLines = 2
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 18, weight: .regular)
+        label.font = .poppinsMedium(size: 16)
         label.textColor = .label
         
         return label
