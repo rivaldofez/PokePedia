@@ -40,6 +40,7 @@
 		7E47C3B4299779C700CFFB54 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C3B3299779C700CFFB54 /* UIFont+Extensions.swift */; };
 		7E47C3B7299788AF00CFFB54 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C3B6299788AF00CFFB54 /* APIManager.swift */; };
 		7E47C3BA2997ACC400CFFB54 /* PokemonPageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C3B92997ACC400CFFB54 /* PokemonPageResponse.swift */; };
+		7E47C3E32997ED8E00CFFB54 /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C3E22997ED8E00CFFB54 /* PokemonModel.swift */; };
 		7E6F940A299010BA004B2537 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F9409299010BA004B2537 /* AppDelegate.swift */; };
 		7E6F940C299010BA004B2537 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F940B299010BA004B2537 /* SceneDelegate.swift */; };
 		7E6F9413299010BB004B2537 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E6F9412299010BB004B2537 /* Assets.xcassets */; };
@@ -96,6 +97,7 @@
 		7E47C3B3299779C700CFFB54 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		7E47C3B6299788AF00CFFB54 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7E47C3B92997ACC400CFFB54 /* PokemonPageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonPageResponse.swift; sourceTree = "<group>"; };
+		7E47C3E22997ED8E00CFFB54 /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
 		7E6F9409299010BA004B2537 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E6F940B299010BA004B2537 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7E6F9412299010BB004B2537 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -207,6 +209,46 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7E47C3DD2997EC0E00CFFB54 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7E47C3E02997EC3900CFFB54 /* Domain */,
+				7E47C3DE2997EC1900CFFB54 /* Data */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		7E47C3DE2997EC1900CFFB54 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				7E47C3DF2997EC2400CFFB54 /* Remote */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		7E47C3DF2997EC2400CFFB54 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		7E47C3E02997EC3900CFFB54 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				7E47C3E12997EC4800CFFB54 /* Model */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		7E47C3E12997EC4800CFFB54 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7E47C3E22997ED8E00CFFB54 /* PokemonModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		7E6F93FD299010BA004B2537 = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +262,7 @@
 		7E6F9408299010BA004B2537 /* Pokepedia */ = {
 			isa = PBXGroup;
 			children = (
+				7E47C3DD2997EC0E00CFFB54 /* Core */,
 				7E47C3B82997ACA200CFFB54 /* Model */,
 				7E47C3B52997888F00CFFB54 /* Manager */,
 				7E47C3B2299779AA00CFFB54 /* Extension */,
@@ -405,6 +448,7 @@
 				7E47C377299754AE00CFFB54 /* BaseStatTableViewCell.swift in Sources */,
 				7E02475A2996A75500EECAA9 /* MovesSubViewController.swift in Sources */,
 				7E6F941F2990110E004B2537 /* HomeViewController.swift in Sources */,
+				7E47C3E32997ED8E00CFFB54 /* PokemonModel.swift in Sources */,
 				7E47C3B4299779C700CFFB54 /* UIFont+Extensions.swift in Sources */,
 				7E0247562996A71300EECAA9 /* AboutSubViewController.swift in Sources */,
 			);
