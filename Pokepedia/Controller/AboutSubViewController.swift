@@ -14,7 +14,7 @@ class AboutSubViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Charizard, known in Japan as Lizardon, is a Pokémon in Nintendo and Game Freak's Pokémon franchise. Created by Atsuko Nishida, Charizard first appeared in the video games Pokémon Red and Blue and subsequent sequels."
         label.numberOfLines = 0
-        label.font = UIFont(name: "Comfortaa-Medium", size: 12)
+        label.font = .comfortaaLight(size: 16)
         return label
     }()
     
