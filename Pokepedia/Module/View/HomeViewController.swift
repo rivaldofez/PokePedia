@@ -25,15 +25,17 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     var presenter: HomePresenterProtocol?
     
     func isLoadingData(with state: Bool) {
-        //tba
+        print("loading data: \(state)")
     }
     
     func updatePokemon(with pokemons: [Pokemon]) {
-        //tba
+        for pokemon in pokemons {
+            print(pokemon.name)
+        }
     }
     
     func updatePokemon(with error: String) {
-        //tba
+        print("ini error: \(error)")
     }
     
     private let disposeBag = DisposeBag()
