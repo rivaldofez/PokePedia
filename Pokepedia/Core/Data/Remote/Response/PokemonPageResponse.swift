@@ -14,14 +14,12 @@ struct PokemonPageResponse: Codable {
     let next: String?
     var pokemonItem: [PokemonPageItemResponse]
     
-    
     enum CodingKeys: String, CodingKey {
         case count
         case previous
         case next
         case pokemonItem = "results"
     }
-    
 }
 
 struct PokemonPageItemResponse: Codable {

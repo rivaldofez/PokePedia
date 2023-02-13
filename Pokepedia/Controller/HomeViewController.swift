@@ -43,8 +43,9 @@ class HomeViewController: UIViewController {
         
         result.observe(on: MainScheduler.instance)
             .subscribe{ resultItem in
-                for i in resultItem {
-                    print(i.name)
+                let mapperResult = PokemonMapper.mapPokemonDetailResponsesToDomain(input: resultItem)
+                for i in mapperResult {
+                    print(i.image)
                 }
             } onError: { error in
                 print("error")

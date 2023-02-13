@@ -11,11 +11,14 @@ final class PokemonMapper {
     static func mapPokemonDetailResponsesToDomain(input pokemonDetailResponses: [PokemonDetailResponse]) -> [Pokemon]{
         
         return pokemonDetailResponses.map { result in
+            let image = result.sprites.other.officialArtwork.frontDefault ??
+            result.sprites.other.dreamWorld.frontDefault ??
+            result.sprites.other.home.frontDefault ?? ""
             
             let newPokemon = Pokemon(
                 id: result.id,
                 name: result.name,
-                image: "",
+                image: image,
                 height: result.height,
                 weight: result.weight,
                 baseExp: result.baseExperience,

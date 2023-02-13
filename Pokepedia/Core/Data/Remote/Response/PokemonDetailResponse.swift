@@ -79,9 +79,9 @@ struct DreamWorld: Codable {
 }
 
 struct Home: Codable {
-    let frontDefault: String
+    let frontDefault: String?
     let frontFemale: String?
-    let frontShiny: String
+    let frontShiny: String?
     let frontShinyFemale: String?
 
     enum CodingKeys: String, CodingKey {
@@ -94,7 +94,7 @@ struct Home: Codable {
 
 // MARK: - OfficialArtwork
 struct OfficialArtwork: Codable {
-    let frontDefault, frontShiny: String
+    let frontDefault, frontShiny: String?
 
     enum CodingKeys: String, CodingKey {
         case frontDefault = "front_default"

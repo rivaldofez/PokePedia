@@ -19,7 +19,6 @@ struct Pokemon: Identifiable{
     let type: [String] //detail types
 }
 
-
 struct BaseStat{
     let name: String
     let effort: Int
