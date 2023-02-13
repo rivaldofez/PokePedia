@@ -53,6 +53,8 @@
 		7E6F941F2990110E004B2537 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F941E2990110E004B2537 /* HomeViewController.swift */; };
 		7EE1328D299A35DF00FFB47B /* PokemonSpeciesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE1328C299A35DF00FFB47B /* PokemonSpeciesResponse.swift */; };
 		7EE1328F299A4DBE00FFB47B /* PokemonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE1328E299A4DBE00FFB47B /* PokemonMapper.swift */; };
+		7EE13293299A551200FFB47B /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE13292299A551200FFB47B /* Injection.swift */; };
+		7EE13297299A579200FFB47B /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE13296299A579200FFB47B /* HomeInteractor.swift */; };
 		FA782B7CA5BFA4645E496A8A /* Pods_Pokepedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 967540B584CE528CE2DB6A89 /* Pods_Pokepedia.framework */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +120,8 @@
 		7E6F941E2990110E004B2537 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7EE1328C299A35DF00FFB47B /* PokemonSpeciesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSpeciesResponse.swift; sourceTree = "<group>"; };
 		7EE1328E299A4DBE00FFB47B /* PokemonMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonMapper.swift; sourceTree = "<group>"; };
+		7EE13292299A551200FFB47B /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
+		7EE13296299A579200FFB47B /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		82C8DFC0597D4263B97712C1 /* Pods-Pokepedia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokepedia.release.xcconfig"; path = "Target Support Files/Pods-Pokepedia/Pods-Pokepedia.release.xcconfig"; sourceTree = "<group>"; };
 		967540B584CE528CE2DB6A89 /* Pods_Pokepedia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pokepedia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E52203D846446712022143 /* Pods-Pokepedia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokepedia.debug.xcconfig"; path = "Target Support Files/Pods-Pokepedia/Pods-Pokepedia.debug.xcconfig"; sourceTree = "<group>"; };
@@ -219,6 +223,7 @@
 		7E47C3DD2997EC0E00CFFB54 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				7EE13291299A550600FFB47B /* DI */,
 				7E47C3E02997EC3900CFFB54 /* Domain */,
 				7E47C3DE2997EC1900CFFB54 /* Data */,
 			);
@@ -246,6 +251,7 @@
 		7E47C3E02997EC3900CFFB54 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				7EE13295299A577F00FFB47B /* UseCase */,
 				7E47C3E12997EC4800CFFB54 /* Model */,
 			);
 			path = Domain;
@@ -333,6 +339,22 @@
 				7E0247592996A75500EECAA9 /* MovesSubViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		7EE13291299A550600FFB47B /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				7EE13292299A551200FFB47B /* Injection.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		7EE13295299A577F00FFB47B /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				7EE13296299A579200FFB47B /* HomeInteractor.swift */,
+			);
+			path = UseCase;
 			sourceTree = "<group>";
 		};
 		B89846504221E2F2E33375BD /* Pods */ = {
@@ -495,8 +517,10 @@
 				7E47C3ED2997F67200CFFB54 /* CustomError+Extensions.swift in Sources */,
 				7E47C3EB2997F3A500CFFB54 /* RemoteDataSource.swift in Sources */,
 				7E47C3BA2997ACC400CFFB54 /* PokemonPageResponse.swift in Sources */,
+				7EE13293299A551200FFB47B /* Injection.swift in Sources */,
 				7E47C3F12997F92D00CFFB54 /* PokemonDetailResponse.swift in Sources */,
 				7E47C377299754AE00CFFB54 /* BaseStatTableViewCell.swift in Sources */,
+				7EE13297299A579200FFB47B /* HomeInteractor.swift in Sources */,
 				7E02475A2996A75500EECAA9 /* MovesSubViewController.swift in Sources */,
 				7EE1328D299A35DF00FFB47B /* PokemonSpeciesResponse.swift in Sources */,
 				7E6F941F2990110E004B2537 /* HomeViewController.swift in Sources */,
