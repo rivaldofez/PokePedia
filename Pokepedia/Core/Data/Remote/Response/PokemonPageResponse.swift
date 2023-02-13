@@ -12,7 +12,8 @@ struct PokemonPageResponse: Codable {
     let count: Int
     let previous: String?
     let next: String?
-    let pokemonItem: [PokemonPageItemResponse]
+    var pokemonItem: [PokemonPageItemResponse]
+    
     
     enum CodingKeys: String, CodingKey {
         case count
@@ -26,5 +27,6 @@ struct PokemonPageResponse: Codable {
 struct PokemonPageItemResponse: Codable {
     let name: String
     let url: String
+    var pokemonSpecies: PokemonSpeciesResponse?
 }
 

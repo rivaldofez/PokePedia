@@ -22,7 +22,7 @@ enum Endpoints {
         
         var url: String {
             switch self {
-            case .pokemon: return "\(API.baseURL)pokemon/?offset=0&limit=50"
+            case .pokemon: return "\(API.baseURL)pokemon/?"
             }
         }
     }

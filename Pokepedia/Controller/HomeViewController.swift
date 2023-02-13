@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import RxSwift
+import Alamofire
 
 class HomeViewController: UIViewController {
+    private let disposeBag = DisposeBag()
     
     private lazy var pokemonCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -21,12 +24,12 @@ class HomeViewController: UIViewController {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         return collectionView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
-//        navigationController?.navigationItem.largeTitleDisplayMode = .always
+        //        navigationController?.navigationItem.largeTitleDisplayMode = .always
         title = "Pokémon"
         navigationController?.navigationBar.tintColor = .label
         
@@ -36,16 +39,19 @@ class HomeViewController: UIViewController {
         pokemonCollectionView.delegate = self
         pokemonCollectionView.dataSource = self
         
-        APIManager.shared.fetchListPokemon { result in
-            switch result {
-            case.success(let pokemonPageResponse):
-                for pokemonItem in pokemonPageResponse.pokemonItem{
-                    print(pokemonItem.name)
+        let result = PokemonRepository.shared.getPokemonDataPagination(offset: 0, limit: 10)
+        
+        result.observe(on: MainScheduler.instance)
+            .subscribe{ resultItem in
+                for i in resultItem {
+                    print(i.name)
                 }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+            } onError: { error in
+                print("error")
+            } onCompleted: {
+                print("completed")
+            }.disposed(by: disposeBag)
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -62,7 +68,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.identifier, for: indexPath)
-
+        
         return cell
     }
     
