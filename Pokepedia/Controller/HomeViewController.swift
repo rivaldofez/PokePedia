@@ -52,6 +52,17 @@ class HomeViewController: UIViewController {
                 print("completed")
             }.disposed(by: disposeBag)
         
+        
+        let resSpecies = PokemonRepository.shared.getPokemonSpecies(id: 2)
+        resSpecies.observe(on: MainScheduler.instance)
+            .subscribe{ resultItem in
+                print(resultItem.color)
+            } onError: { error in
+                print("error2")
+            } onCompleted: {
+                print("completed2")
+            }.disposed(by: disposeBag)
+        
     }
     
     override func viewDidLayoutSubviews() {

@@ -2,145 +2,123 @@
 //  PokemonSpeciesResponse.swift
 //  Pokepedia
 //
-//  Created by Rivaldo Fernandes on 11/02/23.
+//  Created by Rivaldo Fernandes on 13/02/23.
 //
 
 import Foundation
 
-//struct PokemonSpeciesResponse: Codable {
-//    let baseExperience: Int
-//
-//
-//    let height: Int
-//
-//    let id: Int
-//    let isDefault: Bool
-//    let locationAreaEncounters: String
-//
-//    let name: String
-//    let order: Int
-//
-//
-//    let weight: Int
-//
-//    enum CodingKeys: String, CodingKey {
-//
-//        case baseExperience = "base_experience"
-//
-//
-//        case height
-//
-//        case id
-//        case isDefault = "is_default"
-//        case locationAreaEncounters = "location_area_encounters"
-//        case  name, order
-//
-//        case  weight
-//    }
-//}
-
-
 struct PokemonSpeciesResponse: Codable {
-   let abilities: [Ability]
-   let baseExperience: Int
-   let forms: [Species]
-   let gameIndices: [GameIndex]
-   let height: Int
-   let id: Int
-   let isDefault: Bool
-   let locationAreaEncounters: String
-   let moves: [Move]
+   let baseHappiness, captureRate: Int
+   let color: Color
+   let eggGroups: [Color]
+   let evolutionChain: EvolutionChain
+   let evolvesFromSpecies: Color
+   let flavorTextEntries: [FlavorTextEntry]
+   let formsSwitchable: Bool
+   let genderRate: Int
+   let genera: [Genus]
+   let generation, growthRate, habitat: Color
+   let hasGenderDifferences: Bool
+   let hatchCounter, id: Int
+   let isBaby, isLegendary, isMythical: Bool
    let name: String
+   let names: [Name]
    let order: Int
-   let species: Species
-   let stats: [Stat]
-   let types: [TypeElement]
-   let weight: Int
+   let palParkEncounters: [PalParkEncounter]
+   let pokedexNumbers: [PokedexNumber]
+   let shape: Color
+   let varieties: [Variety]
 
    enum CodingKeys: String, CodingKey {
-       case abilities
-       case baseExperience = "base_experience"
-       case forms
-       case gameIndices = "game_indices"
-       case height
+       case baseHappiness = "base_happiness"
+       case captureRate = "capture_rate"
+       case color
+       case eggGroups = "egg_groups"
+       case evolutionChain = "evolution_chain"
+       case evolvesFromSpecies = "evolves_from_species"
+       case flavorTextEntries = "flavor_text_entries"
+       case formsSwitchable = "forms_switchable"
+       case genderRate = "gender_rate"
+       case genera, generation
+       case growthRate = "growth_rate"
+       case habitat
+       case hasGenderDifferences = "has_gender_differences"
+       case hatchCounter = "hatch_counter"
        case id
-       case isDefault = "is_default"
-       case locationAreaEncounters = "location_area_encounters"
-       case moves
-       case name, order
-       case species
-       case stats
-       case types
-       case weight
+       case isBaby = "is_baby"
+       case isLegendary = "is_legendary"
+       case isMythical = "is_mythical"
+       case name, names, order
+       case palParkEncounters = "pal_park_encounters"
+       case pokedexNumbers = "pokedex_numbers"
+       case shape, varieties
    }
 }
 
-// MARK: - Ability
-struct Ability: Codable {
-   let ability: Species
-   let isHidden: Bool
-   let slot: Int
-
-   enum CodingKeys: String, CodingKey {
-       case ability
-       case isHidden = "is_hidden"
-       case slot
-   }
-}
-
-// MARK: - Species
-struct Species: Codable {
+// MARK: - Color
+struct Color: Codable {
    let name: String
    let url: String
 }
 
-// MARK: - GameIndex
-struct GameIndex: Codable {
-   let gameIndex: Int
-   let version: Species
+// MARK: - EvolutionChain
+struct EvolutionChain: Codable {
+   let url: String
+}
+
+// MARK: - FlavorTextEntry
+struct FlavorTextEntry: Codable {
+   let flavorText: String
+   let language, version: Color
 
    enum CodingKeys: String, CodingKey {
-       case gameIndex = "game_index"
-       case version
+       case flavorText = "flavor_text"
+       case language, version
    }
 }
 
-// MARK: - Move
-struct Move: Codable {
-   let move: Species
-   let versionGroupDetails: [VersionGroupDetail]
+// MARK: - Genus
+struct Genus: Codable {
+   let genus: String
+   let language: Color
+}
+
+// MARK: - Name
+struct Name: Codable {
+   let language: Color
+   let name: String
+}
+
+// MARK: - PalParkEncounter
+struct PalParkEncounter: Codable {
+   let area: Color
+   let baseScore, rate: Int
 
    enum CodingKeys: String, CodingKey {
-       case move
-       case versionGroupDetails = "version_group_details"
+       case area
+       case baseScore = "base_score"
+       case rate
    }
 }
 
-// MARK: - VersionGroupDetail
-struct VersionGroupDetail: Codable {
-   let levelLearnedAt: Int
-   let moveLearnMethod, versionGroup: Species
+// MARK: - PokedexNumber
+struct PokedexNumber: Codable {
+   let entryNumber: Int
+   let pokedex: Color
 
    enum CodingKeys: String, CodingKey {
-       case levelLearnedAt = "level_learned_at"
-       case moveLearnMethod = "move_learn_method"
-       case versionGroup = "version_group"
+       case entryNumber = "entry_number"
+       case pokedex
    }
 }
 
-// MARK: - Stat
-struct Stat: Codable {
-   let baseStat, effort: Int
-   let stat: Species
+// MARK: - Variety
+struct Variety: Codable {
+   let isDefault: Bool
+   let pokemon: Color
 
    enum CodingKeys: String, CodingKey {
-       case baseStat = "base_stat"
-       case effort, stat
+       case isDefault = "is_default"
+       case pokemon
    }
-}
-
-// MARK: - TypeElement
-struct TypeElement: Codable {
-   let slot: Int
-   let type: Species
 }

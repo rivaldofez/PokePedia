@@ -17,12 +17,14 @@ protocol EndPoint {
 
 enum Endpoints {
     enum Gets: EndPoint {
-        case pokemon
+        case pokemonPagination
+        case pokemonSpecies
         
         
         var url: String {
             switch self {
-            case .pokemon: return "\(API.baseURL)pokemon/?"
+            case .pokemonPagination: return "\(API.baseURL)pokemon/?"
+            case .pokemonSpecies: return "\(API.baseURL)pokemon-species/"
             }
         }
     }

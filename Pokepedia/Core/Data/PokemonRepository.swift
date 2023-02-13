@@ -9,28 +9,21 @@ import Foundation
 import RxSwift
 
 protocol PokemonRepositoryProtocol {
-    func getPokemonDataPagination(offset: Int, limit: Int) ->  Observable<[PokemonSpeciesResponse]>
+    func getPokemonDataPagination(offset: Int, limit: Int) ->  Observable<[PokemonDetailResponse]>
+    
+    func getPokemonSpecies(id: Int) -> Observable<PokemonSpeciesResponse>
 }
 
 final class PokemonRepository: NSObject {
-//    typealias PokemonInstance = (RemoteDataSource) -> PokemonRepository
-//
-//    fileprivate let remote: RemoteDataSource
-//
-//    private init(remote: RemoteDataSource){
-//        self.remote = remote
-//    }
-//
-//    static let sharedInstance: PokemonInstance = { remoteRepo in
-//        return PokemonRepository(remote: remoteRepo)
-//
-//    }
     static let shared = PokemonRepository()
-    
 }
 
 extension PokemonRepository: PokemonRepositoryProtocol {
-    func getPokemonDataPagination(offset: Int, limit: Int) -> Observable<[PokemonSpeciesResponse]> {
+    func getPokemonDataPagination(offset: Int, limit: Int) -> Observable<[PokemonDetailResponse]> {
         return RemoteDataSource.sharedInstance.getPokemonDataPagination(offset: offset, limit: limit)
+    }
+    
+    func getPokemonSpecies(id: Int) -> Observable<PokemonSpeciesResponse> {
+        return RemoteDataSource.sharedInstance.getPokemonSpecies(id: id)
     }
 }

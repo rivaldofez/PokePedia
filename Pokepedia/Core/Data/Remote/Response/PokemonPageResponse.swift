@@ -27,6 +27,6 @@ struct PokemonPageResponse: Codable {
 struct PokemonPageItemResponse: Codable {
     let name: String
     let url: String
-    var pokemonSpecies: PokemonSpeciesResponse?
+    var pokemonSpecies: PokemonDetailResponse?
 }
 
