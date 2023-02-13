@@ -16,11 +16,17 @@ protocol HomeViewProtocol {
     
     func updatePokemon(with pokemons: [Pokemon])
     func updatePokemon(with error: String)
+    
+    func isLoadingData(with state: Bool)
 }
 
 
 class HomeViewController: UIViewController, HomeViewProtocol {
     var presenter: HomePresenterProtocol?
+    
+    func isLoadingData(with state: Bool) {
+        //tba
+    }
     
     func updatePokemon(with pokemons: [Pokemon]) {
         //tba
