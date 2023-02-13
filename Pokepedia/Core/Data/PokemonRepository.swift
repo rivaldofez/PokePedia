@@ -15,7 +15,18 @@ protocol PokemonRepositoryProtocol {
 }
 
 final class PokemonRepository: NSObject {
-    static let shared = PokemonRepository()
+    typealias PokemonInstance = (RemoteDataSource) -> PokemonRepository
+    
+    fileprivate let remote: RemoteDataSource
+    
+    private init(remote: RemoteDataSource) {
+        self.remote = remote
+    }
+    
+    static let shared: PokemonInstance = { remoteDataSource in
+        return PokemonRepository(remote: remoteDataSource)
+        
+    }
 }
 
 extension PokemonRepository: PokemonRepositoryProtocol {

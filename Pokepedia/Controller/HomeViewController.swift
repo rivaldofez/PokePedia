@@ -39,30 +39,30 @@ class HomeViewController: UIViewController {
         pokemonCollectionView.delegate = self
         pokemonCollectionView.dataSource = self
         
-        let result = PokemonRepository.shared.getPokemonDataPagination(offset: 0, limit: 10)
-        
-        result.observe(on: MainScheduler.instance)
-            .subscribe{ resultItem in
-                let mapperResult = PokemonMapper.mapPokemonDetailResponsesToDomain(input: resultItem)
-                for i in mapperResult {
-                    print(i.image)
-                }
-            } onError: { error in
-                print("error")
-            } onCompleted: {
-                print("completed")
-            }.disposed(by: disposeBag)
-        
-        
-        let resSpecies = PokemonRepository.shared.getPokemonSpecies(id: 2)
-        resSpecies.observe(on: MainScheduler.instance)
-            .subscribe{ resultItem in
-                print(resultItem.color)
-            } onError: { error in
-                print("error2")
-            } onCompleted: {
-                print("completed2")
-            }.disposed(by: disposeBag)
+//        let result = PokemonRepository.shared.getPokemonDataPagination(offset: 0, limit: 10)
+//
+//        result.observe(on: MainScheduler.instance)
+//            .subscribe{ resultItem in
+//                let mapperResult = PokemonMapper.mapPokemonDetailResponsesToDomain(input: resultItem)
+//                for i in mapperResult {
+//                    print(i.image)
+//                }
+//            } onError: { error in
+//                print("error")
+//            } onCompleted: {
+//                print("completed")
+//            }.disposed(by: disposeBag)
+//
+//
+//        let resSpecies = PokemonRepository.shared.getPokemonSpecies(id: 2)
+//        resSpecies.observe(on: MainScheduler.instance)
+//            .subscribe{ resultItem in
+//                print(resultItem.color)
+//            } onError: { error in
+//                print("error2")
+//            } onCompleted: {
+//                print("completed2")
+//            }.disposed(by: disposeBag)
         
     }
     
