@@ -41,7 +41,7 @@ class HomePresenter: HomePresenterProtocol{
             } onError: { error in
                 self.view?.updatePokemon(with: error.localizedDescription)
               } onCompleted: {
-                  self.view?.isLoadingData(with: true)
+                  self.view?.isLoadingData(with: false)
               }.disposed(by: disposeBag)
     }
     

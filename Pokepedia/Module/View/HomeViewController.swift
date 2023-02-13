@@ -31,6 +31,9 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     func updatePokemon(with pokemons: [Pokemon]) {
         for pokemon in pokemons {
             print(pokemon.name)
+            if(pokemon.id == 10){
+                presenter?.getPokemonDataPagination(offset: 100, limit: 50)
+            }
         }
     }
     
@@ -85,5 +88,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.identifier, for: indexPath)
         
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        if position > (pokemonCollectionView.contentSize.height - 100 - scrollView.frame.size.height){
+            print("fetch more")
+        }
     }
 }
