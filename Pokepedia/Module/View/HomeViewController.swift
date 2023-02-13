@@ -9,7 +9,27 @@ import UIKit
 import RxSwift
 import Alamofire
 
-class HomeViewController: UIViewController {
+
+
+protocol HomeViewProtocol {
+    var presenter: HomePresenterProtocol? { get set }
+    
+    func updatePokemon(with pokemons: [Pokemon])
+    func updatePokemon(with error: String)
+}
+
+
+class HomeViewController: UIViewController, HomeViewProtocol {
+    var presenter: HomePresenterProtocol?
+    
+    func updatePokemon(with pokemons: [Pokemon]) {
+        //tba
+    }
+    
+    func updatePokemon(with error: String) {
+        //tba
+    }
+    
     private let disposeBag = DisposeBag()
     
     private lazy var pokemonCollectionView: UICollectionView = {
@@ -38,31 +58,6 @@ class HomeViewController: UIViewController {
         
         pokemonCollectionView.delegate = self
         pokemonCollectionView.dataSource = self
-        
-//        let result = PokemonRepository.shared.getPokemonDataPagination(offset: 0, limit: 10)
-//
-//        result.observe(on: MainScheduler.instance)
-//            .subscribe{ resultItem in
-//                let mapperResult = PokemonMapper.mapPokemonDetailResponsesToDomain(input: resultItem)
-//                for i in mapperResult {
-//                    print(i.image)
-//                }
-//            } onError: { error in
-//                print("error")
-//            } onCompleted: {
-//                print("completed")
-//            }.disposed(by: disposeBag)
-//
-//
-//        let resSpecies = PokemonRepository.shared.getPokemonSpecies(id: 2)
-//        resSpecies.observe(on: MainScheduler.instance)
-//            .subscribe{ resultItem in
-//                print(resultItem.color)
-//            } onError: { error in
-//                print("error2")
-//            } onCompleted: {
-//                print("completed2")
-//            }.disposed(by: disposeBag)
         
     }
     
