@@ -27,6 +27,14 @@ class HomeRouter: HomeRouterProtocol {
         var interactor: HomeUseCase = Injection.init().provideHome()
         
         
+        view.presenter = presenter
+        presenter.router = router
+        presenter.view = view
+        presenter.interactor = interactor
+        
+        router.begin = view as? BeginPoint
+        
+        
         return router
     }
     
