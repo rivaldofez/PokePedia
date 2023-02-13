@@ -7,43 +7,10 @@
 
 import Foundation
 
-//struct PokemonSpeciesResponse: Codable {
-//    let baseExperience: Int
-//
-//
-//    let height: Int
-//
-//    let id: Int
-//    let isDefault: Bool
-//    let locationAreaEncounters: String
-//
-//    let name: String
-//    let order: Int
-//
-//
-//    let weight: Int
-//
-//    enum CodingKeys: String, CodingKey {
-//
-//        case baseExperience = "base_experience"
-//
-//
-//        case height
-//
-//        case id
-//        case isDefault = "is_default"
-//        case locationAreaEncounters = "location_area_encounters"
-//        case  name, order
-//
-//        case  weight
-//    }
-//}
-
-
 struct PokemonDetailResponse: Codable {
    let abilities: [Ability]
    let baseExperience: Int
-   let forms: [Species]
+   let forms: [BridgeComponent]
    let gameIndices: [GameIndex]
    let height: Int
    let id: Int
@@ -52,10 +19,11 @@ struct PokemonDetailResponse: Codable {
    let moves: [Move]
    let name: String
    let order: Int
-   let species: Species
+   let species: BridgeComponent
    let stats: [Stat]
    let types: [TypeElement]
    let weight: Int
+   let sprites: Sprites
 
    enum CodingKeys: String, CodingKey {
        case abilities
@@ -72,12 +40,71 @@ struct PokemonDetailResponse: Codable {
        case stats
        case types
        case weight
+       case sprites
    }
+}
+
+struct Sprites: Codable {
+        let backDefault: String?
+        let backFemale: String?
+        let backShiny: String?
+        let backShinyFemale: String?
+        let frontDefault: String?
+        let frontFemale: String?
+        let frontShiny: String?
+        let frontShinyFemale: String?
+        let other: Other
+}
+
+struct Other: Codable {
+        let dreamWorld: DreamWorld
+        let home: Home
+        let officialArtwork: OfficialArtwork
+
+        enum CodingKeys: String, CodingKey {
+            case dreamWorld = "dream_world"
+            case home
+            case officialArtwork = "official-artwork"
+        }
+}
+
+struct DreamWorld: Codable {
+    let frontDefault: String?
+    let frontFemale: String?
+
+    enum CodingKeys: String, CodingKey {
+        case frontDefault = "front_default"
+        case frontFemale = "front_female"
+    }
+}
+
+struct Home: Codable {
+    let frontDefault: String
+    let frontFemale: String?
+    let frontShiny: String
+    let frontShinyFemale: String?
+
+    enum CodingKeys: String, CodingKey {
+        case frontDefault = "front_default"
+        case frontFemale = "front_female"
+        case frontShiny = "front_shiny"
+        case frontShinyFemale = "front_shiny_female"
+    }
+}
+
+// MARK: - OfficialArtwork
+struct OfficialArtwork: Codable {
+    let frontDefault, frontShiny: String
+
+    enum CodingKeys: String, CodingKey {
+        case frontDefault = "front_default"
+        case frontShiny = "front_shiny"
+    }
 }
 
 // MARK: - Ability
 struct Ability: Codable {
-   let ability: Species
+   let ability: BridgeComponent
    let isHidden: Bool
    let slot: Int
 
@@ -89,7 +116,7 @@ struct Ability: Codable {
 }
 
 // MARK: - Species
-struct Species: Codable {
+struct BridgeComponent: Codable {
    let name: String
    let url: String
 }
@@ -97,7 +124,7 @@ struct Species: Codable {
 // MARK: - GameIndex
 struct GameIndex: Codable {
    let gameIndex: Int
-   let version: Species
+   let version: BridgeComponent
 
    enum CodingKeys: String, CodingKey {
        case gameIndex = "game_index"
@@ -107,7 +134,7 @@ struct GameIndex: Codable {
 
 // MARK: - Move
 struct Move: Codable {
-   let move: Species
+   let move: BridgeComponent
    let versionGroupDetails: [VersionGroupDetail]
 
    enum CodingKeys: String, CodingKey {
@@ -119,7 +146,7 @@ struct Move: Codable {
 // MARK: - VersionGroupDetail
 struct VersionGroupDetail: Codable {
    let levelLearnedAt: Int
-   let moveLearnMethod, versionGroup: Species
+   let moveLearnMethod, versionGroup: BridgeComponent
 
    enum CodingKeys: String, CodingKey {
        case levelLearnedAt = "level_learned_at"
@@ -131,7 +158,7 @@ struct VersionGroupDetail: Codable {
 // MARK: - Stat
 struct Stat: Codable {
    let baseStat, effort: Int
-   let stat: Species
+   let stat: BridgeComponent
 
    enum CodingKeys: String, CodingKey {
        case baseStat = "base_stat"
@@ -142,5 +169,5 @@ struct Stat: Codable {
 // MARK: - TypeElement
 struct TypeElement: Codable {
    let slot: Int
-   let type: Species
+   let type: BridgeComponent
 }

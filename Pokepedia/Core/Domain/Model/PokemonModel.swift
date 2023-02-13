@@ -8,18 +8,18 @@
 import Foundation
 
 struct PokemonModel: Identifiable{
-    let id: String
-    let name: String
-    let image: String
-    let height: Double
-    let weight: Double
-    let baseExp: Int
-    let baseStat: [BaseStat]
-    let moves: [String]
-    let type: [String]
-    let color: String
-    let base_happines: Int
-    let captureRate: Int
+    let id: String // detail id
+    let name: String // detail name
+    let image: String //detail sprites
+    let height: Double //detail height
+    let weight: Double // detail weight
+    let baseExp: Int // detail exp
+    let baseStat: [BaseStat] //detail base stat
+    let moves: [String] //detail moves
+    let type: [String] //detail types
+    let color: String // species
+    let base_happines: Int //species
+    let captureRate: Int //species
 }
 
 
