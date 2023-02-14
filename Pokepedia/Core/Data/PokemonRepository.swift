@@ -38,6 +38,8 @@ extension PokemonRepository: PokemonRepositoryProtocol {
     }
     
     func getPokemonSpecies(id: Int) -> Observable<PokemonSpecies> {
-        return RemoteDataSource.sharedInstance.getPokemonSpecies(id: id)
+        return self.remote.getPokemonSpecies(id: id).map {
+            PokemonMapper.mapPokemonSpeciesResponseToDomain(input: $0)
+        }
     }
 }
