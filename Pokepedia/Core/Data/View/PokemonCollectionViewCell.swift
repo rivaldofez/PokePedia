@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PokemonCollectionViewCell: UICollectionViewCell {
     static let identifier = "PokemonCollectionViewCell"
@@ -82,6 +83,9 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     func configure(with model: Pokemon){
         pokemonNumberLabel.text = String(model.id)
         pokemonNameLabel.text = model.name
+        
+        guard let imageUrl = URL(string: model.image) else { return }
+        pokemonImageView.sd_setImage(with: imageUrl)
     }
     
     private func configureConstraints(){
