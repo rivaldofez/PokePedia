@@ -25,7 +25,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "grass")
+        imageView.image = UIImage(named: "normal")
         imageView.alpha = 1
         imageView.clipsToBounds = true
         return imageView
@@ -82,10 +82,19 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     func configure(with model: Pokemon){
         pokemonNumberLabel.text = String(model.id)
-        pokemonNameLabel.text = model.name
+        pokemonNameLabel.text = model.name.capitalized
         
         guard let imageUrl = URL(string: model.image) else { return }
         pokemonImageView.sd_setImage(with: imageUrl)
+        
+        guard let typeElement = model.type.first else { return }
+        if typeElement == "fire"{
+            pokemonTypeImageView.image = UIImage(named: "fire")
+        } else if typeElement == "grass" {
+            pokemonTypeImageView.image = UIImage(named: "grass")
+        } else {
+            pokemonTypeImageView.image = UIImage(named: "normal")
+        }
     }
     
     private func configureConstraints(){
