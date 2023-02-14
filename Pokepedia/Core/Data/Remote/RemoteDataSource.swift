@@ -25,27 +25,6 @@ final class RemoteDataSource: NSObject {
 
 
 extension RemoteDataSource: RemoteDataSourceProtocol {
-    func getPokemonSpecies(id: Int) -> RxSwift.Observable<PokemonSpeciesResponse> {
-        return Observable<PokemonSpeciesResponse>.create { observer in
-            if let url = URL(string: "\(Endpoints.Gets.pokemonSpecies.url)\(id)"){
-                AF.request(url)
-                    .responseDecodable(of: PokemonSpeciesResponse.self) { response in
-                        switch response.result {
-                        case .success(let value):
-                            observer.onNext(value)
-                            observer.onCompleted()
-                            print("Oke")
-                            
-                        case .failure:
-                            observer.onError(URLError.invalidResponse)
-                            print("error")
-                        }
-                    }
-            }
-            return Disposables.create()
-        }
-    }
-    
     private func getPokemonSource(offset: Int, limit: Int) -> Observable<PokemonPageResponse> {
         return Observable<PokemonPageResponse>.create { observer in
             if let url = URL(string: "\(Endpoints.Gets.pokemonPagination.url)offset=\(offset)&limit=\(limit)") {
@@ -110,6 +89,27 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
             
             return Disposables.create()
             
+        }
+    }
+    
+    func getPokemonSpecies(id: Int) -> Observable<PokemonSpeciesResponse> {
+        return Observable<PokemonSpeciesResponse>.create { observer in
+            if let url = URL(string: "\(Endpoints.Gets.pokemonSpecies.url)\(id)"){
+                AF.request(url)
+                    .responseDecodable(of: PokemonSpeciesResponse.self) { response in
+                        switch response.result {
+                        case .success(let value):
+                            observer.onNext(value)
+                            observer.onCompleted()
+                            print("Oke")
+                            
+                        case .failure:
+                            observer.onError(URLError.invalidResponse)
+                            print("error")
+                        }
+                    }
+            }
+            return Disposables.create()
         }
     }
 }

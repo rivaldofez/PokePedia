@@ -22,10 +22,6 @@ protocol HomePresenterProtocol {
 }
 
 class HomePresenter: HomePresenterProtocol{
-    func didSelectPokemonItem(with pokemon: Pokemon) {
-        print("select \(pokemon.name)")
-    }
-    
     var isLoadingData: Bool = false {
         didSet{
             if isLoadingData{
@@ -56,6 +52,10 @@ class HomePresenter: HomePresenterProtocol{
     
     private let disposeBag = DisposeBag()
 
+    func didSelectPokemonItem(with pokemon: Pokemon) {
+        router?.gotoDetailPokemon(with: pokemon)
+    }
+    
     func getPokemonDataPagination(offset: Int, limit: Int){
         isLoadingData = true
         

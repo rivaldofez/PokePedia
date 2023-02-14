@@ -13,9 +13,17 @@ protocol HomeRouterProtocol{
     var begin: BeginPoint? { get }
     
     static func start() -> HomeRouterProtocol
+    
+    func gotoDetailPokemon(with pokemon: Pokemon )
 }
 
 class HomeRouter: HomeRouterProtocol {
+    func gotoDetailPokemon(with pokemon: Pokemon) {
+        print("in router select at \(pokemon.name)")
+        
+        
+    }
+    
     var begin: BeginPoint?
     
     static func start() -> HomeRouterProtocol {

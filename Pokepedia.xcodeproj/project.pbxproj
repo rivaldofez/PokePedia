@@ -13,6 +13,10 @@
 		7E02475A2996A75500EECAA9 /* MovesSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0247592996A75500EECAA9 /* MovesSubViewController.swift */; };
 		7E188239299147AC00C6CB64 /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E188238299147AC00C6CB64 /* PokemonCollectionViewCell.swift */; };
 		7E393A39299BAB250033920C /* PokemonConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E393A38299BAB250033920C /* PokemonConverter.swift */; };
+		7E393A40299BDBBA0033920C /* DetailPokemonRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E393A3F299BDBBA0033920C /* DetailPokemonRouter.swift */; };
+		7E393A42299BDBC50033920C /* DetailPokemonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E393A41299BDBC50033920C /* DetailPokemonPresenter.swift */; };
+		7E393A44299BE1C30033920C /* DetailPokemonInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E393A43299BE1C30033920C /* DetailPokemonInteractor.swift */; };
+		7E393A46299BE5B90033920C /* PokemonSpecies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E393A45299BE5B90033920C /* PokemonSpecies.swift */; };
 		7E47C377299754AE00CFFB54 /* BaseStatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C376299754AE00CFFB54 /* BaseStatTableViewCell.swift */; };
 		7E47C379299768B700CFFB54 /* MovesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C378299768B700CFFB54 /* MovesTableViewCell.swift */; };
 		7E47C3952997786900CFFB54 /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E47C3932997784100CFFB54 /* Poppins-Black.ttf */; };
@@ -81,6 +85,10 @@
 		7E0247592996A75500EECAA9 /* MovesSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesSubViewController.swift; sourceTree = "<group>"; };
 		7E188238299147AC00C6CB64 /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };
 		7E393A38299BAB250033920C /* PokemonConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonConverter.swift; sourceTree = "<group>"; };
+		7E393A3F299BDBBA0033920C /* DetailPokemonRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPokemonRouter.swift; sourceTree = "<group>"; };
+		7E393A41299BDBC50033920C /* DetailPokemonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPokemonPresenter.swift; sourceTree = "<group>"; };
+		7E393A43299BE1C30033920C /* DetailPokemonInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPokemonInteractor.swift; sourceTree = "<group>"; };
+		7E393A45299BE5B90033920C /* PokemonSpecies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSpecies.swift; sourceTree = "<group>"; };
 		7E47C376299754AE00CFFB54 /* BaseStatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatTableViewCell.swift; sourceTree = "<group>"; };
 		7E47C378299768B700CFFB54 /* MovesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesTableViewCell.swift; sourceTree = "<group>"; };
 		7E47C3832997784000CFFB54 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -154,11 +162,57 @@
 		7E1882372991478400C6CB64 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7E188238299147AC00C6CB64 /* PokemonCollectionViewCell.swift */,
 				7E47C376299754AE00CFFB54 /* BaseStatTableViewCell.swift */,
 				7E47C378299768B700CFFB54 /* MovesTableViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7E393A3A299BDB3D0033920C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7EE132CC299A8BBE00FFB47B /* View */,
+				7EE1329A299A5B6400FFB47B /* Router */,
+				7EE13299299A5B5700FFB47B /* Presenter */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		7E393A3B299BDB690033920C /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				7E393A3E299BDB9A0033920C /* Presenter */,
+				7E393A3D299BDB930033920C /* Router */,
+				7E393A3C299BDB710033920C /* View */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		7E393A3C299BDB710033920C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7E02472D2996103400EECAA9 /* DetailPokemonViewController.swift */,
+				7E0247552996A71300EECAA9 /* AboutSubViewController.swift */,
+				7E0247572996A73400EECAA9 /* BaseStatSubViewController.swift */,
+				7E0247592996A75500EECAA9 /* MovesSubViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7E393A3D299BDB930033920C /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				7E393A3F299BDBBA0033920C /* DetailPokemonRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		7E393A3E299BDB9A0033920C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7E393A41299BDBC50033920C /* DetailPokemonPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		7E47C37A2997710300CFFB54 /* Font */ = {
@@ -258,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				7E47C3E22997ED8E00CFFB54 /* Pokemon.swift */,
+				7E393A45299BE5B90033920C /* PokemonSpecies.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -329,10 +384,6 @@
 		7E6F941D29901100004B2537 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7E02472D2996103400EECAA9 /* DetailPokemonViewController.swift */,
-				7E0247552996A71300EECAA9 /* AboutSubViewController.swift */,
-				7E0247572996A73400EECAA9 /* BaseStatSubViewController.swift */,
-				7E0247592996A75500EECAA9 /* MovesSubViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -349,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				7EE13296299A579200FFB47B /* HomeInteractor.swift */,
+				7E393A43299BE1C30033920C /* DetailPokemonInteractor.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -356,9 +408,8 @@
 		7EE13298299A5B4800FFB47B /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				7EE132CC299A8BBE00FFB47B /* View */,
-				7EE1329A299A5B6400FFB47B /* Router */,
-				7EE13299299A5B5700FFB47B /* Presenter */,
+				7E393A3B299BDB690033920C /* Detail */,
+				7E393A3A299BDB3D0033920C /* Home */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -383,6 +434,7 @@
 			isa = PBXGroup;
 			children = (
 				7E6F941E2990110E004B2537 /* HomeViewController.swift */,
+				7E188238299147AC00C6CB64 /* PokemonCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -545,6 +597,7 @@
 				7E188239299147AC00C6CB64 /* PokemonCollectionViewCell.swift in Sources */,
 				7E47C3ED2997F67200CFFB54 /* CustomError+Extensions.swift in Sources */,
 				7E47C3EB2997F3A500CFFB54 /* RemoteDataSource.swift in Sources */,
+				7E393A46299BE5B90033920C /* PokemonSpecies.swift in Sources */,
 				7E47C3BA2997ACC400CFFB54 /* PokemonPageResponse.swift in Sources */,
 				7EE1329D299A5B8700FFB47B /* HomeRouter.swift in Sources */,
 				7EE13293299A551200FFB47B /* Injection.swift in Sources */,
@@ -553,10 +606,13 @@
 				7E393A39299BAB250033920C /* PokemonConverter.swift in Sources */,
 				7E47C377299754AE00CFFB54 /* BaseStatTableViewCell.swift in Sources */,
 				7EE13297299A579200FFB47B /* HomeInteractor.swift in Sources */,
+				7E393A42299BDBC50033920C /* DetailPokemonPresenter.swift in Sources */,
 				7E02475A2996A75500EECAA9 /* MovesSubViewController.swift in Sources */,
 				7EE1328D299A35DF00FFB47B /* PokemonSpeciesResponse.swift in Sources */,
+				7E393A44299BE1C30033920C /* DetailPokemonInteractor.swift in Sources */,
 				7E6F941F2990110E004B2537 /* HomeViewController.swift in Sources */,
 				7E47C3E32997ED8E00CFFB54 /* Pokemon.swift in Sources */,
+				7E393A40299BDBBA0033920C /* DetailPokemonRouter.swift in Sources */,
 				7E47C3B4299779C700CFFB54 /* UIFont+Extensions.swift in Sources */,
 				7E0247562996A71300EECAA9 /* AboutSubViewController.swift in Sources */,
 			);
