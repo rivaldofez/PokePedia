@@ -113,6 +113,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter?.didSelectPokemonItem(with: pokemonDataPagination[indexPath.i])
+    }
 }
 
 //class IndicatorCell: UICollectionViewCell {
