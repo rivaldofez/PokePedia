@@ -44,8 +44,8 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "999"
-        label.font = .poppinsRegular(size: 14)
-        label.textAlignment = .left
+        label.font = .poppinsRegular(size: 18)
+        label.textAlignment = .center
         label.textColor = .secondaryLabel
         return label
     }()
@@ -53,15 +53,18 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     private let pokemonNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Mega Venusaur"
-        label.numberOfLines = 2
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.font = .poppinsMedium(size: 16)
         label.textColor = .label
-        
         return label
     }()
     
+    private let containerImage: UIView = {
+       let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.backgroundColor = .red
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,61 +72,69 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 8
         contentView.layer.borderWidth = 2
-        contentView.layer.borderColor = UIColor.yellow.cgColor
         
-        contentView.addSubview(pokeballImageView)
-        contentView.addSubview(pokemonImageView)
         contentView.addSubview(pokemonNumberLabel)
         contentView.addSubview(pokemonNameLabel)
         contentView.addSubview(pokemonTypeImageView)
+        contentView.addSubview(containerImage)
         
+        containerImage.addSubview(pokeballImageView)
+        containerImage.addSubview(pokemonImageView)
+
         configureConstraints()
+        
     }
     
     func configure(with model: Pokemon){
-        pokemonNumberLabel.text = String(model.id)
+        pokemonNumberLabel.text = "No.\(model.id)"
         pokemonNameLabel.text = model.name.capitalized
         
         guard let imageUrl = URL(string: model.image) else { return }
         pokemonImageView.sd_setImage(with: imageUrl)
         
         guard let typeElement = model.type.first else { return }
-        if typeElement == "fire"{
-            pokemonTypeImageView.image = UIImage(named: "fire")
-        } else if typeElement == "grass" {
-            pokemonTypeImageView.image = UIImage(named: "grass")
-        } else {
-            pokemonTypeImageView.image = UIImage(named: "normal")
-        }
+        pokemonTypeImageView.image = UIImage(named: PokemonConverter.typeStringToIconName(type: typeElement))
+        
+        print(PokemonConverter.typeStringToColorName(type: typeElement))
+        
+        contentView.layer.borderColor = UIColor(named: PokemonConverter.typeStringToColorName(type: typeElement))?.cgColor
     }
     
     private func configureConstraints(){
+                
+        let pokemonImageViewConstraints = [
+            pokemonImageView.leadingAnchor.constraint(equalTo: containerImage.leadingAnchor, constant: 10),
+            pokemonImageView.trailingAnchor.constraint(equalTo: containerImage.trailingAnchor, constant: -10),
+            pokemonImageView.topAnchor.constraint(equalTo: containerImage.topAnchor, constant: 10),
+            pokemonImageView.bottomAnchor.constraint(equalTo: containerImage.bottomAnchor, constant: -10)
+        ]
         
         let pokeballImageViewConstraints = [
-            pokeballImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            pokeballImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            pokeballImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            pokeballImageView.heightAnchor.constraint(equalToConstant: contentView.frame.size.height/2)
+            pokeballImageView.leadingAnchor.constraint(equalTo: containerImage.leadingAnchor),
+            pokeballImageView.trailingAnchor.constraint(equalTo: containerImage.trailingAnchor),
+            pokeballImageView.topAnchor.constraint(equalTo: containerImage.topAnchor),
+            pokeballImageView.bottomAnchor.constraint(equalTo: containerImage.bottomAnchor)
         ]
         
-        let pokemonImageViewConstraints = [
-            pokemonImageView.leadingAnchor.constraint(equalTo: pokeballImageView.leadingAnchor, constant: 20),
-            pokemonImageView.trailingAnchor.constraint(equalTo: pokeballImageView.trailingAnchor, constant: -20),
-            pokemonImageView.topAnchor.constraint(equalTo: pokeballImageView.topAnchor, constant: 20),
-            pokemonImageView.bottomAnchor.constraint(equalTo: pokeballImageView.bottomAnchor, constant: -20)
+        let containerImageConstraints = [
+            containerImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            containerImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            containerImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            containerImage.bottomAnchor.constraint(equalTo: pokemonNumberLabel.topAnchor)
         ]
-        
+                
         let pokemonNumberLabelConstraints = [
-            pokemonNumberLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            pokemonNumberLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            pokemonNumberLabel.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 16)
+            pokemonNumberLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            pokemonNumberLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            pokemonNumberLabel.bottomAnchor.constraint(equalTo: pokemonNameLabel.topAnchor, constant: -4),
+            pokemonNumberLabel.heightAnchor.constraint(equalToConstant: 20)
         ]
         
         let pokemonNameLabelConstraints = [
-            pokemonNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            pokemonNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                                      constant: -8),
-            pokemonNameLabel.topAnchor.constraint(equalTo: pokemonNumberLabel.bottomAnchor, constant: 4)
+            pokemonNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            pokemonNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -10),
+            pokemonNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            pokemonNameLabel.heightAnchor.constraint(equalToConstant: 20)
         ]
         
         let pokemonTypeImageViewConstraints = [
@@ -134,11 +145,12 @@ class PokemonCollectionViewCell: UICollectionViewCell {
             
         ]
         
-        NSLayoutConstraint.activate(pokemonImageViewConstraints)
-        NSLayoutConstraint.activate(pokemonNumberLabelConstraints)
         NSLayoutConstraint.activate(pokemonNameLabelConstraints)
+        NSLayoutConstraint.activate(pokemonNumberLabelConstraints)
         NSLayoutConstraint.activate(pokeballImageViewConstraints)
+        NSLayoutConstraint.activate(pokemonImageViewConstraints)
         NSLayoutConstraint.activate(pokemonTypeImageViewConstraints)
+        NSLayoutConstraint.activate(containerImageConstraints)
     }
     
     required init?(coder: NSCoder) {

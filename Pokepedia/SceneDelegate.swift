@@ -23,10 +23,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        window?.makeKeyAndVisible()
         
         let homeRouter = HomeRouter.start()
-        let initialVC = homeRouter.begin
+        guard let initialVC = homeRouter.begin else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = initialVC
+        
+        window.rootViewController = UINavigationController(rootViewController: initialVC)
         window.makeKeyAndVisible()
         self.window = window
     }
