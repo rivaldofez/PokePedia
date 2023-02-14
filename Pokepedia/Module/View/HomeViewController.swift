@@ -27,11 +27,9 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     }
     
     func updatePokemon(with pokemons: [Pokemon]) {
-        for pokemon in pokemons {
-            print(pokemon.name)
-            if(pokemon.id == 10){
-                presenter?.getPokemonDataPagination(offset: 100, limit: 50)
-            }
+        DispatchQueue.main.async {
+            self.pokemonDataPagination.append(contentsOf: pokemons)
+            self.pokemonCollectionView.reloadData()
         }
     }
     
@@ -89,11 +87,16 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return pokemonDataPagination.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.identifier, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.identifier, for: indexPath) as? PokemonCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        let model = pokemonDataPagination[indexPath.item]
+        cell.configure(with: model)
             
             return cell
     }

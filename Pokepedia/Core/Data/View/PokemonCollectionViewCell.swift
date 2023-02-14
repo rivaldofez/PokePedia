@@ -79,6 +79,11 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         configureConstraints()
     }
     
+    func configure(with model: Pokemon){
+        pokemonNumberLabel.text = String(model.id)
+        pokemonNameLabel.text = model.name
+    }
+    
     private func configureConstraints(){
         
         let pokeballImageViewConstraints = [
