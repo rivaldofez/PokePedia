@@ -11,6 +11,7 @@ protocol DetailPokemonRouterProtocol {
     var entry: DetailPokemonViewController? { get }
     
     static func createDetailPokemon(with pokemon: Pokemon) -> DetailPokemonRouterProtocol
+    
 }
 
 class DetailPokemonRouter: DetailPokemonRouterProtocol {
@@ -18,5 +19,19 @@ class DetailPokemonRouter: DetailPokemonRouterProtocol {
     
     static func createDetailPokemon(with pokemon: Pokemon) -> DetailPokemonRouterProtocol {
         
+        let router = DetailPokemonRouter()
+        
+        //assing vip
+        var view: DetailPokemonViewProtocol = DetailPokemonViewController()
+        
+        var presenter: DetailPokemonPresenterProtocol = DetailPokemonPresenter()
+        
+        var interactor: DetailPokemonUseCase = Injection.init().provideDetailPokemon()
+        
+        
+        return router
+        
+        
     }
+    
 }

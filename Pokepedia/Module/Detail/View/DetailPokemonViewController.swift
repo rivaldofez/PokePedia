@@ -7,7 +7,34 @@
 
 import UIKit
 
-class DetailPokemonViewController: UIViewController {
+protocol DetailPokemonViewProtocol {
+    var presenter: DetailPokemonPresenter? { get set }
+    
+    func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies)
+    
+    func updatePokemon(with pokemon: Pokemon)
+    
+    func isLoadingData(with state: Bool)
+}
+
+
+class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
+    var presenter: DetailPokemonPresenter?
+    
+    func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies) {
+        print("Pokemon Species \(pokemonSpecies.genus)")
+    }
+    
+    func updatePokemon(with pokemon: Pokemon) {
+        print("Pokemon \(pokemon.name)")
+    }
+    
+    func isLoadingData(with state: Bool) {
+        
+    }
+    
+    
+    
     
     private enum SectionTabs: String {
         case about = "About"

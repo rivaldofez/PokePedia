@@ -12,7 +12,7 @@ protocol DetailPokemonUseCase {
     func getPokemonSpecies(id: Int) -> Observable<PokemonSpecies>
 }
 
-class DetailPokemonInteractor {
+class DetailPokemonInteractor: DetailPokemonUseCase {
     private let repository: PokemonRepositoryProtocol
     
     required init(repository: PokemonRepositoryProtocol) {
