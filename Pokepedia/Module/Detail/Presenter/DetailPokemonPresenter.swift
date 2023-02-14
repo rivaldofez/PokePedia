@@ -23,6 +23,7 @@ protocol DetailPokemonPresenterProtocol {
 class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
     func getPokemon(with pokemon: Pokemon) {
         view?.updatePokemon(with: pokemon)
+        getPokemonSpecies(id: pokemon.id)
     }
     
     var router: DetailPokemonRouterProtocol?
@@ -42,7 +43,6 @@ class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
             .observe(on: MainScheduler.instance)
             .subscribe{[weak self] pokemonSpeciesResult in
                 self?.view?.updatePokemonSpecies(with: pokemonSpeciesResult)
-                
             } onError: { error in
                 self.view?.updatePokemonSpecies(with: error.localizedDescription)
               } onCompleted: {

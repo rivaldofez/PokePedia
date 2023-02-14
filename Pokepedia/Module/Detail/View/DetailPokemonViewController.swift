@@ -20,9 +20,7 @@ protocol DetailPokemonViewProtocol {
 
 
 class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
-    func updatePokemonSpecies(with error: String) {
-        print(error)
-    }
+    
     
     var presenter: DetailPokemonPresenterProtocol?
     
@@ -38,8 +36,9 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
         
     }
     
-    
-    
+    func updatePokemonSpecies(with error: String) {
+        print(error)
+    }
     
     private enum SectionTabs: String {
         case about = "About"

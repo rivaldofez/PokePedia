@@ -94,15 +94,14 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
     
     func getPokemonSpecies(id: Int) -> Observable<PokemonSpeciesResponse> {
         return Observable<PokemonSpeciesResponse>.create { observer in
-            if let url = URL(string: "\(Endpoints.Gets.pokemonSpecies.url)\(id)"){
+            if let url = URL(string: "\(Endpoints.Gets.pokemonSpecies.url)\(id)"){                
                 AF.request(url)
                     .responseDecodable(of: PokemonSpeciesResponse.self) { response in
                         switch response.result {
                         case .success(let value):
+                            print("observer oke")
                             observer.onNext(value)
                             observer.onCompleted()
-                            print("Oke")
-                            
                         case .failure:
                             observer.onError(URLError.invalidResponse)
                             print("error")
