@@ -19,11 +19,16 @@ protocol HomeRouterProtocol{
 
 class HomeRouter: HomeRouterProtocol {
     func gotoDetailPokemon(with pokemon: Pokemon) {
-        print("in router select at \(pokemon.name)")
+        
         
         let detailPokemonRouter = DetailPokemonRouter.createDetailPokemon(with: pokemon)
         
+        
+        
         guard let detailPokemonView = detailPokemonRouter.entry else { return }
+        
+        print("in router select at \(pokemon.name)")
+        
         guard let viewController = self.begin else { return }
         
         viewController.navigationController?.pushViewController(detailPokemonView, animated: true)

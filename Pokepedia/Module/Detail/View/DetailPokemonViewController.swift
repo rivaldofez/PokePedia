@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DetailPokemonViewProtocol {
-    var presenter: DetailPokemonPresenter? { get set }
+    var presenter: DetailPokemonPresenterProtocol? { get set }
     
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies)
     
@@ -19,7 +19,7 @@ protocol DetailPokemonViewProtocol {
 
 
 class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
-    var presenter: DetailPokemonPresenter?
+    var presenter: DetailPokemonPresenterProtocol?
     
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies) {
         print("Pokemon Species \(pokemonSpecies.genus)")
