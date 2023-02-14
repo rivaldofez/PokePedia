@@ -6,13 +6,22 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol DetailPokemonUseCase {
-    
+    func getPokemonSpecies(id: Int) -> Observable<PokemonSpecies>
 }
 
 class DetailPokemonInteractor {
+    private let repository: PokemonRepositoryProtocol
     
+    required init(repository: PokemonRepositoryProtocol) {
+        self.repository = repository
+    }
+    
+    func getPokemonSpecies(id: Int) -> Observable<PokemonSpecies> {
+        return repository.getPokemonSpecies(id: id)
+    }
 }
 
 

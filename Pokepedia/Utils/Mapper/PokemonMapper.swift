@@ -43,5 +43,45 @@ final class PokemonMapper {
             return newPokemon
         }
     }
+    
+    static func mapPokemonSpeciesResponseToDomain(input pokemonSpeciesResponse: PokemonSpeciesResponse) -> PokemonSpecies {
+        
+        let aboutPokemon = {
+            for flavorEntry in pokemonSpeciesResponse.flavorTextEntries {
+                if flavorEntry.language.name == "en" {
+                    return flavorEntry.flavorText
+                }
+            }
+            return ""
+        }()
+        
+        let genusPokemon = {
+            for generaEntry in pokemonSpeciesResponse.genera {
+                if generaEntry.language.name == "en" {
+                    return generaEntry.genus
+                }
+            }
+            return ""
+        }()
+        
+        let newPokemonSpecies = PokemonSpecies(
+            id: pokemonSpeciesResponse.id,
+            baseHappines: pokemonSpeciesResponse.baseHappiness,
+            captureRate: pokemonSpeciesResponse.captureRate,
+            color: pokemonSpeciesResponse.color.name,
+            about: aboutPokemon,
+            genderRate: pokemonSpeciesResponse.genderRate,
+            genus: genusPokemon,
+            growthRate: pokemonSpeciesResponse.growthRate.name,
+            habitat: pokemonSpeciesResponse.habitat.name,
+            hatchCounter: pokemonSpeciesResponse.hatchCounter,
+            isLegendary: pokemonSpeciesResponse.isLegendary,
+            isMythical: pokemonSpeciesResponse.isMythical,
+            isBaby: pokemonSpeciesResponse.isBaby,
+            shape: pokemonSpeciesResponse.shape.name)
+        
+        return newPokemonSpecies
+        
+    }
 
 }

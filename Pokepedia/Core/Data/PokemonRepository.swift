@@ -11,7 +11,8 @@ import RxSwift
 protocol PokemonRepositoryProtocol {
     func getPokemonDataPagination(offset: Int, limit: Int) ->  Observable<[Pokemon]>
     
-    func getPokemonSpecies(id: Int) -> Observable<PokemonSpeciesResponse>
+    func getPokemonSpecies(id: Int) -> Observable<PokemonSpecies>
+    
 }
 
 final class PokemonRepository: NSObject {
@@ -36,7 +37,7 @@ extension PokemonRepository: PokemonRepositoryProtocol {
         }
     }
     
-    func getPokemonSpecies(id: Int) -> Observable<PokemonSpeciesResponse> {
+    func getPokemonSpecies(id: Int) -> Observable<PokemonSpecies> {
         return RemoteDataSource.sharedInstance.getPokemonSpecies(id: id)
     }
 }

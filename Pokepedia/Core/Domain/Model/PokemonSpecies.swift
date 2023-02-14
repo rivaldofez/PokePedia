@@ -21,5 +21,5 @@ struct PokemonSpecies: Identifiable {
     let isLegendary: Bool
     let isMythical: Bool
     let isBaby: Bool
-    let varieties: [String]
+    let shape: String
 }
