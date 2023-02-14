@@ -9,20 +9,18 @@ import UIKit
 import RxSwift
 import Alamofire
 
-
-
 protocol HomeViewProtocol {
     var presenter: HomePresenterProtocol? { get set }
     
     func updatePokemon(with pokemons: [Pokemon])
     func updatePokemon(with error: String)
-    
     func isLoadingData(with state: Bool)
 }
 
-
 class HomeViewController: UIViewController, HomeViewProtocol {
     var presenter: HomePresenterProtocol?
+    
+    private var pokemonDataPagination: [Pokemon] = []
     
     func isLoadingData(with state: Bool) {
         print("loading data: \(state)")
@@ -69,12 +67,22 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         
         pokemonCollectionView.delegate = self
         pokemonCollectionView.dataSource = self
-        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         pokemonCollectionView.frame = view.bounds
+    }
+    
+    private func createSpinnerFooter() -> UIView {
+        let footerview = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+        
+        let spinner = UIActivityIndicatorView()
+        footerview.addSubview(spinner)
+        spinner.center = footerview.center
+        spinner.startAnimating()
+        
+        return footerview
     }
 }
 
@@ -85,15 +93,55 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.identifier, for: indexPath)
-        
-        return cell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.identifier, for: indexPath)
+            
+            return cell
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
         if position > (pokemonCollectionView.contentSize.height - 100 - scrollView.frame.size.height){
-            print("fetch more")
+            
+            guard let isLoadingData = presenter?.isLoadingData else { return }
+            if !isLoadingData {
+                guard let offsetPagination = presenter?.offsetPagination else { return }
+                
+                presenter?.offsetPagination = offsetPagination + 50
+            }
         }
     }
 }
+
+//class IndicatorCell: UICollectionViewCell {
+//
+//    var indicator : UIActivityIndicatorView = {
+//        let view = UIActivityIndicatorView()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.style = .large
+//        return view
+//    }()
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        setup()
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        super.init(coder: coder)
+//        setup()
+//    }
+//
+//    func setup(){
+//        contentView.addSubview(indicator)
+//
+////        inidicator.centerXAnchor = contentView.centerXAnchor
+////        inidicator.centerYAnchor = contentView.centerYAnchor
+//
+//        indicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+//        indicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+//
+//        indicator.startAnimating()
+//    }
+//
+//}
+
+

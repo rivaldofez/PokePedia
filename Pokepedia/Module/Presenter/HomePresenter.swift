@@ -13,16 +13,36 @@ protocol HomePresenterProtocol {
     var interactor: HomeUseCase? { get set }
     var view: HomeViewProtocol? { get set }
     
+    var offsetPagination: Int? { get set }
+    var isLoadingData: Bool { get set }
+    
     func getPokemonDataPagination(offset: Int, limit: Int)
 }
 
 class HomePresenter: HomePresenterProtocol{
+    var isLoadingData: Bool = false {
+        didSet{
+            if isLoadingData{
+                view?.isLoadingData(with: true)
+            }else{
+                view?.isLoadingData(with: false)
+            }
+        }
+    }
+    
  
     var router: HomeRouterProtocol?
     
     var interactor: HomeUseCase? {
         didSet {
-            getPokemonDataPagination(offset: 0, limit: 50)
+            offsetPagination = 0
+        }
+    }
+    
+    var offsetPagination: Int? {
+        didSet {
+            guard let offsetPagination = offsetPagination else { return }
+            getPokemonDataPagination(offset: offsetPagination, limit: 50)
         }
     }
     
@@ -31,7 +51,7 @@ class HomePresenter: HomePresenterProtocol{
     private let disposeBag = DisposeBag()
 
     func getPokemonDataPagination(offset: Int, limit: Int){
-        view?.isLoadingData(with: true)
+        isLoadingData = true
         
         interactor?.getPokemonDataPagination(offset: offset, limit: limit)
             .observe(on: MainScheduler.instance)
@@ -41,7 +61,7 @@ class HomePresenter: HomePresenterProtocol{
             } onError: { error in
                 self.view?.updatePokemon(with: error.localizedDescription)
               } onCompleted: {
-                  self.view?.isLoadingData(with: false)
+                  self.isLoadingData = false
               }.disposed(by: disposeBag)
     }
     
