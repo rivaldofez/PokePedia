@@ -33,6 +33,10 @@ class DetailPokemonRouter: DetailPokemonRouterProtocol {
         presenter.view = view
         presenter.interactor = interactor
         
+        presenter.getPokemon(with: pokemon)
+        
+        
+        
         router.entry = view as? DetailPokemonViewController
         
         return router

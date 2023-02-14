@@ -22,13 +22,7 @@ class HomeRouter: HomeRouterProtocol {
         
         
         let detailPokemonRouter = DetailPokemonRouter.createDetailPokemon(with: pokemon)
-        
-        
-        
         guard let detailPokemonView = detailPokemonRouter.entry else { return }
-        
-        print("in router select at \(pokemon.name)")
-        
         guard let viewController = self.begin else { return }
         
         viewController.navigationController?.pushViewController(detailPokemonView, animated: true)

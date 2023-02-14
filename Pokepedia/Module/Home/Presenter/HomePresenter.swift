@@ -17,7 +17,6 @@ protocol HomePresenterProtocol {
     var isLoadingData: Bool { get set }
     
     func getPokemonDataPagination(offset: Int, limit: Int)
-    
     func didSelectPokemonItem(with pokemon: Pokemon)
 }
 

@@ -15,10 +15,16 @@ protocol DetailPokemonPresenterProtocol {
     
     var isLoadingData: Bool { get set}
     func getPokemonSpecies(id: Int)
+    
+    func getPokemon(with pokemon: Pokemon)
 }
 
 
 class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
+    func getPokemon(with pokemon: Pokemon) {
+        view?.updatePokemon(with: pokemon)
+    }
+    
     var router: DetailPokemonRouterProtocol?
     
     var interactor: DetailPokemonUseCase?
@@ -35,8 +41,10 @@ class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
         interactor?.getPokemonSpecies(id: id)
             .observe(on: MainScheduler.instance)
             .subscribe{[weak self] pokemonSpeciesResult in
+                self?.view?.updatePokemonSpecies(with: pokemonSpeciesResult)
                 
             } onError: { error in
+                self.view?.updatePokemonSpecies(with: error.localizedDescription)
               } onCompleted: {
                   self.isLoadingData = false
               }.disposed(by: disposeBag)

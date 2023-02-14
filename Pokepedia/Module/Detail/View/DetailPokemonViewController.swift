@@ -11,6 +11,7 @@ protocol DetailPokemonViewProtocol {
     var presenter: DetailPokemonPresenterProtocol? { get set }
     
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies)
+    func updatePokemonSpecies(with error: String)
     
     func updatePokemon(with pokemon: Pokemon)
     
@@ -19,6 +20,10 @@ protocol DetailPokemonViewProtocol {
 
 
 class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
+    func updatePokemonSpecies(with error: String) {
+        print(error)
+    }
+    
     var presenter: DetailPokemonPresenterProtocol?
     
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies) {
