@@ -44,7 +44,7 @@ class BaseStatTableViewCell: UITableViewCell {
         
         configureConstraints()
     
-        progressView.trackTintColor = .lightGray
+        progressView.trackTintColor = .lightGray.withAlphaComponent(0.5)
     }
     
     func configure(with baseStat: BaseStat, type: String){

@@ -32,21 +32,20 @@ class BaseStatSubViewController: UIViewController {
         chartView.translatesAutoresizingMaskIntoConstraints = false
         chartView.webLineWidth = 1
         chartView.webColor = .lightGray
-        chartView.innerWebColor = .green
+        chartView.innerWebColor = .darkGray
         
         return chartView
         
     }()
     
-    private let chartSwitch: UISwitch = {
+    private lazy var chartSwitch: UISwitch = {
        let uiswitch = UISwitch()
         uiswitch.translatesAutoresizingMaskIntoConstraints = false
         uiswitch.setOn(true, animated: true)
         uiswitch.isEnabled = true
-        
-        
         uiswitch.translatesAutoresizingMaskIntoConstraints = false
         uiswitch.isUserInteractionEnabled = true
+        uiswitch.onTintColor = UIColor(named: PokemonConverter.typeStringToColorName(type: (pokemon?.type.first!)!))
         
         return uiswitch
     }()
@@ -68,8 +67,10 @@ class BaseStatSubViewController: UIViewController {
         }
         
         let dataset = RadarChartDataSet(entries: entries)
-        dataset.colors = [.red]
-        dataset.fillColor = .blue
+        let colorType = NSUIColor(cgColor: UIColor(named: PokemonConverter.typeStringToColorName(type: pokemon.type.first!))!.cgColor)
+        
+        dataset.colors = [colorType]
+        dataset.fillColor = colorType
         dataset.drawFilledEnabled = true
         
         radarChartView.data = RadarChartData(dataSets: [dataset])
@@ -77,8 +78,8 @@ class BaseStatSubViewController: UIViewController {
         dataset.valueFormatter = DataSetValueFormatter()
         
         let xAxis = radarChartView.xAxis
-        xAxis.labelFont = .systemFont(ofSize: 12, weight: .bold)
-        xAxis.labelTextColor = .black
+        xAxis.labelFont = .systemFont(ofSize: 16, weight: .bold)
+        xAxis.labelTextColor = .label
         xAxis.valueFormatter = self
         xAxis.labelCount = 5
         
@@ -112,7 +113,6 @@ class BaseStatSubViewController: UIViewController {
 
     
     @objc func updateSwitch(sender: UISwitch){
-        
         progressTableView.isHidden = sender.isOn
         radarChartView.isHidden = !sender.isOn
 
