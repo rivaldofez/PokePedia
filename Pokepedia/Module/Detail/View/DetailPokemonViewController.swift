@@ -33,6 +33,7 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
     func updatePokemon(with pokemon: Pokemon) {
         print("Pokemon \(pokemon.name)")
         aboutSubViewController.pokemon = pokemon
+        baseStatSubViewController.pokemon = pokemon
     }
     
     func isLoadingData(with state: Bool) {

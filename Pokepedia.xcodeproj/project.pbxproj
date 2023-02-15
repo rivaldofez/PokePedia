@@ -162,7 +162,6 @@
 		7E1882372991478400C6CB64 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7E47C376299754AE00CFFB54 /* BaseStatTableViewCell.swift */,
 				7E47C378299768B700CFFB54 /* MovesTableViewCell.swift */,
 			);
 			path = View;
@@ -191,6 +190,7 @@
 		7E393A3C299BDB710033920C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7E47C376299754AE00CFFB54 /* BaseStatTableViewCell.swift */,
 				7E02472D2996103400EECAA9 /* DetailPokemonViewController.swift */,
 				7E0247552996A71300EECAA9 /* AboutSubViewController.swift */,
 				7E0247572996A73400EECAA9 /* BaseStatSubViewController.swift */,

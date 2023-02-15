@@ -8,6 +8,14 @@
 import UIKit
 
 class BaseStatSubViewController: UIViewController {
+
+    var pokemon: Pokemon? {
+        didSet {
+            DispatchQueue.main.async {
+                self.progressTableView.reloadData()
+            }
+        }
+    }
     
     private let progressTableView: UITableView = {
        let tableview = UITableView()
@@ -43,11 +51,15 @@ class BaseStatSubViewController: UIViewController {
 extension BaseStatSubViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return pokemon?.baseStat.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: BaseStatTableViewCell.identifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: BaseStatTableViewCell.identifier, for: indexPath) as? BaseStatTableViewCell else { return UITableViewCell() }
+        
+        if let baseStat = pokemon?.baseStat[indexPath.row]{
+            cell.configure(with: baseStat)
+        }
         
         return cell
     }

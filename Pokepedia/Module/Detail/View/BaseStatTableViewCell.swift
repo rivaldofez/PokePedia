@@ -41,10 +41,16 @@ class BaseStatTableViewCell: UITableViewCell {
         contentView.addSubview(progressView)
         
         configureConstraints()
-        
-        progressView.setProgress(0.4, animated: false)
+    
         progressView.trackTintColor = .lightGray
         progressView.tintColor = .blue
+    }
+    
+    func configure(with baseStat: BaseStat){
+        titleLabel.text = baseStat.name
+        statLabel.text = String(baseStat.value)
+        progressView.setProgress(Float(baseStat.value) / 255.0, animated: false)
+        
     }
     
     private func configureConstraints(){
