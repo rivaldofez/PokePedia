@@ -12,9 +12,7 @@ protocol DetailPokemonViewProtocol {
     
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies)
     func updatePokemonSpecies(with error: String)
-    
     func updatePokemon(with pokemon: Pokemon)
-    
     func isLoadingData(with state: Bool)
 }
 
@@ -23,13 +21,18 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
     
     
     var presenter: DetailPokemonPresenterProtocol?
+    var aboutSubViewController = AboutSubViewController()
+    var baseStatSubViewController = BaseStatSubViewController()
+    var movesSubViewController = MovesSubViewController()
     
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies) {
         print("Pokemon Species \(pokemonSpecies.genus)")
+        aboutSubViewController.pokemonSpecies = pokemonSpecies
     }
     
     func updatePokemon(with pokemon: Pokemon) {
         print("Pokemon \(pokemon.name)")
+        aboutSubViewController.pokemon = pokemon
     }
     
     func isLoadingData(with state: Bool) {
@@ -164,9 +167,7 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
         return view
     }()
     
-    private lazy var aboutSubViewController = AboutSubViewController()
-    private lazy var baseStatSubViewController = BaseStatSubViewController()
-    private lazy var movesSubViewController = MovesSubViewController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

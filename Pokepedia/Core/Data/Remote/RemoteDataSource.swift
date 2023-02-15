@@ -99,7 +99,6 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
                     .responseDecodable(of: PokemonSpeciesResponse.self) { response in
                         switch response.result {
                         case .success(let value):
-                            print("observer oke")
                             observer.onNext(value)
                             observer.onCompleted()
                         case .failure:

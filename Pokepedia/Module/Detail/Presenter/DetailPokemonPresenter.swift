@@ -11,7 +11,7 @@ import RxSwift
 protocol DetailPokemonPresenterProtocol {
     var router: DetailPokemonRouterProtocol? { get set}
     var interactor: DetailPokemonUseCase? { get set }
-    var view: DetailPokemonViewProtocol? { get set }
+    var detailPokemonView: DetailPokemonViewProtocol? { get set }
     
     var isLoadingData: Bool { get set}
     func getPokemonSpecies(id: Int)
@@ -22,7 +22,7 @@ protocol DetailPokemonPresenterProtocol {
 
 class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
     func getPokemon(with pokemon: Pokemon) {
-        view?.updatePokemon(with: pokemon)
+        detailPokemonView?.updatePokemon(with: pokemon)
         getPokemonSpecies(id: pokemon.id)
     }
     
@@ -30,7 +30,7 @@ class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
     
     var interactor: DetailPokemonUseCase?
     
-    var view: DetailPokemonViewProtocol?
+    var detailPokemonView: DetailPokemonViewProtocol?
     
     var isLoadingData: Bool = false
     
@@ -42,9 +42,9 @@ class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
         interactor?.getPokemonSpecies(id: id)
             .observe(on: MainScheduler.instance)
             .subscribe{[weak self] pokemonSpeciesResult in
-                self?.view?.updatePokemonSpecies(with: pokemonSpeciesResult)
+                self?.detailPokemonView?.updatePokemonSpecies(with: pokemonSpeciesResult)
             } onError: { error in
-                self.view?.updatePokemonSpecies(with: error.localizedDescription)
+                self.detailPokemonView?.updatePokemonSpecies(with: error.localizedDescription)
               } onCompleted: {
                   self.isLoadingData = false
               }.disposed(by: disposeBag)

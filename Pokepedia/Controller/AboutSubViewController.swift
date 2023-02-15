@@ -8,17 +8,53 @@
 import UIKit
 
 class AboutSubViewController: UIViewController {
-
+    var pokemonSpecies: PokemonSpecies? {
+        didSet {
+            guard let pokemonSpecies = pokemonSpecies else { return }
+            
+            var aString = pokemonSpecies.about
+//            var removed = aString.replacingOccurrences(of: "\n", with: "j")
+            var removed = aString.replacingOccurrences(of: "\n", with: " ")
+            
+            var delete = removed.replacingOccurrences(of: "\\f", with: " ")
+                .replacingOccurrences(of: ".", with: ". ")
+            
+            print(delete)
+            
+            aboutLabel.text = delete
+        }
+    }
+    
+    var pokemon: Pokemon? {
+        didSet {
+            guard let pokemon = pokemon else { return }
+            
+            heightLabel.text = "\(pokemon.height) m"
+            weightLabel.text = "\(pokemon.weight) kg"
+        }
+    }
+    
     private let aboutLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Charizard, known in Japan as Lizardon, is a Pokémon in Nintendo and Game Freak's Pokémon franchise. Created by Atsuko Nishida, Charizard first appeared in the video games Pokémon Red and Blue and subsequent sequels."
         label.numberOfLines = 0
         label.font = .comfortaaLight(size: 16)
         return label
     }()
     
-    private var weightLabelStackView: UIStackView = {
+    private let weightLabel: UILabel = {
+        let label = UILabel()
+        label.text = "10 Kg (15,72 lbs)"
+        return label
+    }()
+    
+    private let heightLabel: UILabel = {
+       let label = UILabel()
+        label.text = "10 m (2'14\")"
+        return label
+    }()
+    
+    private lazy var weightLabelStackView: UIStackView = {
         let weightIcon = UIImageView()
         weightIcon.image = UIImage(named: "grass")
         weightIcon.contentMode = .scaleAspectFit
@@ -26,13 +62,12 @@ class AboutSubViewController: UIViewController {
         weightIcon.heightAnchor.constraint(equalToConstant: 24).isActive = true
         weightIcon.clipsToBounds = true
         
-        let label = UILabel()
-        label.text = "10 Kg (15,72 lbs)"
+        
         
        let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.addArrangedSubview(weightIcon)
-        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubview(self.weightLabel)
         
         let weightLabel = UILabel()
         weightLabel.text = "Weight"
@@ -47,7 +82,7 @@ class AboutSubViewController: UIViewController {
         return weightStackView
     }()
     
-    private var heightLabelStackView: UIStackView = {
+    private lazy var heightLabelStackView: UIStackView = {
         let heightIcon = UIImageView()
         heightIcon.image = UIImage(named: "grass")
         heightIcon.contentMode = .scaleAspectFit
@@ -55,13 +90,10 @@ class AboutSubViewController: UIViewController {
         heightIcon.heightAnchor.constraint(equalToConstant: 24).isActive = true
         heightIcon.clipsToBounds = true
         
-        let label = UILabel()
-        label.text = "10 m (2'14\")"
-        
        let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.addArrangedSubview(heightIcon)
-        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubview(self.heightLabel)
         
         let heightLabel = UILabel()
         heightLabel.text = "Height"
@@ -109,6 +141,7 @@ class AboutSubViewController: UIViewController {
         view.addSubview(aboutLabel)
         view.addSubview(sizeStackView)
         configureConstraints()
+        
     }
     
     private func configureConstraints(){

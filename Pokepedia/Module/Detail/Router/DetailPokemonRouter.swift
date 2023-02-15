@@ -30,7 +30,7 @@ class DetailPokemonRouter: DetailPokemonRouterProtocol {
         
         view.presenter = presenter
         presenter.router = router
-        presenter.view = view
+        presenter.detailPokemonView = view
         presenter.interactor = interactor
         
         presenter.getPokemon(with: pokemon)
