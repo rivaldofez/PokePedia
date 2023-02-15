@@ -27,6 +27,13 @@ class BaseStatSubViewController: UIViewController {
         return tableview
     }()
     
+    let marker: RadarMarkerView = {
+        let marker = RadarMarkerView()
+        marker.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        
+        return marker
+    }()
+    
     private lazy var radarChartView: RadarChartView = {
         let chartView = RadarChartView()
         chartView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,6 +63,8 @@ class BaseStatSubViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    
 
     
     private func setDataRadarChartView(){
@@ -93,6 +102,8 @@ class BaseStatSubViewController: UIViewController {
         
         radarChartView.rotationEnabled = true
         radarChartView.legend.enabled = false
+        
+        
 
     }
     
@@ -109,6 +120,12 @@ class BaseStatSubViewController: UIViewController {
         progressTableView.dataSource = self
         progressTableView.delegate = self
         chartSwitch.addTarget(self, action: #selector(updateSwitch), for: .valueChanged)
+        radarChartView.animate(xAxisDuration: 1.4, yAxisDuration: 1.4, easingOption: .easeOutBack)
+        
+        marker.chartView = radarChartView
+        radarChartView.marker = marker
+        
+        
     }
 
     
@@ -213,4 +230,39 @@ class YAxisFormatter: AxisValueFormatter {
         print(value)
         return "\(Int(value)) $"
     }
+}
+
+class RadarMarkerView: MarkerView {
+    
+    private var label: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "aa"
+        label.textColor = .label
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        addSubview(label)
+        
+        label.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        label.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        label.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        label.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        label.widthAnchor.constraint(equalToConstant: 50)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func refreshContent(entry: ChartDataEntry, highlight: Highlight) {
+        label.text = String(Int(round(entry.y)))
+        
+        print("Oke")
+        layoutIfNeeded()
+    }
+    
 }
