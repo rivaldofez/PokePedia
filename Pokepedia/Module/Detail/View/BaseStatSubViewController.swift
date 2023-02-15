@@ -14,9 +14,12 @@ class BaseStatSubViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 self.progressTableView.reloadData()
+                self.setDataRadarChartView()
             }
         }
     }
+    
+   
     
     private let progressTableView: UITableView = {
        let tableview = UITableView()
@@ -29,9 +32,51 @@ class BaseStatSubViewController: UIViewController {
     private lazy var radarChartView: RadarChartView = {
         let chartView = RadarChartView()
         chartView.translatesAutoresizingMaskIntoConstraints = false
+        chartView.webLineWidth = 1
+        chartView.webColor = .lightGray
+        chartView.innerWebColor = .green
+        
         return chartView
         
     }()
+    
+    private func setDataRadarChartView(){
+        guard let pokemon = self.pokemon else { return }
+        var entries : [RadarChartDataEntry] = []
+        
+        pokemon.baseStat.forEach { stat in
+            entries.append(RadarChartDataEntry(value: Double(stat.value)))
+        }
+        
+        let dataset = RadarChartDataSet(entries: entries)
+        dataset.colors = [.red]
+        dataset.fillColor = .blue
+        dataset.drawFilledEnabled = true
+        
+        radarChartView.data = RadarChartData(dataSets: [dataset])
+        
+        dataset.valueFormatter = DataSetValueFormatter()
+        
+        let xAxis = radarChartView.xAxis
+        xAxis.labelFont = .systemFont(ofSize: 12, weight: .bold)
+        xAxis.labelTextColor = .black
+        xAxis.valueFormatter = self
+        xAxis.labelCount = 5
+        
+        let yAxis = radarChartView.yAxis
+        yAxis.labelCount = 0
+        yAxis.drawLabelsEnabled = false
+        yAxis.drawTopYLabelEntryEnabled = false
+        yAxis.axisMinimum = 0
+        yAxis.axisMaximum = 255
+//        YAxisFormatter = self
+//        yAxis.valueFormatter = YAxisFormatter()
+        yAxis.valueFormatter = self
+        
+        radarChartView.rotationEnabled = true
+//        radarChartView.legend.enabled = true
+
+    }
     
     
     override func viewDidLoad() {
@@ -67,6 +112,20 @@ class BaseStatSubViewController: UIViewController {
     }
 }
 
+extension BaseStatSubViewController: AxisValueFormatter {
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        guard let pokemon = pokemon else { return "" }
+        
+        let titles = pokemon.baseStat.map { stat in
+            return PokemonConverter.typeStringToStatName(type: stat.name)
+        }
+        
+        return "\(titles[Int(value) % titles.count])"
+    }
+    
+    
+}
+
 extension BaseStatSubViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,4 +143,35 @@ extension BaseStatSubViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     
+}
+
+
+class DataSetValueFormatter: ValueFormatter {
+
+    func stringForValue(_ value: Double,
+                        entry: ChartDataEntry,
+                        dataSetIndex: Int,
+                        viewPortHandler: ViewPortHandler?) -> String {
+        ""
+    }
+}
+
+// 2
+class XAxisFormatter: AxisValueFormatter {
+
+    let titles = ["HP", "Attack", "Defense", "Speed", "Sp.Def", "Sp.Atk"]
+
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        print(value)
+        return titles[Int(value) % titles.count]
+    }
+}
+
+// 3
+class YAxisFormatter: AxisValueFormatter {
+
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        print(value)
+        return "\(Int(value)) $"
+    }
 }
