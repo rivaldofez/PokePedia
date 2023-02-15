@@ -19,8 +19,6 @@ class BaseStatSubViewController: UIViewController {
         }
     }
     
-   
-    
     private let progressTableView: UITableView = {
        let tableview = UITableView()
         tableview.translatesAutoresizingMaskIntoConstraints = false
@@ -39,6 +37,27 @@ class BaseStatSubViewController: UIViewController {
         return chartView
         
     }()
+    
+    private let chartSwitch: UISwitch = {
+       let uiswitch = UISwitch()
+        uiswitch.translatesAutoresizingMaskIntoConstraints = false
+        uiswitch.setOn(true, animated: true)
+        uiswitch.isEnabled = true
+        
+        
+        uiswitch.translatesAutoresizingMaskIntoConstraints = false
+        uiswitch.isUserInteractionEnabled = true
+        
+        return uiswitch
+    }()
+    
+    private let chartSwitchLabel: UILabel = {
+       let label = UILabel()
+        label.text = "Radar View"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
     
     private func setDataRadarChartView(){
         guard let pokemon = self.pokemon else { return }
@@ -69,12 +88,10 @@ class BaseStatSubViewController: UIViewController {
         yAxis.drawTopYLabelEntryEnabled = false
         yAxis.axisMinimum = 0
         yAxis.axisMaximum = 255
-//        YAxisFormatter = self
-//        yAxis.valueFormatter = YAxisFormatter()
         yAxis.valueFormatter = self
         
         radarChartView.rotationEnabled = true
-//        radarChartView.legend.enabled = true
+        radarChartView.legend.enabled = false
 
     }
     
@@ -82,33 +99,55 @@ class BaseStatSubViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        view.addSubview(chartSwitch)
+        view.addSubview(chartSwitchLabel)
         view.addSubview(radarChartView)
         view.addSubview(progressTableView)
         configureConstraints()
         
         progressTableView.dataSource = self
         progressTableView.delegate = self
+        chartSwitch.addTarget(self, action: #selector(updateSwitch), for: .valueChanged)
+    }
+
+    
+    @objc func updateSwitch(sender: UISwitch){
         
+        progressTableView.isHidden = sender.isOn
+        radarChartView.isHidden = !sender.isOn
+
     }
     
     private func configureConstraints(){
+        
+        let chartSwitchConstraints = [
+            chartSwitch.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            chartSwitch.topAnchor.constraint(equalTo: view.topAnchor, constant: 15)
+        ]
+        
+        let chartSwitchLabelConstraints = [
+            chartSwitchLabel.trailingAnchor.constraint(equalTo: chartSwitch.leadingAnchor, constant: -10),
+            chartSwitchLabel.centerYAnchor.constraint(equalTo: chartSwitch.centerYAnchor)
+        ]
+        
         let progressTableViewConstraints = [
             progressTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             progressTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            progressTableView.topAnchor.constraint(equalTo: view.topAnchor),
+            progressTableView.topAnchor.constraint(equalTo: chartSwitch.bottomAnchor, constant: 15),
             progressTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
         let radarChartViewConstraints = [
             radarChartView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             radarChartView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            radarChartView.topAnchor.constraint(equalTo: view.topAnchor),
+            radarChartView.topAnchor.constraint(equalTo: chartSwitch.bottomAnchor, constant: 15),
             radarChartView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
+        NSLayoutConstraint.activate(chartSwitchConstraints)
         NSLayoutConstraint.activate(progressTableViewConstraints)
         NSLayoutConstraint.activate(radarChartViewConstraints)
+        NSLayoutConstraint.activate(chartSwitchLabelConstraints)
     }
 }
 
