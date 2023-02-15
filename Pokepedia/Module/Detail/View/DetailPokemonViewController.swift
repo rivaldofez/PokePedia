@@ -35,6 +35,14 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
         aboutSubViewController.pokemon = pokemon
         baseStatSubViewController.pokemon = pokemon
         movesSubViewController.pokemon = pokemon
+        
+        guard let url = URL(string: pokemon.image) else { return }
+        pokemonImageView.sd_setImage(with: url)
+        self.title = pokemon.name.capitalized
+        
+        pokemon.type.map { title in
+            chipType.append(configureChip(title: title))
+        }
     }
     
     func isLoadingData(with state: Bool) {
@@ -74,7 +82,7 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
     }
     
     private lazy var sectionStackView: UIStackView = {
-       let stackView = UIStackView(arrangedSubviews: sectionTabButtons)
+        let stackView = UIStackView(arrangedSubviews: sectionTabButtons)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .equalSpacing
         stackView.axis = .horizontal
@@ -83,21 +91,20 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
         
     }()
     
-    
-    private var chipType: [UIStackView] = ["Grass", "Fire", "Flying"].map { title in
+    private func configureChip(title: String) -> UIStackView {
         let stackView = UIStackView()
         
         let label = UILabel()
         label.font = .poppinsMedium(size: 12)
-        label.text = title
+        label.text = title.capitalized
         
         let imageview = UIImageView()
-        imageview.image = UIImage(named: "grass")
+        imageview.image = UIImage(named: PokemonConverter.typeStringToIconName(type: title))
         imageview.contentMode = .scaleAspectFit
         imageview.widthAnchor.constraint(equalToConstant: 20).isActive = true
         imageview.heightAnchor.constraint(equalToConstant: 20).isActive = true
         imageview.clipsToBounds = true
-    
+        
         stackView.spacing = 5
         stackView.addArrangedSubview(imageview)
         stackView.addArrangedSubview(label)
@@ -106,12 +113,13 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.axis = .horizontal
         stackView.alignment = .center
-        stackView.backgroundColor = .gray
+        stackView.backgroundColor = UIColor(named: PokemonConverter.typeStringToColorName(type: title))
         stackView.layer.cornerRadius = 15
-
         
         return stackView
     }
+    
+    private lazy var chipType: [UIStackView] = []
     
     private lazy var pokemonTypeStackView: UIStackView = {
         let stackView = UIStackView()
@@ -177,7 +185,7 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        title = "Charizard"
+//        title = "Charizard"
         navigationController?.navigationBar.tintColor = .label
         
         let attrs = [
