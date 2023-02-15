@@ -30,6 +30,15 @@ final class PokemonConverter {
         case water = "water"
     }
     
+    enum PokemonStat: String {
+        case hp = "hp"
+        case attack = "attack"
+        case defense = "defense"
+        case spAttack = "special-attack"
+        case spDefense = "special-defense"
+        case speed = "speed"
+    }
+    
     static func typeStringToIconName(type: String) -> String {
         guard let pokemonElement = PokemonElement(rawValue: type) else { return "unknown"}
         switch pokemonElement {
@@ -111,6 +120,25 @@ final class PokemonConverter {
             return "color_steel"
         case .water:
             return "color_water"
+        }
+    }
+    
+    static func typeStringToStatName(type: String) -> String {
+        guard let pokemonStat = PokemonStat(rawValue: type) else { return "unknown"}
+        
+        switch pokemonStat {
+        case .hp :
+            return "Hp"
+        case .attack:
+            return "Atk"
+        case .defense:
+            return "Def"
+        case .spAttack:
+            return "Sp.Atk"
+        case .spDefense:
+            return "Sp.Def"
+        case .speed:
+            return "Speed"
         }
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Charts
 
 class BaseStatSubViewController: UIViewController {
 
@@ -21,13 +22,23 @@ class BaseStatSubViewController: UIViewController {
        let tableview = UITableView()
         tableview.translatesAutoresizingMaskIntoConstraints = false
         tableview.register(BaseStatTableViewCell.self, forCellReuseIdentifier: BaseStatTableViewCell.identifier)
+        tableview.isHidden = true
         return tableview
+    }()
+    
+    private lazy var radarChartView: RadarChartView = {
+        let chartView = RadarChartView()
+        chartView.translatesAutoresizingMaskIntoConstraints = false
+        return chartView
+        
     }()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        view.addSubview(radarChartView)
         view.addSubview(progressTableView)
         configureConstraints()
         
@@ -44,7 +55,15 @@ class BaseStatSubViewController: UIViewController {
             progressTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
+        let radarChartViewConstraints = [
+            radarChartView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            radarChartView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            radarChartView.topAnchor.constraint(equalTo: view.topAnchor),
+            radarChartView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ]
+        
         NSLayoutConstraint.activate(progressTableViewConstraints)
+        NSLayoutConstraint.activate(radarChartViewConstraints)
     }
 }
 
@@ -58,7 +77,7 @@ extension BaseStatSubViewController: UITableViewDelegate, UITableViewDataSource 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BaseStatTableViewCell.identifier, for: indexPath) as? BaseStatTableViewCell else { return UITableViewCell() }
         
         if let baseStat = pokemon?.baseStat[indexPath.row]{
-            cell.configure(with: baseStat)
+            cell.configure(with: baseStat, type: pokemon!.type.first!)
         }
         
         return cell

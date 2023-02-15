@@ -55,13 +55,12 @@ class AboutSubViewController: UIViewController {
     
     private lazy var weightLabelStackView: UIStackView = {
         let weightIcon = UIImageView()
-        weightIcon.image = UIImage(named: "grass")
+        weightIcon.image = UIImage(named: "icon_width")
+        weightIcon.frame = CGRect(x: 20, y: 0, width: 0, height: 0)
         weightIcon.contentMode = .scaleAspectFit
         weightIcon.widthAnchor.constraint(equalToConstant: 24).isActive = true
         weightIcon.heightAnchor.constraint(equalToConstant: 24).isActive = true
         weightIcon.clipsToBounds = true
-        
-        
         
        let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -84,7 +83,7 @@ class AboutSubViewController: UIViewController {
     
     private lazy var heightLabelStackView: UIStackView = {
         let heightIcon = UIImageView()
-        heightIcon.image = UIImage(named: "grass")
+        heightIcon.image = UIImage(named: "icon_height")
         heightIcon.contentMode = .scaleAspectFit
         heightIcon.widthAnchor.constraint(equalToConstant: 24).isActive = true
         heightIcon.heightAnchor.constraint(equalToConstant: 24).isActive = true
@@ -102,7 +101,7 @@ class AboutSubViewController: UIViewController {
         let heightStackView = UIStackView()
         heightStackView.axis = .vertical
         heightStackView.addArrangedSubview(stackView)
-        heightStackView.alignment = .center
+//        heightStackView.alignment = .center
         heightStackView.addArrangedSubview(heightLabel)
         
         return heightStackView
@@ -123,7 +122,7 @@ class AboutSubViewController: UIViewController {
         stackView.spacing = 20
         stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.backgroundColor = .lightGray
+        stackView.backgroundColor = .lightGray.withAlphaComponent(0.2)
         stackView.layer.cornerRadius = 16
         stackView.clipsToBounds = true
         stackView.distribution = .equalSpacing

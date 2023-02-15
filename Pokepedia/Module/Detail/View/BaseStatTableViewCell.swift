@@ -33,6 +33,8 @@ class BaseStatTableViewCell: UITableViewCell {
     }()
     
     
+
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -43,13 +45,14 @@ class BaseStatTableViewCell: UITableViewCell {
         configureConstraints()
     
         progressView.trackTintColor = .lightGray
-        progressView.tintColor = .blue
     }
     
-    func configure(with baseStat: BaseStat){
-        titleLabel.text = baseStat.name
+    func configure(with baseStat: BaseStat, type: String){
+        titleLabel.text = PokemonConverter.typeStringToStatName(type: baseStat.name)
         statLabel.text = String(baseStat.value)
         progressView.setProgress(Float(baseStat.value) / 255.0, animated: false)
+        
+        progressView.tintColor = UIColor(named: PokemonConverter.typeStringToColorName(type: type))
         
     }
     
@@ -57,14 +60,15 @@ class BaseStatTableViewCell: UITableViewCell {
         let titleLabelConstraints = [
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-//            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            titleLabel.widthAnchor.constraint(equalToConstant: 50),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ]
         
         let statLabelConstraints = [
             statLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 16),
             statLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            statLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            statLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            statLabel.widthAnchor.constraint(equalToConstant: 30)
         ]
         
         let progressViewConstraints = [

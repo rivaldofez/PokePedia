@@ -40,9 +40,12 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
         pokemonImageView.sd_setImage(with: url)
         self.title = pokemon.name.capitalized
         
-        pokemon.type.map { title in
+        pokemon.type.forEach { title in
             chipType.append(configureChip(title: title))
         }
+        
+        indicator.backgroundColor = UIColor(named: PokemonConverter.typeStringToColorName(type: pokemon.type.first!))
+        
     }
     
     func isLoadingData(with state: Bool) {
@@ -172,7 +175,6 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
     private let indicator: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .red
         
         return view
     }()
