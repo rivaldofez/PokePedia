@@ -11,17 +11,16 @@ class AboutSubViewController: UIViewController {
     var pokemonSpecies: PokemonSpecies? {
         didSet {
             guard let pokemonSpecies = pokemonSpecies else { return }
+            let pokemonAbout = {
+                return pokemonSpecies.about
+                    .replacingOccurrences(of: "\n", with: " ")
+                    .utf8EncodedString()
+                    .replacingOccurrences(of: "\\014", with: " ")
+                    .utf8DecodedString()
+            }()
             
-            var aString = pokemonSpecies.about
-//            var removed = aString.replacingOccurrences(of: "\n", with: "j")
-            var removed = aString.replacingOccurrences(of: "\n", with: " ")
-            
-            var delete = removed.replacingOccurrences(of: "\\f", with: " ")
-                .replacingOccurrences(of: ".", with: ". ")
-            
-            print(delete)
-            
-            aboutLabel.text = delete
+            aboutLabel.text = pokemonAbout
+    
         }
     }
     
@@ -44,13 +43,13 @@ class AboutSubViewController: UIViewController {
     
     private let weightLabel: UILabel = {
         let label = UILabel()
-        label.text = "10 Kg (15,72 lbs)"
+        label.textAlignment = .center
         return label
     }()
     
     private let heightLabel: UILabel = {
        let label = UILabel()
-        label.text = "10 m (2'14\")"
+        label.textAlignment = .center
         return label
     }()
     
@@ -71,6 +70,7 @@ class AboutSubViewController: UIViewController {
         
         let weightLabel = UILabel()
         weightLabel.text = "Weight"
+        weightLabel.textAlignment = .center
         
         let weightStackView = UIStackView()
         weightStackView.axis = .vertical
@@ -97,6 +97,7 @@ class AboutSubViewController: UIViewController {
         
         let heightLabel = UILabel()
         heightLabel.text = "Height"
+        heightLabel.textAlignment = .center
         
         let heightStackView = UIStackView()
         heightStackView.axis = .vertical
@@ -162,4 +163,18 @@ class AboutSubViewController: UIViewController {
         NSLayoutConstraint.activate(sizeStackViewConstraints)
     }
     
+}
+
+extension String {
+    func utf8DecodedString()-> String {
+        let data = self.data(using: .utf8)
+        let message = String(data: data!, encoding: .nonLossyASCII) ?? ""
+        return message
+    }
+    
+    func utf8EncodedString()-> String {
+        let messageData = self.data(using: .nonLossyASCII)
+        let text = String(data: messageData!, encoding: .utf8) ?? ""
+        return text
+    }
 }
