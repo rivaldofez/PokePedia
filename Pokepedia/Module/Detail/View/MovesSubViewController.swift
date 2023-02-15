@@ -9,6 +9,14 @@ import UIKit
 
 class MovesSubViewController: UIViewController {
 
+    var pokemon: Pokemon? {
+        didSet {
+            DispatchQueue.main.async {
+                self.movesTableView.reloadData()
+            }
+        }
+    }
+    
     private let movesTableView: UITableView = {
        let tableview = UITableView()
         tableview.translatesAutoresizingMaskIntoConstraints = false
@@ -41,11 +49,15 @@ class MovesSubViewController: UIViewController {
 
 extension MovesSubViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return pokemon?.moves.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MovesTableViewCell.identifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovesTableViewCell.identifier, for: indexPath) as? MovesTableViewCell else { return UITableViewCell()}
+        
+        if let moves = pokemon?.moves[indexPath.row] {
+            cell.configure(with: moves)
+        }
         
         return cell
     }
