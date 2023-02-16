@@ -11,7 +11,7 @@ struct PokemonSpeciesResponse: Codable {
    let baseHappiness: Int
    let captureRate: Int
    let color: Color
-//   let eggGroups: [Color]
+   let eggGroups: [Color]
 //   let evolutionChain: EvolutionChain
 //   let evolvesFromSpecies: Color
    let flavorTextEntries: [FlavorTextEntry]
@@ -37,7 +37,7 @@ struct PokemonSpeciesResponse: Codable {
        case baseHappiness = "base_happiness"
        case captureRate = "capture_rate"
        case color
-//       case eggGroups = "egg_groups"
+       case eggGroups = "egg_groups"
 //       case evolutionChain = "evolution_chain"
 //       case evolvesFromSpecies = "evolves_from_species"
        case flavorTextEntries = "flavor_text_entries"

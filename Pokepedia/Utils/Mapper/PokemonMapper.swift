@@ -38,7 +38,12 @@ final class PokemonMapper {
                 },
                 type: result.types.map { typeResponse in
                     return typeResponse.type.name
-                })
+                },
+                abilities: result.abilities.map{ ability in
+                    ability.ability.name
+                }.joined(separator: ", ")
+            
+            )
             
             return newPokemon
         }
@@ -64,6 +69,10 @@ final class PokemonMapper {
             return ""
         }()
         
+        let eggGroup = pokemonSpeciesResponse.eggGroups.map { itemEgg in
+            return itemEgg.name
+        }.joined(separator: ", ")
+        
         let newPokemonSpecies = PokemonSpecies(
             id: pokemonSpeciesResponse.id,
             baseHappines: pokemonSpeciesResponse.baseHappiness,
@@ -78,7 +87,11 @@ final class PokemonMapper {
             isLegendary: pokemonSpeciesResponse.isLegendary,
             isMythical: pokemonSpeciesResponse.isMythical,
             isBaby: pokemonSpeciesResponse.isBaby,
-            shape: pokemonSpeciesResponse.shape.name)
+            shape: pokemonSpeciesResponse.shape.name,
+            eggGroups: eggGroup
+        
+        
+        )
         
         return newPokemonSpecies
         

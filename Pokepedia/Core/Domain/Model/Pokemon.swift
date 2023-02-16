@@ -17,6 +17,7 @@ struct Pokemon: Identifiable{
     let baseStat: [BaseStat] //detail base stat
     let moves: [String] //detail moves
     let type: [String] //detail types
+    let abilities: String
 }
 
 struct BaseStat{

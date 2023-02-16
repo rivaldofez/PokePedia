@@ -22,4 +22,5 @@ struct PokemonSpecies: Identifiable {
     let isMythical: Bool
     let isBaby: Bool
     let shape: String
+    let eggGroups: String
 }

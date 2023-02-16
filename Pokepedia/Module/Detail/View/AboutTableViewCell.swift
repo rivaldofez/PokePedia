@@ -36,18 +36,23 @@ class AboutTableViewCell: UITableViewCell {
         configureConstraints()
     }
     
+    func configure(with model: ItemCellModel){
+        titleLabel.text = model.title
+        valueLabel.text = model.value
+    }
+    
     private func configureConstraints(){
         let titleLabelConstraints = [
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            titleLabel.widthAnchor.constraint(equalToConstant: 100)
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            titleLabel.widthAnchor.constraint(equalToConstant: 150)
         ]
         
         let valueLabelConstraints = [
             valueLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
-            valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            valueLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            valueLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             valueLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ]
         
