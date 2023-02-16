@@ -40,7 +40,7 @@ final class PokemonMapper {
                     return typeResponse.type.name
                 },
                 abilities: result.abilities.map{ ability in
-                    ability.ability.name
+                    ability.ability.name.capitalized
                 }.joined(separator: ", ")
             
             )
@@ -63,15 +63,27 @@ final class PokemonMapper {
         let genusPokemon = {
             for generaEntry in pokemonSpeciesResponse.genera {
                 if generaEntry.language.name == "en" {
-                    return generaEntry.genus
+                    return generaEntry.genus.capitalized
                 }
             }
             return ""
         }()
         
         let eggGroup = pokemonSpeciesResponse.eggGroups.map { itemEgg in
-            return itemEgg.name
+            return itemEgg.name.capitalized
         }.joined(separator: ", ")
+        
+        let genderRate: String = {
+            if pokemonSpeciesResponse.genderRate == -1 {
+                return "Genderless"
+            } else {
+                let female = (Float(pokemonSpeciesResponse.genderRate) / 8.0) * 100
+                let male = (Float(8 - pokemonSpeciesResponse.genderRate) / 8.0) * 100
+                
+                return "Male \(male)%, Female \(female)%"
+            }
+            
+        }()
         
         let newPokemonSpecies = PokemonSpecies(
             id: pokemonSpeciesResponse.id,
@@ -79,10 +91,10 @@ final class PokemonMapper {
             captureRate: pokemonSpeciesResponse.captureRate,
             color: pokemonSpeciesResponse.color.name,
             about: aboutPokemon,
-            genderRate: pokemonSpeciesResponse.genderRate,
+            genderRate: genderRate,
             genus: genusPokemon,
-            growthRate: pokemonSpeciesResponse.growthRate.name,
-            habitat: pokemonSpeciesResponse.habitat.name,
+            growthRate: pokemonSpeciesResponse.growthRate.name.capitalized,
+            habitat: pokemonSpeciesResponse.habitat.name.capitalized,
             hatchCounter: pokemonSpeciesResponse.hatchCounter,
             isLegendary: pokemonSpeciesResponse.isLegendary,
             isMythical: pokemonSpeciesResponse.isMythical,

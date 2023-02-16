@@ -13,7 +13,7 @@ struct PokemonSpecies: Identifiable {
     let captureRate: Int
     let color: String
     let about: String
-    let genderRate: Int
+    let genderRate: String
     let genus: String
     let growthRate: String
     let habitat: String
