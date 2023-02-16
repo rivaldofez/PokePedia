@@ -41,6 +41,13 @@ class AboutSubViewController: UIViewController {
         return label
     }()
     
+    private let aboutTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return tableView
+    }()
+    
     private let weightLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -137,11 +144,12 @@ class AboutSubViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         view.addSubview(aboutLabel)
-        view.addSubview(sizeStackView)
+        view.addSubview(aboutTableView)
         configureConstraints()
         
+        aboutTableView.delegate = self
+        aboutTableView.dataSource = self
     }
     
     private func configureConstraints(){
@@ -158,10 +166,29 @@ class AboutSubViewController: UIViewController {
             sizeStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
         
+        let aboutTableViewConstraints = [
+            aboutTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            aboutTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            aboutTableView.topAnchor.constraint(equalTo: aboutLabel.bottomAnchor, constant: 15),
+            aboutTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        
+        ]
+        
         NSLayoutConstraint.activate(aboutLabelConstraints)
-        NSLayoutConstraint.activate(sizeStackViewConstraints)
+        NSLayoutConstraint.activate(aboutTableViewConstraints)
+//        NSLayoutConstraint.activate(sizeStackViewConstraints)
     }
     
+}
+
+extension AboutSubViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
 }
 
 extension String {
