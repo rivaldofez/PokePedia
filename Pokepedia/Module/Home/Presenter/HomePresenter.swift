@@ -21,18 +21,9 @@ protocol HomePresenterProtocol {
 }
 
 class HomePresenter: HomePresenterProtocol{
-    var isLoadingData: Bool = false {
-        didSet{
-            if isLoadingData{
-                view?.isLoadingData(with: true)
-            }else{
-                view?.isLoadingData(with: false)
-            }
-        }
-    }
-    
- 
+    private let disposeBag = DisposeBag()
     var router: HomeRouterProtocol?
+    var view: HomeViewProtocol?
     
     var interactor: HomeUseCase? {
         didSet {
@@ -47,10 +38,16 @@ class HomePresenter: HomePresenterProtocol{
         }
     }
     
-    var view: HomeViewProtocol?
+    var isLoadingData: Bool = false {
+        didSet{
+            if isLoadingData{
+                view?.isLoadingData(with: true)
+            }else{
+                view?.isLoadingData(with: false)
+            }
+        }
+    }
     
-    private let disposeBag = DisposeBag()
-
     func didSelectPokemonItem(with pokemon: Pokemon) {
         router?.gotoDetailPokemon(with: pokemon)
     }
@@ -65,10 +62,8 @@ class HomePresenter: HomePresenterProtocol{
                 self?.view?.updatePokemon(with: pokemonResults)
             } onError: { error in
                 self.view?.updatePokemon(with: error.localizedDescription)
-              } onCompleted: {
-                  self.isLoadingData = false
-              }.disposed(by: disposeBag)
+            } onCompleted: {
+                self.isLoadingData = false
+            }.disposed(by: disposeBag)
     }
-    
-    
 }

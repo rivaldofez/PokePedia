@@ -19,8 +19,8 @@ final class PokemonMapper {
                 id: result.id,
                 name: result.name,
                 image: image,
-                height: result.height,
-                weight: result.weight,
+                height: Float(result.height) / 10.0,
+                weight: Float(result.weight) / 10.0,
                 baseExp: result.baseExperience,
                 baseStat: result.stats.map { statResponse in
                     
@@ -42,7 +42,7 @@ final class PokemonMapper {
                 abilities: result.abilities.map{ ability in
                     ability.ability.name.capitalized
                 }.joined(separator: ", ")
-            
+                
             )
             
             return newPokemon
@@ -55,6 +55,10 @@ final class PokemonMapper {
             for flavorEntry in pokemonSpeciesResponse.flavorTextEntries {
                 if flavorEntry.language.name == "en" {
                     return flavorEntry.flavorText
+                        .replacingOccurrences(of: "\n", with: " ")
+                        .utf8EncodedString()
+                        .replacingOccurrences(of: "\\014", with: " ")
+                        .utf8DecodedString()
                 }
             }
             return ""
@@ -101,12 +105,42 @@ final class PokemonMapper {
             isBaby: pokemonSpeciesResponse.isBaby,
             shape: pokemonSpeciesResponse.shape.name,
             eggGroups: eggGroup
-        
-        
         )
-        
         return newPokemonSpecies
-        
     }
-
+    
+    static func mapPokemonDataToAboutSectionData(pokemon: Pokemon, pokemonSpecies: PokemonSpecies) -> [AboutCellModel] {
+        var dataAboutCellModel: [AboutCellModel] = []
+        
+        
+        var speciesItemCellModel: [ItemCellModel] = []
+        speciesItemCellModel.append(ItemCellModel(title: "Genus", value: pokemonSpecies.genus))
+        speciesItemCellModel.append(ItemCellModel(title: "Height", value: "\(pokemon.height) m"))
+        speciesItemCellModel.append(ItemCellModel(title: "Weight", value: "\(pokemon.weight) kg"))
+        speciesItemCellModel.append(ItemCellModel(title: "Abilities", value: pokemon.abilities))
+        speciesItemCellModel.append(ItemCellModel(title: "Status", value: pokemonSpecies.isLegendary ? "Legendary" : pokemonSpecies.isMythical ? "Mythical" : "Common"))
+        speciesItemCellModel.append(ItemCellModel(title: "Habitat", value: pokemonSpecies.habitat))
+        let speciesCellModel = AboutCellModel(name: "Species", item: speciesItemCellModel)
+        
+        var physicalItemCellModel: [ItemCellModel] = []
+        physicalItemCellModel.append(ItemCellModel(title: "Growth Rate", value: pokemonSpecies.growthRate))
+        physicalItemCellModel.append(ItemCellModel(title: "Hatch Counter", value: String(pokemonSpecies.hatchCounter)))
+        physicalItemCellModel.append(ItemCellModel(title: "Base Happines", value: String(pokemonSpecies.baseHappines)))
+        physicalItemCellModel.append(ItemCellModel(title: "Base Experience", value: String(pokemon.baseExp)))
+        physicalItemCellModel.append(ItemCellModel(title: "Capture Rate", value: String(pokemonSpecies.captureRate)))
+        let physicalCellModel = AboutCellModel(name: "Physical", item: physicalItemCellModel)
+        
+        var breedingItemCellModel: [ItemCellModel] = []
+        breedingItemCellModel.append(ItemCellModel(title: "Gender", value: pokemonSpecies.genderRate))
+        breedingItemCellModel.append(ItemCellModel(title: "Egg Groups", value: pokemonSpecies.eggGroups))
+        breedingItemCellModel.append(ItemCellModel(title: "Baby Pokemon", value: pokemonSpecies.isBaby ? "Yes" : "No"))
+        let breedingCellModel = AboutCellModel(name: "Breeding", item: breedingItemCellModel)
+        
+        dataAboutCellModel.append(speciesCellModel)
+        dataAboutCellModel.append(physicalCellModel)
+        dataAboutCellModel.append(breedingCellModel)
+        
+        return dataAboutCellModel
+    }
+    
 }

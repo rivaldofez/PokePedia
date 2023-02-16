@@ -60,9 +60,8 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     }()
     
     private let containerImage: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-//        view.backgroundColor = .red
         return view
     }()
     
@@ -80,9 +79,8 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         
         containerImage.addSubview(pokeballImageView)
         containerImage.addSubview(pokemonImageView)
-
-        configureConstraints()
         
+        configureConstraints()
     }
     
     func configure(with model: Pokemon){
@@ -101,7 +99,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureConstraints(){
-                
+        
         let pokemonImageViewConstraints = [
             pokemonImageView.leadingAnchor.constraint(equalTo: containerImage.leadingAnchor, constant: 10),
             pokemonImageView.trailingAnchor.constraint(equalTo: containerImage.trailingAnchor, constant: -10),
@@ -122,7 +120,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
             containerImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             containerImage.bottomAnchor.constraint(equalTo: pokemonNumberLabel.topAnchor)
         ]
-                
+        
         let pokemonNumberLabelConstraints = [
             pokemonNumberLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             pokemonNumberLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
@@ -144,7 +142,6 @@ class PokemonCollectionViewCell: UICollectionViewCell {
             pokemonTypeImageView.heightAnchor.constraint(equalToConstant: 30)
             
         ]
-        
         NSLayoutConstraint.activate(pokemonNameLabelConstraints)
         NSLayoutConstraint.activate(pokemonNumberLabelConstraints)
         NSLayoutConstraint.activate(pokeballImageViewConstraints)
@@ -156,6 +153,4 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }

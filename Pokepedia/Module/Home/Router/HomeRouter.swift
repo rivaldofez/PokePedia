@@ -18,28 +18,14 @@ protocol HomeRouterProtocol{
 }
 
 class HomeRouter: HomeRouterProtocol {
-    func gotoDetailPokemon(with pokemon: Pokemon) {
-        
-        
-        let detailPokemonRouter = DetailPokemonRouter.createDetailPokemon(with: pokemon)
-        guard let detailPokemonView = detailPokemonRouter.entry else { return }
-        guard let viewController = self.begin else { return }
-        
-        viewController.navigationController?.pushViewController(detailPokemonView, animated: true)
-        
-        
-    }
-    
     var begin: BeginPoint?
     
     static func start() -> HomeRouterProtocol {
         let router = HomeRouter()
         
-        //assign vip
         var view: HomeViewProtocol = HomeViewController()
         var presenter: HomePresenterProtocol = HomePresenter()
-        var interactor: HomeUseCase = Injection.init().provideHome()
-        
+        let interactor: HomeUseCase = Injection.init().provideHome()
         
         view.presenter = presenter
         presenter.router = router
@@ -48,8 +34,14 @@ class HomeRouter: HomeRouterProtocol {
         
         router.begin = view as? BeginPoint
         
-        
         return router
     }
-
+    
+    func gotoDetailPokemon(with pokemon: Pokemon) {
+        let detailPokemonRouter = DetailPokemonRouter.createDetailPokemon(with: pokemon)
+        guard let detailPokemonView = detailPokemonRouter.entry else { return }
+        guard let viewController = self.begin else { return }
+        
+        viewController.navigationController?.pushViewController(detailPokemonView, animated: true)
+    }
 }

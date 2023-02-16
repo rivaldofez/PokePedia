@@ -45,10 +45,8 @@ class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
                 self?.detailPokemonView?.updatePokemonSpecies(with: pokemonSpeciesResult)
             } onError: { error in
                 self.detailPokemonView?.updatePokemonSpecies(with: error.localizedDescription)
-              } onCompleted: {
-                  self.isLoadingData = false
-              }.disposed(by: disposeBag)
+            } onCompleted: {
+                self.isLoadingData = false
+            }.disposed(by: disposeBag)
     }
-    
-    
 }

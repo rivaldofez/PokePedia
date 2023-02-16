@@ -16,7 +16,6 @@ protocol DetailPokemonViewProtocol {
     func isLoadingData(with state: Bool)
 }
 
-
 class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
     
     
@@ -71,7 +70,6 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
                 return 2
             }
         }
-        
         static let allCases = [about, stat, moves]
     }
     
@@ -165,7 +163,7 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
     }()
     
     private let pokemonImageView: UIImageView = {
-       let imageview = UIImageView()
+        let imageview = UIImageView()
         imageview.translatesAutoresizingMaskIntoConstraints = false
         imageview.image = UIImage(named: "charizard")
         imageview.contentMode = .scaleAspectFit
@@ -179,23 +177,19 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
         return view
     }()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
         navigationController?.navigationBar.prefersLargeTitles = true
-        
-//        title = "Charizard"
         navigationController?.navigationBar.tintColor = .label
         
         let attrs = [
             NSAttributedString.Key.font: UIFont.poppinsBold(size: 34)!
         ]
-
+        
         navigationController?.navigationBar.largeTitleTextAttributes = attrs
-
+        
         view.addSubview(pokemonTypeStackView)
         view.addSubview(pokemonImageView)
         view.addSubview(sectionStackView)
@@ -253,11 +247,11 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
             pokemonImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             pokemonImageView.heightAnchor.constraint(equalToConstant: min(view.frame.width/2, view.frame.height/2))
         ]
-
+        
         let pokemonTypeStackViewConstraints = [
             pokemonTypeStackView.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 16),
             pokemonTypeStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-
+            
         ]
         
         for i in 0 ..< sectionTabButtons.count {

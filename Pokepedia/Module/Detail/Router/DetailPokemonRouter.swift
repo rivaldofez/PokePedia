@@ -26,7 +26,7 @@ class DetailPokemonRouter: DetailPokemonRouterProtocol {
         
         var presenter: DetailPokemonPresenterProtocol = DetailPokemonPresenter()
         
-        var interactor: DetailPokemonUseCase = Injection.init().provideDetailPokemon()
+        let interactor: DetailPokemonUseCase = Injection.init().provideDetailPokemon()
         
         view.presenter = presenter
         presenter.router = router
@@ -34,9 +34,6 @@ class DetailPokemonRouter: DetailPokemonRouterProtocol {
         presenter.interactor = interactor
         
         presenter.getPokemon(with: pokemon)
-        
-        
-        
         router.entry = view as? DetailPokemonViewController
         
         return router

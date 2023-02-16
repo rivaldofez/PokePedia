@@ -9,7 +9,7 @@ import UIKit
 import Charts
 
 class BaseStatSubViewController: UIViewController {
-
+    
     var pokemon: Pokemon? {
         didSet {
             DispatchQueue.main.async {
@@ -20,7 +20,7 @@ class BaseStatSubViewController: UIViewController {
     }
     
     private let progressTableView: UITableView = {
-       let tableview = UITableView()
+        let tableview = UITableView()
         tableview.translatesAutoresizingMaskIntoConstraints = false
         tableview.register(BaseStatTableViewCell.self, forCellReuseIdentifier: BaseStatTableViewCell.identifier)
         tableview.isHidden = true
@@ -42,11 +42,10 @@ class BaseStatSubViewController: UIViewController {
         chartView.innerWebColor = .darkGray
         
         return chartView
-        
     }()
     
     private lazy var chartSwitch: UISwitch = {
-       let uiswitch = UISwitch()
+        let uiswitch = UISwitch()
         uiswitch.translatesAutoresizingMaskIntoConstraints = false
         uiswitch.setOn(true, animated: true)
         uiswitch.isEnabled = true
@@ -58,14 +57,11 @@ class BaseStatSubViewController: UIViewController {
     }()
     
     private let chartSwitchLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Radar View"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    
-
     
     private func setDataRadarChartView(){
         guard let pokemon = self.pokemon else { return }
@@ -102,11 +98,7 @@ class BaseStatSubViewController: UIViewController {
         
         radarChartView.rotationEnabled = true
         radarChartView.legend.enabled = false
-        
-        
-
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,15 +116,13 @@ class BaseStatSubViewController: UIViewController {
         
         marker.chartView = radarChartView
         radarChartView.marker = marker
-        
-        
     }
-
+    
     
     @objc func updateSwitch(sender: UISwitch){
         progressTableView.isHidden = sender.isOn
         radarChartView.isHidden = !sender.isOn
-
+        
     }
     
     private func configureConstraints(){
@@ -178,8 +168,6 @@ extension BaseStatSubViewController: AxisValueFormatter {
         
         return "\(titles[Int(value) % titles.count])"
     }
-    
-    
 }
 
 extension BaseStatSubViewController: UITableViewDelegate, UITableViewDataSource {
@@ -194,38 +182,29 @@ extension BaseStatSubViewController: UITableViewDelegate, UITableViewDataSource 
         if let baseStat = pokemon?.baseStat[indexPath.row]{
             cell.configure(with: baseStat, type: pokemon!.type.first!)
         }
-        
         return cell
     }
-    
-    
 }
 
-
 class DataSetValueFormatter: ValueFormatter {
-
+    
     func stringForValue(_ value: Double,
                         entry: ChartDataEntry,
                         dataSetIndex: Int,
-                        viewPortHandler: ViewPortHandler?) -> String {
-        ""
-    }
+                        viewPortHandler: ViewPortHandler?) -> String {""}
 }
 
-// 2
 class XAxisFormatter: AxisValueFormatter {
-
+    
     let titles = ["HP", "Attack", "Defense", "Speed", "Sp.Def", "Sp.Atk"]
-
+    
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         print(value)
         return titles[Int(value) % titles.count]
     }
 }
 
-// 3
 class YAxisFormatter: AxisValueFormatter {
-
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         print(value)
         return "\(Int(value)) $"
@@ -246,12 +225,10 @@ class RadarMarkerView: MarkerView {
         super.init(frame: frame)
         
         addSubview(label)
-        
         label.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         label.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         label.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         label.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        label.widthAnchor.constraint(equalToConstant: 50)
     }
     
     required init?(coder: NSCoder) {

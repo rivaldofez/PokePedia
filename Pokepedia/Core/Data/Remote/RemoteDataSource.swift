@@ -76,16 +76,16 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
                         observer.onNext(speciesResponses)
                     } onError: { error in
                         print("error")
-                      } onCompleted: {
-                          observer.onCompleted()
-                      }.disposed(by: self.disposeBag)
+                    } onCompleted: {
+                        observer.onCompleted()
+                    }.disposed(by: self.disposeBag)
                 
                 
             } onError: { error in
                 print("error")
-              } onCompleted: {
+            } onCompleted: {
                 print("completed")
-              }.disposed(by: self.disposeBag)
+            }.disposed(by: self.disposeBag)
             
             return Disposables.create()
             
@@ -94,7 +94,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
     
     func getPokemonSpecies(id: Int) -> Observable<PokemonSpeciesResponse> {
         return Observable<PokemonSpeciesResponse>.create { observer in
-            if let url = URL(string: "\(Endpoints.Gets.pokemonSpecies.url)\(id)"){                
+            if let url = URL(string: "\(Endpoints.Gets.pokemonSpecies.url)\(id)"){
                 AF.request(url)
                     .responseDecodable(of: PokemonSpeciesResponse.self) { response in
                         switch response.result {

@@ -21,22 +21,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     var presenter: HomePresenterProtocol?
     
     private var pokemonDataPagination: [Pokemon] = []
-    
-    func isLoadingData(with state: Bool) {
-        print("loading data: \(state)")
-    }
-    
-    func updatePokemon(with pokemons: [Pokemon]) {
-        DispatchQueue.main.async {
-            self.pokemonDataPagination.append(contentsOf: pokemons)
-            self.pokemonCollectionView.reloadData()
-        }
-    }
-    
-    func updatePokemon(with error: String) {
-        print("ini error: \(error)")
-    }
-    
     private let disposeBag = DisposeBag()
     
     private lazy var pokemonCollectionView: UICollectionView = {
@@ -56,7 +40,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
-        //        navigationController?.navigationItem.largeTitleDisplayMode = .always
         title = "Pokémon"
         navigationController?.navigationBar.tintColor = .label
         
@@ -72,6 +55,21 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         pokemonCollectionView.frame = view.bounds
     }
     
+    func isLoadingData(with state: Bool) {
+        print("loading data: \(state)")
+    }
+    
+    func updatePokemon(with pokemons: [Pokemon]) {
+        DispatchQueue.main.async {
+            self.pokemonDataPagination.append(contentsOf: pokemons)
+            self.pokemonCollectionView.reloadData()
+        }
+    }
+    
+    func updatePokemon(with error: String) {
+        print("error: \(error)")
+    }
+    
     private func createSpinnerFooter() -> UIView {
         let footerview = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
         
@@ -83,7 +81,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         return footerview
     }
 }
-
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -97,8 +94,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let model = pokemonDataPagination[indexPath.item]
         cell.configure(with: model)
-            
-            return cell
+        
+        return cell
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -118,37 +115,3 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         presenter?.didSelectPokemonItem(with: pokemonDataPagination[indexPath.item])
     }
 }
-
-//class IndicatorCell: UICollectionViewCell {
-//
-//    var indicator : UIActivityIndicatorView = {
-//        let view = UIActivityIndicatorView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.style = .large
-//        return view
-//    }()
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        setup()
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//        setup()
-//    }
-//
-//    func setup(){
-//        contentView.addSubview(indicator)
-//
-////        inidicator.centerXAnchor = contentView.centerXAnchor
-////        inidicator.centerYAnchor = contentView.centerYAnchor
-//
-//        indicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-//        indicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-//
-//        indicator.startAnimating()
-//    }
-//
-//}
-
-

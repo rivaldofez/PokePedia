@@ -15,7 +15,6 @@ class AboutTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         
         label.font = .poppinsBold(size: 14)
-        label.text = "Weight"
         return label
     }()
     
@@ -23,10 +22,8 @@ class AboutTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .comfortaaBold(size: 14)
-        label.text = "100 Kg"
         return label
     }()
-    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -63,6 +60,4 @@ class AboutTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-
 }

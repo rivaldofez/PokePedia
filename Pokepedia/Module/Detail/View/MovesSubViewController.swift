@@ -8,7 +8,7 @@
 import UIKit
 
 class MovesSubViewController: UIViewController {
-
+    
     var pokemon: Pokemon? {
         didSet {
             DispatchQueue.main.async {
@@ -18,7 +18,7 @@ class MovesSubViewController: UIViewController {
     }
     
     private let movesTableView: UITableView = {
-       let tableview = UITableView()
+        let tableview = UITableView()
         tableview.translatesAutoresizingMaskIntoConstraints = false
         tableview.register(MovesTableViewCell.self, forCellReuseIdentifier: MovesTableViewCell.identifier)
         return tableview
@@ -30,7 +30,6 @@ class MovesSubViewController: UIViewController {
         view.addSubview(movesTableView)
         movesTableView.delegate = self
         movesTableView.dataSource = self
-        
         configureConstraints()
     }
     
@@ -45,7 +44,6 @@ class MovesSubViewController: UIViewController {
         NSLayoutConstraint.activate(movesTableViewConstraints)
     }
 }
-
 
 extension MovesSubViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

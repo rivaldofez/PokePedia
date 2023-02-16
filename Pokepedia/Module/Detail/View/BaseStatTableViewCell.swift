@@ -11,23 +11,21 @@ class BaseStatTableViewCell: UITableViewCell {
     static let identifier = "BaseStatTableViewCell"
     
     private let titleLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .poppinsBold(size: 14)
-        label.text = "Sp.Atk"
         return label
     }()
     
     private let statLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .comfortaaBold(size: 14)
-        label.text = "255"
         return label
     }()
     
     private let progressView: UIProgressView = {
-       let progressview = UIProgressView()
+        let progressview = UIProgressView()
         progressview.translatesAutoresizingMaskIntoConstraints = false
         return progressview
     }()
@@ -40,7 +38,7 @@ class BaseStatTableViewCell: UITableViewCell {
         contentView.addSubview(progressView)
         
         configureConstraints()
-    
+        
         progressView.trackTintColor = .lightGray.withAlphaComponent(0.5)
     }
     
