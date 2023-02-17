@@ -165,6 +165,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7E1C9894299FD69C00DC7967 /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				7E0247552996A71300EECAA9 /* AboutSubViewController.swift */,
+				7E0247572996A73400EECAA9 /* BaseStatSubViewController.swift */,
+				7E0247592996A75500EECAA9 /* MovesSubViewController.swift */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
+		7E1C9895299FD6AA00DC7967 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7E47C378299768B700CFFB54 /* MovesTableViewCell.swift */,
+				7E47C376299754AE00CFFB54 /* BaseStatTableViewCell.swift */,
+				7E5AC1D6299DD3A500FFAA0D /* AboutTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		7E1C9896299FD6BF00DC7967 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7E188238299147AC00C6CB64 /* PokemonCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		7E393A3A299BDB3D0033920C /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,26 +203,22 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		7E393A3B299BDB690033920C /* Detail */ = {
+		7E393A3B299BDB690033920C /* DetailPokemon */ = {
 			isa = PBXGroup;
 			children = (
 				7E393A3E299BDB9A0033920C /* Presenter */,
 				7E393A3D299BDB930033920C /* Router */,
 				7E393A3C299BDB710033920C /* View */,
 			);
-			path = Detail;
+			path = DetailPokemon;
 			sourceTree = "<group>";
 		};
 		7E393A3C299BDB710033920C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7E47C378299768B700CFFB54 /* MovesTableViewCell.swift */,
-				7E47C376299754AE00CFFB54 /* BaseStatTableViewCell.swift */,
+				7E1C9895299FD6AA00DC7967 /* Cell */,
+				7E1C9894299FD69C00DC7967 /* SubView */,
 				7E02472D2996103400EECAA9 /* DetailPokemonViewController.swift */,
-				7E0247552996A71300EECAA9 /* AboutSubViewController.swift */,
-				7E0247572996A73400EECAA9 /* BaseStatSubViewController.swift */,
-				7E0247592996A75500EECAA9 /* MovesSubViewController.swift */,
-				7E5AC1D6299DD3A500FFAA0D /* AboutTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -409,7 +433,7 @@
 		7EE13298299A5B4800FFB47B /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				7E393A3B299BDB690033920C /* Detail */,
+				7E393A3B299BDB690033920C /* DetailPokemon */,
 				7E393A3A299BDB3D0033920C /* Home */,
 			);
 			path = Module;
@@ -434,8 +458,8 @@
 		7EE132CC299A8BBE00FFB47B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7E1C9896299FD6BF00DC7967 /* Cell */,
 				7E6F941E2990110E004B2537 /* HomeViewController.swift */,
-				7E188238299147AC00C6CB64 /* PokemonCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

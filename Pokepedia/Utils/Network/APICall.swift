@@ -20,7 +20,6 @@ enum Endpoints {
         case pokemonPagination
         case pokemonSpecies
         
-        
         var url: String {
             switch self {
             case .pokemonPagination: return "\(API.baseURL)pokemon/?"
