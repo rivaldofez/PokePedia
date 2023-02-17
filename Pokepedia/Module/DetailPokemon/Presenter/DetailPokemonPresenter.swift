@@ -19,7 +19,6 @@ protocol DetailPokemonPresenterProtocol {
     func getPokemon(with pokemon: Pokemon)
 }
 
-
 class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
     func getPokemon(with pokemon: Pokemon) {
         detailPokemonView?.updatePokemon(with: pokemon)

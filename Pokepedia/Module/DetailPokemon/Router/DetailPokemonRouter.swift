@@ -21,7 +21,7 @@ class DetailPokemonRouter: DetailPokemonRouterProtocol {
         
         let router = DetailPokemonRouter()
         
-        //assing vip
+        //assign vip
         var view: DetailPokemonViewProtocol = DetailPokemonViewController()
         
         var presenter: DetailPokemonPresenterProtocol = DetailPokemonPresenter()

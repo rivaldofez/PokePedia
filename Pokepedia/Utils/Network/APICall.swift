@@ -19,11 +19,13 @@ enum Endpoints {
     enum Gets: EndPoint {
         case pokemonPagination
         case pokemonSpecies
+        case pokemonEvolution
         
         var url: String {
             switch self {
             case .pokemonPagination: return "\(API.baseURL)pokemon/?"
             case .pokemonSpecies: return "\(API.baseURL)pokemon-species/"
+            case .pokemonEvolution: return "\(API.baseURL)evolution-chain/"
             }
         }
     }

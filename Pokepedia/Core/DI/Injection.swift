@@ -24,4 +24,5 @@ final class Injection: NSObject {
         return DetailPokemonInteractor(repository: repository)
     }
     
+    
 }
