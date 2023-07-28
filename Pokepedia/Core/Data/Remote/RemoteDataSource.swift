@@ -75,17 +75,16 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
                     .subscribe { speciesResponses in
                         observer.onNext(speciesResponses)
                     } onError: { error in
-                        print("error")
+                        observer.onError(error)
                     } onCompleted: {
                         observer.onCompleted()
                     }.disposed(by: self.disposeBag)
                 
                 
             } onError: { error in
-                print("error")
-            } onCompleted: {
-                print("completed")
-            }.disposed(by: self.disposeBag)
+                observer.onError(error)
+            }
+            .disposed(by: self.disposeBag)
             
             return Disposables.create()
             

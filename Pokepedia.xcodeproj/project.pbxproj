@@ -395,7 +395,6 @@
 		7E6F9408299010BA004B2537 /* Pokepedia */ = {
 			isa = PBXGroup;
 			children = (
-				7E6F941D29901100004B2537 /* Controller */,
 				7EE13298299A5B4800FFB47B /* Module */,
 				7E47C3E52997F29C00CFFB54 /* Utils */,
 				7E47C3DD2997EC0E00CFFB54 /* Core */,
@@ -407,13 +406,6 @@
 				7E6F9417299010BB004B2537 /* Info.plist */,
 			);
 			path = Pokepedia;
-			sourceTree = "<group>";
-		};
-		7E6F941D29901100004B2537 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		7EE13291299A550600FFB47B /* DI */ = {

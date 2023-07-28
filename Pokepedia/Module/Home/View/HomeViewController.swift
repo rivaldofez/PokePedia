@@ -36,6 +36,15 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         return collectionView
     }()
     
+    
+    private lazy var loadingIndicator: UIActivityIndicatorView = {
+       let spinner = UIActivityIndicatorView()
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.hidesWhenStopped = true
+        spinner.backgroundColor = .gray.withAlphaComponent(0.5)
+        return spinner
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,29 +54,36 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         
         view.backgroundColor = .systemBackground
         view.addSubview(pokemonCollectionView)
+        view.addSubview(loadingIndicator)
         
         pokemonCollectionView.delegate = self
         pokemonCollectionView.dataSource = self
+        
+        loadingIndicator.startAnimating()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         pokemonCollectionView.frame = view.bounds
+        loadingIndicator.frame = view.bounds
     }
     
     func isLoadingData(with state: Bool) {
-        print("loading data: \(state)")
+        loadingIndicator.startAnimating()
     }
     
     func updatePokemon(with pokemons: [Pokemon]) {
         DispatchQueue.main.async {
             self.pokemonDataPagination.append(contentsOf: pokemons)
             self.pokemonCollectionView.reloadData()
+            self.loadingIndicator.stopAnimating()
         }
+    
     }
     
     func updatePokemon(with error: String) {
         print("error: \(error)")
+        loadingIndicator.stopAnimating()
     }
     
     private func createSpinnerFooter() -> UIView {
