@@ -146,11 +146,11 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     }
     
     private func showLoading(isLoading: Bool){
-        UIView.transition(with: loadingAnimation, duration: 0.4) {
+        UIView.transition(with: loadingAnimation, duration: 0.4, options: .transitionCrossDissolve) {
             self.loadingAnimation.isHidden = !isLoading
         }
         
-        UIView.transition(with: backdropLoading, duration: 0.4) {
+        UIView.transition(with: backdropLoading, duration: 0.4,  options: .transitionCrossDissolve) {
             self.backdropLoading.isHidden = !isLoading
         }
     }
