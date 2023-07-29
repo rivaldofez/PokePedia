@@ -60,6 +60,7 @@
 		7E6F9416299010BB004B2537 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E6F9414299010BB004B2537 /* LaunchScreen.storyboard */; };
 		7E6F941F2990110E004B2537 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F941E2990110E004B2537 /* HomeViewController.swift */; };
 		7E7FFC922A749E1900FC1910 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E7FFC912A749E1900FC1910 /* loading.json */; };
+		7E7FFC942A74A5C200FC1910 /* error.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E7FFC932A74A5C200FC1910 /* error.json */; };
 		7EE1328D299A35DF00FFB47B /* PokemonSpeciesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE1328C299A35DF00FFB47B /* PokemonSpeciesResponse.swift */; };
 		7EE1328F299A4DBE00FFB47B /* PokemonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE1328E299A4DBE00FFB47B /* PokemonMapper.swift */; };
 		7EE13293299A551200FFB47B /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE13292299A551200FFB47B /* Injection.swift */; };
@@ -138,6 +139,7 @@
 		7E6F9417299010BB004B2537 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E6F941E2990110E004B2537 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7E7FFC912A749E1900FC1910 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		7E7FFC932A74A5C200FC1910 /* error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = error.json; sourceTree = "<group>"; };
 		7EE1328C299A35DF00FFB47B /* PokemonSpeciesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSpeciesResponse.swift; sourceTree = "<group>"; };
 		7EE1328E299A4DBE00FFB47B /* PokemonMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonMapper.swift; sourceTree = "<group>"; };
 		7EE13292299A551200FFB47B /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 		7E7FFC902A749C2800FC1910 /* LottieAsset */ = {
 			isa = PBXGroup;
 			children = (
+				7E7FFC932A74A5C200FC1910 /* error.json */,
 				7E7FFC912A749E1900FC1910 /* loading.json */,
 			);
 			path = LottieAsset;
@@ -558,6 +561,7 @@
 				7E47C39E2997786900CFFB54 /* Poppins-Light.ttf in Resources */,
 				7E47C39F2997786900CFFB54 /* Poppins-LightItalic.ttf in Resources */,
 				7E47C3A02997786900CFFB54 /* Poppins-Medium.ttf in Resources */,
+				7E7FFC942A74A5C200FC1910 /* error.json in Resources */,
 				7E47C3A12997786900CFFB54 /* Poppins-MediumItalic.ttf in Resources */,
 				7E47C3A22997786900CFFB54 /* Poppins-Regular.ttf in Resources */,
 				7E47C3A32997786900CFFB54 /* Poppins-SemiBold.ttf in Resources */,

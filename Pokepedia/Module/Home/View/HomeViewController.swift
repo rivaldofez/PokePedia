@@ -56,22 +56,29 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         let label = UILabel()
         label.text = "Error occured while load pokemon data"
         label.textColor = .label
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .poppinsBold(size: 16)
+        label.textAlignment = .center
+
         
         return label
     }()
     
-    private lazy var errorImage: UIImageView = {
-       let imageView = UIImageView()
-        imageView.image = UIImage(named: "error")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
+    private lazy var errorAnimation: LottieAnimationView = {
+       let lottie = LottieAnimationView(name: "error")
+        lottie.translatesAutoresizingMaskIntoConstraints = false
+        lottie.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        lottie.play()
+        lottie.loopMode = .loop
+        return lottie
     }()
     
     private lazy var errorStackView: UIStackView = {
-       let stackview = UIStackView(arrangedSubviews: [errorImage, errorLabel])
+       let stackview = UIStackView(arrangedSubviews: [errorAnimation, errorLabel])
         stackview.axis = .vertical
         stackview.translatesAutoresizingMaskIntoConstraints = false
+        stackview.alignment = .center
+        stackview.spacing = 16
+        stackview.isHidden = true
         return stackview
     }()
     
@@ -123,6 +130,16 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         }
     }
     
+    private func showError(isError: Bool){
+        UIView.transition(with: errorStackView, duration: 0.4, options: .transitionCrossDissolve) {
+            self.errorStackView.isHidden = !isError
+        }
+        
+        UIView.transition(with: pokemonCollectionView, duration: 0.4, options: .transitionCrossDissolve) {
+            self.pokemonCollectionView.isHidden = isError
+        }
+    }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -139,11 +156,13 @@ class HomeViewController: UIViewController, HomeViewProtocol {
             self.pokemonDataPagination.append(contentsOf: pokemons)
             self.pokemonCollectionView.reloadData()
             self.showLoading(isLoading: false)
+            self.showError(isError: false)
         }
     }
     
     func updatePokemon(with error: String) {
         showLoading(isLoading: false)
+        showError(isError: true)
     }
     
     private func createSpinnerFooter() -> UIView {
