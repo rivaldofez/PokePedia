@@ -7,7 +7,7 @@
 
 import UIKit
 import RxSwift
-import Alamofire
+import Lottie
 
 protocol HomeViewProtocol {
     var presenter: HomePresenterProtocol? { get set }
@@ -36,14 +36,21 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         return collectionView
     }()
     
-    
-    private lazy var loadingIndicator: UIActivityIndicatorView = {
-       let spinner = UIActivityIndicatorView()
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.hidesWhenStopped = true
-        spinner.backgroundColor = .gray.withAlphaComponent(0.5)
-        return spinner
+    private lazy var loadingAnimation: LottieAnimationView = {
+       let lottie = LottieAnimationView(name: "loading")
+        lottie.translatesAutoresizingMaskIntoConstraints = false
+        lottie.play()
+        lottie.loopMode = .loop
+        return lottie
     }()
+    
+    private lazy var backdropLoading: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .gray.withAlphaComponent(0.3)
+        return view
+    }()
+    
     
     private lazy var errorLabel: UILabel = {
         let label = UILabel()
@@ -53,7 +60,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         
         return label
     }()
-    
     
     private lazy var errorImage: UIImageView = {
        let imageView = UIImageView()
@@ -79,12 +85,11 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         view.backgroundColor = .systemBackground
         view.addSubview(pokemonCollectionView)
         view.addSubview(errorStackView)
-        view.addSubview(loadingIndicator)
+        view.addSubview(backdropLoading)
+        view.addSubview(loadingAnimation)
         
         pokemonCollectionView.delegate = self
         pokemonCollectionView.dataSource = self
-        
-        loadingIndicator.startAnimating()
         
         configureConstraints()
     }
@@ -95,30 +100,50 @@ class HomeViewController: UIViewController, HomeViewProtocol {
             errorStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ]
         
+        let loadingAnimationConstraints = [
+            loadingAnimation.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingAnimation.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingAnimation.heightAnchor.constraint(equalToConstant: 200)
+            
+        ]
+        
         NSLayoutConstraint.activate(errorStackViewConstraints)
+        NSLayoutConstraint.activate(loadingAnimationConstraints)
     }
+    
+    private func showLoading(isLoading: Bool){
+        UIView.transition(with: loadingAnimation, duration: 0.4) {
+            self.loadingAnimation.isHidden = !isLoading
+        }
+        
+        UIView.transition(with: backdropLoading, duration: 0.4) {
+            self.backdropLoading.isHidden = !isLoading
+        }
+    }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         pokemonCollectionView.frame = view.bounds
-        loadingIndicator.frame = view.bounds
+        backdropLoading.frame = view.bounds
     }
     
     func isLoadingData(with state: Bool) {
-        loadingIndicator.startAnimating()
+        showLoading(isLoading: true)
     }
     
     func updatePokemon(with pokemons: [Pokemon]) {
         DispatchQueue.main.async {
             self.pokemonDataPagination.append(contentsOf: pokemons)
             self.pokemonCollectionView.reloadData()
-            self.loadingIndicator.stopAnimating()
+            self.showLoading(isLoading: false)
         }
     }
     
     func updatePokemon(with error: String) {
-        print("error: \(error)")
-        loadingIndicator.stopAnimating()
+        showLoading(isLoading: false)
     }
     
     private func createSpinnerFooter() -> UIView {

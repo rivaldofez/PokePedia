@@ -59,6 +59,7 @@
 		7E6F9413299010BB004B2537 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E6F9412299010BB004B2537 /* Assets.xcassets */; };
 		7E6F9416299010BB004B2537 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E6F9414299010BB004B2537 /* LaunchScreen.storyboard */; };
 		7E6F941F2990110E004B2537 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F941E2990110E004B2537 /* HomeViewController.swift */; };
+		7E7FFC922A749E1900FC1910 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E7FFC912A749E1900FC1910 /* loading.json */; };
 		7EE1328D299A35DF00FFB47B /* PokemonSpeciesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE1328C299A35DF00FFB47B /* PokemonSpeciesResponse.swift */; };
 		7EE1328F299A4DBE00FFB47B /* PokemonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE1328E299A4DBE00FFB47B /* PokemonMapper.swift */; };
 		7EE13293299A551200FFB47B /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE13292299A551200FFB47B /* Injection.swift */; };
@@ -136,6 +137,7 @@
 		7E6F9415299010BB004B2537 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7E6F9417299010BB004B2537 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E6F941E2990110E004B2537 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		7E7FFC912A749E1900FC1910 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		7EE1328C299A35DF00FFB47B /* PokemonSpeciesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSpeciesResponse.swift; sourceTree = "<group>"; };
 		7EE1328E299A4DBE00FFB47B /* PokemonMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonMapper.swift; sourceTree = "<group>"; };
 		7EE13292299A551200FFB47B /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 		7E6F9408299010BA004B2537 /* Pokepedia */ = {
 			isa = PBXGroup;
 			children = (
+				7E7FFC902A749C2800FC1910 /* LottieAsset */,
 				7EE13298299A5B4800FFB47B /* Module */,
 				7E47C3E52997F29C00CFFB54 /* Utils */,
 				7E47C3DD2997EC0E00CFFB54 /* Core */,
@@ -406,6 +409,14 @@
 				7E6F9417299010BB004B2537 /* Info.plist */,
 			);
 			path = Pokepedia;
+			sourceTree = "<group>";
+		};
+		7E7FFC902A749C2800FC1910 /* LottieAsset */ = {
+			isa = PBXGroup;
+			children = (
+				7E7FFC912A749E1900FC1910 /* loading.json */,
+			);
+			path = LottieAsset;
 			sourceTree = "<group>";
 		};
 		7EE13291299A550600FFB47B /* DI */ = {
@@ -535,6 +546,7 @@
 				7E47C3B02997791500CFFB54 /* Comfortaa-Regular.ttf in Resources */,
 				7E47C3B12997791500CFFB54 /* Comfortaa-SemiBold.ttf in Resources */,
 				7E47C3952997786900CFFB54 /* Poppins-Black.ttf in Resources */,
+				7E7FFC922A749E1900FC1910 /* loading.json in Resources */,
 				7E47C3962997786900CFFB54 /* Poppins-BlackItalic.ttf in Resources */,
 				7E47C3972997786900CFFB54 /* Poppins-Bold.ttf in Resources */,
 				7E47C3982997786900CFFB54 /* Poppins-BoldItalic.ttf in Resources */,
