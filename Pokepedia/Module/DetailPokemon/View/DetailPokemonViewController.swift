@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 protocol DetailPokemonViewProtocol {
     var presenter: DetailPokemonPresenterProtocol? { get set }
@@ -26,6 +27,9 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
     
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies) {
         aboutSubViewController.pokemonSpecies = pokemonSpecies
+        
+        showLoading(isLoading: false)
+        showError(isError: false)
     }
     
     func updatePokemon(with pokemon: Pokemon) {
@@ -43,13 +47,18 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
         
         indicator.backgroundColor = UIColor(named: PokemonConverter.typeStringToColorName(type: pokemon.type.first!))
         
-    }
-    
-    func isLoadingData(with state: Bool) {
+        showLoading(isLoading: false)
+        showError(isError: false)
         
     }
     
+    func isLoadingData(with state: Bool) {
+        showLoading(isLoading: true)
+    }
+    
     func updatePokemonSpecies(with error: String) {
+        showLoading(isLoading: false)
+        showError(isError: true)
     }
     
     private enum SectionTabs: String {
@@ -172,6 +181,52 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
         return view
     }()
     
+    private lazy var loadingAnimation: LottieAnimationView = {
+        let lottie = LottieAnimationView(name: "loading")
+        lottie.translatesAutoresizingMaskIntoConstraints = false
+        lottie.play()
+        lottie.loopMode = .loop
+        return lottie
+    }()
+    
+    private lazy var backdropLoading: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .gray.withAlphaComponent(0.3)
+        return view
+    }()
+    
+    
+    private lazy var errorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Error occured while load pokemon data"
+        label.textColor = .label
+        label.font = .poppinsBold(size: 16)
+        label.textAlignment = .center
+        
+        
+        return label
+    }()
+    
+    private lazy var errorAnimation: LottieAnimationView = {
+        let lottie = LottieAnimationView(name: "error")
+        lottie.translatesAutoresizingMaskIntoConstraints = false
+        lottie.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        lottie.play()
+        lottie.loopMode = .loop
+        return lottie
+    }()
+    
+    private lazy var errorStackView: UIStackView = {
+        let stackview = UIStackView(arrangedSubviews: [errorAnimation, errorLabel])
+        stackview.axis = .vertical
+        stackview.translatesAutoresizingMaskIntoConstraints = false
+        stackview.alignment = .center
+        stackview.spacing = 16
+        stackview.isHidden = true
+        return stackview
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -192,8 +247,18 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
         view.addSubview(sectionViewContainer)
         addSubViewController(viewController: aboutSubViewController, contentView: sectionViewContainer)
         
+        view.addSubview(errorStackView)
+        view.addSubview(backdropLoading)
+        view.addSubview(loadingAnimation)
+        
+        
         configureConstraints()
         configureStackButton()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        backdropLoading.frame = view.bounds
     }
     
     private func configureStackButton(){
@@ -246,7 +311,6 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
         let pokemonTypeStackViewConstraints = [
             pokemonTypeStackView.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 16),
             pokemonTypeStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-            
         ]
         
         for i in 0 ..< sectionTabButtons.count {
@@ -278,12 +342,69 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
             sectionViewContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
+        let errorStackViewConstraints = [
+            errorStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            errorStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ]
+        
+        let loadingAnimationConstraints = [
+            loadingAnimation.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingAnimation.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingAnimation.heightAnchor.constraint(equalToConstant: 200)
+            
+        ]
+        
         NSLayoutConstraint.activate(pokemonImageViewConstraints)
         NSLayoutConstraint.activate(pokemonTypeStackViewConstraints)
         NSLayoutConstraint.activate(sectionStackViewConstraints)
         NSLayoutConstraint.activate(indicatorConstraints)
         NSLayoutConstraint.activate(sectionViewContainerConstraints)
+        NSLayoutConstraint.activate(errorStackViewConstraints)
+        NSLayoutConstraint.activate(loadingAnimationConstraints)
     }
+    
+    private func showLoading(isLoading: Bool){
+        UIView.transition(with: loadingAnimation, duration: 0.4) {
+            self.loadingAnimation.isHidden = !isLoading
+        }
+        
+        UIView.transition(with: backdropLoading, duration: 0.4) {
+            self.backdropLoading.isHidden = !isLoading
+        }
+    }
+    
+    private func showError(isError: Bool){
+        UIView.transition(with: errorStackView, duration: 0.4, options: .transitionCrossDissolve) {
+            self.errorStackView.isHidden = !isError
+        }
+        
+        UIView.transition(with: sectionStackView, duration: 0.4, options: .transitionCrossDissolve) {
+            self.sectionStackView.isHidden = isError
+        }
+        
+        UIView.transition(with: sectionViewContainer, duration: 0.4, options: .transitionCrossDissolve) {
+            self.sectionViewContainer.isHidden = isError
+        }
+        
+        UIView.transition(with: pokemonImageView, duration: 0.4, options: .transitionCrossDissolve) {
+            self.pokemonImageView.isHidden = isError
+        }
+        
+        UIView.transition(with: pokemonTypeStackView, duration: 0.4, options: .transitionCrossDissolve) {
+            self.pokemonTypeStackView.isHidden = isError
+        }
+        
+        UIView.transition(with: sectionStackView, duration: 0.4, options: .transitionCrossDissolve) {
+            self.sectionStackView.isHidden = isError
+        }
+        
+        UIView.transition(with: indicator, duration: 0.4, options: .transitionCrossDissolve) {
+            self.indicator.isHidden = isError
+        }
+    }
+    
     
     private func removeSubViewController(viewController: UIViewController){
         viewController.willMove(toParent: nil)
