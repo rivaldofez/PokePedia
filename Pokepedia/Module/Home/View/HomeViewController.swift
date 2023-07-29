@@ -37,7 +37,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     }()
     
     private lazy var loadingAnimation: LottieAnimationView = {
-       let lottie = LottieAnimationView(name: "loading")
+        let lottie = LottieAnimationView(name: "loading")
         lottie.translatesAutoresizingMaskIntoConstraints = false
         lottie.play()
         lottie.loopMode = .loop
@@ -58,13 +58,13 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         label.textColor = .label
         label.font = .poppinsBold(size: 16)
         label.textAlignment = .center
-
+        
         
         return label
     }()
     
     private lazy var errorAnimation: LottieAnimationView = {
-       let lottie = LottieAnimationView(name: "error")
+        let lottie = LottieAnimationView(name: "error")
         lottie.translatesAutoresizingMaskIntoConstraints = false
         lottie.heightAnchor.constraint(equalToConstant: 200).isActive = true
         lottie.play()
@@ -73,7 +73,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     }()
     
     private lazy var errorStackView: UIStackView = {
-       let stackview = UIStackView(arrangedSubviews: [errorAnimation, errorLabel])
+        let stackview = UIStackView(arrangedSubviews: [errorAnimation, errorLabel])
         stackview.axis = .vertical
         stackview.translatesAutoresizingMaskIntoConstraints = false
         stackview.alignment = .center
@@ -85,8 +85,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.prefersLargeTitles = true
         title = "Pokémon"
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .label
         
         view.backgroundColor = .systemBackground
@@ -100,6 +100,31 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         
         configureConstraints()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        pokemonCollectionView.frame = view.bounds
+        backdropLoading.frame = view.bounds
+    }
+    
+    func isLoadingData(with state: Bool) {
+        showLoading(isLoading: true)
+    }
+    
+    func updatePokemon(with pokemons: [Pokemon]) {
+        DispatchQueue.main.async {
+            self.pokemonDataPagination.append(contentsOf: pokemons)
+            self.pokemonCollectionView.reloadData()
+            self.showLoading(isLoading: false)
+            self.showError(isError: false)
+        }
+    }
+    
+    func updatePokemon(with error: String) {
+        showLoading(isLoading: false)
+        showError(isError: true)
+    }
+    
     
     private func configureConstraints() {
         let errorStackViewConstraints = [
@@ -138,31 +163,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         UIView.transition(with: pokemonCollectionView, duration: 0.4, options: .transitionCrossDissolve) {
             self.pokemonCollectionView.isHidden = isError
         }
-    }
-    
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        pokemonCollectionView.frame = view.bounds
-        backdropLoading.frame = view.bounds
-    }
-    
-    func isLoadingData(with state: Bool) {
-        showLoading(isLoading: true)
-    }
-    
-    func updatePokemon(with pokemons: [Pokemon]) {
-        DispatchQueue.main.async {
-            self.pokemonDataPagination.append(contentsOf: pokemons)
-            self.pokemonCollectionView.reloadData()
-            self.showLoading(isLoading: false)
-            self.showError(isError: false)
-        }
-    }
-    
-    func updatePokemon(with error: String) {
-        showLoading(isLoading: false)
-        showError(isError: true)
     }
     
     private func createSpinnerFooter() -> UIView {
