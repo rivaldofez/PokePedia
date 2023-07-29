@@ -45,6 +45,30 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         return spinner
     }()
     
+    private lazy var errorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Error occured while load pokemon data"
+        label.textColor = .label
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    
+    private lazy var errorImage: UIImageView = {
+       let imageView = UIImageView()
+        imageView.image = UIImage(named: "error")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private lazy var errorStackView: UIStackView = {
+       let stackview = UIStackView(arrangedSubviews: [errorImage, errorLabel])
+        stackview.axis = .vertical
+        stackview.translatesAutoresizingMaskIntoConstraints = false
+        return stackview
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,12 +78,24 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         
         view.backgroundColor = .systemBackground
         view.addSubview(pokemonCollectionView)
+        view.addSubview(errorStackView)
         view.addSubview(loadingIndicator)
         
         pokemonCollectionView.delegate = self
         pokemonCollectionView.dataSource = self
         
         loadingIndicator.startAnimating()
+        
+        configureConstraints()
+    }
+    
+    private func configureConstraints() {
+        let errorStackViewConstraints = [
+            errorStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            errorStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(errorStackViewConstraints)
     }
     
     override func viewDidLayoutSubviews() {
@@ -78,7 +114,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
             self.pokemonCollectionView.reloadData()
             self.loadingIndicator.stopAnimating()
         }
-    
     }
     
     func updatePokemon(with error: String) {

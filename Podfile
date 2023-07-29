@@ -11,4 +11,5 @@ target 'Pokepedia' do
   pod 'RxCocoa', '6.5.0'
   pod 'Alamofire'
   pod 'SDWebImage'
+  pod 'lottie-ios'
 end
