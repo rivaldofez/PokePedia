@@ -102,7 +102,6 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
                             observer.onCompleted()
                         case .failure:
                             observer.onError(URLError.invalidResponse)
-                            print("error")
                         }
                     }
             }

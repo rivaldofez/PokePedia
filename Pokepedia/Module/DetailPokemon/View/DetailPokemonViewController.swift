@@ -25,12 +25,10 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
     var movesSubViewController = MovesSubViewController()
     
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies) {
-        print("Pokemon Species \(pokemonSpecies.genus)")
         aboutSubViewController.pokemonSpecies = pokemonSpecies
     }
     
     func updatePokemon(with pokemon: Pokemon) {
-        print("Pokemon \(pokemon.name)")
         aboutSubViewController.pokemon = pokemon
         baseStatSubViewController.pokemon = pokemon
         movesSubViewController.pokemon = pokemon
@@ -52,7 +50,6 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
     }
     
     func updatePokemonSpecies(with error: String) {
-        print(error)
     }
     
     private enum SectionTabs: String {
@@ -151,8 +148,6 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
                     self?.view.layoutIfNeeded()
                 }
             }
-            
-            print(selectedTab)
         }
     }
     

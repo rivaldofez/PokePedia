@@ -199,14 +199,12 @@ class XAxisFormatter: AxisValueFormatter {
     let titles = ["HP", "Attack", "Defense", "Speed", "Sp.Def", "Sp.Atk"]
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        print(value)
         return titles[Int(value) % titles.count]
     }
 }
 
 class YAxisFormatter: AxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        print(value)
         return "\(Int(value)) $"
     }
 }
@@ -237,8 +235,6 @@ class RadarMarkerView: MarkerView {
     
     override func refreshContent(entry: ChartDataEntry, highlight: Highlight) {
         label.text = String(Int(round(entry.y)))
-        
-        print("Oke")
         layoutIfNeeded()
     }
     

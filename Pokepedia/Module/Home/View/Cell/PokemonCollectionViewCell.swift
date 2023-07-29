@@ -93,8 +93,6 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         guard let typeElement = model.type.first else { return }
         pokemonTypeImageView.image = UIImage(named: PokemonConverter.typeStringToIconName(type: typeElement))
         
-        print(PokemonConverter.typeStringToColorName(type: typeElement))
-        
         contentView.layer.borderColor = UIColor(named: PokemonConverter.typeStringToColorName(type: typeElement))?.cgColor
     }
     
