@@ -15,6 +15,8 @@ protocol HomeRouterProtocol{
     static func start() -> HomeRouterProtocol
     
     func gotoDetailPokemon(with pokemon: Pokemon )
+    
+    func gotoProfile()
 }
 
 class HomeRouter: HomeRouterProtocol {
@@ -43,5 +45,13 @@ class HomeRouter: HomeRouterProtocol {
         guard let viewController = self.begin else { return }
         
         viewController.navigationController?.pushViewController(detailPokemonView, animated: true)
+    }
+    
+    func gotoProfile() {
+        let profileRouter = ProfileRouter.createProfile()
+        guard let profileView = profileRouter.entry else { return }
+        guard let viewController = self.begin else { return }
+        
+        viewController.navigationController?.pushViewController(profileView, animated: true)
     }
 }

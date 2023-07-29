@@ -1,0 +1,37 @@
+//
+//  ProfileRouter.swift
+//  Pokepedia
+//
+//  Created by Rivaldo Fernandes on 29/07/23.
+//
+
+import Foundation
+
+protocol ProfileRouterProtocol {
+    var entry: ProfileViewController? { get }
+    
+    static func createProfile() -> ProfileRouterProtocol
+}
+
+
+class ProfileRouter : ProfileRouterProtocol {
+    var entry: ProfileViewController?
+    
+    static func createProfile() -> ProfileRouterProtocol {
+        let router = ProfileRouter()
+        
+        //assign vip
+        var view: ProfileViewProtocol = ProfileViewController()
+        
+        var presenter: ProfilePresenterProtocol = ProfilePresenter()
+        
+        
+        view.presenter = presenter
+        presenter.router = router
+        presenter.profileView = view
+        router.entry = view as? ProfileViewController
+
+        
+        return router
+    }
+}

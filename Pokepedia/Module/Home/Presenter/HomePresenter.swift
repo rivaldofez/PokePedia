@@ -18,6 +18,7 @@ protocol HomePresenterProtocol {
     
     func getPokemonDataPagination(offset: Int, limit: Int)
     func didSelectPokemonItem(with pokemon: Pokemon)
+    func navigateToProfile()
 }
 
 class HomePresenter: HomePresenterProtocol{
@@ -50,6 +51,10 @@ class HomePresenter: HomePresenterProtocol{
     
     func didSelectPokemonItem(with pokemon: Pokemon) {
         router?.gotoDetailPokemon(with: pokemon)
+    }
+    
+    func navigateToProfile(){
+        router?.gotoProfile()
     }
     
     func getPokemonDataPagination(offset: Int, limit: Int){

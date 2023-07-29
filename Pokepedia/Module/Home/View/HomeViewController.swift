@@ -97,6 +97,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         
         pokemonCollectionView.delegate = self
         pokemonCollectionView.dataSource = self
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: #selector(showProfileView))
         
         configureConstraints()
     }
@@ -125,6 +126,10 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         showError(isError: true)
     }
     
+    @objc private func showProfileView(){
+        //navigate to profile page
+        presenter?.navigateToProfile()
+    }
     
     private func configureConstraints() {
         let errorStackViewConstraints = [
