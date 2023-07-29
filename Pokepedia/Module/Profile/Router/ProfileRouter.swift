@@ -20,7 +20,6 @@ class ProfileRouter : ProfileRouterProtocol {
     static func createProfile() -> ProfileRouterProtocol {
         let router = ProfileRouter()
         
-        //assign vip
         var view: ProfileViewProtocol = ProfileViewController()
         
         var presenter: ProfilePresenterProtocol = ProfilePresenter()
@@ -30,7 +29,7 @@ class ProfileRouter : ProfileRouterProtocol {
         presenter.router = router
         presenter.profileView = view
         router.entry = view as? ProfileViewController
-
+        
         
         return router
     }

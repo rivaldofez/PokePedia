@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController, ProfileViewProtocol {
     
     
     private let profileImageView: UIImageView = {
-       let imageview = UIImageView()
+        let imageview = UIImageView()
         imageview.image = UIImage(named: "profile")
         imageview.translatesAutoresizingMaskIntoConstraints = false
         imageview.widthAnchor.constraint(equalToConstant: 200).isActive = true
@@ -29,7 +29,7 @@ class ProfileViewController: UIViewController, ProfileViewProtocol {
     }()
     
     private let nameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Rivaldo Fernandes"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .poppinsBold(size: 18)
@@ -39,7 +39,7 @@ class ProfileViewController: UIViewController, ProfileViewProtocol {
     }()
     
     private let emailLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "rivaldofez@gmail.com"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .poppinsRegular(size: 16)
@@ -57,11 +57,11 @@ class ProfileViewController: UIViewController, ProfileViewProtocol {
         return stackview
     }()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-
+        
         
         title = "Profile"
         navigationController?.navigationBar.prefersLargeTitles = true

@@ -42,7 +42,7 @@ class AboutSubViewController: UIViewController {
         
         return tableView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
