@@ -53,6 +53,9 @@
 		7E5AC1D9299DDC2B00FFAA0D /* AboutCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5AC1D8299DDC2B00FFAA0D /* AboutCellModel.swift */; };
 		7E5AC1DB299E09BC00FFAA0D /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5AC1DA299E09BC00FFAA0D /* String+Extension.swift */; };
 		7E5AC1DE299E135B00FFAA0D /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5AC1DD299E135B00FFAA0D /* APICall.swift */; };
+		7E6AA2312A79DDAF00D9FFB7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AA2302A79DDAF00D9FFB7 /* MainTabBarController.swift */; };
+		7E6AA2342A79DFB300D9FFB7 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AA2332A79DFB300D9FFB7 /* FavoriteViewController.swift */; };
+		7E6AA2382A7A301F00D9FFB7 /* PokemonFavoriteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AA2372A7A301F00D9FFB7 /* PokemonFavoriteEntity.swift */; };
 		7E6F940A299010BA004B2537 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F9409299010BA004B2537 /* AppDelegate.swift */; };
 		7E6F940C299010BA004B2537 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F940B299010BA004B2537 /* SceneDelegate.swift */; };
 		7E6F9413299010BB004B2537 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E6F9412299010BB004B2537 /* Assets.xcassets */; };
@@ -133,6 +136,9 @@
 		7E5AC1D8299DDC2B00FFAA0D /* AboutCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCellModel.swift; sourceTree = "<group>"; };
 		7E5AC1DA299E09BC00FFAA0D /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		7E5AC1DD299E135B00FFAA0D /* APICall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICall.swift; sourceTree = "<group>"; };
+		7E6AA2302A79DDAF00D9FFB7 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		7E6AA2332A79DFB300D9FFB7 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		7E6AA2372A7A301F00D9FFB7 /* PokemonFavoriteEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavoriteEntity.swift; sourceTree = "<group>"; };
 		7E6F9409299010BA004B2537 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E6F940B299010BA004B2537 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7E6F9412299010BB004B2537 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -318,6 +324,7 @@
 		7E47C3DE2997EC1900CFFB54 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				7E6AA2352A7A2F7000D9FFB7 /* Locale */,
 				7E47C3DF2997EC2400CFFB54 /* Remote */,
 				7E47C3EE2997F78900CFFB54 /* PokemonRepository.swift */,
 			);
@@ -387,6 +394,38 @@
 				7E5AC1DD299E135B00FFAA0D /* APICall.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		7E6AA22F2A79DD8D00D9FFB7 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				7E6AA2302A79DDAF00D9FFB7 /* MainTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		7E6AA2322A79DFA000D9FFB7 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				7E6AA2332A79DFB300D9FFB7 /* FavoriteViewController.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		7E6AA2352A7A2F7000D9FFB7 /* Locale */ = {
+			isa = PBXGroup;
+			children = (
+				7E6AA2362A7A2F8000D9FFB7 /* Entity */,
+			);
+			path = Locale;
+			sourceTree = "<group>";
+		};
+		7E6AA2362A7A2F8000D9FFB7 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				7E6AA2372A7A301F00D9FFB7 /* PokemonFavoriteEntity.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		7E6F93FD299010BA004B2537 = {
@@ -479,6 +518,8 @@
 		7EE13298299A5B4800FFB47B /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				7E6AA2322A79DFA000D9FFB7 /* Favorite */,
+				7E6AA22F2A79DD8D00D9FFB7 /* TabBar */,
 				7E7FFC952A74B02E00FC1910 /* Profile */,
 				7E393A3B299BDB690033920C /* DetailPokemon */,
 				7E393A3A299BDB3D0033920C /* Home */,
@@ -662,14 +703,17 @@
 			files = (
 				7E6F940A299010BA004B2537 /* AppDelegate.swift in Sources */,
 				7E02472E2996103400EECAA9 /* DetailPokemonViewController.swift in Sources */,
+				7E6AA2312A79DDAF00D9FFB7 /* MainTabBarController.swift in Sources */,
 				7EE1328F299A4DBE00FFB47B /* PokemonMapper.swift in Sources */,
 				7E0247582996A73400EECAA9 /* BaseStatSubViewController.swift in Sources */,
 				7E47C3EF2997F78900CFFB54 /* PokemonRepository.swift in Sources */,
 				7E7FFC9E2A74B0C500FC1910 /* ProfileViewController.swift in Sources */,
 				7E6F940C299010BA004B2537 /* SceneDelegate.swift in Sources */,
+				7E6AA2342A79DFB300D9FFB7 /* FavoriteViewController.swift in Sources */,
 				7E5AC1D9299DDC2B00FFAA0D /* AboutCellModel.swift in Sources */,
 				7E47C379299768B700CFFB54 /* MovesTableViewCell.swift in Sources */,
 				7E188239299147AC00C6CB64 /* PokemonCollectionViewCell.swift in Sources */,
+				7E6AA2382A7A301F00D9FFB7 /* PokemonFavoriteEntity.swift in Sources */,
 				7E7FFC9A2A74B09E00FC1910 /* ProfilePresenter.swift in Sources */,
 				7E47C3ED2997F67200CFFB54 /* CustomError+Extensions.swift in Sources */,
 				7E47C3EB2997F3A500CFFB54 /* RemoteDataSource.swift in Sources */,

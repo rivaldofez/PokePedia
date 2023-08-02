@@ -12,4 +12,5 @@ target 'Pokepedia' do
   pod 'Alamofire'
   pod 'SDWebImage'
   pod 'lottie-ios'
+  pod 'RealmSwift'
 end
