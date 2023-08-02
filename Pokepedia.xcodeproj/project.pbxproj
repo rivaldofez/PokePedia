@@ -56,6 +56,7 @@
 		7E6AA2312A79DDAF00D9FFB7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AA2302A79DDAF00D9FFB7 /* MainTabBarController.swift */; };
 		7E6AA2342A79DFB300D9FFB7 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AA2332A79DFB300D9FFB7 /* FavoriteViewController.swift */; };
 		7E6AA2382A7A301F00D9FFB7 /* PokemonFavoriteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AA2372A7A301F00D9FFB7 /* PokemonFavoriteEntity.swift */; };
+		7E6AA23A2A7A49BA00D9FFB7 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AA2392A7A49BA00D9FFB7 /* LocalDataSource.swift */; };
 		7E6F940A299010BA004B2537 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F9409299010BA004B2537 /* AppDelegate.swift */; };
 		7E6F940C299010BA004B2537 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F940B299010BA004B2537 /* SceneDelegate.swift */; };
 		7E6F9413299010BB004B2537 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E6F9412299010BB004B2537 /* Assets.xcassets */; };
@@ -139,6 +140,7 @@
 		7E6AA2302A79DDAF00D9FFB7 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		7E6AA2332A79DFB300D9FFB7 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		7E6AA2372A7A301F00D9FFB7 /* PokemonFavoriteEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavoriteEntity.swift; sourceTree = "<group>"; };
+		7E6AA2392A7A49BA00D9FFB7 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
 		7E6F9409299010BA004B2537 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E6F940B299010BA004B2537 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7E6F9412299010BB004B2537 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 			isa = PBXGroup;
 			children = (
 				7E6AA2362A7A2F8000D9FFB7 /* Entity */,
+				7E6AA2392A7A49BA00D9FFB7 /* LocalDataSource.swift */,
 			);
 			path = Locale;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 				7E47C3F12997F92D00CFFB54 /* PokemonDetailResponse.swift in Sources */,
 				7EE132CA299A801D00FFB47B /* HomePresenter.swift in Sources */,
 				7E393A39299BAB250033920C /* PokemonConverter.swift in Sources */,
+				7E6AA23A2A7A49BA00D9FFB7 /* LocalDataSource.swift in Sources */,
 				7E47C377299754AE00CFFB54 /* BaseStatTableViewCell.swift in Sources */,
 				7EE13297299A579200FFB47B /* HomeInteractor.swift in Sources */,
 				7E393A42299BDBC50033920C /* DetailPokemonPresenter.swift in Sources */,
