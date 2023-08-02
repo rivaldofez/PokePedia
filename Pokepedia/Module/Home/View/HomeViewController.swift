@@ -180,6 +180,14 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         
         return footerview
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -214,4 +222,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter?.didSelectPokemonItem(with: pokemonDataPagination[indexPath.item])
     }
+    
+    
 }

@@ -25,8 +25,6 @@ class MainTabBarController: UITabBarController {
         
         let favorite = self.createNav(with: "Favorite", and: UIImage(systemName: "heart"), vc: FavoriteViewController())
         
-        
-        
         let profileRouter = ProfileRouter.createProfile()
         guard let profileVC = profileRouter.entry else { return }
         
