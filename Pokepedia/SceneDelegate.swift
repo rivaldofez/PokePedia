@@ -22,12 +22,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
 //        window?.makeKeyAndVisible()
         
-        let homeRouter = HomeRouter.start()
-        guard let initialVC = homeRouter.begin else { return }
-        
+//        let homeRouter = HomeRouter.start()
+//        guard let initialVC = homeRouter.begin else { return }
+//
         let window = UIWindow(windowScene: windowScene)
+//
+//        window.rootViewController = UINavigationController(rootViewController: initialVC)
         
-        window.rootViewController = UINavigationController(rootViewController: initialVC)
+        window.rootViewController = MainTabBarController()
         window.makeKeyAndVisible()
         self.window = window
     }
