@@ -43,7 +43,10 @@ class HomeRouter: HomeRouterProtocol {
         let detailPokemonRouter = DetailPokemonRouter.createDetailPokemon(with: pokemon)
         guard let detailPokemonView = detailPokemonRouter.entry else { return }
         guard let viewController = self.begin else { return }
+        
+        viewController.hidesBottomBarWhenPushed = true
         viewController.navigationController?.pushViewController(detailPokemonView, animated: true)
+        viewController.hidesBottomBarWhenPushed = false
     }
     
     func gotoProfile() {
