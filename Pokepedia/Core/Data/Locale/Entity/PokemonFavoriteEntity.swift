@@ -20,6 +20,7 @@ class PokemonEntity: Object{
     @Persisted var moves: String
     @Persisted var type: String
     @Persisted var abilities: String
+    @Persisted var isFavorite: Bool
 }
 
 class BaseStatEntity: Object{
