@@ -18,6 +18,7 @@ struct Pokemon: Identifiable{
     let moves: [String]
     let type: [String]
     let abilities: String
+    var isFavorite: Bool = false
 }
 
 struct BaseStat{
