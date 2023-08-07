@@ -327,7 +327,6 @@
 			isa = PBXGroup;
 			children = (
 				7E6AA2352A7A2F7000D9FFB7 /* Locale */,
-				7E47C3DF2997EC2400CFFB54 /* Remote */,
 				7E47C3EE2997F78900CFFB54 /* PokemonRepository.swift */,
 			);
 			path = Data;
@@ -419,6 +418,7 @@
 			children = (
 				7E6AA2362A7A2F8000D9FFB7 /* Entity */,
 				7E6AA2392A7A49BA00D9FFB7 /* LocalDataSource.swift */,
+				7E47C3DF2997EC2400CFFB54 /* Remote */,
 			);
 			path = Locale;
 			sourceTree = "<group>";
