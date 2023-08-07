@@ -13,24 +13,49 @@ protocol PokemonRepositoryProtocol {
     
     func getPokemonSpecies(id: Int) -> Observable<PokemonSpecies>
     
+    func getFavoritePokemonList() -> Observable<[Pokemon]>
+    
+    func getFavoritePokemonById(id: Int) -> Observable<Pokemon?>
+    
+    
 }
 
 final class PokemonRepository: NSObject {
-    typealias PokemonInstance = (RemoteDataSource) -> PokemonRepository
+    typealias PokemonInstance = (RemoteDataSource, LocaleDataSource) -> PokemonRepository
     
     fileprivate let remote: RemoteDataSource
+    fileprivate let locale: LocaleDataSource
     
-    private init(remote: RemoteDataSource) {
+    private init(remote: RemoteDataSource, locale: LocaleDataSource) {
         self.remote = remote
+        self.locale = locale
     }
     
-    static let sharedInstance: PokemonInstance = { remoteDataSource in
-        return PokemonRepository(remote: remoteDataSource)
+    static let sharedInstance: PokemonInstance = { remoteDataSource, localeDataSource in
+        return PokemonRepository(remote: remoteDataSource, locale: localeDataSource)
         
     }
 }
 
 extension PokemonRepository: PokemonRepositoryProtocol {
+    func getFavoritePokemonById(id: Int) -> RxSwift.Observable<Pokemon?> {
+        return self.locale.getFavoritePokemonById(id: id)
+            .map { pokemonEntity in
+                if let pokemonEntity {
+                    return PokemonMapper.mapPokemonEntityToDomain(input: pokemonEntity)
+                } else {
+                    return nil
+                }
+            }
+    }
+    
+    func getFavoritePokemonList() -> RxSwift.Observable<[Pokemon]> {
+        return self.locale.getFavoritePokemonList()
+            .map {
+                PokemonMapper.mapPokemonEntitiesToDomain(input: $0)
+            }
+    }
+    
     func getPokemonDataPagination(offset: Int, limit: Int) -> Observable<[Pokemon]> {
         return self.remote.getPokemonDataPagination(offset: offset, limit: limit).map {
             PokemonMapper.mapPokemonDetailResponsesToDomain(input: $0)
