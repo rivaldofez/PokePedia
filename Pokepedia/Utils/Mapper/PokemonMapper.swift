@@ -23,7 +23,10 @@ final class PokemonMapper {
             },
             moves: input.moves.components(separatedBy: ","),
             type: input.type.components(separatedBy: ","),
-            abilities: input.abilities)
+            abilities: input.abilities,
+            isFavorite: input.isFavorite
+        
+        )
     }
     
     static func mapPokemonEntitiesToDomain(input: [PokemonEntity]) -> [Pokemon]{

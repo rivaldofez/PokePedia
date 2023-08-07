@@ -10,8 +10,10 @@ import RealmSwift
 import RxSwift
 
 protocol LocaleDataSourceProtocol: AnyObject {
-    func getFavoritePokemonList(id: Int) -> Observable<[PokemonEntity]>
+    func getFavoritePokemonList() -> Observable<[PokemonEntity]>
     func addPokemonFavorite(from pokemon: PokemonEntity) -> Observable<Bool>
+    
+    func getFavoritePokemonById(id: Int) -> Observable<PokemonEntity?>
 }
 
 final class LocaleDataSource: NSObject {
@@ -27,7 +29,25 @@ final class LocaleDataSource: NSObject {
 }
 
 extension LocaleDataSource: LocaleDataSourceProtocol {
-    func getFavoritePokemonList(id: Int) -> RxSwift.Observable<[PokemonEntity]> {
+    func getFavoritePokemonById(id: Int) -> RxSwift.Observable<PokemonEntity?> {
+        return Observable<PokemonEntity?>.create { observer in
+            if let realm = self.realm {
+                let pokemons: Results<PokemonEntity> = {
+                    realm.objects(PokemonEntity.self)
+                        .where { $0.id == id }
+                }()
+                
+                observer.onNext(pokemons.toArray(ofType: PokemonEntity.self).first)
+                observer.onCompleted()
+            } else {
+                observer.onError(DatabaseError.invalidInstance)
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func getFavoritePokemonList() -> RxSwift.Observable<[PokemonEntity]> {
         return Observable<[PokemonEntity]>.create { observer in
             if let realm = self.realm {
                 let pokemons: Results<PokemonEntity> = {
@@ -43,6 +63,8 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
             return Disposables.create()
         }
     }
+    
+    
     
     func addPokemonFavorite(from pokemon: PokemonEntity) -> RxSwift.Observable<Bool> {
         return Observable<Bool>.create { observer in
