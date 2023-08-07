@@ -8,6 +8,30 @@
 import Foundation
 
 final class PokemonMapper {
+    
+    
+    static func mapPokemonEntityToDomain(input: PokemonEntity) -> Pokemon {
+        return Pokemon(
+            id: input.id,
+            name: input.name,
+            image: input.image,
+            height: input.height,
+            weight: input.weight,
+            baseExp: input.baseExp,
+            baseStat: input.baseStat.map{
+                return BaseStat(name: $0.name, effort: $0.effort, value: $0.value, url: $0.url)
+            },
+            moves: input.moves.components(separatedBy: ","),
+            type: input.type.components(separatedBy: ","),
+            abilities: input.abilities)
+    }
+    
+    static func mapPokemonEntitiesToDomain(input: [PokemonEntity]) -> [Pokemon]{
+        return input.map { result in
+            return mapPokemonEntityToDomain(input: result)
+        }
+    }
+    
     static func mapPokemonDetailResponsesToDomain(input pokemonDetailResponses: [PokemonDetailResponse]) -> [Pokemon]{
         
         return pokemonDetailResponses.map { result in
