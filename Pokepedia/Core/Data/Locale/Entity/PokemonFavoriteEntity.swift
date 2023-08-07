@@ -10,7 +10,7 @@ import RealmSwift
 
 
 class PokemonEntity: Object{
-    @Persisted var id: Int
+    @Persisted(primaryKey: true) var id: Int
     @Persisted var name: String
     @Persisted var image: String
     @Persisted var height: Float

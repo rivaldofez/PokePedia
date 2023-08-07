@@ -17,12 +17,45 @@ protocol DetailPokemonPresenterProtocol {
     func getPokemonSpecies(id: Int)
     
     func getPokemon(with pokemon: Pokemon)
+    
+    func saveFavoritePokemon(pokemon: Pokemon)
 }
 
 class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
+    func saveFavoritePokemon(pokemon: Pokemon) {
+        interactor?.saveFavoritePokemon(pokemon: pokemon)
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] result in
+                
+            } onError: { error in
+                
+            } onCompleted: {
+                
+            }.disposed(by: disposeBag)
+    }
+    
     func getPokemon(with pokemon: Pokemon) {
-        detailPokemonView?.updatePokemon(with: pokemon)
-        getPokemonSpecies(id: pokemon.id)
+        isLoadingData = true
+        
+        interactor?.getFavoritePokemonById(id: pokemon.id)
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] pokemonResult in
+                if let pokemonResult = pokemonResult {
+                    self?.detailPokemonView?.updatePokemon(with: pokemonResult)
+                    print("result found : \(pokemonResult.isFavorite)")
+                    
+                } else {
+                    self?.detailPokemonView?.updatePokemon(with: pokemon)
+                    print("result empty")
+                }
+            } onError: { error in
+                self.detailPokemonView?.updatePokemon(with: pokemon)
+                self.getPokemonSpecies(id: pokemon.id)
+                print("result error")
+            } onCompleted: {
+                self.getPokemonSpecies(id: pokemon.id)
+                print("result completed")
+            }.disposed(by: disposeBag)
     }
     
     var router: DetailPokemonRouterProtocol?
@@ -34,6 +67,8 @@ class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
     var isLoadingData: Bool = false
     
     private let disposeBag = DisposeBag()
+    
+    
     
     func getPokemonSpecies(id: Int) {
         isLoadingData = true

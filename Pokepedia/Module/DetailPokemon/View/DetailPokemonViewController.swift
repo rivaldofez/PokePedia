@@ -13,6 +13,7 @@ protocol DetailPokemonViewProtocol {
     
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies)
     func updatePokemonSpecies(with error: String)
+    
     func updatePokemon(with pokemon: Pokemon)
     func isLoadingData(with state: Bool)
 }
@@ -25,6 +26,8 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
     var baseStatSubViewController = BaseStatSubViewController()
     var movesSubViewController = MovesSubViewController()
     
+    var pokemon: Pokemon?
+    
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies) {
         aboutSubViewController.pokemonSpecies = pokemonSpecies
         
@@ -33,6 +36,10 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
     }
     
     func updatePokemon(with pokemon: Pokemon) {
+        self.pokemon = pokemon
+        print("result found isFavorite = \(pokemon.isFavorite)")
+        
+        
         aboutSubViewController.pokemon = pokemon
         baseStatSubViewController.pokemon = pokemon
         movesSubViewController.pokemon = pokemon
@@ -49,6 +56,8 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
         
         showLoading(isLoading: false)
         showError(isError: false)
+        
+        showFavoriteButton(isFavorite: pokemon.isFavorite)
         
     }
     
@@ -254,6 +263,41 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
         
         configureConstraints()
         configureStackButton()
+    }
+    
+    @objc private func favoriteAction(){
+        pokemon?.isFavorite.toggle()
+        if let pokemon = self.pokemon {
+            showFavoriteButton(isFavorite: pokemon.isFavorite)
+            presenter?.saveFavoritePokemon(pokemon: pokemon)
+        }
+    }
+    
+    private func showFavoriteButton(isFavorite: Bool){
+        if(self.navigationItem.rightBarButtonItem == nil ){
+            let button = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteAction))
+            
+            if (isFavorite){
+                button.image = UIImage(systemName: "heart.fill")
+                button.tintColor = UIColor.red
+            } else {
+                button.image = UIImage(systemName: "heart")
+                button.tintColor = UIColor.gray
+            }
+            
+            navigationItem.rightBarButtonItem = button
+            
+        } else {
+            if (isFavorite){
+                self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
+                self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
+            } else {
+                self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+                self.navigationItem.rightBarButtonItem?.tintColor = UIColor.gray
+            }
+        }
+        
+        
     }
     
     override func viewDidLayoutSubviews() {

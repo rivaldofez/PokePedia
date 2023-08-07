@@ -41,6 +41,7 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
                 observer.onCompleted()
             } else {
                 observer.onError(DatabaseError.invalidInstance)
+                print("error database instance")
             }
             
             return Disposables.create()

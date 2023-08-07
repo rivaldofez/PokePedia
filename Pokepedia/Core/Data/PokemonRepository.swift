@@ -17,6 +17,8 @@ protocol PokemonRepositoryProtocol {
     
     func getFavoritePokemonById(id: Int) -> Observable<Pokemon?>
     
+    func addPokemonFavorite(pokemon: Pokemon) -> Observable<Bool>
+    
     
 }
 
@@ -66,5 +68,9 @@ extension PokemonRepository: PokemonRepositoryProtocol {
         return self.remote.getPokemonSpecies(id: id).map {
             PokemonMapper.mapPokemonSpeciesResponseToDomain(input: $0)
         }
+    }
+    
+    func addPokemonFavorite(pokemon: Pokemon) -> Observable<Bool> {
+        return self.locale.addPokemonFavorite(from: PokemonMapper.mapPokemonToEntity(input: pokemon))
     }
 }

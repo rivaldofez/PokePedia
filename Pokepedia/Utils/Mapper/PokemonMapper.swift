@@ -6,9 +6,41 @@
 //
 
 import Foundation
+import RealmSwift
 
 final class PokemonMapper {
     
+    
+    static func mapPokemonToEntity(input: Pokemon) -> PokemonEntity {
+        let pokemonEntity = PokemonEntity()
+        let baseStat = List<BaseStatEntity>()
+        baseStat.append(
+            objectsIn:
+                input.baseStat.map {
+                    let baseStatEntity = BaseStatEntity()
+                    baseStatEntity.name = $0.name
+                    baseStatEntity.effort = $0.effort
+                    baseStatEntity.url = $0.url
+                    baseStatEntity.value = $0.value
+                    return baseStatEntity
+                }
+            
+        )
+        
+        pokemonEntity.id = input.id
+        pokemonEntity.name = input.name
+        pokemonEntity.image = input.image
+        pokemonEntity.height = input.height
+        pokemonEntity.weight = input.weight
+        pokemonEntity.baseExp = input.baseExp
+        pokemonEntity.baseStat = baseStat
+        pokemonEntity.moves = input.moves.joined(separator: ",")
+        pokemonEntity.type = input.type.joined(separator: ",")
+        pokemonEntity.abilities = input.abilities
+        pokemonEntity.isFavorite = input.isFavorite
+        
+        return pokemonEntity
+    }
     
     static func mapPokemonEntityToDomain(input: PokemonEntity) -> Pokemon {
         return Pokemon(
@@ -25,7 +57,7 @@ final class PokemonMapper {
             type: input.type.components(separatedBy: ","),
             abilities: input.abilities,
             isFavorite: input.isFavorite
-        
+            
         )
     }
     
