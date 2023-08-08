@@ -10,24 +10,24 @@ import Foundation
 final class PokemonConverter {
     
     enum PokemonElement: String {
-        case bug = "bug"
-        case dark = "dark"
-        case dragon = "dragon"
-        case electric = "electric"
-        case fairy = "fairy"
-        case fighting = "fighting"
-        case fire = "fire"
-        case flying = "flying"
-        case ghost = "ghost"
-        case grass = "grass"
-        case ground = "ground"
-        case ice = "ice"
-        case normal = "normal"
-        case poison = "poison"
-        case psychic = "psychic"
-        case rock = "rock"
-        case steel = "steel"
-        case water = "water"
+        case bug
+        case dark
+        case dragon
+        case electric
+        case fairy
+        case fighting
+        case fire
+        case flying
+        case ghost
+        case grass
+        case ground
+        case ice
+        case normal
+        case poison
+        case psychic
+        case rock
+        case steel
+        case water
     }
     
     enum PokemonStat: String {

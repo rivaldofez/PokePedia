@@ -54,17 +54,19 @@ class AboutSubViewController: UIViewController {
         aboutTableView.dataSource = self
     }
     
-    private func setDataAboutTableView(){
+    private func setDataAboutTableView() {
         guard let pokemon = pokemon, let pokemonSpecies = pokemonSpecies else { return }
         
-        self.aboutDataModel = PokemonMapper.mapPokemonDataToAboutSectionData(pokemon: pokemon, pokemonSpecies: pokemonSpecies)
+        self.aboutDataModel = PokemonMapper.mapPokemonDataToAboutSectionData(
+            pokemon: pokemon, pokemonSpecies: pokemonSpecies
+        )
         
         DispatchQueue.main.async {
             self.aboutTableView.reloadData()
         }
     }
     
-    private func configureConstraints(){
+    private func configureConstraints() {
         let aboutLabelConstraints = [
             aboutLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             aboutLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -93,7 +95,10 @@ extension AboutSubViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AboutTableViewCell.identifier, for: indexPath) as? AboutTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: AboutTableViewCell.identifier,
+            for: indexPath
+        ) as? AboutTableViewCell else { return UITableViewCell() }
         
         cell.configure(with: aboutDataModel[indexPath.section].item[indexPath.row])
         

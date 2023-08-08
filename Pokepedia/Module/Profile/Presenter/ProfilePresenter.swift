@@ -18,5 +18,4 @@ class ProfilePresenter: ProfilePresenterProtocol {
     
     var profileView: ProfileViewProtocol?
     
-    
 }

@@ -33,12 +33,12 @@ class AboutTableViewCell: UITableViewCell {
         configureConstraints()
     }
     
-    func configure(with model: ItemCellModel){
+    func configure(with model: ItemCellModel) {
         titleLabel.text = model.title
         valueLabel.text = model.value
     }
     
-    private func configureConstraints(){
+    private func configureConstraints() {
         let titleLabelConstraints = [
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),

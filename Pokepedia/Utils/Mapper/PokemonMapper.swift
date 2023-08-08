@@ -10,7 +10,6 @@ import RealmSwift
 
 final class PokemonMapper {
     
-    
     static func mapPokemonToEntity(input: Pokemon) -> PokemonEntity {
         let pokemonEntity = PokemonEntity()
         let baseStat = List<BaseStatEntity>()
@@ -50,7 +49,7 @@ final class PokemonMapper {
             height: input.height,
             weight: input.weight,
             baseExp: input.baseExp,
-            baseStat: input.baseStat.map{
+            baseStat: input.baseStat.map {
                 return BaseStat(name: $0.name, effort: $0.effort, value: $0.value, url: $0.url)
             },
             moves: input.moves.components(separatedBy: ","),
@@ -61,13 +60,13 @@ final class PokemonMapper {
         )
     }
     
-    static func mapPokemonEntitiesToDomain(input: [PokemonEntity]) -> [Pokemon]{
+    static func mapPokemonEntitiesToDomain(input: [PokemonEntity]) -> [Pokemon] {
         return input.map { result in
             return mapPokemonEntityToDomain(input: result)
         }
     }
     
-    static func mapPokemonDetailResponsesToDomain(input pokemonDetailResponses: [PokemonDetailResponse]) -> [Pokemon]{
+    static func mapPokemonDetailResponsesToDomain(input pokemonDetailResponses: [PokemonDetailResponse]) -> [Pokemon] {
         
         return pokemonDetailResponses.map { result in
             let image = result.sprites.other.officialArtwork.frontDefault ??
@@ -98,7 +97,7 @@ final class PokemonMapper {
                 type: result.types.map { typeResponse in
                     return typeResponse.type.name
                 },
-                abilities: result.abilities.map{ ability in
+                abilities: result.abilities.map { ability in
                     ability.ability.name.capitalized
                 }.joined(separator: ", ")
                 
@@ -111,24 +110,24 @@ final class PokemonMapper {
     static func mapPokemonSpeciesResponseToDomain(input pokemonSpeciesResponse: PokemonSpeciesResponse) -> PokemonSpecies {
         
         let aboutPokemon = {
-            for flavorEntry in pokemonSpeciesResponse.flavorTextEntries {
-                if flavorEntry.language.name == "en" {
-                    return flavorEntry.flavorText
-                        .replacingOccurrences(of: "\n", with: " ")
-                        .utf8EncodedString()
-                        .replacingOccurrences(of: "\\014", with: " ")
-                        .utf8DecodedString()
-                }
+            for flavorEntry in pokemonSpeciesResponse.flavorTextEntries
+            where flavorEntry.language.name == "en" {
+                return flavorEntry.flavorText
+                    .replacingOccurrences(of: "\n", with: " ")
+                    .utf8EncodedString()
+                    .replacingOccurrences(of: "\\014", with: " ")
+                    .utf8DecodedString()
             }
+            
             return ""
         }()
         
         let genusPokemon = {
-            for generaEntry in pokemonSpeciesResponse.genera {
-                if generaEntry.language.name == "en" {
-                    return generaEntry.genus.capitalized
-                }
+            for generaEntry in pokemonSpeciesResponse.genera
+            where generaEntry.language.name == "en" {
+                return generaEntry.genus.capitalized
             }
+            
             return ""
         }()
         
@@ -170,7 +169,6 @@ final class PokemonMapper {
     
     static func mapPokemonDataToAboutSectionData(pokemon: Pokemon, pokemonSpecies: PokemonSpecies) -> [AboutCellModel] {
         var dataAboutCellModel: [AboutCellModel] = []
-        
         
         var speciesItemCellModel: [ItemCellModel] = []
         speciesItemCellModel.append(ItemCellModel(title: "Genus", value: pokemonSpecies.genus))

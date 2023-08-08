@@ -63,14 +63,12 @@ class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
     
     private let disposeBag = DisposeBag()
     
-    
-    
     func getPokemonSpecies(id: Int) {
         isLoadingData = true
         
         interactor?.getPokemonSpecies(id: id)
             .observe(on: MainScheduler.instance)
-            .subscribe{[weak self] pokemonSpeciesResult in
+            .subscribe { [weak self] pokemonSpeciesResult in
                 self?.detailPokemonView?.updatePokemonSpecies(with: pokemonSpeciesResult)
             } onError: { error in
                 self.detailPokemonView?.updatePokemonSpecies(with: error.localizedDescription)

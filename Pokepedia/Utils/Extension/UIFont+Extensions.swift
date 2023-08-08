@@ -7,7 +7,6 @@
 
 import UIKit
 
-//font poppins family
 extension UIFont {
     static func poppinsBlack(size: CGFloat) -> UIFont? {
         return UIFont(name: "Poppins-Black", size: size)
@@ -82,7 +81,6 @@ extension UIFont {
     }
 }
 
-//fonts comfortaa
 extension UIFont {
     static func comfortaaBold(size: CGFloat) -> UIFont? {
         return UIFont(name: "Comfortaa-Bold", size: size)

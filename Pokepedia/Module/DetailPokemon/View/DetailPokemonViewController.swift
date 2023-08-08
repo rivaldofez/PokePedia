@@ -10,16 +10,14 @@ import Lottie
 
 protocol DetailPokemonViewProtocol {
     var presenter: DetailPokemonPresenterProtocol? { get set }
-    
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies)
     func updatePokemonSpecies(with error: String)
-    
     func updatePokemon(with pokemon: Pokemon)
     func isLoadingData(with state: Bool)
 }
 
-class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
-    
+class DetailPokemonViewController:
+    UIViewController, DetailPokemonViewProtocol {
     
     var presenter: DetailPokemonPresenterProtocol?
     var aboutSubViewController = AboutSubViewController()
@@ -203,14 +201,12 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
         return view
     }()
     
-    
     private lazy var errorLabel: UILabel = {
         let label = UILabel()
         label.text = "Error occured while load pokemon data"
         label.textColor = .label
         label.font = .poppinsBold(size: 16)
         label.textAlignment = .center
-        
         
         return label
     }()

@@ -63,9 +63,9 @@ class BaseStatSubViewController: UIViewController {
         return label
     }()
     
-    private func setDataRadarChartView(){
+    private func setDataRadarChartView() {
         guard let pokemon = self.pokemon else { return }
-        var entries : [RadarChartDataEntry] = []
+        var entries = [RadarChartDataEntry]()
         
         pokemon.baseStat.forEach { stat in
             entries.append(RadarChartDataEntry(value: Double(stat.value)))
@@ -118,14 +118,12 @@ class BaseStatSubViewController: UIViewController {
         radarChartView.marker = marker
     }
     
-    
-    @objc func updateSwitch(sender: UISwitch){
+    @objc func updateSwitch(sender: UISwitch) {
         progressTableView.isHidden = sender.isOn
         radarChartView.isHidden = !sender.isOn
-        
     }
     
-    private func configureConstraints(){
+    private func configureConstraints() {
         
         let chartSwitchConstraints = [
             chartSwitch.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
@@ -179,7 +177,7 @@ extension BaseStatSubViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BaseStatTableViewCell.identifier, for: indexPath) as? BaseStatTableViewCell else { return UITableViewCell() }
         
-        if let baseStat = pokemon?.baseStat[indexPath.row]{
+        if let baseStat = pokemon?.baseStat[indexPath.row] {
             cell.configure(with: baseStat, type: pokemon!.type.first!)
         }
         return cell

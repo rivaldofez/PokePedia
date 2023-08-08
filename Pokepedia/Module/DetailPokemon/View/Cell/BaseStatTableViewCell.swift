@@ -42,7 +42,7 @@ class BaseStatTableViewCell: UITableViewCell {
         progressView.trackTintColor = .lightGray.withAlphaComponent(0.5)
     }
     
-    func configure(with baseStat: BaseStat, type: String){
+    func configure(with baseStat: BaseStat, type: String) {
         titleLabel.text = PokemonConverter.typeStringToStatName(type: baseStat.name)
         statLabel.text = String(baseStat.value)
         progressView.setProgress(Float(baseStat.value) / 255.0, animated: false)
@@ -51,7 +51,7 @@ class BaseStatTableViewCell: UITableViewCell {
         
     }
     
-    private func configureConstraints(){
+    private func configureConstraints() {
         let titleLabelConstraints = [
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),

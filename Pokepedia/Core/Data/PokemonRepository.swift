@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol PokemonRepositoryProtocol {
-    func getPokemonDataPagination(offset: Int, limit: Int) ->  Observable<[Pokemon]>
+    func getPokemonDataPagination(offset: Int, limit: Int) -> Observable<[Pokemon]>
     
     func getPokemonSpecies(id: Int) -> Observable<PokemonSpecies>
     
@@ -18,7 +18,6 @@ protocol PokemonRepositoryProtocol {
     func getFavoritePokemonById(id: Int) -> Observable<Pokemon?>
     
     func addPokemonFavorite(pokemon: Pokemon) -> Observable<Bool>
-    
     
 }
 

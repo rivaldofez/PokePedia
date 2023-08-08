@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct PokemonPageResponse: Codable {
     let count: Int
     let previous: String?
@@ -27,4 +26,3 @@ struct PokemonPageItemResponse: Codable {
     let url: String
     var pokemonSpecies: PokemonDetailResponse?
 }
-
