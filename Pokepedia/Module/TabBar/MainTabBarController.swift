@@ -23,7 +23,11 @@ class MainTabBarController: UITabBarController {
         let homeNavItem = self.createNav(with: "List", and: UIImage(systemName: "list.bullet.below.rectangle"), vc: homeVC)
         
         
-        let favorite = self.createNav(with: "Favorite", and: UIImage(systemName: "heart"), vc: FavoriteViewController())
+        let favoriteRouter = FavoriteRouter.createFavorite()
+        guard let favoriteVC = favoriteRouter.entry else { return }
+        
+        let favoriteNavItem = self.createNav(with: "Favorite", and: UIImage(systemName: "heart"), vc: FavoriteViewController())
+        
         
         let profileRouter = ProfileRouter.createProfile()
         guard let profileVC = profileRouter.entry else { return }
@@ -31,7 +35,7 @@ class MainTabBarController: UITabBarController {
         let profileNavItem = self.createNav(with: "Profile", and: UIImage(systemName: "person"), vc: profileVC)
         
         
-        self.setViewControllers([homeNavItem, favorite, profileNavItem], animated: true)
+        self.setViewControllers([homeNavItem, favoriteNavItem, profileNavItem], animated: true)
     }
     
     
