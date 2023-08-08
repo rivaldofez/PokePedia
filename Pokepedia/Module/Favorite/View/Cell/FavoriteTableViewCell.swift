@@ -175,11 +175,7 @@ class FavoriteTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         for view in pokemonTypeStackView.arrangedSubviews {
-//            pokemonTypeStackView.removeArrangedSubview(view)
             view.removeFromSuperview()
         }
     }
-    
-    
-
 }

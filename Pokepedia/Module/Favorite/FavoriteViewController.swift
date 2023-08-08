@@ -63,7 +63,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         pokemonTableView.dataSource = self
         
         configureConstraints()
-        presenter?.getFavoritePokemonList()
+        
     }
     
     private func configureConstraints(){
@@ -75,6 +75,11 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         ]
         
         NSLayoutConstraint.activate(pokemonTableViewConstraints)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.getFavoritePokemonList()
     }
     
 }
@@ -97,6 +102,11 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 98
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.didSelectPokemonItem(with: pokemonData[indexPath.row])
+    }
+    
     
     
 }
