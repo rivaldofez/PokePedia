@@ -107,6 +107,24 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
         presenter?.didSelectPokemonItem(with: pokemonData[indexPath.row])
     }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            tableView.beginUpdates()
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            var model = pokemonData[indexPath.row]
+            model.isFavorite = false
+            
+            presenter?.saveFavoritePokemon(pokemon: model)
+            pokemonData.remove(at: indexPath.row)
+            
+            tableView.endUpdates()
+        }
+    }
     
 }

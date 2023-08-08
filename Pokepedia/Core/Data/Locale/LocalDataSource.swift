@@ -53,6 +53,7 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
                 let pokemons: Results<PokemonEntity> = {
                     realm.objects(PokemonEntity.self)
                         .where{ $0.isFavorite }
+                        .sorted(byKeyPath: "id", ascending: true)
                 }()
                 observer.onNext(pokemons.toArray(ofType: PokemonEntity.self))
                 observer.onCompleted()

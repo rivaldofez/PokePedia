@@ -17,6 +17,8 @@ protocol FavoritePresenterProtocol {
     func getFavoritePokemonList()
     func didSelectPokemonItem(with pokemon: Pokemon)
     
+    func saveFavoritePokemon(pokemon: Pokemon)
+    
 }
 
 class FavoritePresenter: FavoritePresenterProtocol {
@@ -52,6 +54,18 @@ class FavoritePresenter: FavoritePresenterProtocol {
                 self.view?.updatePokemonFavorite(with: error.localizedDescription)
             } onCompleted: {
                 self.isLoadingData = false
+            }.disposed(by: disposeBag)
+    }
+    
+    func saveFavoritePokemon(pokemon: Pokemon) {
+        interactor?.saveFavoritePokemon(pokemon: pokemon)
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] result in
+                
+            } onError: { error in
+                
+            } onCompleted: {
+                
             }.disposed(by: disposeBag)
     }
 }
