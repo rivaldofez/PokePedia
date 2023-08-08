@@ -42,19 +42,14 @@ class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
             .subscribe { [weak self] pokemonResult in
                 if let pokemonResult = pokemonResult {
                     self?.detailPokemonView?.updatePokemon(with: pokemonResult)
-                    print("result found : \(pokemonResult.isFavorite)")
-                    
                 } else {
                     self?.detailPokemonView?.updatePokemon(with: pokemon)
-                    print("result empty")
                 }
             } onError: { error in
                 self.detailPokemonView?.updatePokemon(with: pokemon)
                 self.getPokemonSpecies(id: pokemon.id)
-                print("result error")
             } onCompleted: {
                 self.getPokemonSpecies(id: pokemon.id)
-                print("result completed")
             }.disposed(by: disposeBag)
     }
     

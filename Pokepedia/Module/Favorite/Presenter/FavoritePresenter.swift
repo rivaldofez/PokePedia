@@ -44,7 +44,6 @@ class FavoritePresenter: FavoritePresenterProtocol {
     
     func getFavoritePokemonList() {
         isLoadingData = true
-        
         interactor?.getFavoritePokemonList()
             .observe(on: MainScheduler.instance)
             .subscribe { [weak self] pokemonResults in

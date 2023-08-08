@@ -37,8 +37,6 @@ class DetailPokemonViewController: UIViewController, DetailPokemonViewProtocol {
     
     func updatePokemon(with pokemon: Pokemon) {
         self.pokemon = pokemon
-        print("result found isFavorite = \(pokemon.isFavorite)")
-        
         
         aboutSubViewController.pokemon = pokemon
         baseStatSubViewController.pokemon = pokemon
