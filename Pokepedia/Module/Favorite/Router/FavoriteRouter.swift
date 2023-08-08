@@ -11,7 +11,7 @@ import UIKit
 protocol FavoriteRouterProtocol {
     var entry: FavoriteViewController? { get set }
     
-    static func start() -> FavoriteRouterProtocol
+    static func createFavorite() -> FavoriteRouterProtocol
     
     func gotoDetailPokemon(with pokemon: Pokemon )
 }
@@ -20,7 +20,7 @@ class FavoriteRouter: FavoriteRouterProtocol {
     var entry: FavoriteViewController?
     
 
-    static func start() -> FavoriteRouterProtocol {
+    static func createFavorite() -> FavoriteRouterProtocol {
         let router = FavoriteRouter()
         
         //assign vip

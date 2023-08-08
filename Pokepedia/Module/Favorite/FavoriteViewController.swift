@@ -7,7 +7,31 @@
 
 import UIKit
 
-class FavoriteViewController: UIViewController {
+
+protocol FavoriteViewProtocol {
+    var presenter: FavoritePresenterProtocol? { get set }
+    
+    func updatePokemonFavorite(with pokemons: [Pokemon])
+    func updatePokemonFavorite(with error: String)
+    func isLoadingData(with state: Bool)
+}
+
+
+class FavoriteViewController: UIViewController, FavoriteViewProtocol {
+    var presenter: FavoritePresenterProtocol?
+    
+    func updatePokemonFavorite(with pokemons: [Pokemon]) {
+        print("success \(pokemons)")
+    }
+    
+    func updatePokemonFavorite(with error: String) {
+        print("failed \(error)")
+    }
+    
+    func isLoadingData(with state: Bool) {
+        
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

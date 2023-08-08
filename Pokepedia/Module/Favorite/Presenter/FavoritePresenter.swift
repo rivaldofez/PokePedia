@@ -14,6 +14,7 @@ protocol FavoritePresenterProtocol {
     var view: FavoriteViewProtocol? { get set }
     
     var isLoadingData: Bool { get set }
+    func getFavoritePokemonList()
     func didSelectPokemonItem(with pokemon: Pokemon)
     
 }
@@ -23,7 +24,11 @@ class FavoritePresenter: FavoritePresenterProtocol {
     
     var router: FavoriteRouterProtocol?
     
-    var interactor: FavoriteUseCase?
+    var interactor: FavoriteUseCase? {
+        didSet {
+            getFavoritePokemonList()
+        }
+    }
     
     var view: FavoriteViewProtocol?
     
@@ -35,6 +40,20 @@ class FavoritePresenter: FavoritePresenterProtocol {
     
     func didSelectPokemonItem(with pokemon: Pokemon) {
         router?.gotoDetailPokemon(with: pokemon)
+    }
+    
+    func getFavoritePokemonList() {
+        isLoadingData = true
+        
+        interactor?.getFavoritePokemonList()
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] pokemonResults in
+                self?.view?.updatePokemonFavorite(with: pokemonResults)
+            } onError: { error in
+                self.view?.updatePokemonFavorite(with: error.localizedDescription)
+            } onCompleted: {
+                self.isLoadingData = false
+            }.disposed(by: disposeBag)
     }
 }
 
