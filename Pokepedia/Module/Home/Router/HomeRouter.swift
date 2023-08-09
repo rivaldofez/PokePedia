@@ -9,7 +9,7 @@ import UIKit
 
 typealias BeginPoint = HomeViewProtocol & UIViewController
 
-protocol HomeRouterProtocol{
+protocol HomeRouterProtocol {
     var begin: BeginPoint? { get }
     
     static func start() -> HomeRouterProtocol

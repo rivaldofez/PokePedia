@@ -14,7 +14,6 @@ protocol ProfileViewProtocol {
 class ProfileViewController: UIViewController, ProfileViewProtocol {
     var presenter: ProfilePresenterProtocol?
     
-    
     private let profileImageView: UIImageView = {
         let imageview = UIImageView()
         imageview.image = UIImage(named: "profile")
@@ -57,11 +56,9 @@ class ProfileViewController: UIViewController, ProfileViewProtocol {
         return stackview
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        
         
         title = "Profile"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -72,7 +69,7 @@ class ProfileViewController: UIViewController, ProfileViewProtocol {
         
     }
     
-    private func configureConstraints(){
+    private func configureConstraints() {
         let profileStackViewConstraints = [
             profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             profileImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)

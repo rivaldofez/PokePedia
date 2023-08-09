@@ -16,7 +16,6 @@ protocol FavoriteViewProtocol {
     func isLoadingData(with state: Bool)
 }
 
-
 class FavoriteViewController: UIViewController, FavoriteViewProtocol {
     var presenter: FavoritePresenterProtocol?
     
@@ -39,7 +38,6 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
     private var pokemonData: [Pokemon] = []
     private let disposeBag = DisposeBag()
     
-    
     private lazy var pokemonTableView: UITableView = {
        let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +45,6 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         tableView.register(FavoriteTableViewCell.self, forCellReuseIdentifier: FavoriteTableViewCell.identifier)
         return tableView
     }()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +63,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         
     }
     
-    private func configureConstraints(){
+    private func configureConstraints() {
         let pokemonTableViewConstraints = [
             pokemonTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             pokemonTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -112,7 +109,7 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
+        if editingStyle == .delete {
             tableView.beginUpdates()
             
             tableView.deleteRows(at: [indexPath], with: .fade)

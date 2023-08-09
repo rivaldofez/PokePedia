@@ -18,7 +18,7 @@ protocol FavoriteUseCase {
 class FavoriteInteractor: FavoriteUseCase {
     private let repository: PokemonRepositoryProtocol
     
-    required init(repository: PokemonRepositoryProtocol){
+    required init(repository: PokemonRepositoryProtocol) {
         self.repository = repository
     }
     

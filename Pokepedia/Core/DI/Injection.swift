@@ -12,7 +12,6 @@ final class Injection: NSObject {
     private func provideRepository() -> PokemonRepositoryProtocol {
         let realm = try? Realm()
     
-        
         let locale: LocaleDataSource = LocaleDataSource.sharedInstance(realm)
         let remote: RemoteDataSource = RemoteDataSource.sharedInstance
         

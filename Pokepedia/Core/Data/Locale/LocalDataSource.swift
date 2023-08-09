@@ -52,7 +52,7 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
             if let realm = self.realm {
                 let pokemons: Results<PokemonEntity> = {
                     realm.objects(PokemonEntity.self)
-                        .where{ $0.isFavorite }
+                        .where { $0.isFavorite }
                         .sorted(byKeyPath: "id", ascending: true)
                 }()
                 observer.onNext(pokemons.toArray(ofType: PokemonEntity.self))
@@ -64,8 +64,6 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
             return Disposables.create()
         }
     }
-    
-    
     
     func addPokemonFavorite(from pokemon: PokemonEntity) -> RxSwift.Observable<Bool> {
         return Observable<Bool>.create { observer in
@@ -86,8 +84,6 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
             return Disposables.create()
         }
     }
-    
-    
 }
 
 extension Results {
@@ -103,4 +99,3 @@ extension Results {
   }
 
 }
-

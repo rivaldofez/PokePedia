@@ -23,7 +23,6 @@ final class RemoteDataSource: NSObject {
     static let sharedInstance: RemoteDataSource = RemoteDataSource()
 }
 
-
 extension RemoteDataSource: RemoteDataSourceProtocol {
     private func getPokemonSource(offset: Int, limit: Int) -> Observable<PokemonPageResponse> {
         return Observable<PokemonPageResponse>.create { observer in
@@ -46,7 +45,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
     
     private func getPokemonDetail(urlString: String) -> Observable<PokemonDetailResponse> {
         return Observable<PokemonDetailResponse>.create { observer in
-            if let url = URL(string: urlString){
+            if let url = URL(string: urlString) {
                 AF.request(url)
                     .responseDecodable(of: PokemonDetailResponse.self) { response in
                         switch response.result {

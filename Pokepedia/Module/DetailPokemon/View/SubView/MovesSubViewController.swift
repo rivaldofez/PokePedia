@@ -33,7 +33,7 @@ class MovesSubViewController: UIViewController {
         configureConstraints()
     }
     
-    private func configureConstraints(){
+    private func configureConstraints() {
         let movesTableViewConstraints = [
             movesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             movesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -45,7 +45,7 @@ class MovesSubViewController: UIViewController {
     }
 }
 
-extension MovesSubViewController: UITableViewDelegate, UITableViewDataSource{
+extension MovesSubViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pokemon?.moves.count ?? 0
     }

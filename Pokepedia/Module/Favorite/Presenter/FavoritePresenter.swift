@@ -69,4 +69,3 @@ class FavoritePresenter: FavoritePresenterProtocol {
             }.disposed(by: disposeBag)
     }
 }
-

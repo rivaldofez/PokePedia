@@ -27,11 +27,11 @@ class MovesTableViewCell: UITableViewCell {
         configureConstraints()
     }
     
-    func configure(with move: String){
+    func configure(with move: String) {
         titleLabel.text = move.capitalized
     }
     
-    private func configureConstraints(){
+    private func configureConstraints() {
         let titleLabelConstraints = [
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),

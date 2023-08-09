@@ -13,8 +13,7 @@ protocol ProfileRouterProtocol {
     static func createProfile() -> ProfileRouterProtocol
 }
 
-
-class ProfileRouter : ProfileRouterProtocol {
+class ProfileRouter: ProfileRouterProtocol {
     var entry: ProfileViewController?
     
     static func createProfile() -> ProfileRouterProtocol {
@@ -24,13 +23,11 @@ class ProfileRouter : ProfileRouterProtocol {
         
         var presenter: ProfilePresenterProtocol = ProfilePresenter()
         
-        
         view.presenter = presenter
         presenter.router = router
         presenter.profileView = view
         router.entry = view as? ProfileViewController
-        
-        
+    
         return router
     }
 }

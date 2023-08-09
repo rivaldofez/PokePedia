@@ -254,12 +254,11 @@ class DetailPokemonViewController:
         view.addSubview(backdropLoading)
         view.addSubview(loadingAnimation)
         
-        
         configureConstraints()
         configureStackButton()
     }
     
-    @objc private func favoriteAction(){
+    @objc private func favoriteAction() {
         pokemon?.isFavorite.toggle()
         if let pokemon = self.pokemon {
             showFavoriteButton(isFavorite: pokemon.isFavorite)
@@ -267,11 +266,11 @@ class DetailPokemonViewController:
         }
     }
     
-    private func showFavoriteButton(isFavorite: Bool){
-        if(self.navigationItem.rightBarButtonItem == nil ){
+    private func showFavoriteButton(isFavorite: Bool) {
+        if self.navigationItem.rightBarButtonItem == nil {
             let button = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteAction))
             
-            if (isFavorite){
+            if isFavorite {
                 button.image = UIImage(systemName: "heart.fill")
                 button.tintColor = UIColor.red
             } else {
@@ -282,7 +281,7 @@ class DetailPokemonViewController:
             navigationItem.rightBarButtonItem = button
             
         } else {
-            if (isFavorite){
+            if isFavorite {
                 self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
                 self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
             } else {
@@ -290,8 +289,6 @@ class DetailPokemonViewController:
                 self.navigationItem.rightBarButtonItem?.tintColor = UIColor.gray
             }
         }
-        
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -299,8 +296,8 @@ class DetailPokemonViewController:
         backdropLoading.frame = view.bounds
     }
     
-    private func configureStackButton(){
-        for (i, button) in sectionStackView.arrangedSubviews.enumerated(){
+    private func configureStackButton() {
+        for (i, button) in sectionStackView.arrangedSubviews.enumerated() {
             guard let button = button as? UIButton else { return }
             
             if i == selectedTab {
@@ -313,7 +310,7 @@ class DetailPokemonViewController:
         }
     }
     
-    @objc private func didTapTab(_ sender: UIButton){
+    @objc private func didTapTab(_ sender: UIButton) {
         guard let label = sender.titleLabel?.text else { return }
         switch label {
         case SectionTabs.about.rawValue:
@@ -339,7 +336,7 @@ class DetailPokemonViewController:
         }
     }
     
-    private func configureConstraints(){
+    private func configureConstraints() {
         let pokemonImageViewConstraints = [
             pokemonImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             pokemonImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -403,7 +400,7 @@ class DetailPokemonViewController:
         NSLayoutConstraint.activate(loadingAnimationConstraints)
     }
     
-    private func showLoading(isLoading: Bool){
+    private func showLoading(isLoading: Bool) {
         UIView.transition(with: loadingAnimation, duration: 0.4) {
             self.loadingAnimation.isHidden = !isLoading
         }
@@ -413,7 +410,7 @@ class DetailPokemonViewController:
         }
     }
     
-    private func showError(isError: Bool){
+    private func showError(isError: Bool) {
         UIView.transition(with: errorStackView, duration: 0.4, options: .transitionCrossDissolve) {
             self.errorStackView.isHidden = !isError
         }
@@ -443,14 +440,13 @@ class DetailPokemonViewController:
         }
     }
     
-    
-    private func removeSubViewController(viewController: UIViewController){
+    private func removeSubViewController(viewController: UIViewController) {
         viewController.willMove(toParent: nil)
         viewController.view.removeFromSuperview()
         viewController.removeFromParent()
     }
     
-    func addSubViewController(viewController: UIViewController, contentView: UIView){
+    func addSubViewController(viewController: UIViewController, contentView: UIView) {
         viewController.view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(viewController.view)
         

@@ -127,7 +127,7 @@ final class PokemonConverter {
         guard let pokemonStat = PokemonStat(rawValue: type) else { return "unknown"}
         
         switch pokemonStat {
-        case .hp :
+        case .hp:
             return "Hp"
         case .attack:
             return "Atk"

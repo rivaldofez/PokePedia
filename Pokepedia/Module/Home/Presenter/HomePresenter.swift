@@ -21,7 +21,7 @@ protocol HomePresenterProtocol {
     func navigateToProfile()
 }
 
-class HomePresenter: HomePresenterProtocol{
+class HomePresenter: HomePresenterProtocol {
     private let disposeBag = DisposeBag()
     var router: HomeRouterProtocol?
     var view: HomeViewProtocol?
@@ -40,10 +40,10 @@ class HomePresenter: HomePresenterProtocol{
     }
     
     var isLoadingData: Bool = false {
-        didSet{
-            if isLoadingData{
+        didSet {
+            if isLoadingData {
                 view?.isLoadingData(with: true)
-            }else{
+            } else {
                 view?.isLoadingData(with: false)
             }
         }
@@ -53,11 +53,11 @@ class HomePresenter: HomePresenterProtocol{
         router?.gotoDetailPokemon(with: pokemon)
     }
     
-    func navigateToProfile(){
+    func navigateToProfile() {
         router?.gotoProfile()
     }
     
-    func getPokemonDataPagination(offset: Int, limit: Int){
+    func getPokemonDataPagination(offset: Int, limit: Int) {
         isLoadingData = true
         
         interactor?.getPokemonDataPagination(offset: offset, limit: limit)

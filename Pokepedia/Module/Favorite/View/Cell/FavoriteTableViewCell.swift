@@ -112,7 +112,7 @@ class FavoriteTableViewCell: UITableViewCell {
         
     }
     
-    private func configureConstraints(){
+    private func configureConstraints() {
         let pokemonImageViewConstraints = [
             pokemonImageView.leadingAnchor.constraint(equalTo: pokeballImageView.leadingAnchor, constant: 16),
             pokemonImageView.trailingAnchor.constraint(equalTo: pokeballImageView.trailingAnchor, constant: -16),
@@ -141,7 +141,7 @@ class FavoriteTableViewCell: UITableViewCell {
         
         let pokemonTypeStackViewConstraints = [
             pokemonTypeStackView.leadingAnchor.constraint(equalTo: pokeballImageView.trailingAnchor, constant: 8),
-            pokemonTypeStackView.topAnchor.constraint(equalTo: pokemonNameLabel.bottomAnchor, constant: 4),
+            pokemonTypeStackView.topAnchor.constraint(equalTo: pokemonNameLabel.bottomAnchor, constant: 4)
         ]
         
         NSLayoutConstraint.activate(pokemonImageViewConstraints)
@@ -151,7 +151,7 @@ class FavoriteTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(pokemonTypeStackViewConstraints)
     }
     
-    func configure(with model: Pokemon){
+    func configure(with model: Pokemon) {
         pokemonNumberLabel.text = "No.\(model.id)"
         pokemonNameLabel.text = model.name.capitalized
         
@@ -162,12 +162,10 @@ class FavoriteTableViewCell: UITableViewCell {
             pokemonTypeStackView.addArrangedSubview(configureChip(title: title))
         }
         
-        
         guard let typeElement = model.type.first else { return }
         
         contentView.layer.borderColor = UIColor(named: PokemonConverter.typeStringToColorName(type: typeElement))?.cgColor
     }
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -8,8 +8,7 @@
 import Foundation
 import RealmSwift
 
-
-class PokemonEntity: Object{
+class PokemonEntity: Object {
     @Persisted(primaryKey: true) var id: Int
     @Persisted var name: String
     @Persisted var image: String
@@ -23,7 +22,7 @@ class PokemonEntity: Object{
     @Persisted var isFavorite: Bool
 }
 
-class BaseStatEntity: Object{
+class BaseStatEntity: Object {
     @Persisted var name: String
     @Persisted var effort: Int
     @Persisted var value: Int

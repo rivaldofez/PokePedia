@@ -83,7 +83,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         configureConstraints()
     }
     
-    func configure(with model: Pokemon){
+    func configure(with model: Pokemon) {
         pokemonNumberLabel.text = "No.\(model.id)"
         pokemonNameLabel.text = model.name.capitalized
         
@@ -96,7 +96,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         contentView.layer.borderColor = UIColor(named: PokemonConverter.typeStringToColorName(type: typeElement))?.cgColor
     }
     
-    private func configureConstraints(){
+    private func configureConstraints() {
         
         let pokemonImageViewConstraints = [
             pokemonImageView.leadingAnchor.constraint(equalTo: containerImage.leadingAnchor, constant: 10),
@@ -128,7 +128,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         
         let pokemonNameLabelConstraints = [
             pokemonNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            pokemonNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -10),
+            pokemonNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             pokemonNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             pokemonNameLabel.heightAnchor.constraint(equalToConstant: 20)
         ]

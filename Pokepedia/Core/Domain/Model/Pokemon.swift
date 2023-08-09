@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Pokemon: Identifiable{
+struct Pokemon: Identifiable {
     let id: Int
     let name: String
     let image: String
@@ -21,7 +21,7 @@ struct Pokemon: Identifiable{
     var isFavorite: Bool = false
 }
 
-struct BaseStat{
+struct BaseStat {
     let name: String
     let effort: Int
     let value: Int

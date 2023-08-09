@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 protocol FavoriteRouterProtocol {
     var entry: FavoriteViewController? { get set }
     
@@ -19,11 +18,10 @@ protocol FavoriteRouterProtocol {
 class FavoriteRouter: FavoriteRouterProtocol {
     var entry: FavoriteViewController?
     
-
     static func createFavorite() -> FavoriteRouterProtocol {
         let router = FavoriteRouter()
         
-        //assign vip
+        // assign vip
         var view: FavoriteViewProtocol = FavoriteViewController()
         
         var presenter: FavoritePresenterProtocol = FavoritePresenter()

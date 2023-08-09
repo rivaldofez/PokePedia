@@ -51,14 +51,12 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         return view
     }()
     
-    
     private lazy var errorLabel: UILabel = {
         let label = UILabel()
         label.text = "Error occured while load pokemon data"
         label.textColor = .label
         label.font = .poppinsBold(size: 16)
         label.textAlignment = .center
-        
         
         return label
     }()
@@ -126,8 +124,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         showError(isError: true)
     }
     
-    @objc private func showProfileView(){
-        //navigate to profile page
+    @objc private func showProfileView() {
+        // navigate to profile page
         presenter?.navigateToProfile()
     }
     
@@ -150,17 +148,17 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         NSLayoutConstraint.activate(loadingAnimationConstraints)
     }
     
-    private func showLoading(isLoading: Bool){
+    private func showLoading(isLoading: Bool) {
         UIView.transition(with: loadingAnimation, duration: 0.4, options: .transitionCrossDissolve) {
             self.loadingAnimation.isHidden = !isLoading
         }
         
-        UIView.transition(with: backdropLoading, duration: 0.4,  options: .transitionCrossDissolve) {
+        UIView.transition(with: backdropLoading, duration: 0.4, options: .transitionCrossDissolve) {
             self.backdropLoading.isHidden = !isLoading
         }
     }
     
-    private func showError(isError: Bool){
+    private func showError(isError: Bool) {
         UIView.transition(with: errorStackView, duration: 0.4, options: .transitionCrossDissolve) {
             self.errorStackView.isHidden = !isError
         }
@@ -200,7 +198,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
-        if position > (pokemonCollectionView.contentSize.height - 100 - scrollView.frame.size.height){
+        if position > (pokemonCollectionView.contentSize.height - 100 - scrollView.frame.size.height) {
             
             guard let isLoadingData = presenter?.isLoadingData else { return }
             if !isLoadingData {
