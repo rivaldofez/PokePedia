@@ -23,16 +23,13 @@ class DetailPokemonViewController:
     
     private func showToggleFavoriteAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
         let okButton = UIAlertAction(title: "OK", style: .default)
-        
         alert.addAction(okButton)
-        
         self.present(alert, animated: true)
     }
     
     func updateSaveToggleFavorite(with error: String) {
-        
+        showToggleFavoriteAlert(title: "An Error Occured", message: "Oops, cannot process your due to system error, please try again")
     }
     
     func updateSaveToggleFavorite(with state: Bool) {
