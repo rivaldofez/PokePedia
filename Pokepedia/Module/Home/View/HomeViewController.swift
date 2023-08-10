@@ -23,6 +23,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     private var pokemonDataPagination: [Pokemon] = []
     private let disposeBag = DisposeBag()
     
+    // MARK: View Components
+    // Pokemon Collection View
     private lazy var pokemonCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -36,6 +38,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         return collectionView
     }()
     
+    // Loading View
     private lazy var loadingAnimation: LottieAnimationView = {
         let lottie = LottieAnimationView(name: "loading")
         lottie.translatesAutoresizingMaskIntoConstraints = false
@@ -51,6 +54,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         return view
     }()
     
+    // Error View
     private lazy var errorLabel: UILabel = {
         let label = UILabel()
         label.text = "Error occured while load pokemon data"
@@ -106,6 +110,28 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         backdropLoading.frame = view.bounds
     }
     
+    // MARK: Auto Layout Constraints
+    private func configureConstraints() {
+        let errorStackViewConstraints = [
+            errorStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            errorStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ]
+        
+        let loadingAnimationConstraints = [
+            loadingAnimation.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingAnimation.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingAnimation.heightAnchor.constraint(equalToConstant: 200)
+            
+        ]
+        
+        NSLayoutConstraint.activate(errorStackViewConstraints)
+        NSLayoutConstraint.activate(loadingAnimationConstraints)
+    }
+    
+    // MARK: Presenter Action
+    
     func isLoadingData(with state: Bool) {
         showLoading(isLoading: true)
     }
@@ -124,28 +150,9 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         showError(isError: true)
     }
     
+    // MARK: Button Action
     @objc private func showProfileView() {
-        // navigate to profile page
         presenter?.navigateToProfile()
-    }
-    
-    private func configureConstraints() {
-        let errorStackViewConstraints = [
-            errorStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            errorStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ]
-        
-        let loadingAnimationConstraints = [
-            loadingAnimation.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            loadingAnimation.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            loadingAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            loadingAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loadingAnimation.heightAnchor.constraint(equalToConstant: 200)
-            
-        ]
-        
-        NSLayoutConstraint.activate(errorStackViewConstraints)
-        NSLayoutConstraint.activate(loadingAnimationConstraints)
     }
     
     private func showLoading(isLoading: Bool) {

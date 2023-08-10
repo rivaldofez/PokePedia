@@ -11,6 +11,7 @@ import SDWebImage
 class PokemonCollectionViewCell: UICollectionViewCell {
     static let identifier = "PokemonCollectionViewCell"
     
+    // MARK: View Components
     private let pokemonImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -83,19 +84,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         configureConstraints()
     }
     
-    func configure(with model: Pokemon) {
-        pokemonNumberLabel.text = "No.\(model.id)"
-        pokemonNameLabel.text = model.name.capitalized
-        
-        guard let imageUrl = URL(string: model.image) else { return }
-        pokemonImageView.sd_setImage(with: imageUrl)
-        
-        guard let typeElement = model.type.first else { return }
-        pokemonTypeImageView.image = UIImage(named: PokemonConverter.typeStringToIconName(type: typeElement))
-        
-        contentView.layer.borderColor = UIColor(named: PokemonConverter.typeStringToColorName(type: typeElement))?.cgColor
-    }
-    
+    // MARK: Auto Layout Constraints
     private func configureConstraints() {
         
         let pokemonImageViewConstraints = [
@@ -146,6 +135,20 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate(pokemonImageViewConstraints)
         NSLayoutConstraint.activate(pokemonTypeImageViewConstraints)
         NSLayoutConstraint.activate(containerImageConstraints)
+    }
+    
+    // MARK: Cell Data Bind
+    func configure(with model: Pokemon) {
+        pokemonNumberLabel.text = "No.\(model.id)"
+        pokemonNameLabel.text = model.name.capitalized
+        
+        guard let imageUrl = URL(string: model.image) else { return }
+        pokemonImageView.sd_setImage(with: imageUrl)
+        
+        guard let typeElement = model.type.first else { return }
+        pokemonTypeImageView.image = UIImage(named: PokemonConverter.typeStringToIconName(type: typeElement))
+        
+        contentView.layer.borderColor = UIColor(named: PokemonConverter.typeStringToColorName(type: typeElement))?.cgColor
     }
     
     required init?(coder: NSCoder) {

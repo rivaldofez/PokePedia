@@ -7,10 +7,10 @@
 
 import UIKit
 
-typealias BeginPoint = HomeViewProtocol & UIViewController
+typealias EntryPoint = HomeViewProtocol & UIViewController
 
 protocol HomeRouterProtocol {
-    var begin: BeginPoint? { get }
+    var entry: EntryPoint? { get }
     
     static func start() -> HomeRouterProtocol
     
@@ -20,7 +20,7 @@ protocol HomeRouterProtocol {
 }
 
 class HomeRouter: HomeRouterProtocol {
-    var begin: BeginPoint?
+    var entry: EntryPoint?
     
     static func start() -> HomeRouterProtocol {
         let router = HomeRouter()
@@ -34,7 +34,7 @@ class HomeRouter: HomeRouterProtocol {
         presenter.view = view
         presenter.interactor = interactor
         
-        router.begin = view as? BeginPoint
+        router.entry = view as? EntryPoint
         
         return router
     }
@@ -42,7 +42,7 @@ class HomeRouter: HomeRouterProtocol {
     func gotoDetailPokemon(with pokemon: Pokemon) {
         let detailPokemonRouter = DetailPokemonRouter.createDetailPokemon(with: pokemon)
         guard let detailPokemonView = detailPokemonRouter.entry else { return }
-        guard let viewController = self.begin else { return }
+        guard let viewController = self.entry else { return }
         
         viewController.hidesBottomBarWhenPushed = true
         viewController.navigationController?.pushViewController(detailPokemonView, animated: true)
@@ -52,7 +52,7 @@ class HomeRouter: HomeRouterProtocol {
     func gotoProfile() {
         let profileRouter = ProfileRouter.createProfile()
         guard let profileView = profileRouter.entry else { return }
-        guard let viewController = self.begin else { return }
+        guard let viewController = self.entry else { return }
         
         viewController.navigationController?.pushViewController(profileView, animated: true)
     }

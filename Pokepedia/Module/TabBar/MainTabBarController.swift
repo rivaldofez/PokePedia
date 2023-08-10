@@ -18,7 +18,7 @@ class MainTabBarController: UITabBarController {
     
     private func setupTabs() {
         let homeRouter = HomeRouter.start()
-        guard let homeVC = homeRouter.begin else { return }
+        guard let homeVC = homeRouter.entry else { return }
         
         let homeNavItem = self.createNav(with: "List", and: UIImage(systemName: "list.bullet.below.rectangle"), vc: homeVC)
         
