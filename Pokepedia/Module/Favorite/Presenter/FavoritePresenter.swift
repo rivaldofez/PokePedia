@@ -57,7 +57,6 @@ class FavoritePresenter: FavoritePresenterProtocol {
     }
     
     func saveToggleFavorite(pokemon: Pokemon) {
-        isLoadingData = true
         interactor?.saveFavoritePokemon(pokemon: pokemon)
             .observe(on: MainScheduler.instance)
             .subscribe { [weak self] result in
@@ -65,7 +64,7 @@ class FavoritePresenter: FavoritePresenterProtocol {
             } onError: { error in
                 self.view?.updateSaveToggleFavorite(with: error.localizedDescription)
             } onCompleted: {
-                self.isLoadingData = false
+//                self.isLoadingData = false
             }.disposed(by: disposeBag)
     }
 }

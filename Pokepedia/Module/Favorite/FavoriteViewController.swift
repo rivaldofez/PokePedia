@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import Lottie
 
 protocol FavoriteViewProtocol {
     var presenter: FavoritePresenterProtocol? { get set }
@@ -31,29 +32,45 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
     }
     
     func updateSaveToggleFavorite(with error: String) {
-        
+        func updateSaveToggleFavorite(with error: String) {
+            showToggleFavoriteAlert(title: "An Error Occured", message: "Oops, cannot process your due to system error, please try again")
+        }
+        presenter?.getFavoritePokemonList()
     }
     
     func updateSaveToggleFavorite(with state: Bool) {
-        showToggleFavoriteAlert(title: "Success", message: "Pokemon has been added to favorite list")
+        if state {
+            showToggleFavoriteAlert(title: "Added To Favorite", message: "This pokemon successfully added to your favorite list")
+        } else {
+            showToggleFavoriteAlert(title: "Removed From Favorite", message: "This pokemon successfully removed from your favorite list")
+        }
     }
     
     var presenter: FavoritePresenterProtocol?
     
     func updatePokemonFavorite(with pokemons: [Pokemon]) {
-        DispatchQueue.main.async {
-            self.pokemonData.removeAll()
-            self.pokemonData.append(contentsOf: pokemons)
-            self.pokemonTableView.reloadData()
+        if pokemons.isEmpty {
+            DispatchQueue.main.async {
+                self.pokemonData.removeAll()
+                self.pokemonTableView.reloadData()
+                self.showError(isError: true, message: "There is no pokemon added to favorite", animation: "empty")
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.pokemonData.removeAll()
+                self.pokemonData.append(contentsOf: pokemons)
+                self.pokemonTableView.reloadData()
+                self.showError(isError: false)
+            }
         }
     }
     
     func updatePokemonFavorite(with error: String) {
-        print("failed \(error)")
+        showError(isError: true, message: "Error occured while load pokemon data", animation: "error")
     }
     
     func isLoadingData(with state: Bool) {
-        
+        showLoading(isLoading: state)
     }
     
     private var pokemonData: [Pokemon] = []
@@ -66,6 +83,50 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         tableView.register(FavoriteTableViewCell.self, forCellReuseIdentifier: FavoriteTableViewCell.identifier)
         return tableView
     }()
+    
+    private lazy var loadingAnimation: LottieAnimationView = {
+        let lottie = LottieAnimationView(name: "loading")
+        lottie.translatesAutoresizingMaskIntoConstraints = false
+        lottie.play()
+        lottie.loopMode = .loop
+        return lottie
+    }()
+    
+    private lazy var backdropLoading: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .gray.withAlphaComponent(0.3)
+        return view
+    }()
+    
+    private lazy var errorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Error occured while load pokemon data"
+        label.textColor = .label
+        label.font = .poppinsBold(size: 16)
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    private lazy var errorAnimation: LottieAnimationView = {
+        let lottie = LottieAnimationView(name: "error")
+        lottie.translatesAutoresizingMaskIntoConstraints = false
+        lottie.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        lottie.play()
+        lottie.loopMode = .loop
+        return lottie
+    }()
+    
+    private lazy var errorStackView: UIStackView = {
+        let stackview = UIStackView(arrangedSubviews: [errorAnimation, errorLabel])
+        stackview.axis = .vertical
+        stackview.translatesAutoresizingMaskIntoConstraints = false
+        stackview.alignment = .center
+        stackview.spacing = 16
+        stackview.isHidden = true
+        return stackview
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +138,10 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         view.backgroundColor = .systemBackground
         
         view.addSubview(pokemonTableView)
+        view.addSubview(errorStackView)
+        view.addSubview(backdropLoading)
+        view.addSubview(loadingAnimation)
+        
         pokemonTableView.delegate = self
         pokemonTableView.dataSource = self
         
@@ -92,6 +157,21 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
             pokemonTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
+        let errorStackViewConstraints = [
+            errorStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            errorStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ]
+        
+        let loadingAnimationConstraints = [
+            loadingAnimation.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingAnimation.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingAnimation.heightAnchor.constraint(equalToConstant: 200)
+        ]
+        
+        NSLayoutConstraint.activate(errorStackViewConstraints)
+        NSLayoutConstraint.activate(loadingAnimationConstraints)
         NSLayoutConstraint.activate(pokemonTableViewConstraints)
     }
     
@@ -104,6 +184,10 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
 
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if pokemonData.count == 0 {
+            self.showError(isError: true, message: "There is no pokemon added to favorite", animation: "empty")
+        }
+        
         return pokemonData.count
     }
     
@@ -142,6 +226,32 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
             pokemonData.remove(at: indexPath.row)
             
             tableView.endUpdates()
+        }
+    }
+    
+    private func showError(isError: Bool, message: String? = nil, animation: String? = nil ) {
+        if let message = message, let animation = animation {
+            errorLabel.text = message
+            errorAnimation.animation = LottieAnimation.named(animation)
+            errorAnimation.play()
+        }
+        
+        UIView.transition(with: errorStackView, duration: 0.4, options: .transitionCrossDissolve) {
+            self.errorStackView.isHidden = !isError
+        }
+        
+        UIView.transition(with: pokemonTableView, duration: 0.4, options: .transitionCrossDissolve) {
+            self.pokemonTableView.isHidden = isError
+        }
+    }
+    
+    private func showLoading(isLoading: Bool) {
+        UIView.transition(with: loadingAnimation, duration: 0.4, options: .transitionCrossDissolve) {
+            self.loadingAnimation.isHidden = !isLoading
+        }
+        
+        UIView.transition(with: backdropLoading, duration: 0.4, options: .transitionCrossDissolve) {
+            self.backdropLoading.isHidden = !isLoading
         }
     }
     
