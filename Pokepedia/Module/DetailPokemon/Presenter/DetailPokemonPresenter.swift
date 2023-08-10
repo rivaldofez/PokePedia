@@ -18,19 +18,20 @@ protocol DetailPokemonPresenterProtocol {
     
     func getPokemon(with pokemon: Pokemon)
     
-    func saveFavoritePokemon(pokemon: Pokemon)
+    func saveToggleFavorite(pokemon: Pokemon)
 }
 
 class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
-    func saveFavoritePokemon(pokemon: Pokemon) {
+    func saveToggleFavorite(pokemon: Pokemon) {
+        self.isLoadingData = true
         interactor?.saveFavoritePokemon(pokemon: pokemon)
             .observe(on: MainScheduler.instance)
             .subscribe { [weak self] result in
-                
+                self?.detailPokemonView?.updateSaveToggleFavorite(with: result)
             } onError: { error in
-                
+                self.detailPokemonView?.updateSaveToggleFavorite(with: error.localizedDescription)
             } onCompleted: {
-                
+                self.isLoadingData = false
             }.disposed(by: disposeBag)
     }
     
@@ -45,7 +46,7 @@ class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
                 } else {
                     self?.detailPokemonView?.updatePokemon(with: pokemon)
                 }
-            } onError: { error in
+            } onError: { _ in
                 self.detailPokemonView?.updatePokemon(with: pokemon)
                 self.getPokemonSpecies(id: pokemon.id)
             } onCompleted: {

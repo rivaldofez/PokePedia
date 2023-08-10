@@ -16,12 +16,11 @@ protocol FavoritePresenterProtocol {
     var isLoadingData: Bool { get set }
     func getFavoritePokemonList()
     func didSelectPokemonItem(with pokemon: Pokemon)
-    
-    func saveFavoritePokemon(pokemon: Pokemon)
-    
+    func saveToggleFavorite(pokemon: Pokemon)
 }
 
 class FavoritePresenter: FavoritePresenterProtocol {
+    
     private let disposeBag = DisposeBag()
     
     var router: FavoriteRouterProtocol?
@@ -57,15 +56,16 @@ class FavoritePresenter: FavoritePresenterProtocol {
             }.disposed(by: disposeBag)
     }
     
-    func saveFavoritePokemon(pokemon: Pokemon) {
+    func saveToggleFavorite(pokemon: Pokemon) {
+        isLoadingData = true
         interactor?.saveFavoritePokemon(pokemon: pokemon)
             .observe(on: MainScheduler.instance)
             .subscribe { [weak self] result in
-                
+                self?.view?.updateSaveToggleFavorite(with: result)
             } onError: { error in
-                
+                self.view?.updateSaveToggleFavorite(with: error.localizedDescription)
             } onCompleted: {
-                
+                self.isLoadingData = false
             }.disposed(by: disposeBag)
     }
 }

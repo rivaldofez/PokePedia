@@ -70,6 +70,6 @@ extension PokemonRepository: PokemonRepositoryProtocol {
     }
     
     func addPokemonFavorite(pokemon: Pokemon) -> Observable<Bool> {
-        return self.locale.addPokemonFavorite(from: PokemonMapper.mapPokemonToEntity(input: pokemon))
+        return self.locale.saveToggleFavorite(from: PokemonMapper.mapPokemonToEntity(input: pokemon))
     }
 }

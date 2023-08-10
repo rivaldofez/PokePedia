@@ -11,7 +11,7 @@ import RxSwift
 
 protocol LocaleDataSourceProtocol: AnyObject {
     func getFavoritePokemonList() -> Observable<[PokemonEntity]>
-    func addPokemonFavorite(from pokemon: PokemonEntity) -> Observable<Bool>
+    func saveToggleFavorite(from pokemon: PokemonEntity) -> Observable<Bool>
     
     func getFavoritePokemonById(id: Int) -> Observable<PokemonEntity?>
 }
@@ -65,14 +65,14 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
         }
     }
     
-    func addPokemonFavorite(from pokemon: PokemonEntity) -> RxSwift.Observable<Bool> {
+    func saveToggleFavorite(from pokemon: PokemonEntity) -> RxSwift.Observable<Bool> {
         return Observable<Bool>.create { observer in
             if let realm = self.realm {
                 do {
                     try realm.write {
                         realm.add(pokemon, update: .all)
                     }
-                    observer.onNext(true)
+                    observer.onNext(pokemon.isFavorite)
                     observer.onCompleted()
                 } catch {
                     observer.onError(DatabaseError.requestFailed)

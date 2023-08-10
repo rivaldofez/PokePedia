@@ -13,11 +13,35 @@ protocol DetailPokemonViewProtocol {
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies)
     func updatePokemonSpecies(with error: String)
     func updatePokemon(with pokemon: Pokemon)
+    func updateSaveToggleFavorite(with error: String)
+    func updateSaveToggleFavorite(with state: Bool)
     func isLoadingData(with state: Bool)
 }
 
 class DetailPokemonViewController:
     UIViewController, DetailPokemonViewProtocol {
+    
+    private func showToggleFavoriteAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okButton = UIAlertAction(title: "OK", style: .default)
+        
+        alert.addAction(okButton)
+        
+        self.present(alert, animated: true)
+    }
+    
+    func updateSaveToggleFavorite(with error: String) {
+        
+    }
+    
+    func updateSaveToggleFavorite(with state: Bool) {
+        if state {
+            showToggleFavoriteAlert(title: "Added To Favorite", message: "This pokemon successfully added to your favorite list")
+        } else {
+            showToggleFavoriteAlert(title: "Removed From Favorite", message: "This pokemon successfully removed from your favorite list")
+        }
+    }
     
     var presenter: DetailPokemonPresenterProtocol?
     var aboutSubViewController = AboutSubViewController()
@@ -262,7 +286,7 @@ class DetailPokemonViewController:
         pokemon?.isFavorite.toggle()
         if let pokemon = self.pokemon {
             showFavoriteButton(isFavorite: pokemon.isFavorite)
-            presenter?.saveFavoritePokemon(pokemon: pokemon)
+            presenter?.saveToggleFavorite(pokemon: pokemon)
         }
     }
     

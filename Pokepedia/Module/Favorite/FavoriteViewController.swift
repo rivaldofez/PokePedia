@@ -13,10 +13,31 @@ protocol FavoriteViewProtocol {
     
     func updatePokemonFavorite(with pokemons: [Pokemon])
     func updatePokemonFavorite(with error: String)
+    func updateSaveToggleFavorite(with error: String)
+    func updateSaveToggleFavorite(with state: Bool)
     func isLoadingData(with state: Bool)
 }
 
 class FavoriteViewController: UIViewController, FavoriteViewProtocol {
+    
+    private func showToggleFavoriteAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okButton = UIAlertAction(title: "OK", style: .default)
+        
+        alert.addAction(okButton)
+        
+        self.present(alert, animated: true)
+    }
+    
+    func updateSaveToggleFavorite(with error: String) {
+        
+    }
+    
+    func updateSaveToggleFavorite(with state: Bool) {
+        showToggleFavoriteAlert(title: "Success", message: "Pokemon has been added to favorite list")
+    }
+    
     var presenter: FavoritePresenterProtocol?
     
     func updatePokemonFavorite(with pokemons: [Pokemon]) {
@@ -117,7 +138,7 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
             var model = pokemonData[indexPath.row]
             model.isFavorite = false
             
-            presenter?.saveFavoritePokemon(pokemon: model)
+            presenter?.saveToggleFavorite(pokemon: model)
             pokemonData.remove(at: indexPath.row)
             
             tableView.endUpdates()
