@@ -10,9 +10,7 @@ import RxSwift
 
 protocol FavoriteUseCase {
     func getFavoritePokemonList() -> Observable<[Pokemon]>
-    
     func saveFavoritePokemon(pokemon: Pokemon) -> Observable<Bool>
-    
 }
 
 class FavoriteInteractor: FavoriteUseCase {

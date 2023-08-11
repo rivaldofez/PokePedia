@@ -20,62 +20,14 @@ protocol FavoriteViewProtocol {
 }
 
 class FavoriteViewController: UIViewController, FavoriteViewProtocol {
-    
-    private func showToggleFavoriteAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let okButton = UIAlertAction(title: "OK", style: .default)
-        
-        alert.addAction(okButton)
-        
-        self.present(alert, animated: true)
-    }
-    
-    func updateSaveToggleFavorite(with error: String) {
-        func updateSaveToggleFavorite(with error: String) {
-            showToggleFavoriteAlert(title: "An Error Occured", message: "Oops, cannot process your due to system error, please try again")
-        }
-        presenter?.getFavoritePokemonList()
-    }
-    
-    func updateSaveToggleFavorite(with state: Bool) {
-        if state {
-            showToggleFavoriteAlert(title: "Added To Favorite", message: "This pokemon successfully added to your favorite list")
-        } else {
-            showToggleFavoriteAlert(title: "Removed From Favorite", message: "This pokemon successfully removed from your favorite list")
-        }
-    }
-    
+
     var presenter: FavoritePresenterProtocol?
-    
-    func updatePokemonFavorite(with pokemons: [Pokemon]) {
-        if pokemons.isEmpty {
-            DispatchQueue.main.async {
-                self.pokemonData.removeAll()
-                self.pokemonTableView.reloadData()
-                self.showError(isError: true, message: "There is no pokemon added to favorite", animation: "empty")
-            }
-        } else {
-            DispatchQueue.main.async {
-                self.pokemonData.removeAll()
-                self.pokemonData.append(contentsOf: pokemons)
-                self.pokemonTableView.reloadData()
-                self.showError(isError: false)
-            }
-        }
-    }
-    
-    func updatePokemonFavorite(with error: String) {
-        showError(isError: true, message: "Error occured while load pokemon data", animation: "error")
-    }
-    
-    func isLoadingData(with state: Bool) {
-        showLoading(isLoading: state)
-    }
     
     private var pokemonData: [Pokemon] = []
     private let disposeBag = DisposeBag()
     
+    // MARK: View Components
+    // Favorite Table View
     private lazy var pokemonTableView: UITableView = {
        let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,6 +36,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         return tableView
     }()
     
+    // Loading View
     private lazy var loadingAnimation: LottieAnimationView = {
         let lottie = LottieAnimationView(name: "loading")
         lottie.translatesAutoresizingMaskIntoConstraints = false
@@ -99,6 +52,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         return view
     }()
     
+    // Error View
     private lazy var errorLabel: UILabel = {
         let label = UILabel()
         label.text = "Error occured while load pokemon data"
@@ -144,11 +98,11 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         
         pokemonTableView.delegate = self
         pokemonTableView.dataSource = self
-        
         configureConstraints()
         
     }
     
+    // MARK: Auto Layout Constraints
     private func configureConstraints() {
         let pokemonTableViewConstraints = [
             pokemonTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -180,6 +134,83 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         presenter?.getFavoritePokemonList()
     }
     
+    // MARK: Presenter Action
+    
+    func updateSaveToggleFavorite(with error: String) {
+        func updateSaveToggleFavorite(with error: String) {
+            showToggleFavoriteAlert(title: "An Error Occured", message: "Oops, cannot process your due to system error, please try again")
+        }
+        presenter?.getFavoritePokemonList()
+    }
+    
+    func updateSaveToggleFavorite(with state: Bool) {
+        if state {
+            showToggleFavoriteAlert(title: "Added To Favorite", message: "This pokemon successfully added to your favorite list")
+        } else {
+            showToggleFavoriteAlert(title: "Removed From Favorite", message: "This pokemon successfully removed from your favorite list")
+        }
+    }
+    
+    func updatePokemonFavorite(with pokemons: [Pokemon]) {
+        if pokemons.isEmpty {
+            DispatchQueue.main.async {
+                self.pokemonData.removeAll()
+                self.pokemonTableView.reloadData()
+                self.showError(isError: true, message: "There is no pokemon added to favorite", animation: "empty")
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.pokemonData.removeAll()
+                self.pokemonData.append(contentsOf: pokemons)
+                self.pokemonTableView.reloadData()
+                self.showError(isError: false)
+            }
+        }
+    }
+    
+    func updatePokemonFavorite(with error: String) {
+        showError(isError: true, message: "Error occured while load pokemon data", animation: "error")
+    }
+    
+    func isLoadingData(with state: Bool) {
+        showLoading(isLoading: state)
+    }
+    
+    private func showToggleFavoriteAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okButton = UIAlertAction(title: "OK", style: .default)
+        
+        alert.addAction(okButton)
+        
+        self.present(alert, animated: true)
+    }
+    
+    private func showError(isError: Bool, message: String? = nil, animation: String? = nil ) {
+        if let message = message, let animation = animation {
+            errorLabel.text = message
+            errorAnimation.animation = LottieAnimation.named(animation)
+            errorAnimation.play()
+        }
+        
+        UIView.transition(with: errorStackView, duration: 0.4, options: .transitionCrossDissolve) {
+            self.errorStackView.isHidden = !isError
+        }
+        
+        UIView.transition(with: pokemonTableView, duration: 0.4, options: .transitionCrossDissolve) {
+            self.pokemonTableView.isHidden = isError
+        }
+    }
+    
+    private func showLoading(isLoading: Bool) {
+        UIView.transition(with: loadingAnimation, duration: 0.4, options: .transitionCrossDissolve) {
+            self.loadingAnimation.isHidden = !isLoading
+        }
+        
+        UIView.transition(with: backdropLoading, duration: 0.4, options: .transitionCrossDissolve) {
+            self.backdropLoading.isHidden = !isLoading
+        }
+    }
 }
 
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
@@ -226,32 +257,6 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
             pokemonData.remove(at: indexPath.row)
             
             tableView.endUpdates()
-        }
-    }
-    
-    private func showError(isError: Bool, message: String? = nil, animation: String? = nil ) {
-        if let message = message, let animation = animation {
-            errorLabel.text = message
-            errorAnimation.animation = LottieAnimation.named(animation)
-            errorAnimation.play()
-        }
-        
-        UIView.transition(with: errorStackView, duration: 0.4, options: .transitionCrossDissolve) {
-            self.errorStackView.isHidden = !isError
-        }
-        
-        UIView.transition(with: pokemonTableView, duration: 0.4, options: .transitionCrossDissolve) {
-            self.pokemonTableView.isHidden = isError
-        }
-    }
-    
-    private func showLoading(isLoading: Bool) {
-        UIView.transition(with: loadingAnimation, duration: 0.4, options: .transitionCrossDissolve) {
-            self.loadingAnimation.isHidden = !isLoading
-        }
-        
-        UIView.transition(with: backdropLoading, duration: 0.4, options: .transitionCrossDissolve) {
-            self.backdropLoading.isHidden = !isLoading
         }
     }
     

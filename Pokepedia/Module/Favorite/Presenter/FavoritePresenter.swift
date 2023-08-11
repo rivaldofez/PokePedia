@@ -24,14 +24,12 @@ class FavoritePresenter: FavoritePresenterProtocol {
     private let disposeBag = DisposeBag()
     
     var router: FavoriteRouterProtocol?
-    
+    var view: FavoriteViewProtocol?
     var interactor: FavoriteUseCase? {
         didSet {
             getFavoritePokemonList()
         }
     }
-    
-    var view: FavoriteViewProtocol?
     
     var isLoadingData: Bool = false {
         didSet {
@@ -64,7 +62,7 @@ class FavoritePresenter: FavoritePresenterProtocol {
             } onError: { error in
                 self.view?.updateSaveToggleFavorite(with: error.localizedDescription)
             } onCompleted: {
-//                self.isLoadingData = false
+                self.isLoadingData = false
             }.disposed(by: disposeBag)
     }
 }

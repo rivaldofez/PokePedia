@@ -10,6 +10,7 @@ import UIKit
 class FavoriteTableViewCell: UITableViewCell {
     static let identifier = "FavoriteTableViewCell"
     
+    // MARK: View Components
     private let pokemonImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -59,34 +60,6 @@ class FavoriteTableViewCell: UITableViewCell {
         return label
     }()
     
-    private func configureChip(title: String) -> UIStackView {
-        let stackView = UIStackView()
-        
-        let label = UILabel()
-        label.font = .poppinsMedium(size: 12)
-        label.text = title.capitalized
-        
-        let imageview = UIImageView()
-        imageview.image = UIImage(named: PokemonConverter.typeStringToIconName(type: title))
-        imageview.contentMode = .scaleAspectFit
-        imageview.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        imageview.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        imageview.clipsToBounds = true
-        
-        stackView.spacing = 5
-        stackView.addArrangedSubview(imageview)
-        stackView.addArrangedSubview(label)
-        
-        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.axis = .horizontal
-        stackView.alignment = .center
-        stackView.backgroundColor = UIColor(named: PokemonConverter.typeStringToColorName(type: title))
-        stackView.layer.cornerRadius = 15
-        
-        return stackView
-    }
-    
     private lazy var pokemonTypeStackView: UIStackView = {
         let stackView = UIStackView()
 
@@ -109,9 +82,16 @@ class FavoriteTableViewCell: UITableViewCell {
         contentView.addSubview(pokemonNumberLabel)
         
         configureConstraints()
-        
     }
     
+    // Reset Cell For Reuse
+    override func prepareForReuse() {
+        for view in pokemonTypeStackView.arrangedSubviews {
+            view.removeFromSuperview()
+        }
+    }
+    
+    // MARK: Auto Layout Constraints
     private func configureConstraints() {
         let pokemonImageViewConstraints = [
             pokemonImageView.leadingAnchor.constraint(equalTo: pokeballImageView.leadingAnchor, constant: 16),
@@ -151,6 +131,7 @@ class FavoriteTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(pokemonTypeStackViewConstraints)
     }
     
+    // MARK: Cell Data Bind
     func configure(with model: Pokemon) {
         pokemonNumberLabel.text = "No.\(model.id)"
         pokemonNameLabel.text = model.name.capitalized
@@ -167,13 +148,36 @@ class FavoriteTableViewCell: UITableViewCell {
         contentView.layer.borderColor = UIColor(named: PokemonConverter.typeStringToColorName(type: typeElement))?.cgColor
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    // Chip Configuration
+    private func configureChip(title: String) -> UIStackView {
+        let stackView = UIStackView()
+        
+        let label = UILabel()
+        label.font = .poppinsMedium(size: 12)
+        label.text = title.capitalized
+        
+        let imageview = UIImageView()
+        imageview.image = UIImage(named: PokemonConverter.typeStringToIconName(type: title))
+        imageview.contentMode = .scaleAspectFit
+        imageview.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        imageview.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        imageview.clipsToBounds = true
+        
+        stackView.spacing = 5
+        stackView.addArrangedSubview(imageview)
+        stackView.addArrangedSubview(label)
+        
+        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.backgroundColor = UIColor(named: PokemonConverter.typeStringToColorName(type: title))
+        stackView.layer.cornerRadius = 15
+        
+        return stackView
     }
     
-    override func prepareForReuse() {
-        for view in pokemonTypeStackView.arrangedSubviews {
-            view.removeFromSuperview()
-        }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

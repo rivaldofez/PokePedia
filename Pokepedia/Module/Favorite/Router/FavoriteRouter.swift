@@ -20,12 +20,9 @@ class FavoriteRouter: FavoriteRouterProtocol {
     
     static func createFavorite() -> FavoriteRouterProtocol {
         let router = FavoriteRouter()
-        
-        // assign vip
+    
         var view: FavoriteViewProtocol = FavoriteViewController()
-        
         var presenter: FavoritePresenterProtocol = FavoritePresenter()
-        
         let interactor: FavoriteUseCase = Injection.init().provideFavorite()
         
         view.presenter = presenter
