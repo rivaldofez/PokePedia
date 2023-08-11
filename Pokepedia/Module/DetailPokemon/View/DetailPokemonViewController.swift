@@ -10,6 +10,7 @@ import Lottie
 
 protocol DetailPokemonViewProtocol {
     var presenter: DetailPokemonPresenterProtocol? { get set }
+    
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies)
     func updatePokemonSpecies(with error: String)
     func updatePokemon(with pokemon: Pokemon)
@@ -49,8 +50,6 @@ class DetailPokemonViewController:
     
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies) {
         aboutSubViewController.pokemonSpecies = pokemonSpecies
-        
-        showLoading(isLoading: false)
         showError(isError: false)
     }
     
@@ -70,20 +69,15 @@ class DetailPokemonViewController:
         }
         
         indicator.backgroundColor = UIColor(named: PokemonConverter.typeStringToColorName(type: pokemon.type.first!))
-        
-        showLoading(isLoading: false)
         showError(isError: false)
-        
         showFavoriteButton(isFavorite: pokemon.isFavorite)
-        
     }
     
     func isLoadingData(with state: Bool) {
-        showLoading(isLoading: true)
+        showLoading(isLoading: state)
     }
     
     func updatePokemonSpecies(with error: String) {
-        showLoading(isLoading: false)
         showError(isError: true)
     }
     
@@ -105,6 +99,8 @@ class DetailPokemonViewController:
         static let allCases = [about, stat, moves]
     }
     
+    // MARK: View Components
+    // Section Button
     private var sectionTabButtons: [UIButton] = SectionTabs.allCases.map { sectionCase in
         let button = UIButton(type: .system)
         button.setTitle(sectionCase.rawValue, for: .normal)
@@ -119,51 +115,6 @@ class DetailPokemonViewController:
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .equalSpacing
         stackView.axis = .horizontal
-        stackView.alignment = .center
-        return stackView
-        
-    }()
-    
-    private func configureChip(title: String) -> UIStackView {
-        let stackView = UIStackView()
-        
-        let label = UILabel()
-        label.font = .poppinsMedium(size: 12)
-        label.text = title.capitalized
-        
-        let imageview = UIImageView()
-        imageview.image = UIImage(named: PokemonConverter.typeStringToIconName(type: title))
-        imageview.contentMode = .scaleAspectFit
-        imageview.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        imageview.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        imageview.clipsToBounds = true
-        
-        stackView.spacing = 5
-        stackView.addArrangedSubview(imageview)
-        stackView.addArrangedSubview(label)
-        
-        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.axis = .horizontal
-        stackView.alignment = .center
-        stackView.backgroundColor = UIColor(named: PokemonConverter.typeStringToColorName(type: title))
-        stackView.layer.cornerRadius = 15
-        
-        return stackView
-    }
-    
-    private lazy var chipType: [UIStackView] = []
-    
-    private lazy var pokemonTypeStackView: UIStackView = {
-        let stackView = UIStackView()
-        
-        stackView.axis = .horizontal
-        for chip in chipType {
-            stackView.addArrangedSubview(chip)
-        }
-        
-        stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.alignment = .center
         return stackView
     }()
@@ -186,12 +137,37 @@ class DetailPokemonViewController:
         }
     }
     
+    private let indicator: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     private var sectionViewContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
+    // Chip Item
+    private lazy var chipType: [UIStackView] = []
+    
+    private lazy var pokemonTypeStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        
+        for chip in chipType {
+            stackView.addArrangedSubview(chip)
+        }
+        
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .center
+        return stackView
+    }()
+    
+    // Pokemon Image
     private let pokemonImageView: UIImageView = {
         let imageview = UIImageView()
         imageview.translatesAutoresizingMaskIntoConstraints = false
@@ -200,13 +176,7 @@ class DetailPokemonViewController:
         return imageview
     }()
     
-    private let indicator: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
-    }()
-    
+    // Loading View
     private lazy var loadingAnimation: LottieAnimationView = {
         let lottie = LottieAnimationView(name: "loading")
         lottie.translatesAutoresizingMaskIntoConstraints = false
@@ -222,6 +192,7 @@ class DetailPokemonViewController:
         return view
     }()
     
+    // Error View
     private lazy var errorLabel: UILabel = {
         let label = UILabel()
         label.text = "Error occured while load pokemon data"
@@ -269,47 +240,13 @@ class DetailPokemonViewController:
         view.addSubview(sectionStackView)
         view.addSubview(indicator)
         view.addSubview(sectionViewContainer)
-        addSubViewController(viewController: aboutSubViewController, contentView: sectionViewContainer)
-        
         view.addSubview(errorStackView)
         view.addSubview(backdropLoading)
         view.addSubview(loadingAnimation)
+        addSubViewController(viewController: aboutSubViewController, contentView: sectionViewContainer)
         
         configureConstraints()
         configureStackButton()
-    }
-    
-    @objc private func favoriteAction() {
-        pokemon?.isFavorite.toggle()
-        if let pokemon = self.pokemon {
-            showFavoriteButton(isFavorite: pokemon.isFavorite)
-            presenter?.saveToggleFavorite(pokemon: pokemon)
-        }
-    }
-    
-    private func showFavoriteButton(isFavorite: Bool) {
-        if self.navigationItem.rightBarButtonItem == nil {
-            let button = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteAction))
-            
-            if isFavorite {
-                button.image = UIImage(systemName: "heart.fill")
-                button.tintColor = UIColor.red
-            } else {
-                button.image = UIImage(systemName: "heart")
-                button.tintColor = UIColor.gray
-            }
-            
-            navigationItem.rightBarButtonItem = button
-            
-        } else {
-            if isFavorite {
-                self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
-                self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
-            } else {
-                self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
-                self.navigationItem.rightBarButtonItem?.tintColor = UIColor.gray
-            }
-        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -317,46 +254,27 @@ class DetailPokemonViewController:
         backdropLoading.frame = view.bounds
     }
     
-    private func configureStackButton() {
-        for (i, button) in sectionStackView.arrangedSubviews.enumerated() {
-            guard let button = button as? UIButton else { return }
-            
-            if i == selectedTab {
-                button.tintColor = .label
-            } else {
-                button.tintColor = .secondaryLabel
-            }
-            
-            button.addTarget(self, action: #selector(didTapTab(_:)), for: .touchUpInside)
-        }
+    private func removeSubViewController(viewController: UIViewController) {
+        viewController.willMove(toParent: nil)
+        viewController.view.removeFromSuperview()
+        viewController.removeFromParent()
     }
     
-    @objc private func didTapTab(_ sender: UIButton) {
-        guard let label = sender.titleLabel?.text else { return }
-        switch label {
-        case SectionTabs.about.rawValue:
-            selectedTab = 0
-            removeSubViewController(viewController: baseStatSubViewController)
-            removeSubViewController(viewController: movesSubViewController)
-            addSubViewController(viewController: aboutSubViewController, contentView: sectionViewContainer)
-        case SectionTabs.stat.rawValue:
-            selectedTab = 1
-            removeSubViewController(viewController: aboutSubViewController)
-            removeSubViewController(viewController: movesSubViewController)
-            addSubViewController(viewController: baseStatSubViewController, contentView: sectionViewContainer)
-        case SectionTabs.moves.rawValue:
-            selectedTab = 2
-            removeSubViewController(viewController: baseStatSubViewController)
-            removeSubViewController(viewController: aboutSubViewController)
-            addSubViewController(viewController: movesSubViewController, contentView: sectionViewContainer)
-        default:
-            removeSubViewController(viewController: baseStatSubViewController)
-            removeSubViewController(viewController: movesSubViewController)
-            addSubViewController(viewController: aboutSubViewController, contentView: sectionViewContainer)
-            selectedTab = 0
-        }
+    func addSubViewController(viewController: UIViewController, contentView: UIView) {
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(viewController.view)
+        
+        let matchConstraints = [
+            viewController.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            viewController.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            viewController.view.topAnchor.constraint(equalTo: contentView.topAnchor),
+            viewController.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(matchConstraints)
+        viewController.didMove(toParent: self)
     }
     
+    // MARK: Auto Layout Constraints
     private func configureConstraints() {
         let pokemonImageViewConstraints = [
             pokemonImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
@@ -409,7 +327,6 @@ class DetailPokemonViewController:
             loadingAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             loadingAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingAnimation.heightAnchor.constraint(equalToConstant: 200)
-            
         ]
         
         NSLayoutConstraint.activate(pokemonImageViewConstraints)
@@ -419,6 +336,101 @@ class DetailPokemonViewController:
         NSLayoutConstraint.activate(sectionViewContainerConstraints)
         NSLayoutConstraint.activate(errorStackViewConstraints)
         NSLayoutConstraint.activate(loadingAnimationConstraints)
+    }
+    
+    private func configureStackButton() {
+        for (i, button) in sectionStackView.arrangedSubviews.enumerated() {
+            guard let button = button as? UIButton else { return }
+            button.tintColor = i == selectedTab ? .label : .secondaryLabel
+            button.addTarget(self, action: #selector(didTapTab(_:)), for: .touchUpInside)
+        }
+    }
+    
+    private func configureChip(title: String) -> UIStackView {
+        let stackView = UIStackView()
+        
+        let label = UILabel()
+        label.font = .poppinsMedium(size: 12)
+        label.text = title.capitalized
+        
+        let imageview = UIImageView()
+        imageview.image = UIImage(named: PokemonConverter.typeStringToIconName(type: title))
+        imageview.contentMode = .scaleAspectFit
+        imageview.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        imageview.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        imageview.clipsToBounds = true
+        
+        stackView.spacing = 5
+        stackView.addArrangedSubview(imageview)
+        stackView.addArrangedSubview(label)
+        
+        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.backgroundColor = UIColor(named: PokemonConverter.typeStringToColorName(type: title))
+        stackView.layer.cornerRadius = 15
+        
+        return stackView
+    }
+    
+    private func showFavoriteButton(isFavorite: Bool) {
+        if self.navigationItem.rightBarButtonItem == nil {
+            let button = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteAction))
+            
+            if isFavorite {
+                button.image = UIImage(systemName: "heart.fill")
+                button.tintColor = UIColor.red
+            } else {
+                button.image = UIImage(systemName: "heart")
+                button.tintColor = UIColor.gray
+            }
+            
+            navigationItem.rightBarButtonItem = button
+            
+        } else {
+            if isFavorite {
+                self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
+                self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
+            } else {
+                self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+                self.navigationItem.rightBarButtonItem?.tintColor = UIColor.gray
+            }
+        }
+    }
+    
+    @objc private func favoriteAction() {
+        pokemon?.isFavorite.toggle()
+        if let pokemon = self.pokemon {
+            showFavoriteButton(isFavorite: pokemon.isFavorite)
+            presenter?.saveToggleFavorite(pokemon: pokemon)
+        }
+    }
+    
+    @objc private func didTapTab(_ sender: UIButton) {
+        guard let label = sender.titleLabel?.text else { return }
+        switch label {
+        case SectionTabs.about.rawValue:
+            selectedTab = 0
+            removeSubViewController(viewController: baseStatSubViewController)
+            removeSubViewController(viewController: movesSubViewController)
+            addSubViewController(viewController: aboutSubViewController, contentView: sectionViewContainer)
+        case SectionTabs.stat.rawValue:
+            selectedTab = 1
+            removeSubViewController(viewController: aboutSubViewController)
+            removeSubViewController(viewController: movesSubViewController)
+            addSubViewController(viewController: baseStatSubViewController, contentView: sectionViewContainer)
+        case SectionTabs.moves.rawValue:
+            selectedTab = 2
+            removeSubViewController(viewController: baseStatSubViewController)
+            removeSubViewController(viewController: aboutSubViewController)
+            addSubViewController(viewController: movesSubViewController, contentView: sectionViewContainer)
+        default:
+            removeSubViewController(viewController: baseStatSubViewController)
+            removeSubViewController(viewController: movesSubViewController)
+            addSubViewController(viewController: aboutSubViewController, contentView: sectionViewContainer)
+            selectedTab = 0
+        }
     }
     
     private func showLoading(isLoading: Bool) {
@@ -459,25 +471,5 @@ class DetailPokemonViewController:
         UIView.transition(with: indicator, duration: 0.4, options: .transitionCrossDissolve) {
             self.indicator.isHidden = isError
         }
-    }
-    
-    private func removeSubViewController(viewController: UIViewController) {
-        viewController.willMove(toParent: nil)
-        viewController.view.removeFromSuperview()
-        viewController.removeFromParent()
-    }
-    
-    func addSubViewController(viewController: UIViewController, contentView: UIView) {
-        viewController.view.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(viewController.view)
-        
-        let matchConstraints = [
-            viewController.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            viewController.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            viewController.view.topAnchor.constraint(equalTo: contentView.topAnchor),
-            viewController.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-        ]
-        NSLayoutConstraint.activate(matchConstraints)
-        viewController.didMove(toParent: self)
     }
 }
