@@ -62,8 +62,6 @@ class FavoritePresenter: FavoritePresenterProtocol {
                 self?.view?.updatePokemonFavorite(with: pokemonResults)
             } onError: { error in
                 self.view?.updatePokemonFavorite(with: error.localizedDescription)
-            } onCompleted: {
-                
             }.disposed(by: disposeBag)
     }
     
