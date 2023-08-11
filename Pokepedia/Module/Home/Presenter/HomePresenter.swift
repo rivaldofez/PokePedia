@@ -18,7 +18,6 @@ protocol HomePresenterProtocol {
     
     func getPokemonDataPagination(offset: Int, limit: Int)
     func didSelectPokemonItem(with pokemon: Pokemon)
-    func navigateToProfile()
 }
 
 class HomePresenter: HomePresenterProtocol {
@@ -54,6 +53,7 @@ class HomePresenter: HomePresenterProtocol {
                 self?.view?.updatePokemon(with: pokemonResults)
             } onError: { error in
                 self.view?.updatePokemon(with: error.localizedDescription)
+                self.isLoadingData = false
             } onCompleted: {
                 self.isLoadingData = false
             }.disposed(by: disposeBag)
@@ -61,9 +61,5 @@ class HomePresenter: HomePresenterProtocol {
     
     func didSelectPokemonItem(with pokemon: Pokemon) {
         router?.gotoDetailPokemon(with: pokemon)
-    }
-    
-    func navigateToProfile() {
-        router?.gotoProfile()
     }
 }

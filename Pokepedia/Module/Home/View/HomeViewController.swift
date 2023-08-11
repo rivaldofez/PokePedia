@@ -74,8 +74,17 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         return lottie
     }()
     
+    private lazy var retryButton: UIButton = {
+       let button = UIButton()
+        button.setImage(UIImage(systemName: "arrow.clockwise"), for: .normal)
+        button.tintColor = .label
+        button.addTarget(self, action: #selector(reloadData), for: .touchUpInside)
+        
+        return button
+    }()
+    
     private lazy var errorStackView: UIStackView = {
-        let stackview = UIStackView(arrangedSubviews: [errorAnimation, errorLabel])
+        let stackview = UIStackView(arrangedSubviews: [errorAnimation, errorLabel, retryButton])
         stackview.axis = .vertical
         stackview.translatesAutoresizingMaskIntoConstraints = false
         stackview.alignment = .center
@@ -99,7 +108,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         
         pokemonCollectionView.delegate = self
         pokemonCollectionView.dataSource = self
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: #selector(showProfileView))
         
         configureConstraints()
     }
@@ -133,26 +141,27 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     // MARK: Presenter Action
     
     func isLoadingData(with state: Bool) {
-        showLoading(isLoading: true)
+        showLoading(isLoading: state)
     }
     
     func updatePokemon(with pokemons: [Pokemon]) {
         DispatchQueue.main.async {
             self.pokemonDataPagination.append(contentsOf: pokemons)
             self.pokemonCollectionView.reloadData()
-            self.showLoading(isLoading: false)
             self.showError(isError: false)
         }
     }
     
     func updatePokemon(with error: String) {
-        showLoading(isLoading: false)
         showError(isError: true)
     }
     
     // MARK: Button Action
-    @objc private func showProfileView() {
-        presenter?.navigateToProfile()
+    
+    @objc private func reloadData() {
+        if let offset = presenter?.offsetPagination {
+            presenter?.getPokemonDataPagination(offset: offset, limit: 50)
+        }
     }
     
     private func showLoading(isLoading: Bool) {

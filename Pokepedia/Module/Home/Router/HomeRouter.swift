@@ -15,8 +15,6 @@ protocol HomeRouterProtocol {
     static func start() -> HomeRouterProtocol
     
     func gotoDetailPokemon(with pokemon: Pokemon )
-    
-    func gotoProfile()
 }
 
 class HomeRouter: HomeRouterProtocol {
@@ -47,13 +45,5 @@ class HomeRouter: HomeRouterProtocol {
         viewController.hidesBottomBarWhenPushed = true
         viewController.navigationController?.pushViewController(detailPokemonView, animated: true)
         viewController.hidesBottomBarWhenPushed = false
-    }
-    
-    func gotoProfile() {
-        let profileRouter = ProfileRouter.createProfile()
-        guard let profileView = profileRouter.entry else { return }
-        guard let viewController = self.entry else { return }
-        
-        viewController.navigationController?.pushViewController(profileView, animated: true)
     }
 }
