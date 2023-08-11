@@ -44,6 +44,13 @@ class HomeUseCaseTests: XCTestCase {
         XCTAssertEqual(resultData?.first?.id, actualData.first?.id)
     }
     
+    func testGetPokemonDataPaginationEmpty() throws {
+        let actualData = DummyData.generateDummyPokemon(num: 0)
+        let resultData = try interactor?.getPokemonDataPagination(offset: 0, limit: 0).toBlocking().first()
+        
+        XCTAssertEqual( resultData?.count , 0)
+        XCTAssertNotNil(resultData)
+    }
 }
 
 
