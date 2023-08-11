@@ -81,6 +81,16 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         stackview.isHidden = true
         return stackview
     }()
+    
+    let favoriteSearchController: UISearchController = {
+       let searchController = UISearchController()
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.searchBar.showsScopeBar = true
+        searchController.automaticallyShowsCancelButton = true
+        searchController.navigationItem.hidesSearchBarWhenScrolling = false
+        
+        return searchController
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +98,8 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         title = "Favorite Pokémon"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .label
+        
+        navigationItem.searchController = favoriteSearchController
         
         view.backgroundColor = .systemBackground
         
@@ -99,6 +111,8 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         pokemonTableView.delegate = self
         pokemonTableView.dataSource = self
         configureConstraints()
+        
+        favoriteSearchController.searchBar.delegate = self
         
     }
     
@@ -259,5 +273,14 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.endUpdates()
         }
     }
-    
+}
+
+extension FavoriteViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            presenter?.getFavoritePokemonList()
+        } else {
+            presenter?.getSearchPokemon(query: searchText)
+        }
+    }
 }

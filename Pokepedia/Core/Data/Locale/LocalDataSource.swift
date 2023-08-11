@@ -47,6 +47,26 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
         }
     }
     
+    func getSearchPokemon(query: String) -> Observable<[PokemonEntity]> {
+        return Observable<[PokemonEntity]>.create { observer in
+            if let realm = self.realm {
+                let pokemons: Results<PokemonEntity> = {
+                    realm.objects(PokemonEntity.self)
+                        .where { $0.isFavorite }
+//                        .where { $0.name.localizedLowercase.like("*\(query.lowercased())*") }
+                        .where { $0.name.contains(query, options: .caseInsensitive)}
+                        .sorted(byKeyPath: "id", ascending: true)
+                }()
+                observer.onNext(pokemons.toArray(ofType: PokemonEntity.self))
+                observer.onCompleted()
+            } else {
+                observer.onError(DatabaseError.invalidInstance)
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
     func getFavoritePokemonList() -> RxSwift.Observable<[PokemonEntity]> {
         return Observable<[PokemonEntity]>.create { observer in
             if let realm = self.realm {

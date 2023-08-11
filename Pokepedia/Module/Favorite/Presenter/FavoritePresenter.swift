@@ -15,6 +15,7 @@ protocol FavoritePresenterProtocol {
     
     var isLoadingData: Bool { get set }
     func getFavoritePokemonList()
+    func getSearchPokemon(query: String)
     func didSelectPokemonItem(with pokemon: Pokemon)
     func saveToggleFavorite(pokemon: Pokemon)
 }
@@ -51,6 +52,18 @@ class FavoritePresenter: FavoritePresenterProtocol {
                 self.view?.updatePokemonFavorite(with: error.localizedDescription)
             } onCompleted: {
                 self.isLoadingData = false
+            }.disposed(by: disposeBag)
+    }
+    
+    func getSearchPokemon(query: String) {
+        interactor?.getSearchPokemon(query: query)
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] pokemonResults in
+                self?.view?.updatePokemonFavorite(with: pokemonResults)
+            } onError: { error in
+                self.view?.updatePokemonFavorite(with: error.localizedDescription)
+            } onCompleted: {
+                
             }.disposed(by: disposeBag)
     }
     

@@ -15,6 +15,8 @@ protocol PokemonRepositoryProtocol {
     
     func getFavoritePokemonList() -> Observable<[Pokemon]>
     
+    func getSearchPokemon(query: String) -> Observable<[Pokemon]>
+    
     func getFavoritePokemonById(id: Int) -> Observable<Pokemon?>
     
     func addPokemonFavorite(pokemon: Pokemon) -> Observable<Bool>
@@ -52,6 +54,13 @@ extension PokemonRepository: PokemonRepositoryProtocol {
     
     func getFavoritePokemonList() -> RxSwift.Observable<[Pokemon]> {
         return self.locale.getFavoritePokemonList()
+            .map {
+                PokemonMapper.mapPokemonEntitiesToDomain(input: $0)
+            }
+    }
+    
+    func getSearchPokemon(query: String) -> Observable<[Pokemon]> {
+        return self.locale.getSearchPokemon(query: query)
             .map {
                 PokemonMapper.mapPokemonEntitiesToDomain(input: $0)
             }
