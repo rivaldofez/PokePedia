@@ -13,6 +13,9 @@ import RxTest
 @testable import Pokepedia
 
 class MockPokemonRepository: PokemonRepositoryProtocol {
+    var numResult = 0
+    var saveResult = true
+    
     func getPokemonDataPagination(offset: Int, limit: Int) -> Observable<[Pokemon]> {
         return Observable<[Pokemon]>.create { observer in
             observer.onNext(DummyData.generateDummyPokemon(num: limit))
@@ -33,7 +36,7 @@ class MockPokemonRepository: PokemonRepositoryProtocol {
     
     func getFavoritePokemonList() -> Observable<[Pokemon]> {
         return Observable<[Pokemon]>.create { observer in
-            observer.onNext(DummyData.generateDummyPokemon(num: 10))
+            observer.onNext(DummyData.generateDummyPokemon(num: self.numResult))
             observer.onCompleted()
             
             return Disposables.create()
@@ -42,7 +45,7 @@ class MockPokemonRepository: PokemonRepositoryProtocol {
     
     func getSearchPokemon(query: String) -> Observable<[Pokemon]> {
         return Observable<[Pokemon]>.create { observer in
-            observer.onNext(DummyData.generateDummyPokemon(num: 10))
+            observer.onNext(DummyData.generateDummyPokemon(num: self.numResult))
             observer.onCompleted()
             
             return Disposables.create()
@@ -60,7 +63,7 @@ class MockPokemonRepository: PokemonRepositoryProtocol {
     
     func addPokemonFavorite(pokemon: Pokemon) -> Observable<Bool> {
         return Observable<Bool>.create { observer in
-            observer.onNext(true)
+            observer.onNext(self.saveResult)
             observer.onCompleted()
             
             return Disposables.create()
