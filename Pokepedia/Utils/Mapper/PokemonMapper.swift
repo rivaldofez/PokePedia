@@ -156,7 +156,7 @@ final class PokemonMapper {
             genderRate: genderRate,
             genus: genusPokemon,
             growthRate: pokemonSpeciesResponse.growthRate.name.capitalized,
-            habitat: pokemonSpeciesResponse.habitat.name.capitalized,
+            habitat: pokemonSpeciesResponse.habitat?.name.capitalized ?? "Unknown",
             hatchCounter: pokemonSpeciesResponse.hatchCounter,
             isLegendary: pokemonSpeciesResponse.isLegendary,
             isMythical: pokemonSpeciesResponse.isMythical,

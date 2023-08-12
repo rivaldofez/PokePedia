@@ -98,8 +98,11 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
                         case .success(let value):
                             observer.onNext(value)
                             observer.onCompleted()
+                            print("success")
                         case .failure:
                             observer.onError(URLError.invalidResponse)
+                            print("failed")
+                            print(url)
                         }
                     }
             }

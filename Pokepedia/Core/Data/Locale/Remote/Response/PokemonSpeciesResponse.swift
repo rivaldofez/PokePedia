@@ -16,7 +16,7 @@ struct PokemonSpeciesResponse: Codable {
     let genderRate: Int
     let genera: [Genus]
     let growthRate: BridgeComponent
-    let habitat: BridgeComponent
+    let habitat: BridgeComponent?
     let hatchCounter: Int
     let id: Int
     let isBaby, isLegendary, isMythical: Bool
