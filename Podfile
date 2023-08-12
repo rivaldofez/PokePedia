@@ -10,7 +10,6 @@ target 'Pokepedia' do
   pod 'RxSwift', '6.5.0'
   pod 'RxCocoa', '6.5.0'
   pod 'RxBlocking', '6.5.0'
-  pod 'RxTest', '6.5.0'
   pod 'Alamofire'
   pod 'SDWebImage'
   pod 'lottie-ios'
