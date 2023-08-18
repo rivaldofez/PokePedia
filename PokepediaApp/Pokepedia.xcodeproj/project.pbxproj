@@ -181,6 +181,7 @@
 		7E7FFC9B2A74B0AE00FC1910 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		7E7FFC9D2A74B0C500FC1910 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7E8DD6AD2A86DA4B009C557A /* MockPokemonRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPokemonRepository.swift; sourceTree = "<group>"; };
+		7EB719222A8FC27300119628 /* Pokepedia-Favorite */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "Pokepedia-Favorite"; path = "../Module/Pokepedia-Favorite"; sourceTree = "<group>"; };
 		7EBC77002A8C540A00AB39CE /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Core; path = ../Module/Core; sourceTree = "<group>"; };
 		7EE1328C299A35DF00FFB47B /* PokemonSpeciesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSpeciesResponse.swift; sourceTree = "<group>"; };
 		7EE1328E299A4DBE00FFB47B /* PokemonMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonMapper.swift; sourceTree = "<group>"; };
@@ -593,6 +594,7 @@
 			isa = PBXGroup;
 			children = (
 				7EBC77002A8C540A00AB39CE /* Core */,
+				7EB719222A8FC27300119628 /* Pokepedia-Favorite */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
