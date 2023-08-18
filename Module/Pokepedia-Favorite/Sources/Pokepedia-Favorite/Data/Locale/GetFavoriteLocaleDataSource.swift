@@ -46,16 +46,36 @@ public struct GetFavoriteLocalDataSource: LocaleDataSource {
     }
     
     public func saveToggle(entity: PokemonModuleEntity) -> RxSwift.Observable<Bool> {
-        <#code#>
+        return Observable<Bool>.create { observer in
+            do {
+                try _realm.write {
+                    _realm.add(entity, update: .all)
+                }
+                observer.onNext(entity.isFavorite)
+                observer.onCompleted()
+            } catch {
+                observer.onError(DatabaseError.invalidInstance)
+            }
+            
+            return Disposables.create()
+        }
     }
     
     public func get(id: Int) -> RxSwift.Observable<PokemonModuleEntity?> {
-        <#code#>
+        return Observable<PokemonModuleEntity?>.create { observer in
+            let pokemons: Results<PokemonModuleEntity> = {
+                _realm.objects(PokemonModuleEntity.self)
+                    .where { $0.id == id }
+            }()
+            
+            observer.onNext(pokemons.toArray(ofType: PokemonModuleEntity.self).first)
+            observer.onCompleted()
+            
+            return Disposables.create()
+        }
     }
     
     public typealias Request = String
     
     public typealias Response = PokemonModuleEntity
-    
-    
 }
