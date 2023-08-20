@@ -7,9 +7,9 @@
 
 import RxSwift
 
-public protocol Repository {
+public protocol RemoteDataSource {
     associatedtype Request
     associatedtype Response
     
-    func execute(request: Request?) -> Observable<Response>
+    func get(request: Request?) -> Observable<Response>
 }
