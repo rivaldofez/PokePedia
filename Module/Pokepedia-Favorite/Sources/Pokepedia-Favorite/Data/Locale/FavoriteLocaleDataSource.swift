@@ -10,7 +10,7 @@ import Core
 import RealmSwift
 import RxSwift
 
-public struct GetFavoriteLocalDataSource: LocaleDataSource {
+public struct FavoriteLocalDataSource: LocaleDataSource {
     
     private let _realm: Realm
     
@@ -45,7 +45,7 @@ public struct GetFavoriteLocalDataSource: LocaleDataSource {
         }
     }
     
-    public func saveToggle(entity: PokemonModuleEntity) -> RxSwift.Observable<Bool> {
+    public func update(entity: PokemonModuleEntity) -> RxSwift.Observable<Bool> {
         return Observable<Bool>.create { observer in
             do {
                 try _realm.write {

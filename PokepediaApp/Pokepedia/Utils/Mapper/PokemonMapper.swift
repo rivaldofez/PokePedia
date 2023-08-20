@@ -56,7 +56,6 @@ final class PokemonMapper {
             type: input.type.components(separatedBy: ","),
             abilities: input.abilities,
             isFavorite: input.isFavorite
-            
         )
     }
     

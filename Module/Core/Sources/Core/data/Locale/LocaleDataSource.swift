@@ -15,7 +15,7 @@ public protocol LocaleDataSource {
     // Search List
     func list(request: Request?) -> Observable<[Response]>
     
-    func saveToggle(entity: Response) -> Observable<Bool>
+    func update(entity: Response) -> Observable<Bool>
     
     func get(id: Int) -> Observable<Response?>
     
