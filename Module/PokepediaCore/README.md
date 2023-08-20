@@ -1,3 +1,3 @@
-# Core
+# PokepediaCore
 
 A description of this package.
