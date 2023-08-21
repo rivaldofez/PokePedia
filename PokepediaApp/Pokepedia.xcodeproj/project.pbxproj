@@ -166,6 +166,7 @@
 		7E5AC1DA299E09BC00FFAA0D /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		7E5AC1DD299E135B00FFAA0D /* APICall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICall.swift; sourceTree = "<group>"; };
 		7E5B1AFF2A92A434003F561A /* PokepediaCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PokepediaCore; path = ../Module/PokepediaCore; sourceTree = "<group>"; };
+		7E5B1B002A940D40003F561A /* PokepediaSpecies */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PokepediaSpecies; path = ../Module/PokepediaSpecies; sourceTree = "<group>"; };
 		7E652F7E2A823D710019FE96 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		7E6AA2302A79DDAF00D9FFB7 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		7E6AA2332A79DFB300D9FFB7 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
@@ -465,6 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				7E5B1AFF2A92A434003F561A /* PokepediaCore */,
+				7E5B1B002A940D40003F561A /* PokepediaSpecies */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
