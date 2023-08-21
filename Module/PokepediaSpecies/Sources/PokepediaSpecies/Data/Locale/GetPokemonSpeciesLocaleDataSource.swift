@@ -46,6 +46,8 @@ public struct GetPokemonSpeciesLocaleDataSource: LocaleDataSource {
             } catch {
                 observer.onError(DatabaseError.invalidInstance)
             }
+            
+            return Disposables.create()
         }
     }
     
