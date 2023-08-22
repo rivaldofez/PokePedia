@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PokemonSpeciesResponse: Codable {
+public struct PokemonSpeciesResponse: Codable {
     let baseHappiness: Int
     let captureRate: Int
     let color: BridgeComponent
