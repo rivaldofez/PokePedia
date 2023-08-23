@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import Alamofire
+import PokepediaSpecies
 
 protocol RemoteDataSourceProtocol: AnyObject {
     func getPokemonDataPagination(offset: Int, limit: Int) -> Observable<[PokemonDetailResponse]>

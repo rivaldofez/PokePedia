@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import PokepediaSpecies
 
 final class PokemonMapper {
     
