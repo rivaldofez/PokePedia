@@ -10,7 +10,8 @@ import PokepediaCore
 import Alamofire
 import RxSwift
 
-public struct GetPokemonSpeciesRemoteDataSource: RemoteDataSource {
+public struct PokemonSpeciesRemoteDataSource: RemoteDataSource {
+
     public typealias Request = Int
     
     public typealias Response = PokemonSpeciesResponse

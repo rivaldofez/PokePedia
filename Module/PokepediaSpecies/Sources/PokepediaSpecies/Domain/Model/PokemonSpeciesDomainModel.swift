@@ -7,7 +7,7 @@
 
 import Foundation
 
-public PokemonSpeciesDomainModel: Identifiable {
+public struct PokemonSpeciesDomainModel: Identifiable {
     public let id: Int
     public let baseHappines: Int
     public let captureRate: Int
