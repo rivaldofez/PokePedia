@@ -60,6 +60,8 @@
 		7E5AC1D9299DDC2B00FFAA0D /* AboutCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5AC1D8299DDC2B00FFAA0D /* AboutCellModel.swift */; };
 		7E5AC1DB299E09BC00FFAA0D /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5AC1DA299E09BC00FFAA0D /* String+Extension.swift */; };
 		7E5AC1DE299E135B00FFAA0D /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5AC1DD299E135B00FFAA0D /* APICall.swift */; };
+		7E5B1B062A95F751003F561A /* PokepediaCore in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5B1B052A95F751003F561A /* PokepediaCore */; };
+		7E5B1B082A95F751003F561A /* PokepediaSpecies in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5B1B072A95F751003F561A /* PokepediaSpecies */; };
 		7E652F7F2A823D710019FE96 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E652F7E2A823D710019FE96 /* FavoriteTableViewCell.swift */; };
 		7E6AA2312A79DDAF00D9FFB7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AA2302A79DDAF00D9FFB7 /* MainTabBarController.swift */; };
 		7E6AA2342A79DFB300D9FFB7 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AA2332A79DFB300D9FFB7 /* FavoriteViewController.swift */; };
@@ -202,6 +204,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E5B1B082A95F751003F561A /* PokepediaSpecies in Frameworks */,
+				7E5B1B062A95F751003F561A /* PokepediaCore in Frameworks */,
 				FA782B7CA5BFA4645E496A8A /* Pods_Pokepedia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -704,6 +708,8 @@
 			);
 			name = Pokepedia;
 			packageProductDependencies = (
+				7E5B1B052A95F751003F561A /* PokepediaCore */,
+				7E5B1B072A95F751003F561A /* PokepediaSpecies */,
 			);
 			productName = Pokepedia;
 			productReference = 7E02472C2995E11A00EECAA9 /* Pokepedia.app */;
@@ -1197,6 +1203,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7E5B1B052A95F751003F561A /* PokepediaCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PokepediaCore;
+		};
+		7E5B1B072A95F751003F561A /* PokepediaSpecies */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PokepediaSpecies;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7E6F93FE299010BA004B2537 /* Project object */;
 }

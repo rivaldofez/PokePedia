@@ -16,16 +16,16 @@ public struct PokemonSpeciesRemoteDataSource: RemoteDataSource {
     
     public typealias Response = PokemonSpeciesResponse
     
-    private let endpoint: (String) -> (String)
+    private let endpoint: (Int) -> (String)
     
-    public init(endpoint: @escaping (String) -> String) {
+    public init(endpoint: @escaping (Int) -> String) {
         self.endpoint = endpoint
     }
     
     public func get(request: Int?) -> RxSwift.Observable<PokemonSpeciesResponse> {
         return Observable<PokemonSpeciesResponse>.create { observer in
             if let request = request {
-                if let url = URL(string: self.endpoint(String(request))) {
+                if let url = URL(string: self.endpoint(request)) {
                     AF.request(url)
                         .responseDecodable(of: PokemonSpeciesResponse.self) { response in
                             switch response.result {

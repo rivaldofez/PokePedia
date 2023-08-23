@@ -12,3 +12,5 @@ disabled_rules:
 - line_length
 - cyclomatic_complexity
 - file_length
+- force_try
+- force_cast
