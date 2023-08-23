@@ -7,8 +7,28 @@
 
 import Foundation
 import RealmSwift
+import PokepediaCore
+import PokepediaSpecies
 
 final class Injection: NSObject {
+    private let realm = try? Realm()
+    
+    func providePokemonSpecies<U: UseCase>() -> U where U.Request == Int, U.Response == PokemonSpeciesDomainModel {
+        
+        let locale = PokemonSpeciesLocaleDataSource(realm: realm!)
+        let remote = PokemonSpeciesRemoteDataSource(endpoint: { Endpoints.Gets.pokemonSpecies($0).url })
+        
+        let mapper = PokemonSpeciesTransformer()
+        
+        let repository = GetPokemonSpeciesRepository(
+          localeDataSource: locale,
+          remoteDataSource: remote,
+          mapper: mapper)
+        
+        return Interactor(repository: repository) as! U
+        
+    }
+    
     
     private func provideRepository() -> PokemonRepositoryProtocol {
         let realm = try? Realm()
