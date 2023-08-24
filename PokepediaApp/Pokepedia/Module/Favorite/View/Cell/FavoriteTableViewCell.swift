@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PokepediaPokemon
 
 class FavoriteTableViewCell: UITableViewCell {
     static let identifier = "FavoriteTableViewCell"
@@ -132,7 +133,7 @@ class FavoriteTableViewCell: UITableViewCell {
     }
     
     // MARK: Cell Data Bind
-    func configure(with model: Pokemon) {
+    func configure(with model: PokemonDomainModel) {
         pokemonNumberLabel.text = "No.\(model.id)"
         pokemonNameLabel.text = model.name.capitalized
         

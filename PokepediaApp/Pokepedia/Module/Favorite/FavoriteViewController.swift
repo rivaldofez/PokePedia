@@ -8,11 +8,12 @@
 import UIKit
 import RxSwift
 import Lottie
+import PokepediaPokemon
 
 protocol FavoriteViewProtocol {
     var presenter: FavoritePresenterProtocol? { get set }
     
-    func updatePokemonFavorite(with pokemons: [Pokemon])
+    func updatePokemonFavorite(with pokemons: [PokemonDomainModel])
     func updatePokemonFavorite(with error: String)
     func updateSaveToggleFavorite(with error: String)
     func updateSaveToggleFavorite(with state: Bool)
@@ -23,7 +24,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
 
     var presenter: FavoritePresenterProtocol?
     
-    private var pokemonData: [Pokemon] = []
+    private var pokemonData: [PokemonDomainModel] = []
     private let disposeBag = DisposeBag()
     
     // MARK: View Components
@@ -165,7 +166,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         }
     }
     
-    func updatePokemonFavorite(with pokemons: [Pokemon]) {
+    func updatePokemonFavorite(with pokemons: [PokemonDomainModel]) {
         if pokemons.isEmpty {
             DispatchQueue.main.async {
                 self.pokemonData.removeAll()

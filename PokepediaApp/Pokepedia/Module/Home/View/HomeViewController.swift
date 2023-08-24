@@ -8,11 +8,12 @@
 import UIKit
 import RxSwift
 import Lottie
+import PokepediaPokemon
 
 protocol HomeViewProtocol {
     var presenter: HomePresenterProtocol? { get set }
     
-    func updatePokemon(with pokemons: [Pokemon])
+    func updatePokemon(with pokemons: [PokemonDomainModel])
     func updatePokemon(with error: String)
     func isLoadingData(with state: Bool)
 }
@@ -20,7 +21,7 @@ protocol HomeViewProtocol {
 class HomeViewController: UIViewController, HomeViewProtocol {
     var presenter: HomePresenterProtocol?
     
-    private var pokemonDataPagination: [Pokemon] = []
+    private var pokemonDataPagination: [PokemonDomainModel] = []
     private let disposeBag = DisposeBag()
     
     // MARK: View Components
@@ -144,7 +145,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         showLoading(isLoading: state)
     }
     
-    func updatePokemon(with pokemons: [Pokemon]) {
+    func updatePokemon(with pokemons: [PokemonDomainModel]) {
         DispatchQueue.main.async {
             self.pokemonDataPagination.append(contentsOf: pokemons)
             self.pokemonCollectionView.reloadData()

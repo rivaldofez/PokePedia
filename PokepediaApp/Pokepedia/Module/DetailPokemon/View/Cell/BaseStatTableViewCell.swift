@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PokepediaPokemon
 
 class BaseStatTableViewCell: UITableViewCell {
     static let identifier = "BaseStatTableViewCell"

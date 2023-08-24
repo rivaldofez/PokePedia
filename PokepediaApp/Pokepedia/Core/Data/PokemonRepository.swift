@@ -7,19 +7,20 @@
 
 import Foundation
 import RxSwift
+import PokepediaPokemon
 
 protocol PokemonRepositoryProtocol {
-    func getPokemonDataPagination(offset: Int, limit: Int) -> Observable<[Pokemon]>
+    func getPokemonDataPagination(offset: Int, limit: Int) -> Observable<[PokemonDomainModel]>
     
     func getPokemonSpecies(id: Int) -> Observable<PokemonSpecies>
     
-    func getFavoritePokemonList() -> Observable<[Pokemon]>
+    func getFavoritePokemonList() -> Observable<[PokemonDomainModel]>
     
-    func getSearchPokemon(query: String) -> Observable<[Pokemon]>
+    func getSearchPokemon(query: String) -> Observable<[PokemonDomainModel]>
     
-    func getFavoritePokemonById(id: Int) -> Observable<Pokemon?>
+    func getFavoritePokemonById(id: Int) -> Observable<PokemonDomainModel?>
     
-    func addPokemonFavorite(pokemon: Pokemon) -> Observable<Bool>
+    func addPokemonFavorite(pokemon: PokemonDomainModel) -> Observable<Bool>
     
 }
 
@@ -41,7 +42,7 @@ final class PokemonRepository: NSObject {
 }
 
 extension PokemonRepository: PokemonRepositoryProtocol {
-    func getFavoritePokemonById(id: Int) -> RxSwift.Observable<Pokemon?> {
+    func getFavoritePokemonById(id: Int) -> RxSwift.Observable<PokemonDomainModel?> {
         return self.locale.getFavoritePokemonById(id: id)
             .map { pokemonEntity in
                 if let pokemonEntity {
@@ -52,21 +53,21 @@ extension PokemonRepository: PokemonRepositoryProtocol {
             }
     }
     
-    func getFavoritePokemonList() -> RxSwift.Observable<[Pokemon]> {
+    func getFavoritePokemonList() -> RxSwift.Observable<[PokemonDomainModel]> {
         return self.locale.getFavoritePokemonList()
             .map {
                 PokemonMapper.mapPokemonEntitiesToDomain(input: $0)
             }
     }
     
-    func getSearchPokemon(query: String) -> Observable<[Pokemon]> {
+    func getSearchPokemon(query: String) -> Observable<[PokemonDomainModel]> {
         return self.locale.getSearchPokemon(query: query)
             .map {
                 PokemonMapper.mapPokemonEntitiesToDomain(input: $0)
             }
     }
     
-    func getPokemonDataPagination(offset: Int, limit: Int) -> Observable<[Pokemon]> {
+    func getPokemonDataPagination(offset: Int, limit: Int) -> Observable<[PokemonDomainModel]> {
         return self.remote.getPokemonDataPagination(offset: offset, limit: limit).map {
             PokemonMapper.mapPokemonDetailResponsesToDomain(input: $0)
         }
@@ -78,7 +79,7 @@ extension PokemonRepository: PokemonRepositoryProtocol {
         }
     }
     
-    func addPokemonFavorite(pokemon: Pokemon) -> Observable<Bool> {
+    func addPokemonFavorite(pokemon: PokemonDomainModel) -> Observable<Bool> {
         return self.locale.saveToggleFavorite(from: PokemonMapper.mapPokemonToEntity(input: pokemon))
     }
 }

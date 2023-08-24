@@ -28,6 +28,8 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
     private func getPokemonSource(offset: Int, limit: Int) -> Observable<PokemonPageResponse> {
         return Observable<PokemonPageResponse>.create { observer in
             if let url = URL(string: "\(Endpoints.Gets.pokemonPagination.url)offset=\(offset)&limit=\(limit)") {
+                
+                print(url)
                 AF.request(url)
                     .responseDecodable(of: PokemonPageResponse.self) { response in
                         switch response.result {

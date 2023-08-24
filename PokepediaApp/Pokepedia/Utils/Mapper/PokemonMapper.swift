@@ -8,10 +8,11 @@
 import Foundation
 import RealmSwift
 import PokepediaSpecies
+import PokepediaPokemon
 
 final class PokemonMapper {
     
-    static func mapPokemonToEntity(input: Pokemon) -> PokemonEntity {
+    static func mapPokemonToEntity(input: PokemonDomainModel) -> PokemonEntity {
         let pokemonEntity = PokemonEntity()
         let baseStat = List<BaseStatEntity>()
         baseStat.append(
@@ -42,8 +43,8 @@ final class PokemonMapper {
         return pokemonEntity
     }
     
-    static func mapPokemonEntityToDomain(input: PokemonEntity) -> Pokemon {
-        return Pokemon(
+    static func mapPokemonEntityToDomain(input: PokemonEntity) -> PokemonDomainModel {
+        return PokemonDomainModel(
             id: input.id,
             name: input.name,
             image: input.image,
@@ -60,20 +61,20 @@ final class PokemonMapper {
         )
     }
     
-    static func mapPokemonEntitiesToDomain(input: [PokemonEntity]) -> [Pokemon] {
+    static func mapPokemonEntitiesToDomain(input: [PokemonEntity]) -> [PokemonDomainModel] {
         return input.map { result in
             return mapPokemonEntityToDomain(input: result)
         }
     }
     
-    static func mapPokemonDetailResponsesToDomain(input pokemonDetailResponses: [PokemonDetailResponse]) -> [Pokemon] {
+    static func mapPokemonDetailResponsesToDomain(input pokemonDetailResponses: [PokemonDetailResponse]) -> [PokemonDomainModel] {
         
         return pokemonDetailResponses.map { result in
             let image = result.sprites.other.officialArtwork.frontDefault ??
             result.sprites.other.dreamWorld.frontDefault ??
             result.sprites.other.home.frontDefault ?? ""
             
-            let newPokemon = Pokemon(
+            let newPokemon = PokemonDomainModel(
                 id: result.id,
                 name: result.name,
                 image: image,
@@ -167,7 +168,7 @@ final class PokemonMapper {
         return newPokemonSpecies
     }
     
-    static func mapPokemonDataToAboutSectionData(pokemon: Pokemon, pokemonSpecies: PokemonSpecies) -> [AboutCellModel] {
+    static func mapPokemonDataToAboutSectionData(pokemon: PokemonDomainModel, pokemonSpecies: PokemonSpecies) -> [AboutCellModel] {
         var dataAboutCellModel: [AboutCellModel] = []
         
         var speciesItemCellModel: [ItemCellModel] = []

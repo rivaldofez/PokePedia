@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import PokepediaPokemon
 
 class MovesSubViewController: UIViewController {
     
-    var pokemon: Pokemon? {
+    var pokemon: PokemonDomainModel? {
         didSet {
             DispatchQueue.main.async {
                 self.movesTableView.reloadData()

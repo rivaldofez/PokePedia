@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PokepediaPokemon
 
 typealias EntryPoint = HomeViewProtocol & UIViewController
 
@@ -14,7 +15,7 @@ protocol HomeRouterProtocol {
     
     static func start() -> HomeRouterProtocol
     
-    func gotoDetailPokemon(with pokemon: Pokemon )
+    func gotoDetailPokemon(with pokemon: PokemonDomainModel )
 }
 
 class HomeRouter: HomeRouterProtocol {
@@ -37,7 +38,7 @@ class HomeRouter: HomeRouterProtocol {
         return router
     }
     
-    func gotoDetailPokemon(with pokemon: Pokemon) {
+    func gotoDetailPokemon(with pokemon: PokemonDomainModel) {
         let detailPokemonRouter = DetailPokemonRouter.createDetailPokemon(with: pokemon)
         guard let detailPokemonView = detailPokemonRouter.entry else { return }
         guard let viewController = self.entry else { return }

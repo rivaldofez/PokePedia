@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PokepediaPokemon
 
 class AboutSubViewController: UIViewController {
     
@@ -20,7 +21,7 @@ class AboutSubViewController: UIViewController {
         }
     }
     
-    var pokemon: Pokemon? {
+    var pokemon: PokemonDomainModel? {
         didSet {
             setDataAboutTableView()
         }

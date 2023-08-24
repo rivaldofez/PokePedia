@@ -8,6 +8,33 @@
 import Foundation
 
 public struct PokemonDomainModel: Identifiable {
+    
+    public init(
+        id: Int,
+        name: String,
+        image: String,
+        height: Float,
+        weight: Float,
+        baseExp: Int,
+        baseStat: [BaseStat],
+        moves: [String],
+        type: [String],
+        abilities: String,
+        isFavorite: Bool = false
+    ) {
+        self.id = id
+        self.name = name
+        self.image = image
+        self.height = height
+        self.weight = weight
+        self.baseExp = baseExp
+        self.baseStat = baseStat
+        self.moves = moves
+        self.type = type
+        self.abilities = abilities
+        self.isFavorite = isFavorite
+    }
+    
     public let id: Int
     public let name: String
     public let image: String
@@ -22,6 +49,19 @@ public struct PokemonDomainModel: Identifiable {
 }
 
 public struct BaseStat {
+    
+    public init(
+        name: String,
+        effort: Int,
+        value: Int,
+        url: String
+    ) {
+        self.name = name
+        self.effort = effort
+        self.value = value
+        self.url = url
+    }
+    
     public let name: String
     public let effort: Int
     public let value: Int

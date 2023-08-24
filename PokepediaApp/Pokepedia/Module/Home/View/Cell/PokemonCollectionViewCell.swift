@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import PokepediaPokemon
 
 class PokemonCollectionViewCell: UICollectionViewCell {
     static let identifier = "PokemonCollectionViewCell"
@@ -138,7 +139,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: Cell Data Bind
-    func configure(with model: Pokemon) {
+    func configure(with model: PokemonDomainModel) {
         pokemonNumberLabel.text = "No.\(model.id)"
         pokemonNameLabel.text = model.name.capitalized
         

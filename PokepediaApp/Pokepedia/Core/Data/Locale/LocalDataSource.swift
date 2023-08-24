@@ -8,6 +8,7 @@
 import Foundation
 import RealmSwift
 import RxSwift
+import PokepediaPokemon
 
 protocol LocaleDataSourceProtocol: AnyObject {
     func getFavoritePokemonList() -> Observable<[PokemonEntity]>

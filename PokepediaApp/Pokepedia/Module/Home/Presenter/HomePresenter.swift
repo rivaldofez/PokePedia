@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import PokepediaPokemon
 
 protocol HomePresenterProtocol {
     var router: HomeRouterProtocol? { get set}
@@ -17,7 +18,7 @@ protocol HomePresenterProtocol {
     var isLoadingData: Bool { get set }
     
     func getPokemonDataPagination(offset: Int, limit: Int)
-    func didSelectPokemonItem(with pokemon: Pokemon)
+    func didSelectPokemonItem(with pokemon: PokemonDomainModel)
 }
 
 class HomePresenter: HomePresenterProtocol {
@@ -59,7 +60,7 @@ class HomePresenter: HomePresenterProtocol {
             }.disposed(by: disposeBag)
     }
     
-    func didSelectPokemonItem(with pokemon: Pokemon) {
+    func didSelectPokemonItem(with pokemon: PokemonDomainModel) {
         router?.gotoDetailPokemon(with: pokemon)
     }
 }

@@ -7,9 +7,10 @@
 
 import Foundation
 import RxSwift
+import PokepediaPokemon
 
 protocol HomeUseCase {
-    func getPokemonDataPagination(offset: Int, limit: Int) -> Observable<[Pokemon]>
+    func getPokemonDataPagination(offset: Int, limit: Int) -> Observable<[PokemonDomainModel]>
 }
 
 class HomeInteractor: HomeUseCase {
@@ -20,7 +21,7 @@ class HomeInteractor: HomeUseCase {
         self.repository = repository
     }
     
-    func getPokemonDataPagination(offset: Int, limit: Int) -> Observable<[Pokemon]> {
+    func getPokemonDataPagination(offset: Int, limit: Int) -> Observable<[PokemonDomainModel]> {
         return repository.getPokemonDataPagination(offset: offset, limit: limit)
     }
     

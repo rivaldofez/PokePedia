@@ -7,10 +7,11 @@
 
 import UIKit
 import DGCharts
+import PokepediaPokemon
 
 class BaseStatSubViewController: UIViewController {
     
-    var pokemon: Pokemon? {
+    var pokemon: PokemonDomainModel? {
         didSet {
             DispatchQueue.main.async {
                 self.progressTableView.reloadData()

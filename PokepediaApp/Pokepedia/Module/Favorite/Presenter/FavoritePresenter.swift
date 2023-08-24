@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import PokepediaPokemon
 
 protocol FavoritePresenterProtocol {
     var router: FavoriteRouterProtocol? { get set }
@@ -16,8 +17,8 @@ protocol FavoritePresenterProtocol {
     var isLoadingData: Bool { get set }
     func getFavoritePokemonList()
     func getSearchPokemon(query: String)
-    func didSelectPokemonItem(with pokemon: Pokemon)
-    func saveToggleFavorite(pokemon: Pokemon)
+    func didSelectPokemonItem(with pokemon: PokemonDomainModel)
+    func saveToggleFavorite(pokemon: PokemonDomainModel)
 }
 
 class FavoritePresenter: FavoritePresenterProtocol {
@@ -38,7 +39,7 @@ class FavoritePresenter: FavoritePresenterProtocol {
         }
     }
     
-    func didSelectPokemonItem(with pokemon: Pokemon) {
+    func didSelectPokemonItem(with pokemon: PokemonDomainModel) {
         router?.gotoDetailPokemon(with: pokemon)
     }
     
@@ -65,7 +66,7 @@ class FavoritePresenter: FavoritePresenterProtocol {
             }.disposed(by: disposeBag)
     }
     
-    func saveToggleFavorite(pokemon: Pokemon) {
+    func saveToggleFavorite(pokemon: PokemonDomainModel) {
         interactor?.saveFavoritePokemon(pokemon: pokemon)
             .observe(on: MainScheduler.instance)
             .subscribe { [weak self] result in

@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import PokepediaPokemon
 
 protocol FavoriteRouterProtocol {
     var entry: FavoriteViewController? { get set }
     
     static func createFavorite() -> FavoriteRouterProtocol
     
-    func gotoDetailPokemon(with pokemon: Pokemon )
+    func gotoDetailPokemon(with pokemon: PokemonDomainModel )
 }
 
 class FavoriteRouter: FavoriteRouterProtocol {
@@ -35,7 +36,7 @@ class FavoriteRouter: FavoriteRouterProtocol {
         return router
     }
     
-    func gotoDetailPokemon(with pokemon: Pokemon) {
+    func gotoDetailPokemon(with pokemon: PokemonDomainModel) {
         let detailPokemonRouter = DetailPokemonRouter.createDetailPokemon(with: pokemon)
         guard let detailPokemonView = detailPokemonRouter.entry else { return }
         guard let viewController = self.entry else { return }

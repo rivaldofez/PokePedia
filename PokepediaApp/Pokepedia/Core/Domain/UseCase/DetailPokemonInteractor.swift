@@ -7,13 +7,14 @@
 
 import Foundation
 import RxSwift
+import PokepediaPokemon
 
 protocol DetailPokemonUseCase {
     func getPokemonSpecies(id: Int) -> Observable<PokemonSpecies>
     
-    func getFavoritePokemonById(id: Int) -> Observable<Pokemon?>
+    func getFavoritePokemonById(id: Int) -> Observable<PokemonDomainModel?>
     
-    func saveFavoritePokemon(pokemon: Pokemon) -> Observable<Bool>
+    func saveFavoritePokemon(pokemon: PokemonDomainModel) -> Observable<Bool>
     
 }
 
@@ -28,11 +29,11 @@ class DetailPokemonInteractor: DetailPokemonUseCase {
         return repository.getPokemonSpecies(id: id)
     }
     
-    func getFavoritePokemonById(id: Int) -> Observable<Pokemon?> {
+    func getFavoritePokemonById(id: Int) -> Observable<PokemonDomainModel?> {
         return repository.getFavoritePokemonById(id: id)
     }
     
-    func saveFavoritePokemon(pokemon: Pokemon) -> Observable<Bool> {
+    func saveFavoritePokemon(pokemon: PokemonDomainModel) -> Observable<Bool> {
         return repository.addPokemonFavorite(pokemon: pokemon)
     }
 }

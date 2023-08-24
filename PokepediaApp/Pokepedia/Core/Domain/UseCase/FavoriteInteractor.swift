@@ -7,11 +7,12 @@
 
 import Foundation
 import RxSwift
+import PokepediaPokemon
 
 protocol FavoriteUseCase {
-    func getFavoritePokemonList() -> Observable<[Pokemon]>
-    func getSearchPokemon(query: String) -> Observable<[Pokemon]>
-    func saveFavoritePokemon(pokemon: Pokemon) -> Observable<Bool>
+    func getFavoritePokemonList() -> Observable<[PokemonDomainModel]>
+    func getSearchPokemon(query: String) -> Observable<[PokemonDomainModel]>
+    func saveFavoritePokemon(pokemon: PokemonDomainModel) -> Observable<Bool>
 }
 
 class FavoriteInteractor: FavoriteUseCase {
@@ -21,15 +22,15 @@ class FavoriteInteractor: FavoriteUseCase {
         self.repository = repository
     }
     
-    func getFavoritePokemonList() -> Observable<[Pokemon]> {
+    func getFavoritePokemonList() -> Observable<[PokemonDomainModel]> {
         return repository.getFavoritePokemonList()
     }
     
-    func getSearchPokemon(query: String) -> Observable<[Pokemon]> {
+    func getSearchPokemon(query: String) -> Observable<[PokemonDomainModel]> {
         return repository.getSearchPokemon(query: query)
     }
     
-    func saveFavoritePokemon(pokemon: Pokemon) -> Observable<Bool> {
+    func saveFavoritePokemon(pokemon: PokemonDomainModel) -> Observable<Bool> {
         return repository.addPokemonFavorite(pokemon: pokemon)
     }
 }

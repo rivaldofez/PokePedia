@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import PokepediaPokemon
 
 protocol DetailPokemonPresenterProtocol {
     var router: DetailPokemonRouterProtocol? { get set}
@@ -16,8 +17,8 @@ protocol DetailPokemonPresenterProtocol {
     var isLoadingData: Bool { get set}
     
     func getPokemonSpecies(id: Int)
-    func getPokemon(with pokemon: Pokemon)
-    func saveToggleFavorite(pokemon: Pokemon)
+    func getPokemon(with pokemon: PokemonDomainModel)
+    func saveToggleFavorite(pokemon: PokemonDomainModel)
 }
 
 class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
@@ -47,7 +48,7 @@ class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
             }.disposed(by: disposeBag)
     }
     
-    func saveToggleFavorite(pokemon: Pokemon) {
+    func saveToggleFavorite(pokemon: PokemonDomainModel) {
         self.isLoadingData = true
         interactor?.saveFavoritePokemon(pokemon: pokemon)
             .observe(on: MainScheduler.instance)
@@ -60,7 +61,7 @@ class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
             }.disposed(by: disposeBag)
     }
     
-    func getPokemon(with pokemon: Pokemon) {
+    func getPokemon(with pokemon: PokemonDomainModel) {
         isLoadingData = true
         
         interactor?.getFavoritePokemonById(id: pokemon.id)

@@ -6,18 +6,19 @@
 //
 
 import Foundation
+import PokepediaPokemon
 
 protocol DetailPokemonRouterProtocol {
     var entry: DetailPokemonViewController? { get }
     
-    static func createDetailPokemon(with pokemon: Pokemon) -> DetailPokemonRouterProtocol
+    static func createDetailPokemon(with pokemon: PokemonDomainModel) -> DetailPokemonRouterProtocol
     
 }
 
 class DetailPokemonRouter: DetailPokemonRouterProtocol {
     var entry: DetailPokemonViewController?
     
-    static func createDetailPokemon(with pokemon: Pokemon) -> DetailPokemonRouterProtocol {
+    static func createDetailPokemon(with pokemon: PokemonDomainModel) -> DetailPokemonRouterProtocol {
         
         let router = DetailPokemonRouter()
         

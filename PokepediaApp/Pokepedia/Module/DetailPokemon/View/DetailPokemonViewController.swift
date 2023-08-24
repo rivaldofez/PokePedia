@@ -7,13 +7,14 @@
 
 import UIKit
 import Lottie
+import PokepediaPokemon
 
 protocol DetailPokemonViewProtocol {
     var presenter: DetailPokemonPresenterProtocol? { get set }
     
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies)
     func updatePokemonSpecies(with error: String)
-    func updatePokemon(with pokemon: Pokemon)
+    func updatePokemon(with pokemon: PokemonDomainModel)
     func updateSaveToggleFavorite(with error: String)
     func updateSaveToggleFavorite(with state: Bool)
     func isLoadingData(with state: Bool)
@@ -46,14 +47,14 @@ class DetailPokemonViewController:
     var baseStatSubViewController = BaseStatSubViewController()
     var movesSubViewController = MovesSubViewController()
     
-    var pokemon: Pokemon?
+    var pokemon: PokemonDomainModel?
     
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies) {
         aboutSubViewController.pokemonSpecies = pokemonSpecies
         showError(isError: false)
     }
     
-    func updatePokemon(with pokemon: Pokemon) {
+    func updatePokemon(with pokemon: PokemonDomainModel) {
         self.pokemon = pokemon
         
         aboutSubViewController.pokemon = pokemon
