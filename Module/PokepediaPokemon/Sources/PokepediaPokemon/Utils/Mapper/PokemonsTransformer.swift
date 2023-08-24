@@ -17,6 +17,8 @@ public struct PokemonsTransformer: Mapper {
     
     private let pokemonTransformer = PokemonTransformer()
     
+    public init(){}
+    
     public func transformResponseToEntity(response: [PokemonItemResponse]) -> [PokemonEntity] {
         return response.map {
             pokemonTransformer.transformResponseToEntity(response: $0)

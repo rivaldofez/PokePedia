@@ -23,6 +23,7 @@
 		7E393A42299BDBC50033920C /* DetailPokemonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E393A41299BDBC50033920C /* DetailPokemonPresenter.swift */; };
 		7E393A44299BE1C30033920C /* DetailPokemonInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E393A43299BE1C30033920C /* DetailPokemonInteractor.swift */; };
 		7E393A46299BE5B90033920C /* PokemonSpecies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E393A45299BE5B90033920C /* PokemonSpecies.swift */; };
+		7E444BEE2A97303300F3C971 /* PokepediaPokemon in Frameworks */ = {isa = PBXBuildFile; productRef = 7E444BED2A97303300F3C971 /* PokepediaPokemon */; };
 		7E47C377299754AE00CFFB54 /* BaseStatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C376299754AE00CFFB54 /* BaseStatTableViewCell.swift */; };
 		7E47C379299768B700CFFB54 /* MovesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C378299768B700CFFB54 /* MovesTableViewCell.swift */; };
 		7E47C3952997786900CFFB54 /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E47C3932997784100CFFB54 /* Poppins-Black.ttf */; };
@@ -203,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E815FEB2A95FC9F00F6D3BD /* SDWebImage in Frameworks */,
+				7E444BEE2A97303300F3C971 /* PokepediaPokemon in Frameworks */,
 				7E5B1B082A95F751003F561A /* PokepediaSpecies in Frameworks */,
 				7E81601F2A9607F800F6D3BD /* DGCharts in Frameworks */,
 				7E5B1B062A95F751003F561A /* PokepediaCore in Frameworks */,
@@ -700,6 +702,7 @@
 				7E584DE02A95F9BF00CF4445 /* Lottie */,
 				7E815FEA2A95FC9F00F6D3BD /* SDWebImage */,
 				7E81601E2A9607F800F6D3BD /* DGCharts */,
+				7E444BED2A97303300F3C971 /* PokepediaPokemon */,
 			);
 			productName = Pokepedia;
 			productReference = 7E02472C2995E11A00EECAA9 /* Pokepedia.app */;
@@ -1186,6 +1189,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7E444BED2A97303300F3C971 /* PokepediaPokemon */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PokepediaPokemon;
+		};
 		7E584DE02A95F9BF00CF4445 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7E584DDF2A95F9BF00CF4445 /* XCRemoteSwiftPackageReference "lottie-spm" */;

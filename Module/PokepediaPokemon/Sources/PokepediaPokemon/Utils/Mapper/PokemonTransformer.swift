@@ -15,41 +15,13 @@ public struct PokemonTransformer: Mapper {
     
     public typealias Domain = PokemonDomainModel
     
+    public init(){}
+    
     public func transformResponseToEntity(response: PokemonItemResponse) -> PokemonEntity {
         
         let image = response.sprites.other.officialArtwork.frontDefault ??
         response.sprites.other.dreamWorld.frontDefault ??
         response.sprites.other.home.frontDefault ?? ""
-        
-        let newPokemon = PokemonDomainModel(
-            id: response.id,
-            name: response.name,
-            image: image,
-            height: Float(response.height) / 10.0,
-            weight: Float(response.weight) / 10.0,
-            baseExp: response.baseExperience,
-            baseStat: response.stats.map { statResponse in
-                
-                let newBaseStat = BaseStat(
-                    name: statResponse.stat.name,
-                    effort: statResponse.effort,
-                    value: statResponse.baseStat,
-                    url: statResponse.stat.url)
-                
-                return newBaseStat
-                
-            },
-            moves: response.moves.map { moveResponse in
-                return moveResponse.move.name
-            },
-            type: response.types.map { typeResponse in
-                return typeResponse.type.name
-            },
-            abilities: response.abilities.map { ability in
-                ability.ability.name.capitalized
-            }.joined(separator: ", ")
-        )
-        
         
         let pokemonEntity = PokemonEntity()
         let baseStat = List<BaseStatEntity>()
