@@ -2,16 +2,39 @@
 //  File.swift
 //  
 //
-//  Created by Rivaldo Fernandes on 22/08/23.
+//  Created by Rivaldo Fernandes on 24/08/23.
 //
 
-import PokepediaCore
-import RxSwift
-import RealmSwift
 import Foundation
+import PokepediaCore
+import RealmSwift
+import RxSwift
 
-public struct PokemonSpeciesLocaleDataSource: LocaleDataSource {
-    public func inserts(entities: [PokemonSpeciesEntity]) -> Observable<Bool> {
+public struct PokemonLocaleDataSource: LocaleDataSource {
+    public typealias Request = Int
+    
+    public typealias Response = PokemonEntity
+    
+    private let _realm: Realm
+    
+    public init(realm: Realm) {
+        _realm = realm
+    }
+    
+    public func list(request: Int?) -> Observable<[PokemonEntity]> {
+        return Observable<[PokemonEntity]>.create { observer in
+            let pokeData: Results<PokemonEntity> = {
+                _realm.objects(PokemonEntity.self)
+                    .sorted(byKeyPath: "id", ascending: true)
+            }()
+            observer.onNext(pokeData.toArray(ofType: PokemonEntity.self))
+            observer.onCompleted()
+            
+            return Disposables.create()
+        }
+    }
+    
+    public func inserts(entities: [PokemonEntity]) -> Observable<Bool> {
         return Observable<Bool>.create { observer in
             do {
                 try _realm.write {
@@ -24,35 +47,12 @@ public struct PokemonSpeciesLocaleDataSource: LocaleDataSource {
             } catch {
                 observer.onError(DatabaseError.invalidInstance)
             }
-            return Disposables.create()
-        }
-    }
-    
-    public typealias Request = Any
-    
-    public typealias Response = PokemonSpeciesEntity
-    
-    private let _realm: Realm
-    
-    public init(realm: Realm) {
-        _realm = realm
-    }
-    
-    
-    public func list(request: Request?) -> Observable<[PokemonSpeciesEntity]> {
-        return Observable<[PokemonSpeciesEntity]>.create { observer in
-            let pokeSpecies: Results<PokemonSpeciesEntity> = {
-                _realm.objects(PokemonSpeciesEntity.self)
-                    .sorted(byKeyPath: "id", ascending: true)
-            }()
-            observer.onNext(pokeSpecies.toArray(ofType: PokemonSpeciesEntity.self))
-            observer.onCompleted()
             
             return Disposables.create()
         }
     }
     
-    public func add(entity: PokemonSpeciesEntity) -> Observable<Bool> {
+    public func add(entity: PokemonEntity) -> Observable<Bool> {
         return Observable<Bool>.create { observer in
             do {
                 try _realm.write {
@@ -68,21 +68,21 @@ public struct PokemonSpeciesLocaleDataSource: LocaleDataSource {
         }
     }
     
-    public func get(id: Int) -> Observable<PokemonSpeciesEntity?> {
-        return Observable<PokemonSpeciesEntity?>.create { observer in
-            let pokeSpeciesList: Results<PokemonSpeciesEntity> = {
-                _realm.objects(PokemonSpeciesEntity.self)
+    public func get(id: Int) -> Observable<PokemonEntity?> {
+        return Observable<PokemonEntity?>.create { observer in
+            let pokeList: Results<PokemonEntity> = {
+                _realm.objects(PokemonEntity.self)
                     .where { $0.id == id }
             }()
             
-            observer.onNext(pokeSpeciesList.toArray(ofType: PokemonSpeciesEntity.self).first)
+            observer.onNext(pokeList.toArray(ofType: PokemonEntity.self).first)
             observer.onCompleted()
             
             return Disposables.create()
         }
     }
     
-    public func update(id: Int, entity: PokemonSpeciesEntity) -> RxSwift.Observable<Bool> {
+    public func update(id: Int, entity: PokemonEntity) -> Observable<Bool> {
         return Observable<Bool>.create { observer in
             do {
                 try _realm.write {
@@ -97,4 +97,6 @@ public struct PokemonSpeciesLocaleDataSource: LocaleDataSource {
             return Disposables.create()
         }
     }
+    
+    
 }
