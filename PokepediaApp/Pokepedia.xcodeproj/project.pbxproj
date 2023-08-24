@@ -131,6 +131,7 @@
 		7E393A41299BDBC50033920C /* DetailPokemonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPokemonPresenter.swift; sourceTree = "<group>"; };
 		7E393A43299BE1C30033920C /* DetailPokemonInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPokemonInteractor.swift; sourceTree = "<group>"; };
 		7E393A45299BE5B90033920C /* PokemonSpecies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSpecies.swift; sourceTree = "<group>"; };
+		7E444BEC2A96EF6600F3C971 /* PokepediaPokemon */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PokepediaPokemon; path = ../Module/PokepediaPokemon; sourceTree = "<group>"; };
 		7E47C376299754AE00CFFB54 /* BaseStatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatTableViewCell.swift; sourceTree = "<group>"; };
 		7E47C378299768B700CFFB54 /* MovesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesTableViewCell.swift; sourceTree = "<group>"; };
 		7E47C3832997784000CFFB54 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -461,6 +462,7 @@
 			children = (
 				7E5B1AFF2A92A434003F561A /* PokepediaCore */,
 				7E5B1B002A940D40003F561A /* PokepediaSpecies */,
+				7E444BEC2A96EF6600F3C971 /* PokepediaPokemon */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
