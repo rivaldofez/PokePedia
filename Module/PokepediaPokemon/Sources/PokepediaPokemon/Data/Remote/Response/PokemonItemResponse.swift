@@ -5,7 +5,7 @@
 //  Created by Rivaldo Fernandes on 24/08/23.
 //
 
-struct PokemonItemResponse: Codable {
+public struct PokemonItemResponse: Codable {
     let abilities: [Ability]
     let baseExperience: Int
     let forms: [BridgeComponent]
