@@ -26,7 +26,6 @@ final class Injection: NSObject {
           mapper: mapper)
         
         return Interactor(repository: repository) as! U
-        
     }
     
     
