@@ -11,6 +11,23 @@ import RealmSwift
 import Foundation
 
 public struct PokemonSpeciesLocaleDataSource: LocaleDataSource {
+    public func inserts(request: [PokemonSpeciesEntity]) -> Observable<Bool> {
+        return Observable<Bool>.create { observer in
+            do {
+                try _realm.write {
+                    for entity in request {
+                        _realm.add(entity, update: .all)
+                    }
+                }
+                observer.onNext(true)
+                observer.onCompleted()
+            } catch {
+                observer.onError(DatabaseError.invalidInstance)
+            }
+            return Disposables.create()
+        }
+    }
+    
     public typealias Request = Any
     
     public typealias Response = PokemonSpeciesEntity

@@ -12,6 +12,8 @@ public protocol LocaleDataSource {
     associatedtype Response
     
     func list(request: Request?) -> Observable<[Response]>
+    func inserts(request: [Response]) -> Observable<Bool>
+    
     func add(entity: Response) -> Observable<Bool>
     func get(id: Int) -> Observable<Response?>
     func update(id: Int, entity: Response) -> Observable<Bool>
