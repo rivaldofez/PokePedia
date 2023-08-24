@@ -22,6 +22,7 @@ public struct PokemonItemResponse: Codable {
     let types: [TypeElement]
     let weight: Int
     let sprites: Sprites
+    var offset: Int = 0
     
     enum CodingKeys: String, CodingKey {
         case abilities

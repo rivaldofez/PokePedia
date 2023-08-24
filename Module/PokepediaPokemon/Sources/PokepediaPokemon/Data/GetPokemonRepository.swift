@@ -48,7 +48,14 @@ Transformer.Domain == [PokemonDomainModel]
             .filter { !$0.isEmpty }
             .ifEmpty(switchTo: _remoteDataSource.get(request: pagination)
                 .map { _mapper.transformResponseToEntity(response: $0) }
-                .flatMap { _localeDataSource.inserts(entities: $0) }
+                .flatMap {
+                    _localeDataSource.inserts(entities:
+                                                $0.map{ item in
+                        item.offset = pagination
+                        return item
+                    }
+                    )
+                }
                 .filter { $0 }
                 .flatMap { _ in _localeDataSource.list(request: pagination)
                         .map { _mapper.transformEntityToDomain(entity: $0) }

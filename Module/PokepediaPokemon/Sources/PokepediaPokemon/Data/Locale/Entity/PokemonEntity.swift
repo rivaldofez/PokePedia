@@ -19,6 +19,7 @@ public class PokemonEntity: Object {
     @Persisted public var type: String
     @Persisted public var abilities: String
     @Persisted public var isFavorite: Bool
+    @Persisted public var offset: Int
 }
 
 public class BaseStatEntity: Object {

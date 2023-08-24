@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PokepediaCore
 import PokepediaPokemon
 
 typealias EntryPoint = HomeViewProtocol & UIViewController
@@ -25,8 +26,15 @@ class HomeRouter: HomeRouterProtocol {
         let router = HomeRouter()
         
         var view: HomeViewProtocol = HomeViewController()
-        var presenter: HomePresenterProtocol = HomePresenter()
-        let interactor: HomeUseCase = Injection.init().provideHome()
+        let interactor: Interactor<
+            Int,
+            [PokemonDomainModel],
+            GetPokemonRepository<
+                PokemonLocaleDataSource,
+                PokemonRemoteDataSource,
+                PokemonsTransformer>> = Injection().providePokemon()
+            
+        var presenter = HomePokemonPresenter()
         
         view.presenter = presenter
         presenter.router = router

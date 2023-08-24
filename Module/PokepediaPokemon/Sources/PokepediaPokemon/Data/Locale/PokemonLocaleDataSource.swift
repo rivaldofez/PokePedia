@@ -25,6 +25,7 @@ public struct PokemonLocaleDataSource: LocaleDataSource {
         return Observable<[PokemonEntity]>.create { observer in
             let pokeData: Results<PokemonEntity> = {
                 _realm.objects(PokemonEntity.self)
+                    .where { $0.offset == request ?? 0 }
                     .sorted(byKeyPath: "id", ascending: true)
             }()
             observer.onNext(pokeData.toArray(ofType: PokemonEntity.self))

@@ -57,6 +57,7 @@ public struct PokemonTransformer: Mapper {
         }.joined(separator: ", ")
         
         pokemonEntity.isFavorite = false
+        pokemonEntity.offset = response.offset
         
         return pokemonEntity
         
@@ -76,7 +77,8 @@ public struct PokemonTransformer: Mapper {
             moves: entity.moves.components(separatedBy: ","),
             type: entity.type.components(separatedBy: ","),
             abilities: entity.abilities,
-            isFavorite: entity.isFavorite
+            isFavorite: entity.isFavorite,
+            offset: entity.offset
         )
     }
     
@@ -112,7 +114,8 @@ public struct PokemonTransformer: Mapper {
             },
             abilities: response.abilities.map { ability in
                 ability.ability.name.capitalized
-            }.joined(separator: ", ")
+            }.joined(separator: ", "),
+            offset: response.offset
         )
         
         return newPokemon
@@ -131,7 +134,6 @@ public struct PokemonTransformer: Mapper {
                     baseStatEntity.value = $0.value
                     return baseStatEntity
                 }
-            
         )
         
         pokemonEntity.id = domain.id
@@ -145,6 +147,7 @@ public struct PokemonTransformer: Mapper {
         pokemonEntity.type = domain.type.joined(separator: ",")
         pokemonEntity.abilities = domain.abilities
         pokemonEntity.isFavorite = domain.isFavorite
+        pokemonEntity.offset = domain.offset
         
         return pokemonEntity
     }

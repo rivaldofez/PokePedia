@@ -10,28 +10,43 @@ import PokepediaPokemon
 import PokepediaCore
 import RxSwift
 
-class HomePokemonPresenter<
-    GetPokemonInteractor: UseCase
->
-where
-GetPokemonInteractor.Request == Int,
-GetPokemonInteractor.Response == [PokemonDomainModel] {
+protocol HomePokemonPresenterProtocol {
+    var router: HomeRouterProtocol? { get set}
+    var interactor: Interactor<
+        Int,
+        [PokemonDomainModel],
+        GetPokemonRepository<
+            PokemonLocaleDataSource,
+            PokemonRemoteDataSource,
+            PokemonsTransformer>>? { get set }
+    var view: HomeViewProtocol? { get set }
+    
+    var offsetPagination: Int? { get set }
+    var isLoadingData: Bool { get set }
+    
+    func getPokemonPagination(offset: Int)
+    func didSelectPokemonItem(with pokemon: PokemonDomainModel)
+}
+
+
+class HomePokemonPresenter: HomePokemonPresenterProtocol {
+    var interactor: Interactor<Int, [PokemonDomainModel], GetPokemonRepository<PokemonLocaleDataSource, PokemonRemoteDataSource, PokemonsTransformer>>? {
+        didSet {
+            offsetPagination = 0
+        }
+    }
+    
     
     var router: HomeRouterProtocol?
     var view: HomeViewProtocol?
-    private let useCase: GetPokemonInteractor
-    
     
     private let disposeBag = DisposeBag()
-    
-    init(useCase: GetPokemonInteractor) {
-        self.useCase = useCase
-    }
     
     var offsetPagination: Int? {
         didSet {
             guard let offsetPagination = offsetPagination else { return }
             //get pokemon data pagination
+            getPokemonPagination(offset: offsetPagination)
         }
     }
     
@@ -44,7 +59,7 @@ GetPokemonInteractor.Response == [PokemonDomainModel] {
     func getPokemonPagination(offset: Int) {
         isLoadingData = true
         
-        useCase.execute(request: offset)
+        interactor?.execute(request: offset)
             .observe(on: MainScheduler.instance)
             .subscribe { [weak self] pokemonResults in
                 self?.view?.updatePokemon(with: pokemonResults)
@@ -54,6 +69,10 @@ GetPokemonInteractor.Response == [PokemonDomainModel] {
             } onCompleted: {
                 self.isLoadingData = false
             }.disposed(by: disposeBag)
+    }
+    
+    func didSelectPokemonItem(with pokemon: PokemonDomainModel) {
+        router?.gotoDetailPokemon(with: pokemon)
     }
     
 }

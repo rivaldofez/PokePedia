@@ -11,7 +11,7 @@ import Lottie
 import PokepediaPokemon
 
 protocol HomeViewProtocol {
-    var presenter: HomePresenterProtocol? { get set }
+    var presenter: HomePokemonPresenterProtocol? { get set }
     
     func updatePokemon(with pokemons: [PokemonDomainModel])
     func updatePokemon(with error: String)
@@ -19,7 +19,7 @@ protocol HomeViewProtocol {
 }
 
 class HomeViewController: UIViewController, HomeViewProtocol {
-    var presenter: HomePresenterProtocol?
+    var presenter: HomePokemonPresenterProtocol?
     
     private var pokemonDataPagination: [PokemonDomainModel] = []
     private let disposeBag = DisposeBag()
@@ -161,7 +161,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     
     @objc private func reloadData() {
         if let offset = presenter?.offsetPagination {
-            presenter?.getPokemonDataPagination(offset: offset, limit: 50)
+            presenter?.getPokemonPagination(offset: offset)
         }
     }
     

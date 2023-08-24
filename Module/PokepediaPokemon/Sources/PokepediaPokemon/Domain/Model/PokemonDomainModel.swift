@@ -20,7 +20,8 @@ public struct PokemonDomainModel: Identifiable {
         moves: [String],
         type: [String],
         abilities: String,
-        isFavorite: Bool = false
+        isFavorite: Bool = false,
+        offset: Int = 0
     ) {
         self.id = id
         self.name = name
@@ -33,6 +34,7 @@ public struct PokemonDomainModel: Identifiable {
         self.type = type
         self.abilities = abilities
         self.isFavorite = isFavorite
+        self.offset = offset
     }
     
     public let id: Int
@@ -46,6 +48,7 @@ public struct PokemonDomainModel: Identifiable {
     public let type: [String]
     public let abilities: String
     public var isFavorite: Bool = false
+    public var offset: Int = 0
 }
 
 public struct BaseStat {
