@@ -7,12 +7,13 @@
 
 import UIKit
 import PokepediaPokemon
+import PokepediaSpecies
 
 class AboutSubViewController: UIViewController {
     
     private var aboutDataModel: [AboutCellModel] = []
     
-    var pokemonSpecies: PokemonSpecies? {
+    var pokemonSpecies: PokemonSpeciesDomainModel? {
         didSet {
             guard let pokemonSpecies = pokemonSpecies else { return }
             

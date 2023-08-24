@@ -108,7 +108,7 @@ final class PokemonMapper {
         }
     }
     
-    static func mapPokemonSpeciesResponseToDomain(input pokemonSpeciesResponse: PokemonSpeciesResponse) -> PokemonSpecies {
+    static func mapPokemonSpeciesResponseToDomain(input pokemonSpeciesResponse: PokemonSpeciesResponse) -> PokemonSpeciesDomainModel {
         
         let aboutPokemon = {
             for flavorEntry in pokemonSpeciesResponse.flavorTextEntries
@@ -148,7 +148,7 @@ final class PokemonMapper {
             
         }()
         
-        let newPokemonSpecies = PokemonSpecies(
+        let newPokemonSpecies = PokemonSpeciesDomainModel(
             id: pokemonSpeciesResponse.id,
             baseHappines: pokemonSpeciesResponse.baseHappiness,
             captureRate: pokemonSpeciesResponse.captureRate,
@@ -168,7 +168,7 @@ final class PokemonMapper {
         return newPokemonSpecies
     }
     
-    static func mapPokemonDataToAboutSectionData(pokemon: PokemonDomainModel, pokemonSpecies: PokemonSpecies) -> [AboutCellModel] {
+    static func mapPokemonDataToAboutSectionData(pokemon: PokemonDomainModel, pokemonSpecies: PokemonSpeciesDomainModel) -> [AboutCellModel] {
         var dataAboutCellModel: [AboutCellModel] = []
         
         var speciesItemCellModel: [ItemCellModel] = []

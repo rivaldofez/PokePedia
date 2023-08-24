@@ -23,5 +23,24 @@ public struct PokemonSpeciesDomainModel: Identifiable {
     public let isBaby: Bool
     public let shape: String
     public let eggGroups: String
+    
+    public init(id: Int, baseHappines: Int, captureRate: Int, color: String, about: String, genderRate: String, genus: String, growthRate: String, habitat: String, hatchCounter: Int, isLegendary: Bool, isMythical: Bool, isBaby: Bool, shape: String, eggGroups: String) {
+        
+        self.id = id
+        self.baseHappines = baseHappines
+        self.captureRate = captureRate
+        self.color = color
+        self.about = about
+        self.genderRate = genderRate
+        self.genus = genus
+        self.growthRate = growthRate
+        self.habitat = habitat
+        self.hatchCounter = hatchCounter
+        self.isLegendary = isLegendary
+        self.isMythical = isMythical
+        self.isBaby = isBaby
+        self.shape = shape
+        self.eggGroups = eggGroups
+    }
 }
 

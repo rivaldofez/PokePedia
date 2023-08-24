@@ -8,9 +8,10 @@
 import Foundation
 import RxSwift
 import PokepediaPokemon
+import PokepediaSpecies
 
 protocol DetailPokemonUseCase {
-    func getPokemonSpecies(id: Int) -> Observable<PokemonSpecies>
+    func getPokemonSpecies(id: Int) -> Observable<PokemonSpeciesDomainModel>
     
     func getFavoritePokemonById(id: Int) -> Observable<PokemonDomainModel?>
     
@@ -25,7 +26,7 @@ class DetailPokemonInteractor: DetailPokemonUseCase {
         self.repository = repository
     }
     
-    func getPokemonSpecies(id: Int) -> Observable<PokemonSpecies> {
+    func getPokemonSpecies(id: Int) -> Observable<PokemonSpeciesDomainModel> {
         return repository.getPokemonSpecies(id: id)
     }
     

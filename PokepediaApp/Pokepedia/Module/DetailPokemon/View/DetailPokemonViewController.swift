@@ -8,11 +8,12 @@
 import UIKit
 import Lottie
 import PokepediaPokemon
+import PokepediaSpecies
 
 protocol DetailPokemonViewProtocol {
     var presenter: DetailPokemonPresenterProtocol? { get set }
     
-    func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies)
+    func updatePokemonSpecies(with pokemonSpecies: PokemonSpeciesDomainModel)
     func updatePokemonSpecies(with error: String)
     func updatePokemon(with pokemon: PokemonDomainModel)
     func updateSaveToggleFavorite(with error: String)
@@ -49,7 +50,7 @@ class DetailPokemonViewController:
     
     var pokemon: PokemonDomainModel?
     
-    func updatePokemonSpecies(with pokemonSpecies: PokemonSpecies) {
+    func updatePokemonSpecies(with pokemonSpecies: PokemonSpeciesDomainModel) {
         aboutSubViewController.pokemonSpecies = pokemonSpecies
         showError(isError: false)
     }

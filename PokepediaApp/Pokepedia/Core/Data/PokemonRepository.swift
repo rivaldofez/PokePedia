@@ -8,11 +8,12 @@
 import Foundation
 import RxSwift
 import PokepediaPokemon
+import PokepediaSpecies
 
 protocol PokemonRepositoryProtocol {
     func getPokemonDataPagination(offset: Int, limit: Int) -> Observable<[PokemonDomainModel]>
     
-    func getPokemonSpecies(id: Int) -> Observable<PokemonSpecies>
+    func getPokemonSpecies(id: Int) -> Observable<PokemonSpeciesDomainModel>
     
     func getFavoritePokemonList() -> Observable<[PokemonDomainModel]>
     
@@ -73,7 +74,7 @@ extension PokemonRepository: PokemonRepositoryProtocol {
         }
     }
     
-    func getPokemonSpecies(id: Int) -> Observable<PokemonSpecies> {
+    func getPokemonSpecies(id: Int) -> Observable<PokemonSpeciesDomainModel> {
         return self.remote.getPokemonSpecies(id: id).map {
             PokemonMapper.mapPokemonSpeciesResponseToDomain(input: $0)
         }
