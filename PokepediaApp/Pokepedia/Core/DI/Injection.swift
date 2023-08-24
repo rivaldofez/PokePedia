@@ -53,11 +53,6 @@ final class Injection: NSObject {
         return PokemonRepository.sharedInstance(remote, locale)
     }
     
-    func provideHome() -> HomeUseCase {
-        let repository = provideRepository()
-        return HomeInteractor(repository: repository)
-    }
-    
     func provideDetailPokemon() -> DetailPokemonUseCase {
         let repository = provideRepository()
         return DetailPokemonInteractor(repository: repository)
