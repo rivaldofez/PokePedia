@@ -10,10 +10,11 @@ import RxSwift
 import PokepediaCore
 
 public struct GetFavoritePokemonsRepository<
-    PokemonLocaleDataSource: LocaleDataSource,
+    FavoritePokemonLocaleDataSource: LocaleDataSource,
     Transformer: Mapper
 >: Repository where
-PokemonLocaleDataSource.Response == PokemonEntity,
+FavoritePokemonLocaleDataSource.Request == String,
+FavoritePokemonLocaleDataSource.Response == PokemonEntity,
 Transformer.Response == [PokemonItemResponse],
 Transformer.Entity == [PokemonEntity],
 Transformer.Domain == [PokemonDomainModel]

@@ -24,7 +24,7 @@ class FavoriteRouter: FavoriteRouterProtocol {
     
         var view: FavoriteViewProtocol = FavoriteViewController()
         var presenter: FavoritePresenterProtocol = FavoritePresenter()
-        let interactor: FavoriteUseCase = Injection.init().provideFavorite()
+        let interactor: FavoriteUseCase = Injection.init().provideFavoritesss()
         
         view.presenter = presenter
         presenter.router = router

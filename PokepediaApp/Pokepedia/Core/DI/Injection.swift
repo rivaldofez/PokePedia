@@ -62,7 +62,19 @@ final class Injection: NSObject {
         return Interactor(repository: repository) as! U
     }
     
-    func provideFavorite() -> FavoriteUseCase {
+    func provideFavorite<U: UseCase>() -> U where U.Request == String, U.Response == [PokemonDomainModel] {
+        
+        
+        let locale = FavoritePokemonLocaleDataSource(realm: realm!)
+        let mapper = PokemonsTransformer()
+        
+        let repository = GetFavoritePokemonsRepository(localeDataSource: locale, mapper: mapper)
+        
+        return Interactor(repository: repository) as! U
+    }
+    
+    
+    func provideFavoritesss() -> FavoriteUseCase {
         let repository = provideRepository()
         return FavoriteInteractor(repository: repository)
     }
