@@ -32,7 +32,7 @@ class HomeRouter: HomeRouterProtocol {
             GetPokemonsRepository<
                 PokemonLocaleDataSource,
                 PokemonRemoteDataSource,
-                PokemonsTransformer>> = Injection().providePokemon()
+                PokemonsTransformer>> = Injection().providePokemons()
             
         var presenter = HomePokemonPresenter()
         

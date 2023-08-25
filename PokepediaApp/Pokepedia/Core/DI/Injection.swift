@@ -29,7 +29,18 @@ final class Injection: NSObject {
         return Interactor(repository: repository) as! U
     }
     
-    func providePokemon<U: UseCase>() -> U where U.Request == Int, U.Response == [PokemonDomainModel] {
+    
+    func providePokemon<U: UseCase>() -> U where U.Request == Int, U.Response == PokemonDomainModel {
+        
+        let locale = PokemonLocaleDataSource(realm: realm!)
+        let mapper = PokemonTransformer()
+        
+        let repository = GetPokemonRepository(localeDataSource: locale, mapper: mapper)
+        
+        return Interactor(repository: repository) as! U
+    }
+    
+    func providePokemons<U: UseCase>() -> U where U.Request == Int, U.Response == [PokemonDomainModel] {
         
         let locale = PokemonLocaleDataSource(realm: realm!)
         let remote = PokemonRemoteDataSource {

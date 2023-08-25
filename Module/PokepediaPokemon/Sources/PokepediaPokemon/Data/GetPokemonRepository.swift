@@ -24,6 +24,14 @@ Transformer.Domain == PokemonDomainModel {
     private var _localeDataSource: PokemonLocaleDataSource
     private var _mapper: Transformer
     
+    public init(
+        localeDataSource: PokemonLocaleDataSource,
+        mapper: Transformer
+    ) {
+        _localeDataSource = localeDataSource
+        _mapper = mapper
+    }
+    
     public func execute(request: Int?) -> Observable<Transformer.Domain> {
         guard let request = request else { fatalError() }
         
