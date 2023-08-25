@@ -21,13 +21,21 @@ Transformer.Domain == PokemonDomainModel {
     
     public typealias Response = Bool
     
-    private let localeDataSource: PokemonLocaleDataSource
-    private let mapper: Transformer
+    private var _localeDataSource: PokemonLocaleDataSource
+    private var _mapper: Transformer
+    
+    public init(
+        localeDataSource: PokemonLocaleDataSource,
+        mapper: Transformer
+    ) {
+        _localeDataSource = localeDataSource
+        _mapper = mapper
+    }
     
     
     public func execute(request: Transformer.Domain?) -> Observable<Bool> {
         guard let request = request else { fatalError() }
-            return localeDataSource.update(entity: mapper.transformDomainToEntity(domain: request))
+            return _localeDataSource.update(entity: _mapper.transformDomainToEntity(domain: request))
         
     }
 }

@@ -15,7 +15,7 @@ protocol HomePokemonPresenterProtocol {
     var interactor: Interactor<
         Int,
         [PokemonDomainModel],
-        GetPokemonRepository<
+        GetPokemonsRepository<
             PokemonLocaleDataSource,
             PokemonRemoteDataSource,
             PokemonsTransformer>>? { get set }
@@ -30,7 +30,7 @@ protocol HomePokemonPresenterProtocol {
 
 
 class HomePokemonPresenter: HomePokemonPresenterProtocol {
-    var interactor: Interactor<Int, [PokemonDomainModel], GetPokemonRepository<PokemonLocaleDataSource, PokemonRemoteDataSource, PokemonsTransformer>>? {
+    var interactor: Interactor<Int, [PokemonDomainModel], GetPokemonsRepository<PokemonLocaleDataSource, PokemonRemoteDataSource, PokemonsTransformer>>? {
         didSet {
             offsetPagination = 0
         }

@@ -35,12 +35,16 @@ class DetailPokemonRouter: DetailPokemonRouterProtocol {
             PokemonSpeciesRemoteDataSource,
             PokemonSpeciesTransformer>>? = Injection().providePokemonSpecies()
         
+//        var toggleFavoriteInteractor: Interactor<PokemonDomainModel, Bool, ToggleFavoritePokemonRepository<PokemonLocaleDataSource, PokemonTransformer>>? = Injection().provideFavorite()
+        
+        
         var presenter: DetailPresenterProtocol = DetailPresenter()
         
         view.presenter = presenter
         presenter.router = router
         presenter.view = view
-        presenter.interactor = interactor
+        presenter.speciesInteractor = interactor
+        presenter.toggleFavoriteInteractor = Injection().provideToggleFavorite()
         
         presenter.getPokemon(with: pokemon)
         router.entry = view as? DetailPokemonViewController

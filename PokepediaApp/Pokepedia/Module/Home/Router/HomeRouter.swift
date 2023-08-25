@@ -29,7 +29,7 @@ class HomeRouter: HomeRouterProtocol {
         let interactor: Interactor<
             Int,
             [PokemonDomainModel],
-            GetPokemonRepository<
+            GetPokemonsRepository<
                 PokemonLocaleDataSource,
                 PokemonRemoteDataSource,
                 PokemonsTransformer>> = Injection().providePokemon()

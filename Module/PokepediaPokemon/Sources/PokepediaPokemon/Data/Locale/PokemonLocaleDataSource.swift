@@ -98,6 +98,4 @@ public struct PokemonLocaleDataSource: LocaleDataSource {
             return Disposables.create()
         }
     }
-    
-    
 }

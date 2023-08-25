@@ -13,13 +13,22 @@ import RxSwift
 
 protocol DetailPresenterProtocol {
     var router: DetailPokemonRouterProtocol? { get set}
-    var interactor: Interactor<
+    
+    var speciesInteractor: Interactor<
         Int,
         PokemonSpeciesDomainModel?,
         GetPokemonSpeciesRepository<
         PokemonSpeciesLocaleDataSource,
         PokemonSpeciesRemoteDataSource,
         PokemonSpeciesTransformer>>? { get set }
+    
+    var toggleFavoriteInteractor: Interactor<
+        PokemonDomainModel,
+        Bool,
+        ToggleFavoritePokemonRepository<
+            PokemonLocaleDataSource,
+            PokemonTransformer>>? { get set }
+        
     
     var view: DetailPokemonViewProtocol? { get set }
     
@@ -31,12 +40,13 @@ protocol DetailPresenterProtocol {
 }
 
 class DetailPresenter: DetailPresenterProtocol {
-    private let disposeBag = DisposeBag()
+    var toggleFavoriteInteractor: Interactor<PokemonDomainModel, Bool, ToggleFavoritePokemonRepository<PokemonLocaleDataSource, PokemonTransformer>>?
     
+    private let disposeBag = DisposeBag()
     
     var router: DetailPokemonRouterProtocol?
     
-    var interactor: PokepediaCore.Interactor<Int, PokepediaSpecies.PokemonSpeciesDomainModel?, PokepediaSpecies.GetPokemonSpeciesRepository<PokepediaSpecies.PokemonSpeciesLocaleDataSource, PokepediaSpecies.PokemonSpeciesRemoteDataSource, PokepediaSpecies.PokemonSpeciesTransformer>>?
+    var speciesInteractor: PokepediaCore.Interactor<Int, PokepediaSpecies.PokemonSpeciesDomainModel?, PokepediaSpecies.GetPokemonSpeciesRepository<PokepediaSpecies.PokemonSpeciesLocaleDataSource, PokepediaSpecies.PokemonSpeciesRemoteDataSource, PokepediaSpecies.PokemonSpeciesTransformer>>?
     
     var view: DetailPokemonViewProtocol?
     
@@ -50,7 +60,7 @@ class DetailPresenter: DetailPresenterProtocol {
         print("called get species presenter")
         isLoadingData = true
         
-        interactor?.execute(request: id)
+        speciesInteractor?.execute(request: id)
             .observe(on: MainScheduler.instance)
             .subscribe { [weak self] pokemonSpeciesResult in                
                 if let pokemonSpecies = pokemonSpeciesResult {
@@ -67,10 +77,21 @@ class DetailPresenter: DetailPresenterProtocol {
     }
     
     func getPokemon(with pokemon: PokemonDomainModel) {
+        self.view?.updatePokemon(with: pokemon)
         getPokemonSpecies(id: pokemon.id)
     }
     
     func saveToggleFavorite(pokemon: PokemonDomainModel) {
-        
+        print("called in save toggle \(pokemon.isFavorite)")
+        self.isLoadingData = true
+        toggleFavoriteInteractor?.execute(request: pokemon)
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] result in
+                self?.view?.updateSaveToggleFavorite(with: result)
+            } onError: { error in
+                self.view?.updateSaveToggleFavorite(with: error.localizedDescription)
+            } onCompleted: {
+                self.isLoadingData = false
+            }.disposed(by: disposeBag)
     }
 }

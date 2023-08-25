@@ -9,7 +9,7 @@ import Foundation
 import PokepediaCore
 import RxSwift
 
-public struct GetPokemonRepository<
+public struct GetPokemonsRepository<
     PokemonLocaleDataSource: LocaleDataSource,
     PokemonRemoteDataSource: RemoteDataSource,
     Transformer: Mapper

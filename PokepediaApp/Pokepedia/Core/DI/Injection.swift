@@ -38,9 +38,22 @@ final class Injection: NSObject {
         
         let mapper = PokemonsTransformer()
         
-        let repository = GetPokemonRepository(localeDataSource: locale, remoteDataSource: remote, mapper: mapper)
+        let repository = GetPokemonsRepository(localeDataSource: locale, remoteDataSource: remote, mapper: mapper)
         
         return Interactor(repository: repository) as! U
+    }
+    
+    func provideToggleFavorite<U: UseCase>() -> U where U.Request == PokemonDomainModel, U.Response == Bool {
+        let locale = PokemonLocaleDataSource(realm: realm!)
+        let mapper = PokemonTransformer()
+        
+        let repository = ToggleFavoritePokemonRepository(localeDataSource: locale, mapper: mapper)
+        return Interactor(repository: repository) as! U
+    }
+    
+    func provideFavorite() -> FavoriteUseCase {
+        let repository = provideRepository()
+        return FavoriteInteractor(repository: repository)
     }
     
     
@@ -57,10 +70,4 @@ final class Injection: NSObject {
         let repository = provideRepository()
         return DetailPokemonInteractor(repository: repository)
     }
-    
-    func provideFavorite() -> FavoriteUseCase {
-        let repository = provideRepository()
-        return FavoriteInteractor(repository: repository)
-    }
-    
 }

@@ -84,7 +84,7 @@ public struct PokemonSpeciesLocaleDataSource: LocaleDataSource {
         }
     }
     
-    public func update(id: Int, entity: PokemonSpeciesEntity) -> RxSwift.Observable<Bool> {
+    public func update(entity: PokemonSpeciesEntity) -> RxSwift.Observable<Bool> {
         return Observable<Bool>.create { observer in
             do {
                 try _realm.write {
