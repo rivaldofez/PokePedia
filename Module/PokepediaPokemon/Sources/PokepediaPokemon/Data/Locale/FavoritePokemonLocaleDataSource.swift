@@ -2,7 +2,7 @@
 //  File.swift
 //  
 //
-//  Created by Rivaldo Fernandes on 24/08/23.
+//  Created by Rivaldo Fernandes on 26/08/23.
 //
 
 import Foundation
@@ -10,10 +10,7 @@ import PokepediaCore
 import RealmSwift
 import RxSwift
 
-public struct PokemonLocaleDataSource: LocaleDataSource {
-    public typealias Request = Int
-    
-    public typealias Response = PokemonEntity
+public struct FavoritePokemonLocaleDataSource: LocaleDataSource {
     
     private let _realm: Realm
     
@@ -21,14 +18,21 @@ public struct PokemonLocaleDataSource: LocaleDataSource {
         _realm = realm
     }
     
-    public func list(request: Int?) -> Observable<[PokemonEntity]> {
+    public func list(request: String?) -> Observable<[PokemonEntity]>{
         return Observable<[PokemonEntity]>.create { observer in
             let pokeData: Results<PokemonEntity> = {
                 _realm.objects(PokemonEntity.self)
-                    .where { $0.offset == request ?? 0 }
+                    .where { $0.isFavorite }
                     .sorted(byKeyPath: "id", ascending: true)
             }()
-            observer.onNext(pokeData.toArray(ofType: PokemonEntity.self))
+            if let request = request {
+                let filteredData = pokeData.where { $0.name.contains(request, options: .caseInsensitive )}
+                
+                observer.onNext(filteredData.toArray(ofType: PokemonEntity.self))
+                
+            } else {
+                observer.onNext(pokeData.toArray(ofType: PokemonEntity.self))
+            }
             observer.onCompleted()
             
             return Disposables.create()
@@ -69,7 +73,7 @@ public struct PokemonLocaleDataSource: LocaleDataSource {
         }
     }
     
-    public func get(id: Int) -> Observable<PokemonEntity?> {
+    public func get(id: Int) -> RxSwift.Observable<PokemonEntity?> {
         return Observable<PokemonEntity?>.create { observer in
             let pokeList: Results<PokemonEntity> = {
                 _realm.objects(PokemonEntity.self)
@@ -99,32 +103,9 @@ public struct PokemonLocaleDataSource: LocaleDataSource {
         }
     }
     
-    public func search(query: String) -> Observable<[PokemonEntity]> {
-        return Observable<[PokemonEntity]>.create { observer in
-            let pokeData: Results<PokemonEntity> = {
-                _realm.objects(PokemonEntity.self)
-                    .where { $0.isFavorite }
-                    .where { $0.name.contains(query, options: .caseInsensitive)}
-                    .sorted(byKeyPath: "id", ascending: true)
-            }()
-            observer.onNext(pokeData.toArray(ofType: PokemonEntity.self))
-            observer.onCompleted()
-            
-            return Disposables.create()
-        }
-    }
+    public typealias Request = String
     
-    public func listFavorite() -> Observable<[PokemonEntity]> {
-        return Observable<[PokemonEntity]>.create { observer in
-            let pokeData: Results<PokemonEntity> = {
-                _realm.objects(PokemonEntity.self)
-                    .where { $0.isFavorite }
-                    .sorted(byKeyPath: "id", ascending: true)
-            }()
-            observer.onNext(pokeData.toArray(ofType: PokemonEntity.self))
-            observer.onCompleted()
-            
-            return Disposables.create()
-        }
-    }
+    public typealias Response = PokemonEntity
+    
+    
 }
