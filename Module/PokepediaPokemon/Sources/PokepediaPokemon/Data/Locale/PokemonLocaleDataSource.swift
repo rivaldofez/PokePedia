@@ -83,7 +83,7 @@ public struct PokemonLocaleDataSource: LocaleDataSource {
         }
     }
     
-    public func update(id: Int, entity: PokemonEntity) -> Observable<Bool> {
+    public func update(entity: PokemonEntity) -> Observable<Bool> {
         return Observable<Bool>.create { observer in
             do {
                 try _realm.write {
