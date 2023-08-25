@@ -28,6 +28,14 @@ protocol DetailPresenterProtocol {
         ToggleFavoritePokemonRepository<
             PokemonLocaleDataSource,
             PokemonTransformer>>? { get set }
+    
+    
+    var pokemonInteractor: Interactor<
+        Int,
+        PokemonDomainModel,
+        GetPokemonRepository<
+            PokemonLocaleDataSource,
+            PokemonTransformer>>? { get set }
         
     
     var view: DetailPokemonViewProtocol? { get set }
@@ -40,6 +48,8 @@ protocol DetailPresenterProtocol {
 }
 
 class DetailPresenter: DetailPresenterProtocol {
+    var pokemonInteractor: Interactor<Int, PokemonDomainModel, GetPokemonRepository<PokemonLocaleDataSource, PokemonTransformer>>?
+    
     var toggleFavoriteInteractor: Interactor<PokemonDomainModel, Bool, ToggleFavoritePokemonRepository<PokemonLocaleDataSource, PokemonTransformer>>?
     
     private let disposeBag = DisposeBag()
@@ -77,8 +87,18 @@ class DetailPresenter: DetailPresenterProtocol {
     }
     
     func getPokemon(with pokemon: PokemonDomainModel) {
-        self.view?.updatePokemon(with: pokemon)
-        getPokemonSpecies(id: pokemon.id)
+        isLoadingData = true
+        
+        pokemonInteractor?.execute(request: pokemon.id)
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] pokemonResult in
+                self?.view?.updatePokemon(with: pokemonResult)
+            } onError: { _ in
+                self.view?.updatePokemon(with: pokemon)
+                self.getPokemonSpecies(id: pokemon.id)
+            } onCompleted: {
+                self.getPokemonSpecies(id: pokemon.id)
+            }.disposed(by: disposeBag)
     }
     
     func saveToggleFavorite(pokemon: PokemonDomainModel) {
