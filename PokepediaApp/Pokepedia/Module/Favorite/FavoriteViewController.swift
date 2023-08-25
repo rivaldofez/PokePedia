@@ -11,7 +11,7 @@ import Lottie
 import PokepediaPokemon
 
 protocol FavoriteViewProtocol {
-    var presenter: FavoritePresenterProtocol? { get set }
+    var presenter: FavoritePokemonPresenterProtocol? { get set }
     
     func updatePokemonFavorite(with pokemons: [PokemonDomainModel])
     func updatePokemonFavorite(with error: String)
@@ -22,7 +22,7 @@ protocol FavoriteViewProtocol {
 
 class FavoriteViewController: UIViewController, FavoriteViewProtocol {
 
-    var presenter: FavoritePresenterProtocol?
+    var presenter: FavoritePokemonPresenterProtocol?
     
     private var pokemonData: [PokemonDomainModel] = []
     private let disposeBag = DisposeBag()
@@ -146,7 +146,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter?.getFavoritePokemonList()
+        presenter?.getSearchPokemon(query: nil)
     }
     
     // MARK: Presenter Action
@@ -155,7 +155,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         func updateSaveToggleFavorite(with error: String) {
             showToggleFavoriteAlert(title: "An Error Occured", message: "Oops, cannot process your due to system error, please try again")
         }
-        presenter?.getFavoritePokemonList()
+        presenter?.getSearchPokemon(query: nil)
     }
     
     func updateSaveToggleFavorite(with state: Bool) {
@@ -278,10 +278,6 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension FavoriteViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            presenter?.getFavoritePokemonList()
-        } else {
             presenter?.getSearchPokemon(query: searchText)
-        }
     }
 }

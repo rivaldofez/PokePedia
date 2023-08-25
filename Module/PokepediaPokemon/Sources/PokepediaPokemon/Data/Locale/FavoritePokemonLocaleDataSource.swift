@@ -26,10 +26,13 @@ public struct FavoritePokemonLocaleDataSource: LocaleDataSource {
                     .sorted(byKeyPath: "id", ascending: true)
             }()
             if let request = request {
-                let filteredData = pokeData.where { $0.name.contains(request, options: .caseInsensitive )}
-                
-                observer.onNext(filteredData.toArray(ofType: PokemonEntity.self))
-                
+                if request.isEmpty {
+                    observer.onNext(pokeData.toArray(ofType: PokemonEntity.self))
+                } else {
+                    let filteredData = pokeData.where { $0.name.contains(request, options: .caseInsensitive )}
+                    
+                    observer.onNext(filteredData.toArray(ofType: PokemonEntity.self))
+                }
             } else {
                 observer.onNext(pokeData.toArray(ofType: PokemonEntity.self))
             }

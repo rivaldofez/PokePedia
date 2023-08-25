@@ -36,8 +36,6 @@ Transformer.Domain == [PokemonDomainModel]
     public typealias Response = [PokemonDomainModel]
     
     public func execute(request: String?) -> Observable<[PokemonDomainModel]> {
-        guard let request = request else { fatalError() }
-        
         return _localeDataSource.list(request: request)
             .map{ _mapper.transformEntityToDomain(entity: $0) }
     }
