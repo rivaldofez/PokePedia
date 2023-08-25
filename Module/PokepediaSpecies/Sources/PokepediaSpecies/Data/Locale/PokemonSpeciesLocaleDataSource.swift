@@ -76,6 +76,8 @@ public struct PokemonSpeciesLocaleDataSource: LocaleDataSource {
             }()
             
             observer.onNext(pokeSpeciesList.toArray(ofType: PokemonSpeciesEntity.self).first)
+            print("called on locale data source \(pokeSpeciesList.toArray(ofType: PokemonSpeciesEntity.self))")
+            
             observer.onCompleted()
             
             return Disposables.create()

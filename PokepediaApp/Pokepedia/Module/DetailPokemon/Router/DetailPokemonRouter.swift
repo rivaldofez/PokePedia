@@ -7,6 +7,8 @@
 
 import Foundation
 import PokepediaPokemon
+import PokepediaCore
+import PokepediaSpecies
 
 protocol DetailPokemonRouterProtocol {
     var entry: DetailPokemonViewController? { get }
@@ -25,9 +27,15 @@ class DetailPokemonRouter: DetailPokemonRouterProtocol {
         // assign vip
         var view: DetailPokemonViewProtocol = DetailPokemonViewController()
         
-        var presenter: DetailPokemonPresenterProtocol = DetailPokemonPresenter()
+        var interactor: Interactor<
+            Int,
+            PokemonSpeciesDomainModel?,
+            GetPokemonSpeciesRepository<
+            PokemonSpeciesLocaleDataSource,
+            PokemonSpeciesRemoteDataSource,
+            PokemonSpeciesTransformer>>? = Injection().providePokemonSpecies()
         
-        let interactor: DetailPokemonUseCase = Injection.init().provideDetailPokemon()
+        var presenter: DetailPresenterProtocol = DetailPresenter()
         
         view.presenter = presenter
         presenter.router = router

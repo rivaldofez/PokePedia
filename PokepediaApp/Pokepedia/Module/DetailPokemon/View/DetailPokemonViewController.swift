@@ -11,7 +11,7 @@ import PokepediaPokemon
 import PokepediaSpecies
 
 protocol DetailPokemonViewProtocol {
-    var presenter: DetailPokemonPresenterProtocol? { get set }
+    var presenter: DetailPresenterProtocol? { get set }
     
     func updatePokemonSpecies(with pokemonSpecies: PokemonSpeciesDomainModel)
     func updatePokemonSpecies(with error: String)
@@ -43,7 +43,7 @@ class DetailPokemonViewController:
         }
     }
     
-    var presenter: DetailPokemonPresenterProtocol?
+    var presenter: DetailPresenterProtocol?
     var aboutSubViewController = AboutSubViewController()
     var baseStatSubViewController = BaseStatSubViewController()
     var movesSubViewController = MovesSubViewController()

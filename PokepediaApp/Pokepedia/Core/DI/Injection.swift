@@ -14,7 +14,7 @@ import PokepediaPokemon
 final class Injection: NSObject {
     private let realm = try? Realm()
     
-    func providePokemonSpecies<U: UseCase>() -> U where U.Request == Int, U.Response == PokemonSpeciesDomainModel {
+    func providePokemonSpecies<U: UseCase>() -> U where U.Request == Int, U.Response == PokemonSpeciesDomainModel? {
         
         let locale = PokemonSpeciesLocaleDataSource(realm: realm!)
         let remote = PokemonSpeciesRemoteDataSource(endpoint: { Endpoints.Gets.pokemonSpecies($0).url })

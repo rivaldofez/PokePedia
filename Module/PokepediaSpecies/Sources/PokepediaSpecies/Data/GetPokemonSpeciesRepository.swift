@@ -45,13 +45,14 @@ Transformer.Domain == PokemonSpeciesDomainModel?
         guard let id = request else { fatalError() }
         return _localeDataSource.get(id: id)
             .map { _mapper.transformEntityToDomain(entity: $0) }
+            .filter{ $0 != nil }
             .ifEmpty(switchTo: _remoteDataSource.get(request: id)
                 .map { _mapper.transformResponseToEntity(response: $0)! }
                 .flatMap { _localeDataSource.add(entity: $0) }
+                .filter { $0 }
                 .flatMap { _ in _localeDataSource.get(id: id)
                         .map { _mapper.transformEntityToDomain(entity: $0) }
                 }
-                     
             )
     }
 }
