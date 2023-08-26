@@ -37,7 +37,7 @@ protocol FavoritePokemonPresenterProtocol {
 class FavoritePokemonPresenter: FavoritePokemonPresenterProtocol {
     var favoriteInteractor: Interactor<String, [PokemonDomainModel], GetFavoritePokemonsRepository<FavoritePokemonLocaleDataSource, PokemonsTransformer>>? {
         didSet {
-//            getFavoritePokemonList()
+            getSearchPokemon(query: nil)
         }
     }
     
