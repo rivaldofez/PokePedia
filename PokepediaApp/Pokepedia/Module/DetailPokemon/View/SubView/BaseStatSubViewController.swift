@@ -52,7 +52,7 @@ class BaseStatSubViewController: UIViewController {
         uiswitch.isEnabled = true
         uiswitch.translatesAutoresizingMaskIntoConstraints = false
         uiswitch.isUserInteractionEnabled = true
-        uiswitch.onTintColor = UIColor(named: PokemonConverter.typeStringToColorName(type: (pokemon?.type.first!)!))
+        uiswitch.onTintColor = UIColor(named: ViewDataConverter.typeStringToColorName(type: (pokemon?.type.first!)!))
         
         return uiswitch
     }()
@@ -73,7 +73,7 @@ class BaseStatSubViewController: UIViewController {
         }
         
         let dataset = RadarChartDataSet(entries: entries)
-        let colorType = NSUIColor(cgColor: UIColor(named: PokemonConverter.typeStringToColorName(type: pokemon.type.first!))!.cgColor)
+        let colorType = NSUIColor(cgColor: UIColor(named: ViewDataConverter.typeStringToColorName(type: pokemon.type.first!))!.cgColor)
         
         dataset.colors = [colorType]
         dataset.fillColor = colorType
@@ -162,7 +162,7 @@ extension BaseStatSubViewController: AxisValueFormatter {
         guard let pokemon = pokemon else { return "" }
         
         let titles = pokemon.baseStat.map { stat in
-            return PokemonConverter.typeStringToStatName(type: stat.name)
+            return ViewDataConverter.typeStringToStatName(type: stat.name)
         }
         
         return "\(titles[Int(value) % titles.count])"

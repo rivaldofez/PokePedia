@@ -72,25 +72,4 @@ final class Injection: NSObject {
         
         return Interactor(repository: repository) as! U
     }
-    
-    
-    func provideFavoritesss() -> FavoriteUseCase {
-        let repository = provideRepository()
-        return FavoriteInteractor(repository: repository)
-    }
-    
-    
-    private func provideRepository() -> PokemonRepositoryProtocol {
-        let realm = try? Realm()
-    
-        let locale: LocaleDataSource = LocaleDataSource.sharedInstance(realm)
-        let remote: RemoteDataSource = RemoteDataSource.sharedInstance
-        
-        return PokemonRepository.sharedInstance(remote, locale)
-    }
-    
-    func provideDetailPokemon() -> DetailPokemonUseCase {
-        let repository = provideRepository()
-        return DetailPokemonInteractor(repository: repository)
-    }
 }

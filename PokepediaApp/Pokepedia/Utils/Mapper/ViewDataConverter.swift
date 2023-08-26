@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import PokepediaPokemon
+import PokepediaSpecies
 
-final class PokemonConverter {
+final class ViewDataConverter {
     
     enum PokemonElement: String {
         case bug
@@ -141,4 +143,39 @@ final class PokemonConverter {
             return "Speed"
         }
     }
+    
+    static func typePokemonToAboutSection(pokemon: PokemonDomainModel, pokemonSpecies: PokemonSpeciesDomainModel) -> [AboutCellModel] {
+            var dataAboutCellModel: [AboutCellModel] = []
+            
+            var speciesItemCellModel: [ItemCellModel] = []
+            speciesItemCellModel.append(ItemCellModel(title: "Genus", value: pokemonSpecies.genus))
+            speciesItemCellModel.append(ItemCellModel(title: "Height", value: "\(pokemon.height) m"))
+            speciesItemCellModel.append(ItemCellModel(title: "Weight", value: "\(pokemon.weight) kg"))
+            speciesItemCellModel.append(ItemCellModel(title: "Abilities", value: pokemon.abilities))
+            speciesItemCellModel.append(ItemCellModel(title: "Status", value: pokemonSpecies.isLegendary ? "Legendary" : pokemonSpecies.isMythical ? "Mythical" : "Common"))
+            speciesItemCellModel.append(ItemCellModel(title: "Habitat", value: pokemonSpecies.habitat))
+            let speciesCellModel = AboutCellModel(name: "Species", item: speciesItemCellModel)
+            
+            var physicalItemCellModel: [ItemCellModel] = []
+            physicalItemCellModel.append(ItemCellModel(title: "Growth Rate", value: pokemonSpecies.growthRate))
+            physicalItemCellModel.append(ItemCellModel(title: "Hatch Counter", value: String(pokemonSpecies.hatchCounter)))
+            physicalItemCellModel.append(ItemCellModel(title: "Base Happines", value: String(pokemonSpecies.baseHappines)))
+            physicalItemCellModel.append(ItemCellModel(title: "Base Experience", value: String(pokemon.baseExp)))
+            physicalItemCellModel.append(ItemCellModel(title: "Capture Rate", value: String(pokemonSpecies.captureRate)))
+            let physicalCellModel = AboutCellModel(name: "Physical", item: physicalItemCellModel)
+            
+            var breedingItemCellModel: [ItemCellModel] = []
+            breedingItemCellModel.append(ItemCellModel(title: "Gender", value: pokemonSpecies.genderRate))
+            breedingItemCellModel.append(ItemCellModel(title: "Egg Groups", value: pokemonSpecies.eggGroups))
+            breedingItemCellModel.append(ItemCellModel(title: "Baby Pokemon", value: pokemonSpecies.isBaby ? "Yes" : "No"))
+            let breedingCellModel = AboutCellModel(name: "Breeding", item: breedingItemCellModel)
+            
+            dataAboutCellModel.append(speciesCellModel)
+            dataAboutCellModel.append(physicalCellModel)
+            dataAboutCellModel.append(breedingCellModel)
+            
+            return dataAboutCellModel
+        }
+    
+    
 }

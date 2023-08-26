@@ -59,7 +59,7 @@ class AboutSubViewController: UIViewController {
     private func setDataAboutTableView() {
         guard let pokemon = pokemon, let pokemonSpecies = pokemonSpecies else { return }
         
-        self.aboutDataModel = PokemonMapper.mapPokemonDataToAboutSectionData(
+        self.aboutDataModel = ViewDataConverter.typePokemonToAboutSection(
             pokemon: pokemon, pokemonSpecies: pokemonSpecies
         )
         

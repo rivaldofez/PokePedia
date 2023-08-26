@@ -44,11 +44,11 @@ class BaseStatTableViewCell: UITableViewCell {
     }
     
     func configure(with baseStat: BaseStat, type: String) {
-        titleLabel.text = PokemonConverter.typeStringToStatName(type: baseStat.name)
+        titleLabel.text = ViewDataConverter.typeStringToStatName(type: baseStat.name)
         statLabel.text = String(baseStat.value)
         progressView.setProgress(Float(baseStat.value) / 255.0, animated: false)
         
-        progressView.tintColor = UIColor(named: PokemonConverter.typeStringToColorName(type: type))
+        progressView.tintColor = UIColor(named: ViewDataConverter.typeStringToColorName(type: type))
         
     }
     

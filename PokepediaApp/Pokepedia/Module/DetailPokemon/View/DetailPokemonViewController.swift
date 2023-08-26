@@ -70,7 +70,7 @@ class DetailPokemonViewController:
             chipType.append(configureChip(title: title))
         }
         
-        indicator.backgroundColor = UIColor(named: PokemonConverter.typeStringToColorName(type: pokemon.type.first!))
+        indicator.backgroundColor = UIColor(named: ViewDataConverter.typeStringToColorName(type: pokemon.type.first!))
         showError(isError: false)
         showFavoriteButton(isFavorite: pokemon.isFavorite)
     }
@@ -356,7 +356,7 @@ class DetailPokemonViewController:
         label.text = title.capitalized
         
         let imageview = UIImageView()
-        imageview.image = UIImage(named: PokemonConverter.typeStringToIconName(type: title))
+        imageview.image = UIImage(named: ViewDataConverter.typeStringToIconName(type: title))
         imageview.contentMode = .scaleAspectFit
         imageview.widthAnchor.constraint(equalToConstant: 20).isActive = true
         imageview.heightAnchor.constraint(equalToConstant: 20).isActive = true
@@ -370,7 +370,7 @@ class DetailPokemonViewController:
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.axis = .horizontal
         stackView.alignment = .center
-        stackView.backgroundColor = UIColor(named: PokemonConverter.typeStringToColorName(type: title))
+        stackView.backgroundColor = UIColor(named: ViewDataConverter.typeStringToColorName(type: title))
         stackView.layer.cornerRadius = 15
         
         return stackView

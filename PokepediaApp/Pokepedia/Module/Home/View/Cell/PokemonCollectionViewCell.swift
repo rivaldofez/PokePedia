@@ -147,9 +147,9 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         pokemonImageView.sd_setImage(with: imageUrl)
         
         guard let typeElement = model.type.first else { return }
-        pokemonTypeImageView.image = UIImage(named: PokemonConverter.typeStringToIconName(type: typeElement))
+        pokemonTypeImageView.image = UIImage(named: ViewDataConverter.typeStringToIconName(type: typeElement))
         
-        contentView.layer.borderColor = UIColor(named: PokemonConverter.typeStringToColorName(type: typeElement))?.cgColor
+        contentView.layer.borderColor = UIColor(named: ViewDataConverter.typeStringToColorName(type: typeElement))?.cgColor
     }
     
     required init?(coder: NSCoder) {

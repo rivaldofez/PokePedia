@@ -146,7 +146,7 @@ class FavoriteTableViewCell: UITableViewCell {
         
         guard let typeElement = model.type.first else { return }
         
-        contentView.layer.borderColor = UIColor(named: PokemonConverter.typeStringToColorName(type: typeElement))?.cgColor
+        contentView.layer.borderColor = UIColor(named: ViewDataConverter.typeStringToColorName(type: typeElement))?.cgColor
     }
     
     // Chip Configuration
@@ -158,7 +158,7 @@ class FavoriteTableViewCell: UITableViewCell {
         label.text = title.capitalized
         
         let imageview = UIImageView()
-        imageview.image = UIImage(named: PokemonConverter.typeStringToIconName(type: title))
+        imageview.image = UIImage(named: ViewDataConverter.typeStringToIconName(type: title))
         imageview.contentMode = .scaleAspectFit
         imageview.widthAnchor.constraint(equalToConstant: 20).isActive = true
         imageview.heightAnchor.constraint(equalToConstant: 20).isActive = true
@@ -172,7 +172,7 @@ class FavoriteTableViewCell: UITableViewCell {
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.axis = .horizontal
         stackView.alignment = .center
-        stackView.backgroundColor = UIColor(named: PokemonConverter.typeStringToColorName(type: title))
+        stackView.backgroundColor = UIColor(named: ViewDataConverter.typeStringToColorName(type: title))
         stackView.layer.cornerRadius = 15
         
         return stackView
