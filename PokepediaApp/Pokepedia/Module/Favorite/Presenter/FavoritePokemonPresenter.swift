@@ -76,7 +76,7 @@ class FavoritePokemonPresenter: FavoritePokemonPresenterProtocol {
         toggleFavoriteInteractor?.execute(request: pokemon)
             .observe(on: MainScheduler.instance)
             .subscribe { [weak self] result in
-                self?.view?.updateSaveToggleFavorite(with: result)
+                self?.view?.updateSaveToggleFavorite(with: pokemon.isFavorite)
             } onError: { error in
                 self.view?.updateSaveToggleFavorite(with: error.localizedDescription)
             } onCompleted: {
