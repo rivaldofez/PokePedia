@@ -114,6 +114,7 @@
 		7E18CC622A810DDF0067D78D /* FavoriteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouter.swift; sourceTree = "<group>"; };
 		7E1F86562A86FD0200A84B69 /* FavoriteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteUseCase.swift; sourceTree = "<group>"; };
 		7E1F865A2A8707C200A84B69 /* DetailPokemonUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPokemonUseCaseTests.swift; sourceTree = "<group>"; };
+		7E2E06C12A99F76600D50C84 /* PokepediaCommon */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PokepediaCommon; path = ../Module/PokepediaCommon; sourceTree = "<group>"; };
 		7E393A38299BAB250033920C /* ViewDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDataConverter.swift; sourceTree = "<group>"; };
 		7E393A3F299BDBBA0033920C /* DetailPokemonRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPokemonRouter.swift; sourceTree = "<group>"; };
 		7E444BEC2A96EF6600F3C971 /* PokepediaPokemon */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PokepediaPokemon; path = ../Module/PokepediaPokemon; sourceTree = "<group>"; };
@@ -409,6 +410,7 @@
 				7E5B1AFF2A92A434003F561A /* PokepediaCore */,
 				7E5B1B002A940D40003F561A /* PokepediaSpecies */,
 				7E444BEC2A96EF6600F3C971 /* PokepediaPokemon */,
+				7E2E06C12A99F76600D50C84 /* PokepediaCommon */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
