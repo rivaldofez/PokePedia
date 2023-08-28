@@ -362,14 +362,11 @@
 		7E6F9408299010BA004B2537 /* Pokepedia */ = {
 			isa = PBXGroup;
 			children = (
+				7EEA72692A9D2B1800BF7760 /* App */,
 				7E7FFC902A749C2800FC1910 /* LottieAsset */,
 				7EE13298299A5B4800FFB47B /* Module */,
 				7E47C3E52997F29C00CFFB54 /* Utils */,
 				7E47C3DD2997EC0E00CFFB54 /* Core */,
-				7E6F9409299010BA004B2537 /* AppDelegate.swift */,
-				7E6F940B299010BA004B2537 /* SceneDelegate.swift */,
-				7E6F9412299010BB004B2537 /* Assets.xcassets */,
-				7E6F9414299010BB004B2537 /* LaunchScreen.storyboard */,
 				7E6F9417299010BB004B2537 /* Info.plist */,
 			);
 			path = Pokepedia;
@@ -497,6 +494,17 @@
 				7E1F865A2A8707C200A84B69 /* DetailPokemonUseCaseTests.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		7EEA72692A9D2B1800BF7760 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7E6F9412299010BB004B2537 /* Assets.xcassets */,
+				7E6F9414299010BB004B2537 /* LaunchScreen.storyboard */,
+				7E6F9409299010BA004B2537 /* AppDelegate.swift */,
+				7E6F940B299010BA004B2537 /* SceneDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -630,8 +638,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
+			shellScript = "# Adds support for Apple Silicon brew directory\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint autocorrect --format\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
