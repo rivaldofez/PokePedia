@@ -28,6 +28,15 @@
       }
     },
     {
+      "identity" : "pokepediacore",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rivaldofez/PokepediaCore.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "01dd4723ee2d4d652ec041592037868f7614c73c"
+      }
+    },
+    {
       "identity" : "realm-core",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core.git",
