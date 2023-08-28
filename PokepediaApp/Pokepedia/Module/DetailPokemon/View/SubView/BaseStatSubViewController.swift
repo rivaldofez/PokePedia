@@ -7,6 +7,7 @@
 
 import UIKit
 import DGCharts
+import PokepediaCommon
 import PokepediaPokemon
 
 class BaseStatSubViewController: UIViewController {
@@ -59,7 +60,7 @@ class BaseStatSubViewController: UIViewController {
     
     private let chartSwitchLabel: UILabel = {
         let label = UILabel()
-        label.text = "Radar View"
+        label.text = "title.radar.view".localized(bundle: commonBundle)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

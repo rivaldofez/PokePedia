@@ -33,14 +33,14 @@ class DetailPokemonViewController:
     }
     
     func updateSaveToggleFavorite(with error: String) {
-        showToggleFavoriteAlert(title: "An Error Occured", message: "Oops, cannot process your due to system error, please try again")
+        showToggleFavoriteAlert(title: "title.error.occured".localized(bundle: commonBundle), message: "msg.error.process.request".localized(bundle: commonBundle))
     }
     
     func updateSaveToggleFavorite(with state: Bool) {
         if state {
-            showToggleFavoriteAlert(title: "Added To Favorite", message: "This pokemon successfully added to your favorite list")
+            showToggleFavoriteAlert(title: "title.add.favorite".localized(bundle: commonBundle), message: "msg.success.added.favorite".localized(bundle: commonBundle))
         } else {
-            showToggleFavoriteAlert(title: "Removed From Favorite", message: "This pokemon successfully removed from your favorite list")
+            showToggleFavoriteAlert(title: "title.remove.favorite".localized(bundle: commonBundle), message: "msg.success.removed.favorite".localized(bundle: commonBundle))
         }
     }
     

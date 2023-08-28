@@ -9,6 +9,7 @@ import Foundation
 import PokepediaCore
 import PokepediaPokemon
 import PokepediaSpecies
+import PokepediaCommon
 import RxSwift
 
 protocol DetailPresenterProtocol {
@@ -65,7 +66,6 @@ class DetailPresenter: DetailPresenterProtocol {
     }
     
     func getPokemonSpecies(id: Int) {
-        print("called get species presenter")
         isLoadingData = true
         
         speciesInteractor?.execute(request: id)
@@ -74,7 +74,7 @@ class DetailPresenter: DetailPresenterProtocol {
                 if let pokemonSpecies = pokemonSpeciesResult {
                     self?.view?.updatePokemonSpecies(with: pokemonSpecies)
                 } else {
-                    self?.view?.updatePokemonSpecies(with: "Cannot retrieve detail species pokemon")
+                    self?.view?.updatePokemonSpecies(with: "msg.error.retrieve.detail.pokemon".localized(bundle: commonBundle))
                 }
             } onError: { error in
                 self.view?.updatePokemonSpecies(with: error.localizedDescription)

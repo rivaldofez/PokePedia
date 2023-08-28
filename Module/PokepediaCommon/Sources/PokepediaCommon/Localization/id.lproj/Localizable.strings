@@ -5,4 +5,22 @@
   Created by Rivaldo Fernandes on 28/08/23.
   
 */
-"title.favorite" = "Pokemon Favorit";
+"title.favorite" = "Favorit";
+"title.pokemon" = "Pokémon";
+"title.profile" = "Profil";
+"title.remove.favorite" = "Hapus Dari Favorit";
+"title.add.favorite" = "Tambah Ke Favorit";
+"title.about" = "Tentang";
+"title.base.stat" = "Stat Dasar";
+"title.moves" = "Jurus";
+"title.radar.view" = "Mode Radar";
+"title.error.occured" = "Terjadi Kesalahan / Error";
+"title.ok" = "OK";
+
+"msg.success.removed.favorite" = "Pokémon ini berhasil dihapus dari daftar favorit";
+"msg.success.added.favorite" = "Pokémon ini berhasil ditambahkan ke daftar favorit";
+"msg.empty.pokemon.favorite" = "Tidak ada pokémon yang ditemukan";
+"msg.error.load.pokemon" = "Terjadi kesalahan saat memuat data pokémon";
+"msg.error.process.request" = "Oops, tidak dapat memproses request kamu akibat kesalahan sistem, silakan coba lagi";
+"msg.error.retrieve.detail.pokemon" = "Tidak dapat mengambil data detail spesies pokémon";
+

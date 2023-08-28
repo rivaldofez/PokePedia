@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PokepediaCommon
 
 protocol ProfileViewProtocol {
     var presenter: ProfilePresenterProtocol? { get set }
@@ -60,7 +61,7 @@ class ProfileViewController: UIViewController, ProfileViewProtocol {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
-        title = "Profile"
+        title = "title.profile".localized(bundle: commonBundle)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .label
         

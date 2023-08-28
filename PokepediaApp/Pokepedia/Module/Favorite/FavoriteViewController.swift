@@ -63,7 +63,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
     // Error View
     private lazy var errorLabel: UILabel = {
         let label = UILabel()
-        label.text = "Error occured while load pokemon data"
+        label.text = "msg.error.load.pokemon".localized(bundle: commonBundle)
         label.textColor = .label
         label.font = .poppinsBold(size: 16)
         label.textAlignment = .center
@@ -103,7 +103,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "title.favorite".localized(bundle: fontBundle)
+        title = "title.favorite".localized(bundle: commonBundle)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .label
         
@@ -160,16 +160,16 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
     
     func updateSaveToggleFavorite(with error: String) {
         func updateSaveToggleFavorite(with error: String) {
-            showToggleFavoriteAlert(title: "An Error Occured", message: "Oops, cannot process your due to system error, please try again")
+            showToggleFavoriteAlert(title: "title.error.occured".localized(bundle: commonBundle), message: "msg.error.process.request".localized(bundle: commonBundle))
         }
         presenter?.getSearchPokemon(query: nil)
     }
     
     func updateSaveToggleFavorite(with state: Bool) {
         if state {
-            showToggleFavoriteAlert(title: "Added To Favorite", message: "This pokemon successfully added to your favorite list")
+            showToggleFavoriteAlert(title: "title.add.favorite".localized(bundle: commonBundle), message: "msg.success.added.favorite".localized(bundle: commonBundle))
         } else {
-            showToggleFavoriteAlert(title: "Removed From Favorite", message: "This pokemon successfully removed from your favorite list")
+            showToggleFavoriteAlert(title: "title.remove.favorite".localized(bundle: commonBundle), message: "msg.success.removed.favorite".localized(bundle: commonBundle))
         }
     }
     
@@ -178,7 +178,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
             DispatchQueue.main.async {
                 self.pokemonData.removeAll()
                 self.pokemonTableView.reloadData()
-                self.showError(isError: true, message: "There is no pokemon added to favorite", animation: "empty")
+                self.showError(isError: true, message: "msg.empty.pokemon.favorite".localized(bundle: commonBundle), animation: "empty")
             }
         } else {
             DispatchQueue.main.async {
@@ -191,7 +191,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
     }
     
     func updatePokemonFavorite(with error: String) {
-        showError(isError: true, message: "Error occured while load pokemon data", animation: "error")
+        showError(isError: true, message: "msg.error.load.pokemon".localized(bundle: commonBundle), animation: "error")
     }
     
     func isLoadingData(with state: Bool) {
@@ -201,7 +201,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
     private func showToggleFavoriteAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let okButton = UIAlertAction(title: "OK", style: .default)
+        let okButton = UIAlertAction(title: "title.ok".localized(bundle: commonBundle), style: .default)
         
         alert.addAction(okButton)
         
@@ -238,7 +238,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if pokemonData.count == 0 {
-            self.showError(isError: true, message: "There is no pokemon added to favorite", animation: "empty")
+            self.showError(isError: true, message: "msg.empty.pokemon.favorite".localized(bundle: commonBundle), animation: "empty")
         }
         
         return pokemonData.count

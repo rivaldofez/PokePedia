@@ -5,4 +5,21 @@
   Created by Rivaldo Fernandes on 28/08/23.
   
 */
-"title.favorite" = "Favorite Pokemon";
+"title.favorite" = "Favorite";
+"title.pokemon" = "Pokémon";
+"title.profile" = "Profile";
+"title.remove.favorite" = "Removed From Favorite";
+"title.add.favorite" = "Added To Favorite";
+"title.about" = "About";
+"title.base.stat" = "Base Stat";
+"title.moves" = "Moves";
+"title.radar.view" = "Radar View";
+"title.error.occured" = "An Error Occured";
+"title.ok" = "OK";
+
+"msg.success.removed.favorite" = "This pokémon successfully removed from your favorite list";
+"msg.success.added.favorite" = "This pokémon successfully added to your favorite list";
+"msg.empty.pokemon.favorite" = "There is no favorite pokemon found";
+"msg.error.load.pokemon" = "There is error while load pokemon data";
+"msg.error.process.request" = "Oops, cannot process your due to system error, please try again";
+"msg.error.retrieve.detail.pokemon" = "Cannot retrieve detail species pokémon";

@@ -34,7 +34,7 @@ class HomeRouter: HomeRouterProtocol {
                 PokemonRemoteDataSource,
                 PokemonsTransformer>> = Injection().providePokemons()
             
-        var presenter = HomePokemonPresenter()
+        let presenter = HomePokemonPresenter()
         
         view.presenter = presenter
         presenter.router = router

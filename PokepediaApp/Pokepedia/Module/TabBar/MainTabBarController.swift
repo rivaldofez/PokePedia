@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PokepediaCommon
 
 class MainTabBarController: UITabBarController {
 
@@ -20,17 +21,17 @@ class MainTabBarController: UITabBarController {
         let homeRouter = HomeRouter.start()
         guard let homeVC = homeRouter.entry else { return }
         
-        let homeNavItem = self.createNav(with: "List", and: UIImage(systemName: "list.bullet.below.rectangle"), vc: homeVC)
+        let homeNavItem = self.createNav(with: "title.pokemon".localized(bundle: commonBundle), and: UIImage(systemName: "list.bullet.below.rectangle"), vc: homeVC)
         
         let favoriteRouter = FavoriteRouter.createFavorite()
         guard let favoriteVC = favoriteRouter.entry else { return }
         
-        let favoriteNavItem = self.createNav(with: "Favorite", and: UIImage(systemName: "heart"), vc: favoriteVC)
+        let favoriteNavItem = self.createNav(with: "title.favorite".localized(bundle: commonBundle), and: UIImage(systemName: "heart"), vc: favoriteVC)
     
         let profileRouter = ProfileRouter.createProfile()
         guard let profileVC = profileRouter.entry else { return }
         
-        let profileNavItem = self.createNav(with: "Profile", and: UIImage(systemName: "person"), vc: profileVC)
+        let profileNavItem = self.createNav(with: "title.profile".localized(bundle: commonBundle), and: UIImage(systemName: "person"), vc: profileVC)
         
         self.setViewControllers([homeNavItem, favoriteNavItem, profileNavItem], animated: true)
     }

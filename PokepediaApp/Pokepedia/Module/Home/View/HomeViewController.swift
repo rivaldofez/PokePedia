@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import Lottie
 import PokepediaPokemon
+import PokepediaCommon
 
 protocol HomeViewProtocol {
     var presenter: HomePokemonPresenterProtocol? { get set }
@@ -58,7 +59,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     // Error View
     private lazy var errorLabel: UILabel = {
         let label = UILabel()
-        label.text = "Error occured while load pokemon data"
+        label.text = "msg.error.load.pokemon".localized(bundle: commonBundle)
         label.textColor = .label
         label.font = .poppinsBold(size: 16)
         label.textAlignment = .center

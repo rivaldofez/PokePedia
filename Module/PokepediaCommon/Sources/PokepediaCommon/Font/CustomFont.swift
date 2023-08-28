@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public let fontBundle = Bundle.module
+public let commonBundle = Bundle.module
 
 public enum CustomFonts {
     public static func registerCustomFonts() {
@@ -43,7 +43,7 @@ public enum CustomFonts {
         
         for font in (fontPoppins + fontComfortaa) {
             
-            _ = UIFont.registerFont(bundle: fontBundle, fontName: font, fontExtension: "ttf")
+            _ = UIFont.registerFont(bundle: commonBundle, fontName: font, fontExtension: "ttf")
         }
     }
 }
