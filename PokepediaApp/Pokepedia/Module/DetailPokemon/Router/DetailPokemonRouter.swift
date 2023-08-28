@@ -14,7 +14,6 @@ protocol DetailPokemonRouterProtocol {
     var entry: DetailPokemonViewController? { get }
     
     static func createDetailPokemon(with pokemon: PokemonDomainModel) -> DetailPokemonRouterProtocol
-    
 }
 
 class DetailPokemonRouter: DetailPokemonRouterProtocol {
@@ -23,21 +22,15 @@ class DetailPokemonRouter: DetailPokemonRouterProtocol {
     static func createDetailPokemon(with pokemon: PokemonDomainModel) -> DetailPokemonRouterProtocol {
         
         let router = DetailPokemonRouter()
-        
-        // assign vip
         var view: DetailPokemonViewProtocol = DetailPokemonViewController()
-        
-        var interactor: Interactor<
+        let interactor: Interactor<
             Int,
             PokemonSpeciesDomainModel?,
             GetPokemonSpeciesRepository<
             PokemonSpeciesLocaleDataSource,
             PokemonSpeciesRemoteDataSource,
             PokemonSpeciesTransformer>>? = Injection().providePokemonSpecies()
-        
-//        var toggleFavoriteInteractor: Interactor<PokemonDomainModel, Bool, ToggleFavoritePokemonRepository<PokemonLocaleDataSource, PokemonTransformer>>? = Injection().provideFavorite()
-        
-        
+          
         var presenter: DetailPresenterProtocol = DetailPresenter()
         
         view.presenter = presenter
@@ -51,7 +44,5 @@ class DetailPokemonRouter: DetailPokemonRouterProtocol {
         router.entry = view as? DetailPokemonViewController
         
         return router
-        
     }
-    
 }

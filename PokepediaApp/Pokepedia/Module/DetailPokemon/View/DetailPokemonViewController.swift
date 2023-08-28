@@ -236,7 +236,7 @@ class DetailPokemonViewController:
             NSAttributedString.Key.font: UIFont.poppinsBold(size: 34)
         ]
         
-        navigationController?.navigationBar.largeTitleTextAttributes = attrs
+        navigationController?.navigationBar.largeTitleTextAttributes = attrs as [NSAttributedString.Key: Any]
         
         view.addSubview(pokemonTypeStackView)
         view.addSubview(pokemonImageView)

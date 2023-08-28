@@ -18,9 +18,9 @@ protocol DetailPresenterProtocol {
         Int,
         PokemonSpeciesDomainModel?,
         GetPokemonSpeciesRepository<
-        PokemonSpeciesLocaleDataSource,
-        PokemonSpeciesRemoteDataSource,
-        PokemonSpeciesTransformer>>? { get set }
+            PokemonSpeciesLocaleDataSource,
+            PokemonSpeciesRemoteDataSource,
+            PokemonSpeciesTransformer>>? { get set }
     
     var toggleFavoriteInteractor: Interactor<
         PokemonDomainModel,
@@ -29,14 +29,12 @@ protocol DetailPresenterProtocol {
             PokemonLocaleDataSource,
             PokemonTransformer>>? { get set }
     
-    
     var pokemonInteractor: Interactor<
         Int,
         PokemonDomainModel,
         GetPokemonRepository<
             PokemonLocaleDataSource,
             PokemonTransformer>>? { get set }
-        
     
     var view: DetailPokemonViewProtocol? { get set }
     
@@ -72,7 +70,7 @@ class DetailPresenter: DetailPresenterProtocol {
         
         speciesInteractor?.execute(request: id)
             .observe(on: MainScheduler.instance)
-            .subscribe { [weak self] pokemonSpeciesResult in                
+            .subscribe { [weak self] pokemonSpeciesResult in
                 if let pokemonSpecies = pokemonSpeciesResult {
                     self?.view?.updatePokemonSpecies(with: pokemonSpecies)
                 } else {
@@ -106,7 +104,7 @@ class DetailPresenter: DetailPresenterProtocol {
         self.isLoadingData = true
         toggleFavoriteInteractor?.execute(request: pokemon)
             .observe(on: MainScheduler.instance)
-            .subscribe { [weak self] result in
+            .subscribe { [weak self] _ in
                 self?.view?.updateSaveToggleFavorite(with: pokemon.isFavorite)
             } onError: { error in
                 self.view?.updateSaveToggleFavorite(with: error.localizedDescription)

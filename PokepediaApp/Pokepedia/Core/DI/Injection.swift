@@ -28,8 +28,7 @@ final class Injection: NSObject {
         
         return Interactor(repository: repository) as! U
     }
-    
-    
+        
     func providePokemon<U: UseCase>() -> U where U.Request == Int, U.Response == PokemonDomainModel {
         
         let locale = PokemonLocaleDataSource(realm: realm!)
@@ -63,7 +62,6 @@ final class Injection: NSObject {
     }
     
     func provideFavorite<U: UseCase>() -> U where U.Request == String, U.Response == [PokemonDomainModel] {
-        
         
         let locale = FavoritePokemonLocaleDataSource(realm: realm!)
         let mapper = PokemonsTransformer()

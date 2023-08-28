@@ -28,14 +28,12 @@ protocol HomePokemonPresenterProtocol {
     func didSelectPokemonItem(with pokemon: PokemonDomainModel)
 }
 
-
 class HomePokemonPresenter: HomePokemonPresenterProtocol {
     var interactor: Interactor<Int, [PokemonDomainModel], GetPokemonsRepository<PokemonLocaleDataSource, PokemonRemoteDataSource, PokemonsTransformer>>? {
         didSet {
             offsetPagination = 0
         }
     }
-    
     
     var router: HomeRouterProtocol?
     var view: HomeViewProtocol?
@@ -45,7 +43,6 @@ class HomePokemonPresenter: HomePokemonPresenterProtocol {
     var offsetPagination: Int? {
         didSet {
             guard let offsetPagination = offsetPagination else { return }
-            //get pokemon data pagination
             getPokemonPagination(offset: offsetPagination)
         }
     }
