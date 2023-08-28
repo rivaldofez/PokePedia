@@ -8,6 +8,7 @@
 import UIKit
 import PokepediaPokemon
 import PokepediaSpecies
+import PokepediaCommon
 
 class AboutSubViewController: UIViewController {
     
