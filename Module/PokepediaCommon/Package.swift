@@ -20,7 +20,12 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "PokepediaCommon",
-            dependencies: []),
+            dependencies: [],
+            resources: [
+                .process("Font/Comfortaa"),
+                .process("Font/Poppins")
+            ]
+        ),
         .testTarget(
             name: "PokepediaCommonTests",
             dependencies: ["PokepediaCommon"]),

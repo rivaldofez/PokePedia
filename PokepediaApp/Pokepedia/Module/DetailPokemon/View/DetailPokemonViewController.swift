@@ -9,6 +9,7 @@ import UIKit
 import Lottie
 import PokepediaPokemon
 import PokepediaSpecies
+import PokepediaCommon
 
 protocol DetailPokemonViewProtocol {
     var presenter: DetailPresenterProtocol? { get set }
@@ -232,7 +233,7 @@ class DetailPokemonViewController:
         navigationController?.navigationBar.tintColor = .label
         
         let attrs = [
-            NSAttributedString.Key.font: UIFont.poppinsBold(size: 34)!
+            NSAttributedString.Key.font: UIFont.poppinsBold(size: 34)
         ]
         
         navigationController?.navigationBar.largeTitleTextAttributes = attrs
