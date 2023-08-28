@@ -9,6 +9,13 @@ import UIKit
 import RxSwift
 import Lottie
 import PokepediaPokemon
+import PokepediaCommon
+
+extension String {
+    public func localized(bundle: Bundle = .main) -> String {
+    return bundle.localizedString(forKey: self, value: nil, table: nil)
+  }
+}
 
 protocol FavoriteViewProtocol {
     var presenter: FavoritePokemonPresenterProtocol? { get set }
@@ -96,7 +103,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Favorite Pokémon"
+        title = "title.favorite".localized(bundle: fontBundle)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .label
         
