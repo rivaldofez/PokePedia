@@ -23,4 +23,3 @@
 "msg.error.load.pokemon" = "Terjadi kesalahan saat memuat data pokémon";
 "msg.error.process.request" = "Oops, tidak dapat memproses request kamu akibat kesalahan sistem, silakan coba lagi";
 "msg.error.retrieve.detail.pokemon" = "Tidak dapat mengambil data detail spesies pokémon";
-
