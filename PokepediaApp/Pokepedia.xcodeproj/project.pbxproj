@@ -46,7 +46,7 @@
 		7E78A9092A9E993E008D1B18 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 7E78A9082A9E993E008D1B18 /* RxBlocking */; };
 		7E78A90B2A9E993E008D1B18 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 7E78A90A2A9E993E008D1B18 /* RxCocoa */; };
 		7E78A90D2A9E993E008D1B18 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7E78A90C2A9E993E008D1B18 /* RxSwift */; };
-		7E78A9132A9E9A32008D1B18 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7E78A9122A9E9A32008D1B18 /* RealmSwift */; };
+		7E78A9162A9E9DF2008D1B18 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7E78A9152A9E9DF2008D1B18 /* RealmSwift */; };
 		7E7FFC922A749E1900FC1910 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E7FFC912A749E1900FC1910 /* loading.json */; };
 		7E7FFC9A2A74B09E00FC1910 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FFC992A74B09E00FC1910 /* ProfilePresenter.swift */; };
 		7E7FFC9C2A74B0AE00FC1910 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FFC9B2A74B0AE00FC1910 /* ProfileRouter.swift */; };
@@ -158,7 +158,7 @@
 				7E5B1B082A95F751003F561A /* PokepediaSpecies in Frameworks */,
 				7E81601F2A9607F800F6D3BD /* DGCharts in Frameworks */,
 				7E584DE12A95F9BF00CF4445 /* Lottie in Frameworks */,
-				7E78A9132A9E9A32008D1B18 /* RealmSwift in Frameworks */,
+				7E78A9162A9E9DF2008D1B18 /* RealmSwift in Frameworks */,
 				7E78A90D2A9E993E008D1B18 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,7 +574,7 @@
 				7E78A9082A9E993E008D1B18 /* RxBlocking */,
 				7E78A90A2A9E993E008D1B18 /* RxCocoa */,
 				7E78A90C2A9E993E008D1B18 /* RxSwift */,
-				7E78A9122A9E9A32008D1B18 /* RealmSwift */,
+				7E78A9152A9E9DF2008D1B18 /* RealmSwift */,
 			);
 			productName = Pokepedia;
 			productReference = 7E02472C2995E11A00EECAA9 /* Pokepedia.app */;
@@ -615,7 +615,7 @@
 				7E81601D2A9607F800F6D3BD /* XCRemoteSwiftPackageReference "Charts" */,
 				7EEA72682A9D297A00BF7760 /* XCRemoteSwiftPackageReference "PokepediaCore" */,
 				7E78A9072A9E993E008D1B18 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				7E78A9112A9E9A32008D1B18 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				7E78A9142A9E9DF2008D1B18 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 7E6F93FD299010BA004B2537;
 			projectDirPath = "";
@@ -841,6 +841,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -895,6 +896,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1006,12 +1008,12 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		7E78A9112A9E9A32008D1B18 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		7E78A9142A9E9DF2008D1B18 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
 				kind = exactVersion;
-				version = 10.32.3;
+				version = 10.26.0;
 			};
 		};
 		7E815FE92A95FC9F00F6D3BD /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
@@ -1088,9 +1090,9 @@
 			package = 7E78A9072A9E993E008D1B18 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
 		};
-		7E78A9122A9E9A32008D1B18 /* RealmSwift */ = {
+		7E78A9152A9E9DF2008D1B18 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7E78A9112A9E9A32008D1B18 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = 7E78A9142A9E9DF2008D1B18 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
 		7E815FEA2A95FC9F00F6D3BD /* SDWebImage */ = {

@@ -17,9 +17,9 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
-      - uses: maxim-lobanov/setup-xcode@v1
+      - uses: actions/checkout@v3
         with:
-          xcode-version: '14.0'
+          xcode-version: "14.2"
 
       - uses: ruby/setup-ruby@v1
 
