@@ -19,9 +19,6 @@
 		7E393A40299BDBBA0033920C /* DetailPokemonRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E393A3F299BDBBA0033920C /* DetailPokemonRouter.swift */; };
 		7E444BEE2A97303300F3C971 /* PokepediaPokemon in Frameworks */ = {isa = PBXBuildFile; productRef = 7E444BED2A97303300F3C971 /* PokepediaPokemon */; };
 		7E444BF22A97362200F3C971 /* HomePokemonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E444BF12A97362200F3C971 /* HomePokemonPresenter.swift */; };
-		7E47C1FE2A9DC870006B99F5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 7E47C1FD2A9DC870006B99F5 /* Realm */; };
-		7E47C2002A9DC870006B99F5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7E47C1FF2A9DC870006B99F5 /* RealmSwift */; };
-		7E47C2022A9DC96A006B99F5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 7E47C2012A9DC96A006B99F5 /* Realm */; };
 		7E47C2042A9DC988006B99F5 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7E47C2032A9DC988006B99F5 /* Lottie */; };
 		7E47C2062A9DC988006B99F5 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7E47C2052A9DC988006B99F5 /* SDWebImage */; };
 		7E47C2082A9DC988006B99F5 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 7E47C2072A9DC988006B99F5 /* DGCharts */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -39,8 +36,6 @@
 		7E6AA2312A79DDAF00D9FFB7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AA2302A79DDAF00D9FFB7 /* MainTabBarController.swift */; };
 		7E6AA2342A79DFB300D9FFB7 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AA2332A79DFB300D9FFB7 /* FavoriteViewController.swift */; };
 		7E6B093B2A9DC308009B98C8 /* MockGetPokemonsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6B093A2A9DC308009B98C8 /* MockGetPokemonsRepository.swift */; };
-		7E6B093E2A9DC3C3009B98C8 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 7E6B093D2A9DC3C3009B98C8 /* RxBlocking */; };
-		7E6B09402A9DC3C3009B98C8 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7E6B093F2A9DC3C3009B98C8 /* RxSwift */; };
 		7E6B09432A9DC45B009B98C8 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6B09422A9DC45B009B98C8 /* DummyData.swift */; };
 		7E6B09462A9DC4E2009B98C8 /* PokemonsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6B09452A9DC4E2009B98C8 /* PokemonsInteractorTests.swift */; };
 		7E6F940A299010BA004B2537 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F9409299010BA004B2537 /* AppDelegate.swift */; };
@@ -48,6 +43,10 @@
 		7E6F9413299010BB004B2537 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E6F9412299010BB004B2537 /* Assets.xcassets */; };
 		7E6F9416299010BB004B2537 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E6F9414299010BB004B2537 /* LaunchScreen.storyboard */; };
 		7E6F941F2990110E004B2537 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F941E2990110E004B2537 /* HomeViewController.swift */; };
+		7E78A9092A9E993E008D1B18 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 7E78A9082A9E993E008D1B18 /* RxBlocking */; };
+		7E78A90B2A9E993E008D1B18 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 7E78A90A2A9E993E008D1B18 /* RxCocoa */; };
+		7E78A90D2A9E993E008D1B18 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7E78A90C2A9E993E008D1B18 /* RxSwift */; };
+		7E78A9132A9E9A32008D1B18 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7E78A9122A9E9A32008D1B18 /* RealmSwift */; };
 		7E7FFC922A749E1900FC1910 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E7FFC912A749E1900FC1910 /* loading.json */; };
 		7E7FFC9A2A74B09E00FC1910 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FFC992A74B09E00FC1910 /* ProfilePresenter.swift */; };
 		7E7FFC9C2A74B0AE00FC1910 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FFC9B2A74B0AE00FC1910 /* ProfileRouter.swift */; };
@@ -143,7 +142,6 @@
 			files = (
 				7E47C2082A9DC988006B99F5 /* DGCharts in Frameworks */,
 				7E47C2062A9DC988006B99F5 /* SDWebImage in Frameworks */,
-				7E47C2022A9DC96A006B99F5 /* Realm in Frameworks */,
 				7E47C2042A9DC988006B99F5 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,16 +150,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E78A9092A9E993E008D1B18 /* RxBlocking in Frameworks */,
+				7E78A90B2A9E993E008D1B18 /* RxCocoa in Frameworks */,
 				7E815FEB2A95FC9F00F6D3BD /* SDWebImage in Frameworks */,
 				7E444BEE2A97303300F3C971 /* PokepediaPokemon in Frameworks */,
 				7E68D7BA2A9CA55C00C6EC70 /* PokepediaCommon in Frameworks */,
 				7E5B1B082A95F751003F561A /* PokepediaSpecies in Frameworks */,
 				7E81601F2A9607F800F6D3BD /* DGCharts in Frameworks */,
 				7E584DE12A95F9BF00CF4445 /* Lottie in Frameworks */,
-				7E47C1FE2A9DC870006B99F5 /* Realm in Frameworks */,
-				7E6B09402A9DC3C3009B98C8 /* RxSwift in Frameworks */,
-				7E47C2002A9DC870006B99F5 /* RealmSwift in Frameworks */,
-				7E6B093E2A9DC3C3009B98C8 /* RxBlocking in Frameworks */,
+				7E78A9132A9E9A32008D1B18 /* RealmSwift in Frameworks */,
+				7E78A90D2A9E993E008D1B18 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,7 +541,6 @@
 			);
 			name = PokepediaTests;
 			packageProductDependencies = (
-				7E47C2012A9DC96A006B99F5 /* Realm */,
 				7E47C2032A9DC988006B99F5 /* Lottie */,
 				7E47C2052A9DC988006B99F5 /* SDWebImage */,
 				7E47C2072A9DC988006B99F5 /* DGCharts */,
@@ -574,10 +571,10 @@
 				7E81601E2A9607F800F6D3BD /* DGCharts */,
 				7E444BED2A97303300F3C971 /* PokepediaPokemon */,
 				7E68D7B92A9CA55C00C6EC70 /* PokepediaCommon */,
-				7E6B093D2A9DC3C3009B98C8 /* RxBlocking */,
-				7E6B093F2A9DC3C3009B98C8 /* RxSwift */,
-				7E47C1FD2A9DC870006B99F5 /* Realm */,
-				7E47C1FF2A9DC870006B99F5 /* RealmSwift */,
+				7E78A9082A9E993E008D1B18 /* RxBlocking */,
+				7E78A90A2A9E993E008D1B18 /* RxCocoa */,
+				7E78A90C2A9E993E008D1B18 /* RxSwift */,
+				7E78A9122A9E9A32008D1B18 /* RealmSwift */,
 			);
 			productName = Pokepedia;
 			productReference = 7E02472C2995E11A00EECAA9 /* Pokepedia.app */;
@@ -617,8 +614,8 @@
 				7E815FE92A95FC9F00F6D3BD /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				7E81601D2A9607F800F6D3BD /* XCRemoteSwiftPackageReference "Charts" */,
 				7EEA72682A9D297A00BF7760 /* XCRemoteSwiftPackageReference "PokepediaCore" */,
-				7E6B093C2A9DC3C3009B98C8 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				7E47C1FC2A9DC870006B99F5 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				7E78A9072A9E993E008D1B18 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				7E78A9112A9E9A32008D1B18 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 7E6F93FD299010BA004B2537;
 			projectDirPath = "";
@@ -993,14 +990,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		7E47C1FC2A9DC870006B99F5 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		7E584DDF2A95F9BF00CF4445 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
@@ -1009,12 +998,20 @@
 				minimumVersion = 4.0.0;
 			};
 		};
-		7E6B093C2A9DC3C3009B98C8 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		7E78A9072A9E993E008D1B18 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 6.0.0;
+			};
+		};
+		7E78A9112A9E9A32008D1B18 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.32.3;
 			};
 		};
 		7E815FE92A95FC9F00F6D3BD /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
@@ -1048,21 +1045,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = PokepediaPokemon;
 		};
-		7E47C1FD2A9DC870006B99F5 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7E47C1FC2A9DC870006B99F5 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		7E47C1FF2A9DC870006B99F5 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7E47C1FC2A9DC870006B99F5 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
-		7E47C2012A9DC96A006B99F5 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7E47C1FC2A9DC870006B99F5 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
 		7E47C2032A9DC988006B99F5 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7E584DDF2A95F9BF00CF4445 /* XCRemoteSwiftPackageReference "lottie-spm" */;
@@ -1091,15 +1073,25 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = PokepediaCommon;
 		};
-		7E6B093D2A9DC3C3009B98C8 /* RxBlocking */ = {
+		7E78A9082A9E993E008D1B18 /* RxBlocking */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7E6B093C2A9DC3C3009B98C8 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 7E78A9072A9E993E008D1B18 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxBlocking;
 		};
-		7E6B093F2A9DC3C3009B98C8 /* RxSwift */ = {
+		7E78A90A2A9E993E008D1B18 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7E6B093C2A9DC3C3009B98C8 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 7E78A9072A9E993E008D1B18 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		7E78A90C2A9E993E008D1B18 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E78A9072A9E993E008D1B18 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		7E78A9122A9E9A32008D1B18 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E78A9112A9E9A32008D1B18 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		7E815FEA2A95FC9F00F6D3BD /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
