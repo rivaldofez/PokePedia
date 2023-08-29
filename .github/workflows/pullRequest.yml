@@ -34,8 +34,8 @@ jobs:
         id: cache
         with:
           path:
-            Build/SourcePackages
-            Build/Build/Products
+            PokepediaApp/Build/SourcePackages
+            PokepediaApp/Build/Build/Products
           key: ${{ runner.os }}-deps-v1-${{ hashFiles('PokepediaApp/Pokepedia.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
           restore-keys: ${{ runner.os }}-deps-v1-
       
