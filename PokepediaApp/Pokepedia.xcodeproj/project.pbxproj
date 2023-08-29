@@ -24,7 +24,7 @@
 		7E47C2022A9DC96A006B99F5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 7E47C2012A9DC96A006B99F5 /* Realm */; };
 		7E47C2042A9DC988006B99F5 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7E47C2032A9DC988006B99F5 /* Lottie */; };
 		7E47C2062A9DC988006B99F5 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7E47C2052A9DC988006B99F5 /* SDWebImage */; };
-		7E47C2082A9DC988006B99F5 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 7E47C2072A9DC988006B99F5 /* DGCharts */; };
+		7E47C2082A9DC988006B99F5 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 7E47C2072A9DC988006B99F5 /* DGCharts */; settings = {ATTRIBUTES = (Required, ); }; };
 		7E47C377299754AE00CFFB54 /* BaseStatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C376299754AE00CFFB54 /* BaseStatTableViewCell.swift */; };
 		7E47C379299768B700CFFB54 /* MovesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C378299768B700CFFB54 /* MovesTableViewCell.swift */; };
 		7E4A4E672A84FE2100FF13D5 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A4E662A84FE2100FF13D5 /* empty.json */; };
@@ -730,6 +730,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3F8C4P2T95;
@@ -738,6 +739,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rivaldofez.PokepediaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -749,6 +751,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3F8C4P2T95;
@@ -757,6 +760,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rivaldofez.PokepediaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
