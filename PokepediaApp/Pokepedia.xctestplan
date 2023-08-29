@@ -1,0 +1,30 @@
+{
+  "configurations" : [
+    {
+      "id" : "E8EAAAB2-AE9D-4EB2-B39E-919195DCF982",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Pokepedia.xcodeproj",
+      "identifier" : "7E6F9405299010BA004B2537",
+      "name" : "Pokepedia"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Pokepedia.xcodeproj",
+        "identifier" : "7E6B092F2A9DC2E2009B98C8",
+        "name" : "PokepediaTests"
+      }
+    }
+  ],
+  "version" : 1
+}
