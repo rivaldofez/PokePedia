@@ -20,7 +20,7 @@ final class Injection: NSObject {
         let remote = PokemonSpeciesRemoteDataSource(endpoint: { Endpoints.Gets.pokemonSpecies($0).url })
         
         let mapper = PokemonSpeciesTransformer()
-        
+         
         let repository = GetPokemonSpeciesRepository(
           localeDataSource: locale,
           remoteDataSource: remote,
