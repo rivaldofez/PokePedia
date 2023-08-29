@@ -14,7 +14,7 @@ import PokepediaPokemon
 import PokepediaSpecies
 
 @testable import Pokepedia
-class PokemonSpeciesInteractor: XCTestCase {
+class PokemonSpeciesInteractorTests: XCTestCase {
     var interactor: Interactor<
         Int,
         PokemonSpeciesDomainModel?,
@@ -38,7 +38,7 @@ class PokemonSpeciesInteractor: XCTestCase {
         interactor = nil
     }
     
-    func testGetPokemonDataPagination() throws {
+    func testGetPokemonSpecies() throws {
         let actualData = DummyData.generatePokemonSpecies(id: 100)
         let resultData = try interactor?.execute(request: 100).toBlocking().first()!
         
