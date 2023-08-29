@@ -25,7 +25,6 @@ public struct PokemonRemoteDataSource: RemoteDataSource {
     private func getPokemonItemResponse(urlString: String) -> Observable<PokemonItemResponse> {
         return Observable<PokemonItemResponse>.create { observer in
             if let url = URL(string: urlString) {
-                print(url)
                 AF.request(url)
                     .responseDecodable(of: PokemonItemResponse.self) { response in
                         switch response.result {

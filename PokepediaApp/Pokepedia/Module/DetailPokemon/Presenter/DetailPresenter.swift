@@ -100,7 +100,6 @@ class DetailPresenter: DetailPresenterProtocol {
     }
     
     func saveToggleFavorite(pokemon: PokemonDomainModel) {
-        print("called in save toggle \(pokemon.isFavorite)")
         self.isLoadingData = true
         toggleFavoriteInteractor?.execute(request: pokemon)
             .observe(on: MainScheduler.instance)
