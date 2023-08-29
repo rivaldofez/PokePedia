@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: macos-11
+    runs-on: macos-13
     steps:
       - uses: actions/checkout@v2
 
@@ -17,9 +17,9 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
-      - uses: actions/checkout@v3
+      - uses: mobiledevops/xcode-select-version-action@v1
         with:
-          xcode-version: "14.2"
+          xcode-select-version: 14.2
 
       - uses: ruby/setup-ruby@v1
 
