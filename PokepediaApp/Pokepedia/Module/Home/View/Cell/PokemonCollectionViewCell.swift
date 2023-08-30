@@ -20,6 +20,8 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         imageView.image = UIImage(named: "charizard")
         imageView.alpha = 1
         imageView.clipsToBounds = true
+        imageView.accessibilityIdentifier = "pokemonCellImage"
+        
         return imageView
     }()
     
@@ -30,6 +32,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         imageView.image = UIImage(named: "normal")
         imageView.alpha = 1
         imageView.clipsToBounds = true
+        imageView.accessibilityIdentifier = "pokemonTypeCellImage"
         return imageView
     }()
     
@@ -39,6 +42,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "pokeball")
         imageView.alpha = 0.3
+        imageView.accessibilityIdentifier = "pokeballCellImage"
         return imageView
     }()
     
@@ -49,6 +53,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         label.font = .poppinsRegular(size: 18)
         label.textAlignment = .center
         label.textColor = .secondaryLabel
+        label.accessibilityIdentifier = "pokemonNumberCellLabel"
         return label
     }()
     
@@ -58,6 +63,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .center
         label.font = .poppinsMedium(size: 16)
         label.textColor = .label
+        label.accessibilityIdentifier = "pokemonNameCellLabel"
         return label
     }()
     

@@ -28,6 +28,11 @@ class DetailPokemonViewController:
     private func showToggleFavoriteAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default)
+        
+        // For UI Testing
+        okButton.accessibilityIdentifier = "okButton"
+        alert.view.accessibilityIdentifier = "favoriteAlert"
+        
         alert.addAction(okButton)
         self.present(alert, animated: true)
     }
@@ -380,6 +385,7 @@ class DetailPokemonViewController:
     private func showFavoriteButton(isFavorite: Bool) {
         if self.navigationItem.rightBarButtonItem == nil {
             let button = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteAction))
+            button.accessibilityIdentifier = "favoriteButton"
             
             if isFavorite {
                 button.image = UIImage(systemName: "heart.fill")
