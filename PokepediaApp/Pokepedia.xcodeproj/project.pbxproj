@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E02446E2A9EC80800B455E2 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 7E02446D2A9EC80800B455E2 /* Realm */; };
+		7E0244702A9EC80800B455E2 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7E02446F2A9EC80800B455E2 /* RealmSwift */; };
+		7E0244722A9ECC7300B455E2 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7E0244712A9ECC7300B455E2 /* RealmSwift */; };
 		7E02472E2996103400EECAA9 /* DetailPokemonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E02472D2996103400EECAA9 /* DetailPokemonViewController.swift */; };
 		7E0247562996A71300EECAA9 /* AboutSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0247552996A71300EECAA9 /* AboutSubViewController.swift */; };
 		7E0247582996A73400EECAA9 /* BaseStatSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0247572996A73400EECAA9 /* BaseStatSubViewController.swift */; };
@@ -46,7 +49,6 @@
 		7E78A9092A9E993E008D1B18 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 7E78A9082A9E993E008D1B18 /* RxBlocking */; };
 		7E78A90B2A9E993E008D1B18 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 7E78A90A2A9E993E008D1B18 /* RxCocoa */; };
 		7E78A90D2A9E993E008D1B18 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7E78A90C2A9E993E008D1B18 /* RxSwift */; };
-		7E78A9162A9E9DF2008D1B18 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7E78A9152A9E9DF2008D1B18 /* RealmSwift */; };
 		7E7FFC922A749E1900FC1910 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E7FFC912A749E1900FC1910 /* loading.json */; };
 		7E7FFC9A2A74B09E00FC1910 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FFC992A74B09E00FC1910 /* ProfilePresenter.swift */; };
 		7E7FFC9C2A74B0AE00FC1910 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FFC9B2A74B0AE00FC1910 /* ProfileRouter.swift */; };
@@ -140,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E0244722A9ECC7300B455E2 /* RealmSwift in Frameworks */,
 				7E47C2082A9DC988006B99F5 /* DGCharts in Frameworks */,
 				7E47C2062A9DC988006B99F5 /* SDWebImage in Frameworks */,
 				7E47C2042A9DC988006B99F5 /* Lottie in Frameworks */,
@@ -154,11 +157,12 @@
 				7E78A90B2A9E993E008D1B18 /* RxCocoa in Frameworks */,
 				7E815FEB2A95FC9F00F6D3BD /* SDWebImage in Frameworks */,
 				7E444BEE2A97303300F3C971 /* PokepediaPokemon in Frameworks */,
+				7E02446E2A9EC80800B455E2 /* Realm in Frameworks */,
 				7E68D7BA2A9CA55C00C6EC70 /* PokepediaCommon in Frameworks */,
 				7E5B1B082A95F751003F561A /* PokepediaSpecies in Frameworks */,
 				7E81601F2A9607F800F6D3BD /* DGCharts in Frameworks */,
+				7E0244702A9EC80800B455E2 /* RealmSwift in Frameworks */,
 				7E584DE12A95F9BF00CF4445 /* Lottie in Frameworks */,
-				7E78A9162A9E9DF2008D1B18 /* RealmSwift in Frameworks */,
 				7E78A90D2A9E993E008D1B18 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -544,6 +548,7 @@
 				7E47C2032A9DC988006B99F5 /* Lottie */,
 				7E47C2052A9DC988006B99F5 /* SDWebImage */,
 				7E47C2072A9DC988006B99F5 /* DGCharts */,
+				7E0244712A9ECC7300B455E2 /* RealmSwift */,
 			);
 			productName = PokepediaTests;
 			productReference = 7E6B09302A9DC2E2009B98C8 /* PokepediaTests.xctest */;
@@ -574,7 +579,8 @@
 				7E78A9082A9E993E008D1B18 /* RxBlocking */,
 				7E78A90A2A9E993E008D1B18 /* RxCocoa */,
 				7E78A90C2A9E993E008D1B18 /* RxSwift */,
-				7E78A9152A9E9DF2008D1B18 /* RealmSwift */,
+				7E02446D2A9EC80800B455E2 /* Realm */,
+				7E02446F2A9EC80800B455E2 /* RealmSwift */,
 			);
 			productName = Pokepedia;
 			productReference = 7E02472C2995E11A00EECAA9 /* Pokepedia.app */;
@@ -615,7 +621,7 @@
 				7E81601D2A9607F800F6D3BD /* XCRemoteSwiftPackageReference "Charts" */,
 				7EEA72682A9D297A00BF7760 /* XCRemoteSwiftPackageReference "PokepediaCore" */,
 				7E78A9072A9E993E008D1B18 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				7E78A9142A9E9DF2008D1B18 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				7E02446C2A9EC80800B455E2 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 7E6F93FD299010BA004B2537;
 			projectDirPath = "";
@@ -992,6 +998,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7E02446C2A9EC80800B455E2 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		7E584DDF2A95F9BF00CF4445 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
@@ -1006,14 +1020,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 6.0.0;
-			};
-		};
-		7E78A9142A9E9DF2008D1B18 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				kind = exactVersion;
-				version = 10.26.0;
 			};
 		};
 		7E815FE92A95FC9F00F6D3BD /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
@@ -1043,6 +1049,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7E02446D2A9EC80800B455E2 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E02446C2A9EC80800B455E2 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		7E02446F2A9EC80800B455E2 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E02446C2A9EC80800B455E2 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		7E0244712A9ECC7300B455E2 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E02446C2A9EC80800B455E2 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		7E444BED2A97303300F3C971 /* PokepediaPokemon */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PokepediaPokemon;
@@ -1089,11 +1110,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7E78A9072A9E993E008D1B18 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
-		};
-		7E78A9152A9E9DF2008D1B18 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7E78A9142A9E9DF2008D1B18 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
 		};
 		7E815FEA2A95FC9F00F6D3BD /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
