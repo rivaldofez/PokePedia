@@ -57,15 +57,12 @@
   <img src="images/Image_7.png" width="150" />
   <img src="images/Image_8.png" width="150" /> 
   <img src="images/Image_9.png" width="150" />
-  <img src="images/Image_18.png" width="150" />   
-  <img src="images/Image_19.png" width="150" />
   <img src="images/Image_18.png" width="150" />
   <img src="images/Image_19.png" width="150" />
   <img src="images/Image_22.png" width="150" />
   <img src="images/Image_23.png" width="150" />
   <img src="images/Image_26.png" width="150" />
   <img src="images/Image_27.png" width="150" />
-  <img src="images/Image_29.png" width="150" />  
 </p>
 <p align="middle">
   <img src="images/Image_2.png" width="150" /> 
@@ -78,12 +75,9 @@
   <img src="images/Image_15.png" width="150" />
   <img src="images/Image_16.png" width="150" />   
   <img src="images/Image_17.png" width="150" />
-  <img src="images/Image_20.png" width="150" />
   <img src="images/Image_21.png" width="150" />
   <img src="images/Image_24.png" width="150" />
   <img src="images/Image_25.png" width="150" />
-  <img src="images/Image_28.png" width="150" />
-  <img src="images/Image_30.png" width="150" />  
 </p>
 
 Pokepedia is an apps that provide data Pokedex of pokemon, Pokepedia using PokeApi v2 that support many feature about pokemon such as pokemon data, moves, evolution and etc
