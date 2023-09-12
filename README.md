@@ -50,40 +50,40 @@
 ## About The Project
 
 <p align="middle">
-  <img src="Images/Image_1.png" width="150" />
-  <img src="Images/Image_3.png" width="150" />
-  <img src="Images/Image_5.png" width="150" />
-  <img src="Images/Image_6.png" width="150" /> 
-  <img src="Images/Image_7.png" width="150" />
-  <img src="Images/Image_8.png" width="150" /> 
-  <img src="Images/Image_9.png" width="150" />
-  <img src="Images/Image_18.png" width="150" />   
-  <img src="Images/Image_19.png" width="150" />
-  <img src="Images/Image_18.png" width="150" />
-  <img src="Images/Image_19.png" width="150" />
-  <img src="Images/Image_22.png" width="150" />
-  <img src="Images/Image_23.png" width="150" />
-  <img src="Images/Image_26.png" width="150" />
-  <img src="Images/Image_27.png" width="150" />
-  <img src="Images/Image_29.png" width="150" />  
+  <img src="images/Image_1.png" width="150" />
+  <img src="images/Image_3.png" width="150" />
+  <img src="images/Image_5.png" width="150" />
+  <img src="images/Image_6.png" width="150" /> 
+  <img src="images/Image_7.png" width="150" />
+  <img src="images/Image_8.png" width="150" /> 
+  <img src="images/Image_9.png" width="150" />
+  <img src="images/Image_18.png" width="150" />   
+  <img src="images/Image_19.png" width="150" />
+  <img src="images/Image_18.png" width="150" />
+  <img src="images/Image_19.png" width="150" />
+  <img src="images/Image_22.png" width="150" />
+  <img src="images/Image_23.png" width="150" />
+  <img src="images/Image_26.png" width="150" />
+  <img src="images/Image_27.png" width="150" />
+  <img src="images/Image_29.png" width="150" />  
 </p>
 <p align="middle">
-  <img src="Images/Image_2.png" width="150" /> 
-  <img src="Images/Image_4.png" width="150" /> 
-  <img src="Images/Image_10.png" width="150" /> 
-  <img src="Images/Image_11.png" width="150" />
-  <img src="Images/Image_12.png" width="150" /> 
-  <img src="Images/Image_13.png" width="150" />
-  <img src="Images/Image_14.png" width="150" /> 
-  <img src="Images/Image_15.png" width="150" />
-  <img src="Images/Image_16.png" width="150" />   
-  <img src="Images/Image_17.png" width="150" />
-  <img src="Images/Image_20.png" width="150" />
-  <img src="Images/Image_21.png" width="150" />
-  <img src="Images/Image_24.png" width="150" />
-  <img src="Images/Image_25.png" width="150" />
-  <img src="Images/Image_28.png" width="150" />
-  <img src="Images/Image_30.png" width="150" />  
+  <img src="images/Image_2.png" width="150" /> 
+  <img src="images/Image_4.png" width="150" /> 
+  <img src="images/Image_10.png" width="150" /> 
+  <img src="images/Image_11.png" width="150" />
+  <img src="images/Image_12.png" width="150" /> 
+  <img src="images/Image_13.png" width="150" />
+  <img src="images/Image_14.png" width="150" /> 
+  <img src="images/Image_15.png" width="150" />
+  <img src="images/Image_16.png" width="150" />   
+  <img src="images/Image_17.png" width="150" />
+  <img src="images/Image_20.png" width="150" />
+  <img src="images/Image_21.png" width="150" />
+  <img src="images/Image_24.png" width="150" />
+  <img src="images/Image_25.png" width="150" />
+  <img src="images/Image_28.png" width="150" />
+  <img src="images/Image_30.png" width="150" />  
 </p>
 
 Pokepedia is an apps that provide data Pokedex of pokemon, Pokepedia using PokeApi v2 that support many feature about pokemon such as pokemon data, moves, evolution and etc
