@@ -12,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/rivaldofez/Tok-project">
-    <img src="images/Logo.png" alt="Logo"height="80">
+    <img src="images/LogoApp.png" alt="Logo"height="80">
   </a>
 
   <h3 align="center">Simple Pokédex in Your Phone</h3>
