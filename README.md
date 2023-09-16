@@ -11,7 +11,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <h3 align="center">Poképedia</h3>
+  <a href="https://github.com/rivaldofez/Tok-project">
+    <img src="images/Logo.png" alt="Logo"height="80">
+  </a>
+
+  <h3 align="center">Simple Pokédex in Your Phone</h3>
   </br>
 </div>
 
@@ -46,8 +50,40 @@
 ## About The Project
 
 <p align="middle">
-  <img src="images/Image_2.png" width="150" />
-  <img src="images/Image_1.png" width="150" /> 
+  <img src="Images/Image_1.png" width="150" />
+  <img src="Images/Image_3.png" width="150" />
+  <img src="Images/Image_5.png" width="150" />
+  <img src="Images/Image_6.png" width="150" /> 
+  <img src="Images/Image_7.png" width="150" />
+  <img src="Images/Image_8.png" width="150" /> 
+  <img src="Images/Image_9.png" width="150" />
+  <img src="Images/Image_18.png" width="150" />   
+  <img src="Images/Image_19.png" width="150" />
+  <img src="Images/Image_18.png" width="150" />
+  <img src="Images/Image_19.png" width="150" />
+  <img src="Images/Image_22.png" width="150" />
+  <img src="Images/Image_23.png" width="150" />
+  <img src="Images/Image_26.png" width="150" />
+  <img src="Images/Image_27.png" width="150" />
+  <img src="Images/Image_29.png" width="150" />  
+</p>
+<p align="middle">
+  <img src="Images/Image_2.png" width="150" /> 
+  <img src="Images/Image_4.png" width="150" /> 
+  <img src="Images/Image_10.png" width="150" /> 
+  <img src="Images/Image_11.png" width="150" />
+  <img src="Images/Image_12.png" width="150" /> 
+  <img src="Images/Image_13.png" width="150" />
+  <img src="Images/Image_14.png" width="150" /> 
+  <img src="Images/Image_15.png" width="150" />
+  <img src="Images/Image_16.png" width="150" />   
+  <img src="Images/Image_17.png" width="150" />
+  <img src="Images/Image_20.png" width="150" />
+  <img src="Images/Image_21.png" width="150" />
+  <img src="Images/Image_24.png" width="150" />
+  <img src="Images/Image_25.png" width="150" />
+  <img src="Images/Image_28.png" width="150" />
+  <img src="Images/Image_30.png" width="150" />  
 </p>
 
 Pokepedia is an apps that provide data Pokedex of pokemon, Pokepedia using PokeApi v2 that support many feature about pokemon such as pokemon data, moves, evolution and etc
@@ -63,6 +99,7 @@ This apps built with
 * [UIKit](https://developer.apple.com/documentation/uikit)
 * [RxSwift](https://github.com/ReactiveX/RxSwift)
 * [Alamofire](https://github.com/Alamofire/Alamofire)
+* [Realm](https://realm.io/)
 * VIPER Architecture Pattern
 * Dependency Injection
 * Repository Pattern
