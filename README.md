@@ -11,7 +11,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/rivaldofez/Tok-project">
+  <a href="https://github.com/rivaldofez/Pokepedia">
     <img src="images/LogoApp.png" alt="Logo"height="80">
   </a>
 
